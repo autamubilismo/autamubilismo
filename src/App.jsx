@@ -16,7 +16,6 @@ import ArticlesPage from './pages/Articles';
 import ArticleDetail from './pages/ArticleDetail';
 import ContactPage from './pages/Contact';
 import GlossaryPage from './pages/Glossary';
-import GenericPage from './pages/Generic';
 
 export default function App() {
   const [theme, setTheme] = useState('light');
