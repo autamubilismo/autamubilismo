@@ -1,7 +1,7 @@
 import { 
   Home, Calendar, Users, Wrench, Sparkles, Zap, BookOpen, 
-  FileText, Headphones, Mail, Heart, Gamepad2, Smile, Trophy as TrophyIcon,
-  Music, Star, Briefcase
+  FileText, Headphones, Mail, Heart, Gamepad2, Smile, 
+  Trophy as TrophyIcon, Music, Star, Briefcase, Utensils
 } from 'lucide-react';
 
 export const LOGO_LIGHT_URL = "https://i.ibb.co/tw2VBdC4/Logo-Light.png"; 
@@ -22,14 +22,133 @@ export const SITE_MAP = [
 ];
 
 export const DRIVERS_DATA = [
-  { id: 'kimi', name: 'Kimi Antonelli', number: 12, team: 'Mercedes', color: '#00D2BE', image: '/img/pilotos/antonelli/profile.avif', bio: "O garoto prodígio que fez a Mercedes esquecer Carlos Sainz. Pulou a F3 direto para o abismo da F1 e caiu de pé.", country: 'Itália 🇮🇹', age: '18 anos', vibes: [{ icon: <Gamepad2 size={18} />, label: 'Sim Racer' }, { icon: <Utensils size={18} />, label: 'Pasta Lover' }, { icon: <Zap size={18} />, label: 'Rookie' }], stats: { xp: 'F2 (Prema)', podiums: '2', bestResult: 'P3 (Vegas)' }, signature: "Kimi A.", secretFact: "Leva seu simulador portátil para todos os hotéis.", zodiac: "Leão ♌" },
-  { id: 'lewis', name: 'Lewis Hamilton', number: 44, team: 'Ferrari', color: '#FF0000', image: '/img/pilotos/hamilton/profile.avif', signature: "Lewis 44", secretFact: "Roscoe tem seu próprio passe VIP.", zodiac: "Capricórnio ♑", vibes: [{ icon: <Star size={18} />, label: 'Lenda' }] },
-  { id: 'gabriel', name: 'Gabriel Bortoleto', number: 5, team: 'Sauber', color: '#52E252', image: '/img/pilotos/bortoleto/profile.avif', country: 'Brasil 🇧🇷', signature: "Bortoleto", secretFact: "Adora feijoada.", zodiac: "Libra ♎", vibes: [{ icon: <Zap size={18} />, label: 'Rápido' }] },
-  { id: 'max', name: 'Max Verstappen', number: 1, team: 'Red Bull', color: '#1E41FF', image: '/img/pilotos/verstappen/profile.avif', signature: "Max V.", secretFact: "Prefere FIFA.", zodiac: "Libra ♎", vibes: [{ icon: <TrophyIcon size={18} />, label: 'Campeão' }] },
-  { id: 'lando', name: 'Lando Norris', number: 4, team: 'McLaren', color: '#FF8700', image: '/img/pilotos/norris/profile.avif', signature: "Lando", secretFact: "DJ nas horas vagas.", zodiac: "Escorpião ♏", vibes: [{ icon: <Gamepad2 size={18} />, label: 'Gamer' }] },
-  { id: 'charles', name: 'Charles Leclerc', number: 16, team: 'Ferrari', color: '#FF0000', image: '/img/pilotos/leclerc/profile.avif', signature: "Charles 16", secretFact: "Toca piano.", zodiac: "Libra ♎", vibes: [{ icon: <Music size={18} />, label: 'Piano' }] },
-  { id: 'oscar', name: 'Oscar Piastri', number: 81, team: 'McLaren', color: '#FF8700', image: '/img/pilotos/piastri/profile.avif', signature: "Oscar P.", secretFact: "Calmo demais.", zodiac: "Áries ♈", vibes: [{ icon: <Smile size={18} />, label: 'Calmo' }] },
-  { id: 'george', name: 'George Russell', number: 63, team: 'Mercedes', color: '#00D2BE', image: '/img/pilotos/russell/profile.avif', signature: "GR63", secretFact: "Powerpoint lover.", zodiac: "Aquário ♒", vibes: [{ icon: <Briefcase size={18} />, label: 'CEO' }] },
+  { 
+    id: 'kimi',
+    name: 'Kimi Antonelli',
+    number: 12,
+    team: 'Mercedes',
+    color: '#00D2BE',
+    image: '/img/pilotos/antonelli/profile.avif',
+    bio: "O garoto prodígio que fez a Mercedes esquecer Carlos Sainz. Pulou a F3 direto para o abismo da F1 e caiu de pé.",
+    country: 'Itália 🇮🇹',
+    age: '18 anos',
+    vibes: [
+      { icon: 'Gamepad2', label: 'Sim Racer' },
+      { icon: 'Utensils', label: 'Pasta Lover' },
+      { icon: 'Zap', label: 'Rookie' }
+    ],
+    stats: { xp: 'F2 (Prema)', podiums: '2', bestResult: 'P3 (Vegas)' },
+    signature: "Kimi A.",
+    secretFact: "Leva seu simulador portátil para todos os hotéis.",
+    zodiac: "Leão ♌"
+  },
+
+  { 
+    id: 'lewis',
+    name: 'Lewis Hamilton',
+    number: 44,
+    team: 'Ferrari',
+    color: '#FF0000',
+    image: '/img/pilotos/hamilton/profile.avif',
+    signature: "Lewis 44",
+    secretFact: "Roscoe tem seu próprio passe VIP.",
+    zodiac: "Capricórnio ♑",
+    vibes: [
+      { icon: 'Star', label: 'Lenda' }
+    ]
+  },
+
+  { 
+    id: 'gabriel',
+    name: 'Gabriel Bortoleto',
+    number: 5,
+    team: 'Sauber',
+    color: '#52E252',
+    image: '/img/pilotos/bortoleto/profile.avif',
+    country: 'Brasil 🇧🇷',
+    signature: "Bortoleto",
+    secretFact: "Adora feijoada.",
+    zodiac: "Libra ♎",
+    vibes: [
+      { icon: 'Zap', label: 'Rápido' }
+    ]
+  },
+
+  { 
+    id: 'max',
+    name: 'Max Verstappen',
+    number: 1,
+    team: 'Red Bull',
+    color: '#1E41FF',
+    image: '/img/pilotos/verstappen/profile.avif',
+    signature: "Max V.",
+    secretFact: "Prefere FIFA.",
+    zodiac: "Libra ♎",
+    vibes: [
+      { icon: 'TrophyIcon', label: 'Campeão' }
+    ]
+  },
+
+  { 
+    id: 'lando',
+    name: 'Lando Norris',
+    number: 4,
+    team: 'McLaren',
+    color: '#FF8700',
+    image: '/img/pilotos/norris/profile.avif',
+    signature: "Lando",
+    secretFact: "DJ nas horas vagas.",
+    zodiac: "Escorpião ♏",
+    vibes: [
+      { icon: 'Gamepad2', label: 'Gamer' }
+    ]
+  },
+
+  { 
+    id: 'charles',
+    name: 'Charles Leclerc',
+    number: 16,
+    team: 'Ferrari',
+    color: '#FF0000',
+    image: '/img/pilotos/leclerc/profile.avif',
+    signature: "Charles 16",
+    secretFact: "Toca piano.",
+    zodiac: "Libra ♎",
+    vibes: [
+      { icon: 'Music', label: 'Piano' }
+    ]
+  },
+
+  {
+    id: 'oscar',
+    name: 'Oscar Piastri',
+    number: 81,
+    team: 'McLaren',
+    color: '#FF8700',
+    image: '/img/pilotos/piastri/profile.avif',
+    signature: "Oscar P.",
+    secretFact: "Calmo demais.",
+    zodiac: "Áries ♈",
+    vibes: [
+      { icon: 'Smile', label: 'Calmo' }
+    ]
+  },
+
+  {
+    id: 'george',
+    name: 'George Russell',
+    number: 63,
+    team: 'Mercedes',
+    color: '#00D2BE',
+    image: '/img/pilotos/russell/profile.avif',
+    signature: "GR63",
+    secretFact: "Powerpoint lover.",
+    zodiac: "Aquário ♒",
+    vibes: [
+      { icon: 'Briefcase', label: 'CEO' }
+    ]
+  },
+
   { id: 'carlos', name: 'Carlos Sainz', number: 55, team: 'Williams', color: '#005AFF', image: '/img/pilotos/sainz/profile.avif', signature: "Chili", secretFact: "Smooth Operator.", zodiac: "Virgem ♍" },
   { id: 'oliver', name: 'Oliver Bearman', number: 87, team: 'Haas', color: '#B6BABD', image: '/img/pilotos/bearman/profile.avif', signature: "Ollie", secretFact: "Estudante.", zodiac: "Touro ♉" },
   { id: 'jack', name: 'Jack Doohan', number: 7, team: 'Alpine', color: '#0090FF', image: '/img/pilotos/doohan/profile.avif', signature: "Jack D", secretFact: "MotoGP DNA.", zodiac: "Aquário ♒" },
@@ -41,7 +160,7 @@ export const DRIVERS_DATA = [
   { id: 'lance', name: 'Lance Stroll', number: 18, team: 'Aston Martin', color: '#006F62', image: '/img/pilotos/stroll/profile.avif', signature: "Lance", zodiac: "Escorpião ♏" },
   { id: 'pierre', name: 'Pierre Gasly', number: 10, team: 'Alpine', color: '#0090FF', image: '/img/pilotos/gasly/profile.avif', signature: "Gasly", zodiac: "Aquário ♒" },
   { id: 'alex', name: 'Alex Albon', number: 23, team: 'Williams', color: '#005AFF', image: '/img/pilotos/albon/profile.avif', signature: "Albon", zodiac: "Áries ♈" },
-  { id: 'yuki', name: 'Yuki Tsunoda', number: 22, team: 'VCARB', color: '#1633EF', image: '/img/pilotos/tsunoda/profile.avif', signature: "Yuki", zodiac: "Touro ♉" },
+  { id: 'yuki', name: 'Yuki Tsunoda', number: 22, team: 'VCARB', color: '#1633EF', image: '/img/pilotos/tsunoda/profile.avif', signature: "Yuki", zodiac: "Touro ♉" }
 ];
 
 export const TEAMS_DATA = [
@@ -94,11 +213,35 @@ export const NEWS_DATA = [
 ];
 
 export const MANIFESTO_POST = {
-  id: 'manifesto', title: "Correndo como uma garota.", category: "Manifesto", time: "19 Nov", image: "https://images.unsplash.com/photo-1592853625511-ad0ed2881895?q=80&w=1200", author: "Tamu",
+  id: 'manifesto',
+  title: "Correndo como uma garota.",
+  category: "Manifesto",
+  time: "19 Nov",
+  image: "https://images.unsplash.com/photo-1592853625511-ad0ed2881895?q=80&w=1200",
+  author: "Tamu",
   content: `<p>Eu cresci ouvindo que corrida é barulho, é graxa, é homem bravo gritando no rádio.</p><p>Mas eu nunca ouvi ninguém dizer que corrida também é sensibilidade...</p><div class="mt-12 p-8 rounded-2xl text-center bg-current bg-opacity-10"><p class="text-2xl font-black mb-2">"Porque eu corro como uma garota."</p></div>`
 };
 
 export const ARTICLES_DATA = [
-  { id: 'art-1', title: "A Psicologia de um Campeão: Como Norris virou a chave", excerpt: "De 'bom moço' a predador. Analisamos a mudança de postura que colocou Lando na briga pelo título mundial.", category: "Análise", time: "18 Nov", image: "https://media.formula1.com/image/upload/f_auto/q_auto/v1709223759/fom-website/2024/McLaren/Lando_Norris_Bahrain_2024.jpg", author: "Tamu", content: `<p>Texto longo e profundo sobre a psicologia do Lando...</p>` },
-  { id: 'art-2', title: "Por que a F1 precisa parar de ignorar a estética", excerpt: "O visual não é futilidade, é identidade. Como o design dos carros e macacões conta a história da temporada.", category: "Opinião", time: "15 Nov", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1200", author: "Tamu", content: `<p>Texto longo sobre design e estética na F1...</p>` },
+  { 
+    id: 'art-1',
+    title: "A Psicologia de um Campeão: Como Norris virou a chave",
+    excerpt: "De 'bom moço' a predador. Analisamos a mudança de postura que colocou Lando na briga pelo título mundial.",
+    category: "Análise",
+    time: "18 Nov",
+    image: "https://media.formula1.com/image/upload/f_auto/q_auto/v1709223759/fom-website/2024/McLaren/Lando_Norris_Bahrain_2024.jpg",
+    author: "Tamu",
+    content: `<p>Texto longo e profundo sobre a psicologia do Lando...</p>`
+  },
+
+  { 
+    id: 'art-2',
+    title: "Por que a F1 precisa parar de ignorar a estética",
+    excerpt: "O visual não é futilidade, é identidade. Como o design dos carros e macacões conta a história da temporada.",
+    category: "Opinião",
+    time: "15 Nov",
+    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1200",
+    author: "Tamu",
+    content: `<p>Texto longo sobre design e estética na F1...</p>`
+  },
 ];
