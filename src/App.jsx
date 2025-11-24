@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { Menu, Sun, Moon } from 'lucide-react';
+import { Menu, Sun, Moon, Search } from 'lucide-react';
 import { LogoHelmet, NavigationOverlay, SearchOverlay, ScrollToTop } from './components/UI';
 
 // Importar Páginas
