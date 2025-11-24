@@ -36,7 +36,7 @@ const SITE_MAP = [
 ];
 
 /* ==========================================================================
-   2. BANCO DE DADOS
+   2. BANCO DE DADOS (MOCK DATA) - ATUALIZADO PÓS-VEGAS 2025
    ========================================================================== */
 
 const DRIVERS_DATA = [
@@ -285,131 +285,261 @@ const GlossaryPage = ({ theme, onBack }) => {
   );
 };
 
+const FanzonePage = ({ theme, onBack }) => {
+  const isLight = theme === 'light';
+  const [activeTab, setActiveTab] = useState('feed'); // ABAS AQUI (Modificação aplicada aqui)
+  const [activeFilter, setActiveFilter] = useState('All');
+  const feedItems = [{ type: 'art', author: '@mari_art', src: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=600', squad: 'Mercedes' }, { type: 'post', author: 'Ana_Leclerc', text: 'Alguém indo pro GP de Interlagos?', squad: 'Ferrari' }];
+  const squads = [{ id: 'All', label: 'Paddock', color: '#888' }, { id: 'Mercedes', label: 'Team LH/GR', color: '#00D2BE' }];
+  const filteredItems = activeFilter === 'All' ? feedItems : feedItems.filter(item => item.squad === activeFilter);
+  
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+      <BackButton onClick={onBack} theme={theme} />
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <h2 className={`text-4xl font-black ${isLight?'text-gray-800':'text-white'}`}>Fanzone</h2>
+        <div className={`flex p-1 rounded-full ${isLight ? 'bg-gray-200' : 'bg-[#1a1a20] border border-[#333]'}`}>
+           <button onClick={() => setActiveTab('feed')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'feed' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#00fff2] text-black') : 'text-gray-500'}`}><Grid size={16} className="inline mr-2"/> Feed</button>
+           <button onClick={() => setActiveTab('cards')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'cards' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#bd00ff] text-white') : 'text-gray-500'}`}><Image size={16} className="inline mr-2"/> Coleção</button>
+        </div>
+      </div>
+
+      {activeTab === 'feed' ? (
+        <>
+          <div className="flex gap-3 overflow-x-auto pb-4 mb-6 no-scrollbar">{squads.map((s) => (<button key={s.id} onClick={() => setActiveFilter(s.id)} className={`px-5 py-2 rounded-full text-sm font-bold border-2 ${activeFilter === s.id ? (isLight?'bg-gray-900 text-white':'bg-[#bd00ff] text-white') : 'border-gray-200 text-gray-500'}`}>{s.label}</button>))}</div>
+          <div className="columns-1 md:columns-2 gap-4 space-y-4">{filteredItems.map((item, idx) => (<div key={idx} className={`break-inside-avoid rounded-2xl overflow-hidden ${isLight?'bg-white shadow-md':'bg-[#1a1a20] border border-[#333]'}`}>{item.type === 'art' ? <img src={item.src} className="w-full" /> : <div className="p-5"><p>{item.text}</p></div>}</div>))}</div>
+        </>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+           {DRIVERS_DATA.map((driver) => (
+             <KpopPhotocard key={driver.number} driver={driver} theme={theme} onClick={()=>{}} />
+           ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const DriverDetail = ({ theme, driver, onBack }) => {
+  const isLight = theme === 'light';
+  if (!driver) return null;
+  return (
+    <div className="animate-in fade-in zoom-in duration-500 pb-12">
+      <BackButton onClick={onBack} theme={theme} />
+      <div className={`relative rounded-3xl overflow-hidden mb-6 ${isLight ? 'bg-white shadow-lg' : 'bg-[#121217] border border-[#333]'}`}>
+        <div className="h-72 md:h-96 relative">
+           {driver.image ? (<img src={driver.image} alt={driver.name} className="w-full h-full object-cover" />) : (<div className={`w-full h-full bg-gradient-to-br ${isLight ? 'from-[#CFF7E8] to-[#D8C4F0]' : 'from-[#00fff2] to-[#bd00ff]'}`}></div>)}
+           <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full"><h1 className="text-4xl md:text-7xl font-black text-white leading-none mb-1">{driver.name}</h1><div className="text-6xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 opacity-80">{driver.number}</div></div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 space-y-6">
+          <div className={`p-8 rounded-3xl ${isLight ? 'bg-white shadow-md' : 'bg-[#1a1a20] border border-[#bd00ff]/30'}`}><h3 className={`text-xl font-bold mb-4 ${isLight ? 'text-gray-800' : 'text-white'}`}>O Perfil</h3><p className={`text-lg leading-relaxed ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{driver.bio || "Informações sobre este piloto serão adicionadas em breve."}</p></div>
+          {driver.vibes && (<div className="grid grid-cols-3 gap-4">{driver.vibes.map((vibe, i) => (<div key={i} className={`p-4 rounded-2xl flex flex-col items-center justify-center gap-2 text-center ${isLight ? 'bg-[#F7B8C8]/20 text-gray-700' : 'bg-[#1a1a20] border border-[#333] text-gray-300'}`}><div className={isLight ? 'text-[#D8C4F0]' : 'text-[#00fff2]'}>{vibe.icon}</div><span className="text-xs font-bold uppercase">{vibe.label}</span></div>))}</div>)}
+        </div>
+        <div className="space-y-6">
+           <div className={`p-6 rounded-3xl h-full ${isLight ? 'bg-[#CFF7E8]' : 'bg-[#0a0a12] border border-[#00fff2]/30'}`}>
+             <h3 className={`text-lg font-bold mb-6 border-b pb-2 ${isLight ? 'text-teal-800 border-teal-800/20' : 'text-[#00fff2] border-[#00fff2]/20'}`}>Dados Rápidos</h3>
+             <div className="space-y-6">
+               <div><span className={`text-xs font-bold uppercase block mb-1 opacity-60 ${isLight ? 'text-teal-900' : 'text-white'}`}>País</span><span className={`text-xl font-medium ${isLight ? 'text-teal-900' : 'text-white'}`}>{driver.country || 'Desconhecido'}</span></div>
+               <div><span className={`text-xs font-bold uppercase block mb-1 opacity-60 ${isLight ? 'text-teal-900' : 'text-white'}`}>Idade</span><span className={`text-xl font-medium ${isLight ? 'text-teal-900' : 'text-white'}`}>{driver.age || 'N/A'}</span></div>
+               {driver.stats && (<><div><span className={`text-xs font-bold uppercase block mb-1 opacity-60 ${isLight ? 'text-teal-900' : 'text-white'}`}>Experiência</span><span className={`text-xl font-medium ${isLight ? 'text-teal-900' : 'text-white'}`}>{driver.stats.xp}</span></div><div><span className={`text-xs font-bold uppercase block mb-1 opacity-60 ${isLight ? 'text-teal-900' : 'text-white'}`}>Pódios</span><span className={`text-xl font-medium ${isLight ? 'text-teal-900' : 'text-white'}`}>{driver.stats.podiums}</span></div></>)}
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TeamDetail = ({ theme, team, onBack }) => {
+  const isLight = theme === 'light';
+  if (!team) return null;
+  return (
+    <div className="animate-in fade-in zoom-in duration-500 pb-12">
+      <BackButton onClick={onBack} theme={theme} />
+      
+      {/* HERO DA EQUIPE - RESTAURADO O VISUAL RICO */}
+      <div className={`relative rounded-3xl overflow-hidden mb-6 ${isLight ? 'bg-white shadow-lg' : 'bg-[#121217] border border-[#333]'}`}>
+        <div className="h-64 md:h-80 relative bg-black">
+           {team.image && <img src={team.image} alt="Team Car" className="w-full h-full object-cover opacity-60" />}
+           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+           <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full">
+             <div className="flex items-center gap-4 mb-4">
+                <div className="bg-white p-2 rounded-xl w-16 h-16 flex items-center justify-center"><img src={`https://logo.clearbit.com/${team.domain}`} className="max-w-full max-h-full mix-blend-multiply" alt="Logo" onError={(e) => {e.target.style.display='none'}} /></div>
+                <div><h1 className="text-3xl md:text-5xl font-black text-white leading-none">{team.name}</h1><p className="text-white/60 text-sm md:text-base">{team.fullName || team.name + " F1 Team"}</p></div>
+             </div>
+           </div>
+        </div>
+      </div>
+
+      {/* INFO GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 space-y-6">
+          <div className={`p-8 rounded-3xl ${isLight ? 'bg-white shadow-md' : 'bg-[#1a1a20] border border-[#bd00ff]/30'}`}><h3 className={`text-xl font-bold mb-4 ${isLight ? 'text-gray-800' : 'text-white'}`}>Sobre a Equipe</h3><p className={`text-lg leading-relaxed ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{team.bio || "Uma das equipes mais icônicas do grid."}</p></div>
+          {team.drivers && (<div className={`p-6 rounded-3xl ${isLight ? 'bg-[#F7B8C8]/20' : 'bg-[#1a1a20] border border-[#333]'}`}><div className="flex items-center gap-2 mb-4"><Users size={20} className={isLight ? 'text-[#D8C4F0]' : 'text-[#00fff2]'} /><h3 className={`font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>Dupla 2026</h3></div><div className="flex gap-4">{team.drivers.map((d, i) => (<div key={i} className={`flex-1 p-4 rounded-xl flex items-center justify-between ${isLight ? 'bg-white shadow-sm' : 'bg-black/30 border border-[#333]'}`}><span className={`font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>{d}</span></div>))}</div></div>)}
+        </div>
+        <div className="space-y-6">
+           {/* BARRA DE COR E DETALHES RESTAURADOS */}
+           <div className={`p-6 rounded-3xl h-full flex flex-col justify-center ${isLight ? 'bg-gray-100' : 'bg-[#0a0a12] border border-[#333]'}`} style={{ borderTop: `4px solid ${team.color}` }}>
+              <h3 className={`text-lg font-bold mb-6 ${isLight ? 'text-gray-800' : 'text-white'}`}>Tech Specs</h3>
+              <ul className="space-y-4">
+                <li className="flex justify-between items-center border-b border-gray-200/10 pb-2"><span className={`text-xs font-bold uppercase opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Motor</span><span className={`font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>{team.engine}</span></li>
+                {team.base && (<li className="flex justify-between items-center border-b border-gray-200/10 pb-2"><span className={`text-xs font-bold uppercase opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Sede</span><span className={`font-bold text-right ${isLight ? 'text-gray-800' : 'text-white'}`}>{team.base}</span></li>)}
+                {team.principal && (<li className="flex justify-between items-center border-b border-gray-200/10 pb-2"><span className={`text-xs font-bold uppercase opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Chefe</span><span className={`font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>{team.principal}</span></li>)}
+                 {team.titles !== undefined && (<li className="flex justify-between items-center pt-2"><span className={`text-xs font-bold uppercase opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Títulos</span><div className="flex items-center gap-1"><Trophy size={14} className="text-yellow-500 fill-yellow-500" /><span className={`font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>{team.titles}</span></div></li>)}
+              </ul>
+           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DriversPage = ({ theme, onBack, onDriverClick }) => {
+  const isLight = theme === 'light';
+  // SEM ABAS: Apenas Grid Oficial (Modificação aplicada aqui)
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+      <BackButton onClick={onBack} theme={theme} />
+      <div className="mb-8"><h2 className={`text-4xl font-black ${isLight ? 'text-gray-800' : 'text-white'}`}>Grid 2025</h2></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {DRIVERS_DATA.map((driver) => (
+          <div key={driver.number} onClick={() => onDriverClick(driver)} className={`relative overflow-hidden h-80 rounded-3xl group cursor-pointer transition-transform hover:-translate-y-2 ${isLight ? 'bg-white shadow-lg' : 'bg-[#121217] border border-[#333] hover:border-[#00fff2]'}`}>
+             {driver.image && <img src={driver.image} alt={driver.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />}
+             <div className="absolute bottom-0 left-0 w-full p-6 z-10 bg-gradient-to-t from-black/80 to-transparent"><h3 className="text-3xl font-black text-white">{driver.name}</h3></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ArticlesPage = ({ theme, onBack, onArticleClick }) => {
+  const isLight = theme === 'light';
+  
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+      <BackButton onClick={onBack} theme={theme} />
+      
+      <div className="mb-10 text-center">
+        <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-3 ${isLight ? 'bg-[#F7B8C8] text-white' : 'border border-[#ff0055] text-[#ff0055]'}`}>
+          Blog & Opinião
+        </span>
+        <h2 className={`text-4xl md:text-6xl font-black ${isLight ? 'text-gray-800' : 'text-white'}`}>
+          Deep Dives
+        </h2>
+        <p className={`mt-2 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>
+          Análises técnicas, desabafos de fã e histórias do paddock.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-8">
+        {ARTICLES_DATA.map((article) => (
+          <div 
+            key={article.id} 
+            onClick={() => onArticleClick(article)}
+            className={`group cursor-pointer rounded-3xl overflow-hidden transition-all hover:-translate-y-1
+              ${isLight ? 'bg-white shadow-md hover:shadow-xl' : 'bg-[#121217] border border-[#333] hover:border-[#bd00ff]'}
+            `}
+          >
+            <div className="md:flex">
+               {/* Imagem */}
+               <div className="md:w-2/5 h-48 md:h-auto relative overflow-hidden">
+                 <img 
+                   src={article.image} 
+                   alt={article.title} 
+                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                 />
+               </div>
+               
+               {/* Texto */}
+               <div className="p-6 md:p-8 flex-1 flex flex-col justify-center">
+                 <div className="flex items-center gap-3 mb-3">
+                    <span className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded ${isLight ? 'bg-gray-100 text-gray-600' : 'bg-[#0a0a12] text-gray-400'}`}>
+                      {article.category}
+                    </span>
+                    <span className={`text-xs ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {article.time} • por {article.author}
+                    </span>
+                 </div>
+                 <h3 className={`text-2xl font-black leading-tight mb-3 ${isLight ? 'text-gray-800 group-hover:text-[#D8C4F0]' : 'text-white group-hover:text-[#bd00ff]'}`}>
+                   {article.title}
+                 </h3>
+                 <p className={`text-sm leading-relaxed line-clamp-2 ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>
+                   {article.excerpt}
+                 </p>
+                 <div className={`mt-6 flex items-center gap-2 text-sm font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>
+                    Ler Artigo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                 </div>
+               </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const TeamsPage = ({ theme, onBack, onTeamClick }) => {
+  const isLight = theme === 'light';
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <BackButton onClick={onBack} theme={theme} />
+      <div className="mb-8"><h2 className={`text-4xl font-black mb-2 ${isLight ? 'text-gray-800' : 'text-white'}`}>Equipes 2026</h2><p className={`${isLight ? 'text-gray-600' : 'text-gray-400'}`}>A nova era da Fórmula 1.</p></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {TEAMS_DATA.map((team, idx) => (
+          <div key={idx} onClick={() => onTeamClick(team)} className={`relative overflow-hidden p-6 rounded-2xl group transition-all hover:shadow-lg flex items-center gap-6 cursor-pointer ${isLight ? 'bg-white border border-transparent hover:border-[#D8C4F0]' : 'bg-[#121217] border border-[#333] hover:border-[#00fff2]'}`}>
+            {/* BARRA LATERAL RESTAURADA */}
+            <div className="absolute left-0 top-0 bottom-0 w-3 z-10" style={{ backgroundColor: team.color }}></div>
+            {/* LOGO RESTAURADO */}
+            <div className={`w-16 h-16 shrink-0 rounded-xl p-2 flex items-center justify-center ${isLight ? 'bg-gray-50' : 'bg-white'}`}><img src={`https://logo.clearbit.com/${team.domain}`} alt={`${team.name} logo`} className="max-w-full max-h-full object-contain mix-blend-multiply" onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.innerText = '🏎️'; }} /></div>
+            <div className="flex-1"><h3 className={`text-xl font-bold leading-tight ${isLight ? 'text-gray-800' : 'text-white'}`}>{team.name}</h3><div className="flex items-center gap-2 mt-1"><span className={`text-xs font-bold uppercase px-2 py-1 rounded-full flex items-center gap-1 ${isLight ? 'bg-gray-100 text-gray-500' : 'bg-[#1a1a20] text-gray-400'}`}><Wrench size={10} /> {team.engine}</span></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const CircuitPage = ({ theme, onBack }) => {
+  const isLight = theme === 'light';
+  return (<div className="animate-in fade-in pb-12"><BackButton onClick={onBack} theme={theme} /><h1 className={`text-5xl font-black ${isLight?'text-gray-800':'text-white'}`}>LAS VEGAS</h1></div>);
+};
+
 const SeasonPage = ({ theme, onBack, onViewRegulation, onViewCalendar, onViewStandings, onViewCircuits }) => {
   const isLight = theme === 'light';
-  const [year, setYear] = useState('2025'); // Estado do Toggle
-  
   return (
     <div className="animate-in fade-in pb-12">
       <BackButton onClick={onBack} theme={theme} />
-      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-        <h2 className={`text-4xl font-black ${isLight?'text-gray-800':'text-white'}`}>Temporada {year}</h2>
-        {/* TOGGLE 2025/2026 RESTAURADO */}
-        <div className={`flex p-1 rounded-full ${isLight ? 'bg-gray-200' : 'bg-[#1a1a20] border border-[#333]'}`}>
-           <button onClick={() => setYear('2025')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${year === '2025' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#00fff2] text-black shadow-[0_0_10px_#00fff2]') : (isLight ? 'text-gray-500 hover:text-black' : 'text-gray-500 hover:text-white')}`}>2025</button>
-           <button onClick={() => setYear('2026')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${year === '2026' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#bd00ff] text-white shadow-[0_0_10px_#bd00ff]') : (isLight ? 'text-gray-500 hover:text-black' : 'text-gray-500 hover:text-white')}`}>2026</button>
-        </div>
+      <h2 className={`text-4xl font-black ${isLight?'text-gray-800':'text-white'}`}>Temporada 2025</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+         {/* CARDS COLORIDOS RESTAURADOS */}
+         <div onClick={onViewCalendar} className={`p-6 rounded-3xl h-48 cursor-pointer flex flex-col justify-between ${isLight?'bg-[#CFF7E8]':'bg-[#121217] border border-[#333] hover:border-[#00fff2]'}`}><div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLight?'bg-white/50':'bg-[#00fff2]/20'}`}><Calendar size={24} className={isLight?'text-teal-800':'text-[#00fff2]'}/></div><h3 className={`text-xl font-bold ${isLight?'text-teal-900':'text-white'}`}>Calendário</h3></div>
+         <div onClick={onViewStandings} className={`p-6 rounded-3xl h-48 cursor-pointer flex flex-col justify-between ${isLight?'bg-[#FBCAD2]':'bg-[#121217] border border-[#333] hover:border-[#ff0055]'}`}><div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLight?'bg-white/50':'bg-[#ff0055]/20'}`}><TrophyIcon size={24} className={isLight?'text-pink-800':'text-[#ff0055]'}/></div><h3 className={`text-xl font-bold ${isLight?'text-pink-900':'text-white'}`}>Resultados</h3></div>
+         <div onClick={onViewCircuits} className={`p-6 rounded-3xl h-48 cursor-pointer flex flex-col justify-between ${isLight?'bg-[#D8C4F0]':'bg-[#121217] border border-[#333] hover:border-[#bd00ff]'}`}><div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLight?'bg-white/50':'bg-[#bd00ff]/20'}`}><MapPin size={24} className={isLight?'text-purple-800':'text-[#bd00ff]'}/></div><h3 className={`text-xl font-bold ${isLight?'text-purple-900':'text-white'}`}>Circuitos</h3></div>
       </div>
-      
-      {year === '2025' ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-           {/* CARDS COLORIDOS RESTAURADOS */}
-           <div onClick={onViewCalendar} className={`p-6 rounded-3xl h-48 cursor-pointer flex flex-col justify-between ${isLight?'bg-[#CFF7E8] text-teal-900':'bg-[#121217] border border-[#333] hover:border-[#00fff2]'}`}>
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLight?'bg-white/50':'bg-[#00fff2]/20'}`}><Calendar size={24} className={isLight?'text-teal-800':'text-[#00fff2]'}/></div>
-              <div><h3 className={`text-xl font-bold ${isLight?'text-teal-900':'text-white'}`}>Calendário</h3><p className={`text-sm ${isLight?'text-teal-700':'text-gray-400'}`}>Datas e resultados.</p></div>
-           </div>
-           <div onClick={onViewStandings} className={`p-6 rounded-3xl h-48 cursor-pointer flex flex-col justify-between ${isLight?'bg-[#FBCAD2] text-pink-900':'bg-[#121217] border border-[#333] hover:border-[#ff0055]'}`}>
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLight?'bg-white/50':'bg-[#ff0055]/20'}`}><TrophyIcon size={24} className={isLight?'text-pink-800':'text-[#ff0055]'}/></div>
-              <div><h3 className={`text-xl font-bold ${isLight?'text-pink-900':'text-white'}`}>Resultados</h3><p className={`text-sm ${isLight?'text-pink-700':'text-gray-400'}`}>Classificação final.</p></div>
-           </div>
-           <div onClick={onViewCircuits} className={`p-6 rounded-3xl h-48 cursor-pointer flex flex-col justify-between ${isLight?'bg-[#D8C4F0] text-purple-900':'bg-[#121217] border border-[#333] hover:border-[#bd00ff]'}`}>
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${isLight?'bg-white/50':'bg-[#bd00ff]/20'}`}><MapPin size={24} className={isLight?'text-purple-800':'text-[#bd00ff]'}/></div>
-              <div><h3 className={`text-xl font-bold ${isLight?'text-purple-900':'text-white'}`}>Circuitos</h3><p className={`text-sm ${isLight?'text-purple-700':'text-gray-400'}`}>Guias de traçado.</p></div>
-           </div>
-        </div>
-      ) : (
-        // CONTEÚDO DE 2026 (REGULAMENTO)
-        <div onClick={onViewRegulation} className={`p-8 rounded-3xl flex items-center justify-between cursor-pointer group transition-all hover:scale-[1.01] ${isLight ? 'bg-gradient-to-r from-[#D8C4F0] to-[#CFF7E8] text-gray-800' : 'bg-gradient-to-r from-[#bd00ff]/20 to-[#00fff2]/20 border border-[#bd00ff]'}`}>
-          <div className="flex items-center gap-6">
-             <div className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${isLight ? 'bg-white text-purple-600' : 'bg-black border border-[#bd00ff] text-[#bd00ff]'}`}><Scale size={32} /></div>
-             <div><h3 className={`text-2xl md:text-3xl font-black mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>Novo Regulamento</h3><p className={`font-medium ${isLight ? 'text-gray-700' : 'text-gray-300'}`}>Entenda as mudanças radicais dos carros e motores.</p></div>
-          </div>
-          <div className={`p-3 rounded-full ${isLight ? 'bg-white/30' : 'bg-black/30 border border-[#00fff2]'}`}><ArrowRight size={24} className={isLight ? 'text-gray-800' : 'text-[#00fff2]'} /></div>
-       </div>
-      )}
     </div>
   );
 };
 
 const CalendarPage = ({ theme, onBack, onViewCircuit }) => {
   const isLight = theme === 'light';
-  const [expandedRaceId, setExpandedRaceId] = useState(null);
-
-  const toggleRace = (id, isNext) => {
-    if (isNext) {
-      onViewCircuit('circuit_vegas');
-    } else {
-      setExpandedRaceId(expandedRaceId === id ? null : id);
-    }
-  };
-
   return (
     <div className="animate-in fade-in pb-12">
       <BackButton onClick={onBack} theme={theme} />
       <h2 className={`text-4xl font-black ${isLight?'text-gray-800':'text-white'}`}>Calendário 2025</h2>
       <div className="space-y-4 mt-6">
-        {RACES_2025.map((race, idx) => {
-           const isNext = race.status === 'next';
-           const isCompleted = race.status === 'completed';
-           const isExpanded = expandedRaceId === idx;
-
-           return (
-             <div 
-               key={idx} 
-               onClick={() => toggleRace(idx, isNext)}
-               className={`p-4 rounded-xl transition-all cursor-pointer
-                 ${isLight?'bg-white shadow-sm hover:shadow-md':'bg-[#1a1a20] border border-[#333] hover:border-[#00fff2]'}
-                 ${isNext ? (isLight ? 'ring-2 ring-[#00D2BE]' : 'border-[#00fff2] shadow-[0_0_10px_rgba(0,255,242,0.2)]') : ''}
-               `}
-             >
-               <div className="flex justify-between items-center">
-                 <div className="flex items-center gap-4">
-                    <div className={`w-10 text-center ${isLight?'text-gray-400':'text-gray-600'}`}>
-                      <span className="text-xs font-bold uppercase block">{race.date.split(' ')[1]}</span>
-                      <span className="text-lg font-black block">{race.date.split(' ')[0]}</span>
-                    </div>
-                    <div>
-                      <span className={`font-bold text-lg block ${isLight?'text-gray-800':'text-white'}`}>{race.name}</span>
-                      <span className="text-xs text-gray-500">{race.circuit}</span>
-                    </div>
-                 </div>
-                 
-                 <div>
-                   {isNext ? (
-                     <span className="text-xs bg-teal-500 text-white px-3 py-1 rounded-full font-bold animate-pulse">Próxima</span>
-                   ) : (isCompleted ? (
-                     <div className="flex items-center gap-2">
-                       <span className={`text-xs font-bold hidden md:inline ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>{race.winner}</span>
-                       {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                     </div>
-                   ) : (
-                     <Circle size={16} className="text-gray-700/30" />
-                   ))}
-                 </div>
-               </div>
-
-               {/* PÓDIO EXPANDIDO */}
-               {isExpanded && race.podium && (
-                 <div className={`mt-4 pt-4 border-t ${isLight ? 'border-gray-100' : 'border-gray-800'} animate-in slide-in-from-top-2`}>
-                    <div className="grid grid-cols-3 gap-2 text-center">
-                       <div className="flex flex-col items-center">
-                          <div className="text-2xl">🥈</div>
-                          <span className={`text-xs font-bold ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{race.podium[1].replace(' 🥈', '')}</span>
-                       </div>
-                       <div className="flex flex-col items-center -mt-2">
-                          <div className="text-4xl">🥇</div>
-                          <span className={`text-sm font-black ${isLight ? 'text-gray-800' : 'text-white'}`}>{race.podium[0].replace(' 🥇', '')}</span>
-                       </div>
-                       <div className="flex flex-col items-center">
-                          <div className="text-2xl">🥉</div>
-                          <span className={`text-xs font-bold ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{race.podium[2].replace(' 🥉', '')}</span>
-                       </div>
-                    </div>
-                 </div>
-               )}
+        {RACES_2025.map((race, idx) => (
+           // LISTA DETALHADA RESTAURADA
+           <div key={idx} className={`p-4 rounded-xl flex justify-between items-center ${isLight?'bg-white shadow-sm':'bg-[#1a1a20] border border-[#333]'}`}>
+             <div className="flex items-center gap-4">
+                <div className={`w-10 text-center ${isLight?'text-gray-400':'text-gray-600'}`}><span className="text-xs font-bold uppercase block">{race.date.split(' ')[1]}</span><span className="text-lg font-black block">{race.date.split(' ')[0]}</span></div>
+                <div><span className={`font-bold text-lg block ${isLight?'text-gray-800':'text-white'}`}>{race.name}</span><span className="text-xs text-gray-500">{race.circuit}</span></div>
              </div>
-           );
-        })}
+             {race.status === 'completed' ? <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600 font-bold">{race.winner}</span> : <span className="text-xs bg-teal-500 text-white px-2 py-1 rounded font-bold">Próxima</span>}
+           </div>
+        ))}
       </div>
     </div>
   );
