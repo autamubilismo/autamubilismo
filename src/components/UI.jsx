@@ -54,6 +54,12 @@ export const NavigationOverlay = ({ isOpen, onClose, theme }) => {
   );
 };
 
+export const SearchOverlay = ({ isOpen, onClose, theme }) => {
+  if (!isOpen) return null;
+  const isLight = theme === 'light';
+  return (<div className={`fixed inset-0 z-50 flex flex-col animate-in fade-in slide-in-from-top-4 duration-300 backdrop-blur-md ${isLight ? 'bg-white/95' : 'bg-[#050505]/95'}`}><div className="p-6 flex items-center gap-4 max-w-4xl mx-auto w-full"><Search size={24} className={isLight ? 'text-gray-400' : 'text-[#00fff2]'} /><input type="text" autoFocus placeholder="Buscar..." className={`flex-1 bg-transparent text-2xl font-bold outline-none ${isLight ? 'text-gray-800' : 'text-white'}`} /><button onClick={onClose}><X size={28} /></button></div></div>);
+};
+
 export const BentoCard = ({ children, className, theme, title, subtitle, onClick, to }) => {
   const isLight = theme === 'light';
   const content = (
