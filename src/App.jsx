@@ -4,18 +4,19 @@ import { Menu, Sun, Moon } from 'lucide-react';
 import { LogoHelmet, NavigationOverlay, SearchOverlay, ScrollToTop } from './components/UI';
 
 // Importar Páginas
-import Home from './pages/Home';
-import DriversPage from './pages/Drivers';
-import DriverDetail from './pages/DriverDetail';
-import FanzonePage from './pages/Fanzone';
-import TeamsPage from './pages/Teams';
-import SeasonPage from './pages/Season';
-import CalendarPage from './pages/Calendar';
-import StandingsPage from './pages/Standings';
-import ArticlesPage from './pages/Articles';
-import ArticleDetail from './pages/ArticleDetail';
-import ContactPage from './pages/Contact';
-import GlossaryPage from './pages/Glossary';
+import Home from './pages/Home.jsx';
+import DriversPage from './pages/Drivers.jsx';
+import DriverDetail from './pages/DriverDetail.jsx';
+import FanzonePage from './pages/Fanzone.jsx';
+import TeamsPage from './pages/Teams.jsx';
+import SeasonPage from './pages/Season.jsx';
+import CalendarPage from './pages/Calendar.jsx';
+import StandingsPage from './pages/Standings.jsx';
+import ArticlesPage from './pages/Articles.jsx';
+import ArticleDetail from './pages/ArticleDetail.jsx';
+import ContactPage from './pages/Contact.jsx';
+import GlossaryPage from './pages/Glossary.jsx';
+
 
 export default function App() {
   const [theme, setTheme] = useState('light');
