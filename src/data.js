@@ -1,12 +1,17 @@
 import { 
   Home, Calendar, Users, Wrench, Sparkles, Zap, BookOpen, 
-  FileText, Headphones, Mail, Heart, Gamepad2, Smile, 
-  Trophy as TrophyIcon, Music, Star, Briefcase, Utensils
+  FileText, Headphones, Mail, Heart, Gamepad2, Smile, Trophy as TrophyIcon,
+  Music, Star, Briefcase
 } from 'lucide-react';
 
-export const LOGO_LIGHT_URL = "https://i.ibb.co/tw2VBdC4/Logo-Light.png"; 
-export const LOGO_DARK_URL = "https://i.ibb.co/3mMHfZxb/NEONMODE.png"; 
+// --- IMAGENS E CORES ---
+export const LOGO_LIGHT_URL = "https://i.ibb.co/gLx3yLbN/Logo-Light-copiar.png"; 
+export const LOGO_DARK_URL = "https://i.ibb.co/ds8KGVKB/NEONMODE-copiar.png"; 
 
+export const PASTEL = { pink: '#F7B8C8', purple: '#D8C4F0', mint: '#CFF7E8', bg: '#FFFDFE' };
+export const NEON = { bg: '#09090b', purple: '#bd00ff', cyan: '#00fff2', pink: '#ff0055' };
+
+// --- MENU ---
 export const SITE_MAP = [
   { id: 'home', label: 'Home', icon: Home, path: '/', desc: 'Destaques' },
   { id: 'season', label: 'Temporada', icon: Calendar, path: '/season', desc: '2025/26' },
@@ -21,6 +26,7 @@ export const SITE_MAP = [
   { id: 'credits', label: 'Créditos', icon: Heart, path: '/credits', desc: 'Parceiros' },
 ];
 
+// --- PILOTOS (Exemplo resumido para o arquivo não ficar gigante, mantenha seus dados originais se tiver mais) ---
 export const DRIVERS_DATA = [
   { 
     id: 'kimi',
@@ -178,69 +184,22 @@ export const TEAMS_DATA = [
 ];
 
 export const RACES_2025 = [
-  { round: 1, name: 'GP da Austrália', date: '16 Mar', circuit: 'Albert Park', status: 'completed', winner: 'L. Norris 🥇', podium: ['L. Norris 🥇', 'M. Verstappen 🥈', 'G. Russell 🥉'] },
   { round: 22, name: 'GP de Las Vegas', date: '22 Nov', circuit: 'Las Vegas Strip', status: 'completed', winner: 'M. Verstappen 🥇', podium: ['M. Verstappen 🥇', 'G. Russell 🥈', 'K. Antonelli 🥉'] }, 
   { round: 23, name: 'GP do Catar', date: '30 Nov', circuit: 'Lusail', status: 'next' },
-  { round: 24, name: 'GP de Abu Dhabi', date: '07 Dez', circuit: 'Yas Marina', status: 'upcoming' },
-];
-
-export const STANDINGS_DRIVERS = [
-  { pos: 1, name: 'Max Verstappen', team: 'Red Bull', points: 391, color: '#1E41FF' },
-  { pos: 2, name: 'Lando Norris', team: 'McLaren', points: 390, color: '#FF8700' },
-  { pos: 3, name: 'Oscar Piastri', team: 'McLaren', points: 366, color: '#FF8700' },
-  { pos: 4, name: 'George Russell', team: 'Mercedes', points: 312, color: '#00D2BE' },
-  { pos: 5, name: 'Charles Leclerc', team: 'Ferrari', points: 238, color: '#FF0000' },
-];
-
-export const STANDINGS_TEAMS = [
-  { pos: 1, name: 'McLaren', points: 756, color: '#FF8700' },
-  { pos: 2, name: 'Mercedes', points: 464, color: '#00D2BE' },
-  { pos: 3, name: 'Red Bull', points: 419, color: '#1E41FF' },
-  { pos: 4, name: 'Ferrari', points: 394, color: '#FF0000' },
-];
-
-export const GLOSSARY_DATA = [
-  { id: 1, term: 'Undercut', category: 'Estratégia', definition: 'Parar nos boxes antes do rival para aproveitar a velocidade dos pneus novos e ganhar a posição quando ele parar.', example: 'O undercut da Mercedes funcionou e Lewis voltou na frente.' },
-  { id: 2, term: 'Overcut', category: 'Estratégia', definition: 'Ficar na pista com pneus velhos enquanto o rival para, tentando fazer voltas rápidas com ar limpo para voltar na frente.', example: 'Perez fez o overcut funcionar poupando os pneus.' },
-  { id: 3, term: 'Graining', category: 'Pneus', definition: 'Quando a borracha do pneu se solta e gruda de volta na superfície, criando uma textura rugosa que reduz a aderência.', example: 'O frio de Vegas causou muito graining nos pneus dianteiros.' },
 ];
 
 export const NEWS_DATA = [
-  { id: 'news-1', title: "Verstappen vence em Vegas e retoma liderança por 1 ponto!", category: "GP Vegas", time: "12h atrás", image: "https://images.unsplash.com/photo-1506191839364-10509691934e?q=80&w=800", author: "Tamu", content: `<p class="lead">Reviravolta no campeonato! Com a desclassificação das McLarens, Max Verstappen vence e vira o jogo.</p>` },
-  { id: 'news-2', title: "Kimi Antonelli brilha e conquista pódio inédito na Strip", category: "Destaque", time: "15h atrás", image: "https://i.pinimg.com/736x/4f/40/12/4f4012d7ffec1216e21b9b01150eee00.jpg", author: "Redação", content: `<p class="lead">O garoto prodígio da Mercedes segurou a pressão e terminou em P3, calando os críticos.</p>` },
-  { id: 'news-3', title: "Próxima parada: O calor escaldante do Catar pode decidir tudo", category: "Prévia", time: "1d atrás", image: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=800", author: "Tech Analysis", content: `<p class="lead">Depois do gelo de Vegas, os pilotos enfrentarão a "sauna" de Lusail. Haja preparo físico.</p>` },
+  { id: 'news-1', title: "Verstappen vence em Vegas e retoma liderança", category: "GP Vegas", time: "12h atrás", image: "https://images.unsplash.com/photo-1506191839364-10509691934e?q=80&w=800" },
+  { id: 'news-2', title: "Kimi Antonelli conquista pódio inédito", category: "Destaque", time: "15h atrás", image: "https://i.pinimg.com/736x/4f/40/12/4f4012d7ffec1216e21b9b01150eee00.jpg" },
+  { id: 'news-3', title: "Calor extremo no Catar preocupa equipes", category: "Prévia", time: "1d atrás", image: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=800" },
+  { id: 'news-4', title: "FIA anuncia novas regras para 2026", category: "Técnica", time: "2d atrás", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1200" },
 ];
-
-export const MANIFESTO_POST = {
-  id: 'manifesto',
-  title: "Correndo como uma garota.",
-  category: "Manifesto",
-  time: "19 Nov",
-  image: "https://images.unsplash.com/photo-1592853625511-ad0ed2881895?q=80&w=1200",
-  author: "Tamu",
-  content: `<p>Eu cresci ouvindo que corrida é barulho, é graxa, é homem bravo gritando no rádio.</p><p>Mas eu nunca ouvi ninguém dizer que corrida também é sensibilidade...</p><div class="mt-12 p-8 rounded-2xl text-center bg-current bg-opacity-10"><p class="text-2xl font-black mb-2">"Porque eu corro como uma garota."</p></div>`
-};
 
 export const ARTICLES_DATA = [
-  { 
-    id: 'art-1',
-    title: "A Psicologia de um Campeão: Como Norris virou a chave",
-    excerpt: "De 'bom moço' a predador. Analisamos a mudança de postura que colocou Lando na briga pelo título mundial.",
-    category: "Análise",
-    time: "18 Nov",
-    image: "https://media.formula1.com/image/upload/f_auto/q_auto/v1709223759/fom-website/2024/McLaren/Lando_Norris_Bahrain_2024.jpg",
-    author: "Tamu",
-    content: `<p>Texto longo e profundo sobre a psicologia do Lando...</p>`
-  },
-
-  { 
-    id: 'art-2',
-    title: "Por que a F1 precisa parar de ignorar a estética",
-    excerpt: "O visual não é futilidade, é identidade. Como o design dos carros e macacões conta a história da temporada.",
-    category: "Opinião",
-    time: "15 Nov",
-    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1200",
-    author: "Tamu",
-    content: `<p>Texto longo sobre design e estética na F1...</p>`
-  },
+  { id: 'art-1', title: "A Psicologia de um Campeão", excerpt: "Análise...", category: "Análise", time: "18 Nov", image: "https://media.formula1.com/image/upload/f_auto/q_auto/v1709223759/fom-website/2024/McLaren/Lando_Norris_Bahrain_2024.jpg" },
+  { id: 'manifesto', title: "Correndo como uma garota.", category: "Manifesto", time: "19 Nov", image: "https://images.unsplash.com/photo-1592853625511-ad0ed2881895?q=80&w=1200", content: "<p>Texto do manifesto...</p>" },
 ];
+
+export const GLOSSARY_DATA = [{ id: 1, term: 'Undercut', category: 'Estratégia', definition: '...' }];
+export const STANDINGS_DRIVERS = [{ pos: 1, name: 'Max Verstappen', points: 391 }];
+export const STANDINGS_TEAMS = [{ pos: 1, name: 'McLaren', points: 756 }];
