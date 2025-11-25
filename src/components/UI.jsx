@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   X, ChevronRight, Flag, CloudMoon, MapPin, Newspaper, Zap, Mail, Sparkles, 
-  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, Search
+  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search
 } from 'lucide-react';
 import { LOGO_LIGHT_URL, LOGO_DARK_URL, SITE_MAP, NEWS_DATA } from '../data';
 

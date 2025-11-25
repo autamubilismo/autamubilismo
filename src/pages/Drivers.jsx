@@ -12,7 +12,7 @@ const DriversPage = ({ theme }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {DRIVERS_DATA.map((driver) => (
           <Link key={driver.number} to={`/drivers/${driver.id}`} className={`relative overflow-hidden h-80 rounded-3xl group cursor-pointer transition-transform hover:-translate-y-2 ${isLight ? 'bg-white shadow-lg' : 'bg-[#121217] border border-[#333] hover:border-[#00fff2]'}`}>
-             {driver.image && <img src={driver.image} alt={driver.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />}
+             {driver.image && <img src={driver.image} alt={driver.name} className="absolute inset-0 w-full h-full object-top transition-transform duration-700 group-hover:scale-110" />}
              
              {driver.vibes && (
                <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-md p-2 rounded-full text-white shadow-sm z-20">

@@ -16,6 +16,8 @@ import ArticlesPage from './pages/Articles.jsx';
 import ArticleDetail from './pages/ArticleDetail.jsx';
 import ContactPage from './pages/Contact.jsx';
 import GlossaryPage from './pages/Glossary.jsx';
+import GenericPage from './pages/GenericPage.jsx';
+
 
 
 export default function App() {
