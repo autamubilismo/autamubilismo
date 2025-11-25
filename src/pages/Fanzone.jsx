@@ -18,13 +18,13 @@ const FanzonePage = ({ theme }) => {
         <h2 className={`text-4xl font-black ${isLight?'text-gray-800':'text-white'}`}>Fanzone</h2>
         <div className={`flex p-1 rounded-full ${isLight ? 'bg-gray-200' : 'bg-[#1a1a20] border border-[#333]'}`}>
            <button onClick={() => setActiveTab('feed')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'feed' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#00fff2] text-black') : 'text-gray-500'}`}><Grid size={16} className="inline mr-2"/> Feed</button>
-           <button onClick={() => setActiveTab('cards')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'cards' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#bd00ff] text-white') : 'text-gray-500'}`}><Image size={16} className="inline mr-2"/> Coleção</button>
+           <button onClick={() => setActiveTab('cards')} className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'cards' ? (isLight ? 'bg-white text-black shadow-sm' : 'bg-[#fe88dd] text-white') : 'text-gray-500'}`}><Image size={16} className="inline mr-2"/> Coleção</button>
         </div>
       </div>
 
       {activeTab === 'feed' ? (
         <>
-          <div className="flex gap-3 overflow-x-auto pb-4 mb-6 no-scrollbar">{squads.map((s) => (<button key={s.id} onClick={() => setActiveFilter(s.id)} className={`px-5 py-2 rounded-full text-sm font-bold border-2 ${activeFilter === s.id ? (isLight?'bg-gray-900 text-white':'bg-[#bd00ff] text-white') : 'border-gray-200 text-gray-500'}`}>{s.label}</button>))}</div>
+          <div className="flex gap-3 overflow-x-auto pb-4 mb-6 no-scrollbar">{squads.map((s) => (<button key={s.id} onClick={() => setActiveFilter(s.id)} className={`px-5 py-2 rounded-full text-sm font-bold border-2 ${activeFilter === s.id ? (isLight?'bg-gray-900 text-white':'bg-[#fe88dd] text-white') : 'border-gray-200 text-gray-500'}`}>{s.label}</button>))}</div>
           <div className="columns-1 md:columns-2 gap-4 space-y-4">{filteredItems.map((item, idx) => (<div key={idx} className={`break-inside-avoid rounded-2xl overflow-hidden ${isLight?'bg-white shadow-md':'bg-[#1a1a20] border border-[#333]'}`}>{item.type === 'art' ? <img src={item.src} className="w-full" /> : <div className="p-5"><p>{item.text}</p></div>}</div>))}</div>
         </>
       ) : (

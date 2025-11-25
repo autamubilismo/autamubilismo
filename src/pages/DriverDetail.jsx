@@ -37,7 +37,7 @@ const DriverDetail = ({ theme }) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-6">
-          <div className={`p-8 rounded-3xl ${isLight ? 'bg-white shadow-md' : 'bg-[#1a1a20] border border-[#bd00ff]/30'}`}><h3 className={`text-xl font-bold mb-4 ${isLight ? 'text-gray-800' : 'text-white'}`}>O Perfil</h3><p className={`text-lg leading-relaxed ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{driver.bio || "Informações sobre este piloto serão adicionadas em breve."}</p></div>
+          <div className={`p-8 rounded-3xl ${isLight ? 'bg-white shadow-md' : 'bg-[#1a1a20] border border-[#fe88dd]/30'}`}><h3 className={`text-xl font-bold mb-4 ${isLight ? 'text-gray-800' : 'text-white'}`}>O Perfil</h3><p className={`text-lg leading-relaxed ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{driver.bio || "Informações sobre este piloto serão adicionadas em breve."}</p></div>
           {driver.vibes && (<div className="grid grid-cols-3 gap-4">{driver.vibes.map((vibe, i) => (<div key={i} className={`p-4 rounded-2xl flex flex-col items-center justify-center gap-2 text-center ${isLight ? 'bg-[#F7B8C8]/20 text-gray-700' : 'bg-[#1a1a20] border border-[#333] text-gray-300'}`}><div className={isLight ? 'text-[#D8C4F0]' : 'text-[#00fff2]'}>{vibe.icon}</div><span className="text-xs font-bold uppercase">{vibe.label}</span></div>))}</div>)}
         </div>
         <div className="space-y-6">
