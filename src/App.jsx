@@ -29,10 +29,45 @@ export default function App() {
 
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
+// 1. Cole isso ANTES do return do componente App:
+// -------------------------------------------------
+
+  // Padrão Light: Bolinhas Fofas (Polka Dots)
+  const lightPattern = {
+    backgroundColor: '#FFF5F8',
+    backgroundImage: `
+      conic-gradient(
+        rgba(247, 184, 200, 0.15) 90deg, 
+        transparent 90deg 180deg, 
+        rgba(247, 184, 200, 0.15) 180deg 270deg, 
+        transparent 270deg
+      )
+    `,
+    backgroundSize: '40px 40px'
+  };
+
+  // Padrão Dark: Grid Vaporwave Neon
+  const darkPattern = {
+    backgroundColor: '#141416',
+    backgroundImage: `
+      linear-gradient(to right, rgba(0, 255, 242, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 242, 0.05) 1px, transparent 1px)
+    `,
+    backgroundSize: '40px 40px'
+  };
+
+// 2. Atualize a div principal no return para usar esse 'style':
+// -------------------------------------------------
+  
+
+
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className={`min-h-screen transition-colors duration-700 font-sans selection:bg-pink-200 ${theme === 'light' ? 'bg-[#FFF5F8]' : 'bg-[#050505] text-gray-200'}`}>
+      <div 
+        className={`min-h-screen transition-colors duration-700 font-sans selection:bg-pink-200 ${theme === 'light' ? 'text-gray-800' : 'text-gray-200'}`}
+        style={theme === 'light' ? lightPattern : darkPattern}
+      >
         
         <NavigationOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} theme={theme} />
         <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} theme={theme} />

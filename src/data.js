@@ -9,7 +9,7 @@ export const LOGO_LIGHT_URL = "https://i.ibb.co/gLx3yLbN/Logo-Light-copiar.png";
 export const LOGO_DARK_URL = "https://i.ibb.co/ds8KGVKB/NEONMODE-copiar.png"; 
 
 export const PASTEL = { pink: '#F7B8C8', purple: '#D8C4F0', mint: '#CFF7E8', bg: '#FFFDFE' };
-export const NEON = { bg: '#09090b', purple: '#fe88dd', cyan: '#00fff2', pink: '#ff0055' };
+export const NEON = { bg: '#141416', purple: '#bd00ff', cyan: '#00fff2', pink: '#ff0055', surface: '#1e1e24' };
 
 // --- MENU ---
 export const SITE_MAP = [
@@ -110,8 +110,50 @@ export const ARTICLES_DATA = [
 ];
 
 export const MANIFESTO_POST = {
-  id: 'manifesto', title: "Correndo como uma garota.", category: "Manifesto", time: "19 Nov", image: "https://images.unsplash.com/photo-1592853625511-ad0ed2881895?q=80&w=1200", author: "Tamu",
-  content: `<p>Eu cresci ouvindo que corrida é barulho, é graxa, é homem bravo gritando no rádio.</p><p>Mas eu nunca ouvi ninguém dizer que corrida também é sensibilidade...</p><div class="mt-12 p-8 rounded-2xl text-center bg-current bg-opacity-10"><p class="text-2xl font-black mb-2">"Porque eu corro como uma garota."</p></div>`
+  id: 'manifesto', 
+  title: "Correndo como uma garota.", 
+  category: "Manifesto", 
+  time: "19 Nov", 
+  image: "", 
+  author: "Tamu",
+  excerpt: "O automobilismo sempre foi feito de barulho, mas a internet transformou isso numa bagunça.",
+  content: `
+    <p class="lead text-xl font-medium leading-relaxed mb-8">O automobilismo sempre foi feito de barulho — motores, torcida, narrador, coração acelerado — mas a internet transformou esse barulho numa bagunça. Informação jogada, fofoca sem fonte, números errados, fandom isolado.</p>
+    
+    <p class="text-2xl font-black mb-8">A gente decidiu fazer diferente.</p>
+    
+    <p class="mb-6 text-lg">O <strong>autamubilismo</strong> nasce como um porto seguro para quem ama o esporte. Não importa se você chegou ontem, se só torce por um piloto, se entende de asa dianteira ou se só quer vibrar junto. <span class="text-[#fe88dd] font-bold">Aqui, todo fã é fã de verdade.</span></p>
+    
+    <p class="mb-6">A gente acredita que corrida é cultura, e que cultura se vive junto. Que um site não precisa ser rígido e engessado pra ser confiável. Que dá pra informar com precisão e, ao mesmo tempo, falar com paixão.</p>
+    
+    <p class="mb-8">Que dá pra reunir estatística limpa, análise séria e meme do paddock no mesmo lugar — desde que tudo seja feito com responsabilidade e zero fanfic disfarçada de notícia.</p>
+    
+    <div class="my-12 p-8 rounded-3xl border-l-4 border-[#fe88dd]">
+       <p class="font-black text-2xl mb-6 uppercase tracking-widest opacity-80">Aqui:</p>
+       <ul class="space-y-4 font-bold text-lg">
+          <li class="flex items-center gap-3"><span class="text-xl">📊</span> Dados importam</li>
+          <li class="flex items-center gap-3"><span class="text-xl">🔍</span> Fontes importam</li>
+          <li class="flex items-center gap-3"><span class="text-xl">💖</span> <span class="text-[#fe88dd]">Os fãs importam</span></li>
+       </ul>
+    </div>
+    
+    <p class="mb-6 text-lg">Este é um espaço onde cada pessoa encontra seu time.</p>
+    
+    <p class="mb-6">Se você é novato, senta perto. <br/>Se você é veterano, traz a cadeira.</p>
+    
+    <p class="mb-12">Se você é do bonde do Hamilton, do Alonso, do Yuki, do Leclerc, do Bottas, do Antonelli ou da própria F1 Academy — <strong>você pertence.</strong></p>
+    
+    <div class="mt-16 p-10 rounded-[2.5rem] text-center border border-current/10">
+      <p class="text-3xl md:text-5xl font-black mb-6 leading-tight tracking-tight" style="font-family: 'Russo One', sans-serif;">"O autamubilismo existe pra transformar a experiência de acompanhar corrida em algo mais humano."</p>
+      <div class="flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4 text-sm md:text-base font-bold opacity-70 uppercase tracking-widest mt-8">
+        <span>Mais acessível.</span>
+        <span class="hidden md:inline">•</span>
+        <span>Mais organizado.</span>
+        <span class="hidden md:inline">•</span>
+        <span class="text-[#fe88dd] drop-shadow-md">Mais nosso.</span>
+      </div>
+    </div>
+  `
 };
 
 export const GLOSSARY_DATA = [{ id: 1, term: 'Undercut', category: 'Estratégia', definition: 'Parar nos boxes antes...', example: '...' }];
