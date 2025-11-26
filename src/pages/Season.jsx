@@ -163,7 +163,7 @@ const SeasonPage = ({ theme }) => {
         <div className="grid grid-cols-1 gap-6">
             <BentoCard 
                 theme={theme} 
-                to="/regulation" 
+                to="/regulations" 
                 className={`p-10 cursor-pointer group overflow-hidden relative min-h-[300px] flex flex-col justify-center ${isLight ? 'bg-gradient-to-br from-[#D8C4F0] to-[#CFF7E8]' : 'bg-[#121217] border border-[#bd00ff] shadow-[0_0_30px_rgba(189,0,255,0.1)]'}`}
             >
                 <div className="absolute right-0 top-0 w-64 h-64 opacity-10">

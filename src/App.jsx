@@ -22,6 +22,8 @@ import CircuitsPage from './pages/Circuits';
 import CuriositiesPage from './pages/Curiosities';
 import MultimediaPage from './pages/Multimedia';
 import CreditsPage from './pages/Credits';
+import RegulationsPage from './pages/Regulations';
+
 
 // NEWS
 import NewsPage from "./pages/NewsPage";
@@ -178,6 +180,8 @@ export default function App() {
               {/* ⭐ ORDEM CORRETA DAS ROTAS DE NOTÍCIA */}
               <Route path="/news/:slug" element={<NewsPage theme={theme} />} />
               <Route path="/news" element={<News theme={theme} />} />
+
+              <Route path="/regulations" element={<RegulationsPage theme={theme} />} />
 
               {/* 404 */}
               <Route path="*" element={<div className="p-10 text-center">Página não encontrada</div>} />

@@ -17,7 +17,7 @@ const ArticlesPage = ({ theme }) => {
     const fetchPosts = async () => {
       try {
         const data = await client.fetch(
-          `*[_type == "post"] | order(publishedAt desc){
+          `*[_type == "article"] | order(publishedAt desc){
             _id,
             title,
             "slug": slug.current,

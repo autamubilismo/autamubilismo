@@ -451,13 +451,65 @@ export const FanzoneWidget = ({ theme }) => {
 
 export const SeasonWidget = ({ theme }) => {
   const isLight = theme === 'light';
+  
+  // Dados simulados (idealmente viriam das props ou contexto)
+  const totalRounds = 24;
+  const currentRound = 22;
+  const progress = (currentRound / totalRounds) * 100;
+  const leader = "Max Verstappen";
+  const points = "391 pts";
+
   return (
-    <div className="h-full flex flex-col items-center justify-center text-center p-4 relative z-10">
-      <div className={`p-3 rounded-full mb-3 ${isLight ? 'bg-[#CFF7E8] text-teal-800' : 'bg-[#00fff2]/10 text-[#00fff2]'}`}>
-         <Calendar size={32} />
-      </div>
-      <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Temporada 2025</h3>
-      <p className={`text-[10px] font-bold uppercase tracking-widest opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Calendário & Pontos</p>
+    <div className="h-full flex flex-col justify-between p-5 relative overflow-hidden">
+       {/* Decoração de Fundo */}
+       <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${isLight ? 'bg-teal-500' : 'bg-[#00fff2]'}`} />
+       
+       {/* Header: Ícone e Ano */}
+       <div className="flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-2">
+             <div className={`p-2 rounded-lg ${isLight ? 'bg-[#CFF7E8] text-teal-800' : 'bg-[#00fff2]/10 text-[#00fff2]'}`}>
+                <Calendar size={18} />
+             </div>
+             <span className={`text-xs font-bold uppercase tracking-widest ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>
+               2025
+             </span>
+          </div>
+          {/* Badge da Rodada */}
+          <span className={`text-[10px] font-black px-2 py-1 rounded border ${isLight ? 'border-teal-200 text-teal-700 bg-white' : 'border-[#00fff2]/30 text-[#00fff2] bg-[#00fff2]/5'}`}>
+            R{currentRound}/{totalRounds}
+          </span>
+       </div>
+
+       {/* Corpo: Progresso e Líder */}
+       <div className="relative z-10 mt-3">
+          <div className="flex justify-between items-end mb-1">
+             <h3 className={`text-sm font-black uppercase ${isLight ? 'text-gray-800' : 'text-white'}`}>
+                Status
+             </h3>
+             <span className={`text-[10px] font-bold ${isLight ? 'text-teal-600' : 'text-[#00fff2]'}`}>
+                {Math.round(progress)}%
+             </span>
+          </div>
+          
+          {/* Barra de Progresso */}
+          <div className={`w-full h-1.5 rounded-full mb-4 overflow-hidden ${isLight ? 'bg-gray-200' : 'bg-white/10'}`}>
+             <div 
+               className={`h-full rounded-full transition-all duration-1000 ease-out ${isLight ? 'bg-teal-500' : 'bg-[#00fff2] shadow-[0_0_8px_#00fff2]'}`} 
+               style={{ width: `${progress}%` }}
+             />
+          </div>
+          
+          {/* Info do Líder */}
+          <div className={`p-3 rounded-xl flex items-center justify-between ${isLight ? 'bg-gray-50' : 'bg-white/5 border border-white/5'}`}>
+             <div>
+               <p className={`text-[9px] uppercase font-bold opacity-60 mb-0.5 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Líder do Campeonato</p>
+               <p className={`text-xs font-black truncate ${isLight ? 'text-teal-900' : 'text-white'}`}>{leader}</p>
+             </div>
+             <div className={`text-xs font-bold ${isLight ? 'text-teal-600' : 'text-[#00fff2]'}`}>
+               {points}
+             </div>
+          </div>
+       </div>
     </div>
   );
 };

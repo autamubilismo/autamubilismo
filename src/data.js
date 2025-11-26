@@ -1,7 +1,7 @@
 import { 
   Home, Calendar, Users, Wrench, Sparkles, Zap, BookOpen, 
   FileText, Headphones, Mail, Heart, Gamepad2, Smile, Trophy as TrophyIcon,
-  Music, Star, Briefcase, Utensils, Newspaper
+  Music, Star, Briefcase, Utensils, Newspaper, Radio, Disc, ShieldAlert, Cpu
 } from 'lucide-react';
 
 // --- IMAGENS E CORES ---
@@ -280,7 +280,78 @@ export const MANIFESTO_POST = {
   `
 };
 
-export const GLOSSARY_DATA = [{ id: 1, term: 'Undercut', category: 'Estratégia', definition: 'Parar nos boxes antes...', example: '...' }];
+export const GLOSSARY_SETS = [
+  {
+    id: 'general',
+    title: 'Glossário Geral',
+    description: 'Termos essenciais para entender a corrida, do Undercut ao DRS.',
+    icon: BookOpen,
+    color: '#bd00ff', // Roxo
+    items: [
+      { id: 1, term: 'Undercut', definition: 'Parar nos boxes antes do rival para aproveitar pneus novos e ganhar a posição quando ele parar.' },
+      { id: 2, term: 'Overcut', definition: 'Ficar na pista com pneus velhos enquanto o rival para, tentando ganhar tempo com ar limpo.' },
+      { id: 3, term: 'Dirty Air', definition: 'Ar turbulento deixado por um carro à frente, que reduz a pressão aerodinâmica de quem vem atrás.' },
+      { id: 4, term: 'DRS', definition: 'Drag Reduction System. A asa móvel traseira que abre para facilitar ultrapassagens.' }
+    ]
+  },
+  {
+    id: 'engine2026',
+    title: 'Motor 2026',
+    description: 'O futuro híbrido: MGU-K triplicado e combustíveis 100% sustentáveis.',
+    icon: Cpu,
+    color: '#00fff2', // Ciano Neon
+    items: [
+      { id: 1, term: 'Combustível 100% Sustentável', definition: 'Combustível criado em laboratório que não adiciona carbono novo à atmosfera.' },
+      { id: 2, term: 'MGU-K', definition: 'Unidade Geradora de Motor Cinético. Em 2026, fornecerá 350kW (quase 50% da potência total).' },
+      { id: 3, term: 'Aerodinâmica Ativa', definition: 'Asas que se movem tanto na frente quanto atrás para reduzir arrasto nas retas (Modo X) e aumentar pressão nas curvas (Modo Z).' },
+      { id: 4, term: 'Remoção do MGU-H', definition: 'O complexo sistema que recuperava energia do calor do escapamento foi removido para reduzir custos.' }
+    ]
+  },
+  {
+    id: 'tires',
+    title: 'Estratégia de Pneus',
+    description: 'Compostos Pirelli, janelas de pit stop e degradação.',
+    icon: Disc,
+    color: '#ff0055', // Rosa/Vermelho
+    items: [
+      { id: 1, term: 'C1 a C5', definition: 'A gama de pneus slick da Pirelli. C1 é o mais duro (durável, lento), C5 é o mais macio (rápido, frágil).' },
+      { id: 2, term: 'Graining', definition: 'Quando a borracha descasca e gruda de volta no pneu, criando uma superfície rugosa que reduz aderência.' },
+      { id: 3, term: 'Blistering', definition: 'Bolhas de ar que se formam dentro da borracha devido ao superaquecimento interno, podendo estourar o pneu.' },
+      { id: 4, term: 'Cliff', definition: 'O momento em que o pneu perde performance subitamente e de forma irreversível.' }
+    ]
+  },
+  {
+    id: 'radio',
+    title: 'Rádio & Callouts',
+    description: 'O que os engenheiros e pilotos realmente estão dizendo.',
+    icon: Radio,
+    color: '#F59E0B', // Laranja
+    items: [
+      { id: 1, term: 'Box, Box', definition: 'Instrução imperativa para entrar nos boxes nesta volta.' },
+      { id: 2, term: 'Lift and Coast', definition: 'Tirar o pé do acelerador antes da zona de frenagem para economizar combustível e freios.' },
+      { id: 3, term: 'Plan B', definition: 'Estratégia alternativa pré-combinada (ex: estender o stint ou mudar para duas paradas).' },
+      { id: 4, term: 'Strat Mode', definition: 'Ajuste no mapeamento do motor para mais potência ou economia.' }
+    ]
+  },
+  {
+    id: 'rules',
+    title: 'Normas & Punições',
+    description: 'ISC, Apêndice L e o que pode dar bandeira preta.',
+    icon: ShieldAlert,
+    color: '#10B981', // Verde
+    items: [
+      { id: 1, term: 'Drive-Through', definition: 'Punição onde o piloto deve passar pelos boxes sem parar, em velocidade limitada.' },
+      { id: 2, term: 'Track Limits', definition: 'As linhas brancas definem a pista. Sair com as 4 rodas gera aviso e, depois, punição.' },
+      { id: 3, term: 'Bandeira Azul', definition: 'Aviso para um retardatário deixar um carro mais rápido (líder) passar.' },
+      { id: 4, term: 'Safety Car Delta', definition: 'Tempo mínimo que o piloto deve respeitar durante bandeira amarela/SC.' }
+    ]
+  }
+];
+
+// Mantido para compatibilidade se algo ainda usar GLOSSARY_DATA antigo
+export const GLOSSARY_DATA = GLOSSARY_SETS[0].items;
+
+
 export const STANDINGS_DRIVERS = [{ pos: 1, name: 'Max Verstappen', points: 391 }];
 export const STANDINGS_TEAMS = [{ pos: 1, name: 'McLaren', points: 756 }];
 

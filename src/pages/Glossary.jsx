@@ -1,28 +1,154 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, ChevronUp, MessageSquare } from 'lucide-react';
+import { Search, ChevronRight, ArrowLeft, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import { BackButton } from '../components/UI';
-import { GLOSSARY_DATA } from '../data';
+import { GLOSSARY_SETS } from '../data';
 
 const GlossaryPage = ({ theme }) => {
   const isLight = theme === 'light';
+  const [selectedSet, setSelectedSet] = useState(null); // Null = Menu, Objeto = Categoria aberta
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
-  const [expandedId, setExpandedId] = useState(null);
-  const categories = ['Todos', ...new Set(GLOSSARY_DATA.map(item => item.category))];
-  
-  const filteredTerms = GLOSSARY_DATA.filter(item => {
-    const matchesSearch = item.term.toLowerCase().includes(searchTerm.toLowerCase()) || item.definition.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'Todos' || item.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-  const toggleExpand = (id) => setExpandedId(expandedId === id ? null : id);
+  const [expandedTermId, setExpandedTermId] = useState(null);
 
+  // Filtra categorias ou termos dependendo da visão
+  const filteredSets = GLOSSARY_SETS.filter(set => 
+    set.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    set.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const filteredTerms = selectedSet 
+    ? selectedSet.items.filter(item => 
+        item.term.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        item.definition.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
+
+  // Cores comuns
+  const cardBg = isLight ? 'bg-white border-2 border-transparent hover:border-gray-200 shadow-lg' : 'bg-[#1a1a20] border border-[#333] hover:border-[#fe88dd]/50';
+  const textMain = isLight ? 'text-gray-800' : 'text-white';
+  const textSub = isLight ? 'text-gray-500' : 'text-gray-400';
+
+  // --- RENDERIZAÇÃO: MENU DE CATEGORIAS ---
+  if (!selectedSet) {
+    return (
+      <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
+        <BackButton to="/" theme={theme} />
+        
+        <div className="mb-10 px-2 text-center md:text-left">
+          <h2 className={`text-4xl md:text-6xl font-black mb-2 ${textMain}`} style={{ fontFamily: "'Russo One', sans-serif" }}>
+            Enciclopédia F1
+          </h2>
+          <p className={textSub}>Domine o vocabulário do paddock.</p>
+        </div>
+
+        {/* Busca Global */}
+        <div className={`relative mb-8 ${isLight ? 'bg-white' : 'bg-[#1a1a20] border border-[#333]'} p-4 rounded-2xl shadow-sm flex items-center gap-3`}>
+            <Search className={isLight ? 'text-gray-400' : 'text-gray-500'} />
+            <input 
+                type="text" 
+                placeholder="Buscar categorias..." 
+                className={`bg-transparent w-full outline-none font-bold ${textMain}`}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredSets.map((set) => {
+            const Icon = set.icon || BookOpen;
+            return (
+              <div 
+                key={set.id} 
+                onClick={() => { setSelectedSet(set); setSearchTerm(''); }} // Limpa busca ao entrar
+                className={`group cursor-pointer p-8 rounded-[2.5rem] flex flex-col justify-between transition-all hover:-translate-y-1 ${cardBg}`}
+              >
+                <div className="mb-6">
+                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-colors`} style={{ backgroundColor: isLight ? `${set.color}20` : `${set.color}15`, color: set.color }}>
+                      <Icon size={28} />
+                   </div>
+                   <h3 className={`text-2xl font-black mb-2 ${textMain}`}>{set.title}</h3>
+                   <p className={`text-sm font-medium leading-relaxed ${textSub}`}>{set.description}</p>
+                </div>
+                
+                <div className="flex items-center justify-between border-t border-gray-500/10 pt-4">
+                   <span className={`text-xs font-bold uppercase tracking-widest opacity-60 ${textMain}`}>
+                     {set.items.length} Termos
+                   </span>
+                   <div className={`p-2 rounded-full transition-transform group-hover:translate-x-2`} style={{ color: set.color }}>
+                      <ChevronRight />
+                   </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // --- RENDERIZAÇÃO: LISTA DE TERMOS (DENTRO DA CATEGORIA) ---
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
-      <BackButton to="/" theme={theme} />
-      <div className="mb-8"><h2 className={`text-4xl font-black mb-2 ${isLight ? 'text-gray-800' : 'text-white'}`}>Dicionário F1</h2></div>
-      <div className={`sticky top-4 z-30 p-4 rounded-2xl shadow-lg mb-8 backdrop-blur-md ${isLight ? 'bg-white/90 border border-gray-100' : 'bg-[#121217]/90 border border-[#333]'}`}><div className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-4 transition-all ${isLight ? 'bg-gray-100 focus-within:bg-white focus-within:ring-2 ring-[#D8C4F0]' : 'bg-[#0a0a12] focus-within:border-[#00fff2] border border-transparent'}`}><Search size={20} className={isLight ? 'text-gray-400' : 'text-gray-500'} /><input type="text" placeholder="Busque por termos..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={`bg-transparent w-full outline-none font-medium ${isLight ? 'text-gray-700' : 'text-white'}`} /></div><div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">{categories.map(cat => (<button key={cat} onClick={() => setSelectedCategory(cat)} className={`px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all ${selectedCategory === cat ? (isLight ? 'bg-[#D8C4F0] text-white shadow-md' : 'bg-[#00fff2] text-black shadow-[0_0_10px_#00fff2]') : (isLight ? 'bg-gray-100 text-gray-500 hover:bg-gray-200' : 'bg-[#1a1a20] border border-[#333] text-gray-400 hover:border-[#00fff2]')}`}>{cat}</button>))}</div></div>
-      <div className="space-y-3">{filteredTerms.length > 0 ? (filteredTerms.map((item) => {const isExpanded = expandedId === item.id;return (<div key={item.id} onClick={() => toggleExpand(item.id)} className={`group rounded-2xl transition-all cursor-pointer overflow-hidden border ${isLight ? 'bg-white border-transparent shadow-sm hover:shadow-md' : `bg-[#121217] ${isExpanded ? 'border-[#fe88dd]' : 'border-[#333]'} hover:border-[#fe88dd]/50`}`}><div className="p-5 flex items-center justify-between"><div className="flex items-center gap-4"><div className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold ${isLight ? 'bg-[#F7B8C8]/20 text-[#F7B8C8]' : 'bg-[#fe88dd]/10 text-[#fe88dd]'}`}>{item.term.charAt(0)}</div><div><h3 className={`text-lg font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>{item.term}</h3><span className={`text-xs font-bold uppercase tracking-wide ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>{item.category}</span></div></div><div className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>{isExpanded ? <ChevronUp size={20} className={isLight ? 'text-[#D8C4F0]' : 'text-[#00fff2]'} /> : <ChevronDown size={20} className="text-gray-400" />}</div></div><div className={`px-5 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-48 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}><p className={`text-sm leading-relaxed mb-3 ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>{item.definition}</p><div className={`p-3 rounded-xl text-xs font-medium italic flex gap-2 ${isLight ? 'bg-gray-50 text-gray-500' : 'bg-[#0a0a12] text-gray-400'}`}><MessageSquare size={14} className="shrink-0 mt-0.5" />"{item.example}"</div></div></div>);})) : (<div className="text-center py-12 opacity-50"><Search size={48} className="mx-auto mb-4" /><p>Nenhum termo encontrado.</p></div>)}</div>
+    <div className="animate-in fade-in slide-in-from-right duration-500 pb-12">
+      {/* Botão Voltar Personalizado para sair da categoria */}
+      <button 
+        onClick={() => { setSelectedSet(null); setSearchTerm(''); }}
+        className={`group mb-8 inline-flex items-center gap-2 text-sm font-bold transition-colors ${isLight ? 'text-gray-500 hover:text-[#D8C4F0]' : 'text-gray-400 hover:text-[#fe88dd]'}`}
+      >
+         <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" /> Voltar para Categorias
+      </button>
+
+      <div className="flex items-center gap-4 mb-8">
+         <div className={`p-3 rounded-2xl`} style={{ backgroundColor: isLight ? `${selectedSet.color}20` : `${selectedSet.color}15`, color: selectedSet.color }}>
+            {selectedSet.icon && <selectedSet.icon size={32} />}
+         </div>
+         <div>
+            <h2 className={`text-3xl md:text-5xl font-black ${textMain}`}>{selectedSet.title}</h2>
+         </div>
+      </div>
+
+      {/* Busca Local */}
+      <div className={`relative mb-8 ${isLight ? 'bg-white' : 'bg-[#1a1a20] border border-[#333]'} p-4 rounded-2xl shadow-sm flex items-center gap-3`}>
+          <Search className={isLight ? 'text-gray-400' : 'text-gray-500'} />
+          <input 
+              type="text" 
+              placeholder={`Pesquisar em ${selectedSet.title}...`} 
+              className={`bg-transparent w-full outline-none font-bold ${textMain}`}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+          />
+      </div>
+
+      <div className="space-y-4">
+          {filteredTerms.length > 0 ? (
+            filteredTerms.map((item) => {
+                const isExpanded = expandedTermId === item.id;
+                return (
+                    <div 
+                      key={item.id} 
+                      onClick={() => setExpandedTermId(isExpanded ? null : item.id)}
+                      className={`group cursor-pointer rounded-3xl overflow-hidden transition-all border ${isLight ? 'bg-white border-transparent hover:border-gray-200 shadow-sm' : `bg-[#1a1a20] ${isExpanded ? 'border-[#fe88dd]' : 'border-[#333] hover:border-[#fe88dd]/50'}`}`}
+                    >
+                        <div className="p-6 flex items-center justify-between">
+                            <h3 className={`text-lg font-bold ${isExpanded ? (isLight ? 'text-purple-600' : 'text-[#fe88dd]') : textMain}`}>
+                                {item.term}
+                            </h3>
+                            {isExpanded ? <ChevronUp size={20} className={isLight?'text-gray-400':'text-gray-500'} /> : <ChevronDown size={20} className={isLight?'text-gray-400':'text-gray-500'} />}
+                        </div>
+                        
+                        {/* Conteúdo Expansível */}
+                        <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <p className={`text-base leading-relaxed ${textSub}`}>
+                                {item.definition}
+                            </p>
+                        </div>
+                    </div>
+                );
+            })
+          ) : (
+            <div className={`text-center py-12 ${textSub}`}>
+                <p>Nenhum termo encontrado.</p>
+            </div>
+          )}
+      </div>
     </div>
   );
 };
