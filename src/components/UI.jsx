@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   X, ChevronRight, Flag, CloudMoon, MapPin, Newspaper, Zap, Mail, Sparkles, 
-  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search
+  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search, Loader2, AlertCircle
 } from 'lucide-react';
 import { LOGO_LIGHT_URL, LOGO_DARK_URL, SITE_MAP } from '../data';
 import { fetchNews } from '../services/newsService';
@@ -71,8 +71,14 @@ export const NavigationOverlay = ({ isOpen, onClose, theme }) => {
           {SITE_MAP.map((item) => (
             <Link key={item.id} to={item.path} onClick={onClose} className={`group p-3 md:p-4 rounded-2xl flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4 text-left transition-all ${isLight ? 'bg-white hover:bg-[#F7B8C8]/20 hover:shadow-lg' : 'bg-[#121217] hover:bg-[#1a1a20] border border-[#333] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.1)]'}`}>
               <div className={`w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-full flex items-center justify-center transition-colors ${isLight ? 'bg-[#F7B8C8]/20 text-[#D8C4F0]' : 'bg-[#1a1a20] text-[#00fff2]'}`}>{item.icon && <item.icon size={20} />}</div>
-              <div className="flex-1 min-w-0"><span className={`block text-sm md:text-xl font-bold truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{item.label}</span></div>
-              <ChevronRight className={`ml-auto opacity-0 group-hover:opacity-100 transition-opacity hidden md:block ${isLight ? 'text-[#D8C4F0]' : 'text-[#fe88dd]'}`} />
+              
+              {/* A MÁGICA ESTÁ AQUI: Título + Descrição */}
+              <div className="flex-1 min-w-0">
+                <span className={`block text-sm md:text-xl font-bold truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{item.label}</span>
+                <span className={`block text-[10px] md:text-xs font-medium leading-tight mt-0.5 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>{item.desc}</span>
+              </div>
+
+              <ChevronRight className={`ml-auto opacity-0 group-hover:opacity-100 transition-opacity hidden md:block ${isLight ? 'text-[#D8C4F0]' : 'text-[#bd00ff]'}`} />
             </Link>
           ))}
         </div>
@@ -215,67 +221,35 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
 // --- WIDGETS ---
 export const NextRaceWidget = ({ theme }) => {
   const isLight = theme === 'light';
-  
-  // CORES ATUALIZADAS: Rosa Neon #fe88dd no Dark Mode
-  const boxClass = isLight 
-    ? 'bg-white/60 backdrop-blur-md text-gray-800' 
-    : 'bg-[#1a1a20] border border-[#fe88dd]/30 text-white shadow-[0_0_10px_rgba(254,136,221,0.2)]';
-
+  // Adicionei borda cinza claro (border-gray-200) para o modo Light
+  const boxClass = isLight ? 'bg-white/60 backdrop-blur-md text-gray-800 border border-gray-200' : 'bg-[#1a1a20] border border-[#fe88dd]/30 text-white shadow-[0_0_10px_rgba(254,136,221,0.2)]';
   const accentColor = isLight ? 'text-[#9F7AEA]' : 'text-[#fe88dd]';
   const strokeColor = isLight ? 'stroke-[#9F7AEA]' : 'stroke-[#fe88dd]';
   const badgeClass = isLight ? 'bg-[#D8C4F0] text-gray-800' : 'bg-[#fe88dd] text-white shadow-[0_0_10px_#fe88dd]';
 
   return (
     <div className={`h-full flex flex-col justify-between relative overflow-hidden p-5 ${isLight ? 'text-gray-800' : 'text-white'}`}>
-      
-      {/* FUNDO: Traçado da Pista com cores atualizadas */}
-      <svg className={`absolute -right-8 top-1/2 -translate-y-1/2 w-64 h-64 opacity-20 pointer-events-none ${strokeColor}`} viewBox="0 0 100 100" fill="none" strokeWidth="1.5">
-          <path d="M20 80 C 20 80, 10 60, 30 50 C 50 40, 40 20, 60 20 L 80 20 C 90 20, 90 40, 80 50 C 70 60, 80 80, 60 80 Z" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-
-      {/* CABEÇALHO */}
+      <svg className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 opacity-20 pointer-events-none ${strokeColor}`} viewBox="0 0 100 100" fill="none" strokeWidth="1.5"><path d="M20 80 C 20 80, 10 60, 30 50 C 50 40, 40 20, 60 20 L 80 20 C 90 20, 90 40, 80 50 C 70 60, 80 80, 60 80 Z" strokeLinecap="round" strokeLinejoin="round"/></svg>
       <div className="flex justify-between items-start relative z-10">
-        <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${badgeClass}`}>
-           <Flag size={12} /> Round 23
-        </div>
-        <div className="flex flex-col items-end">
-            <CloudMoon size={20} className={accentColor} />
-            <span className="text-xs font-bold">28°C</span>
-        </div>
+        <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${badgeClass}`}><Flag size={12} /> Round 23</div>
+        <div className="flex flex-col items-end"><CloudMoon size={20} className={accentColor} /><span className="text-xs font-bold">28°C</span></div>
       </div>
-
-      {/* MEIO */}
-      <div className="relative z-10 my-2">
+      <div className="relative z-10 my-2 text-center">
           <span className={`text-[10px] font-bold opacity-60 uppercase tracking-widest block mb-[-5px] ${accentColor}`}>Grande Prêmio</span>
-          <h3 className={`text-5xl font-black leading-none tracking-tighter ${isLight ? 'text-gray-800' : 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]'}`}>
-            QATAR
-          </h3>
-          <div className="flex items-center gap-1 mt-1 opacity-80">
-             <MapPin size={12} className={accentColor} /> 
-             <span className="text-xs font-bold uppercase">Lusail Int. Circuit</span>
-          </div>
+          <h3 className={`text-5xl font-black leading-none tracking-tighter ${isLight ? 'text-gray-800' : 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]'}`}>QATAR</h3>
+          <div className="flex items-center justify-center gap-1 mt-1 opacity-80"><MapPin size={12} className={accentColor} /> <span className="text-xs font-bold uppercase">Lusail Int. Circuit</span></div>
       </div>
-
-      {/* RODAPÉ */}
       <div className="relative z-10 mt-auto">
         <div className="flex gap-2 text-center">
-            <div className={`flex-1 rounded-lg p-2 ${boxClass}`}>
-                <span className="block text-xl font-black leading-none">05</span>
-                <span className="text-[8px] font-bold opacity-60 uppercase">Dias</span>
-            </div>
-            <div className={`flex-1 rounded-lg p-2 ${boxClass}`}>
-                <span className="block text-xl font-black leading-none">18</span>
-                <span className="text-[8px] font-bold opacity-60 uppercase">Hrs</span>
-            </div>
-            <div className={`flex-1 rounded-lg p-2 ${boxClass}`}>
-                <span className="block text-xl font-black leading-none">42</span>
-                <span className="text-[8px] font-bold opacity-60 uppercase">Min</span>
-            </div>
+            {['05', '18', '42'].map((time, i) => (<div key={i} className={`flex-1 rounded-lg p-2 ${boxClass}`}><span className="block text-xl font-black leading-none">{time}</span><span className="text-[8px] font-bold opacity-60 uppercase">{['Dias', 'Hrs', 'Min'][i]}</span></div>))}
         </div>
       </div>
     </div>
   );
 };
+
+// IMPORTANTE: confira se esses imports existem onde você usa este componente:
+
 
 export const NewsWidget = ({ theme, onNewsClick }) => {
   const isLight = theme === 'light';
@@ -283,10 +257,14 @@ export const NewsWidget = ({ theme, onNewsClick }) => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
 
+  // ---- CARREGA DO SANITY ----
   React.useEffect(() => {
     async function load() {
       try {
         const data = await fetchNews();
+
+        // SANITY VEM ASSIM: { title, slug, image, category, publishedAt }
+        // slug já vem como string, usamos como está
         setNews(data);
       } catch (err) {
         console.error(err);
@@ -298,107 +276,141 @@ export const NewsWidget = ({ theme, onNewsClick }) => {
     load();
   }, []);
 
+  // ---- ESTADO: LOADING ----
   if (loading) {
     return (
-      <div className="h-full flex flex-col relative z-10">
-        <div className="flex items-center gap-2 mb-4 opacity-70">
-          <Newspaper size={18} />
-          <span className="text-sm font-bold uppercase">Últimas do Paddock</span>
-        </div>
-        <p className={isLight ? 'text-gray-400 text-sm' : 'text-gray-500 text-sm'}>
-          Carregando notícias...
+      <div className="h-full flex flex-col items-center justify-center text-center opacity-60 gap-2 relative z-10">
+        <Loader2 size={24} className={`animate-spin ${isLight ? 'text-[#D8C4F0]' : 'text-[#fe88dd]'}`} />
+        <p className={`text-xs font-bold uppercase tracking-widest ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+          Carregando Paddock...
         </p>
       </div>
     );
   }
 
+  // ---- ESTADO: ERRO ----
   if (error) {
     return (
-      <div className="h-full flex flex-col relative z-10">
-        <div className="flex items-center gap-2 mb-4 opacity-70">
-          <Newspaper size={18} />
-          <span className="text-sm font-bold uppercase">Últimas do Paddock</span>
-        </div>
-        <p className={isLight ? 'text-red-500 text-sm' : 'text-red-400 text-sm'}>
-          {error}
-        </p>
+      <div className="h-full flex flex-col relative z-10 items-center justify-center text-center">
+        <AlertCircle size={24} className="text-red-400 mb-2" />
+        <p className="text-xs font-bold text-red-400">{error}</p>
       </div>
     );
   }
 
+  // ---- ESTADO: VAZIO ----
   if (!news.length) {
     return (
-      <div className="h-full flex flex-col relative z-10">
-        <div className="flex items-center gap-2 mb-4 opacity-70">
-          <Newspaper size={18} />
-          <span className="text-sm font-bold uppercase">Últimas do Paddock</span>
-        </div>
-        <p className={isLight ? 'text-gray-400 text-sm' : 'text-gray-500 text-sm'}>
-          Nenhuma notícia publicada ainda.
-        </p>
+      <div className="h-full flex flex-col relative z-10 items-center justify-center text-center opacity-50">
+        <Newspaper size={24} className="mb-2" />
+        <p className="text-xs font-medium">Nenhuma notícia no momento.</p>
       </div>
     );
   }
 
+  // ---- LISTAGEM FINAL ----
   return (
     <div className="h-full flex flex-col relative z-10">
-      <div className="flex items-center gap-2 mb-4 opacity-70">
-        <Newspaper size={18} />
-        <span className="text-sm font-bold uppercase">Últimas do Paddock</span>
+
+      {/* CABEÇALHO */}
+      <div className="flex items-center justify-between mb-4 px-1">
+        <div className="flex items-center gap-2 opacity-90">
+          <Newspaper size={18} className={isLight ? 'text-gray-600' : 'text-[#fe88dd]'} />
+          <span className={`text-sm font-black uppercase tracking-widest ${isLight ? 'text-gray-800' : 'text-white'}`}>
+            Últimas do Paddock
+          </span>
+        </div>
+
+        <div className={`flex items-center gap-1.5 px-2 py-1 rounded-full text-[9px] font-bold uppercase 
+          ${isLight ? 'bg-red-100 text-red-600' : 'bg-red-500/20 text-red-400 border border-red-500/30'}
+        `}>
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+          </span>
+          Live
+        </div>
       </div>
-      
-      <div className="flex-1 flex flex-col gap-3 overflow-y-auto pr-1">
+
+      {/* LISTA */}
+      <div className="flex-1 flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar">
+
         {news.map((item) => (
           <div
             key={item._id}
-            onClick={(e) => {
-              e.stopPropagation();
-              onNewsClick &&
+            onClick={() => {
+              if (onNewsClick) {
                 onNewsClick({
-                  slug: item.slug,      // ⭐ SLUG PASSADO CORRETAMENTE
+                  slug: item.slug,     // CORRETO — slug já é string
                   id: item._id,
                   title: item.title,
                 });
+              }
             }}
-            className={`flex-1 p-4 rounded-xl flex items-center gap-4 transition-colors cursor-pointer ${
-              isLight
-                ? 'bg-[#FFF5F8] hover:bg-[#F7B8C8]/20'
-                : 'bg-[#0a0a12] border border-[#333] hover:border-[#fe88dd]/50'
-            }`}
+            className={`group relative flex gap-3 p-3 rounded-xl transition-all duration-300 cursor-pointer border
+              ${isLight
+                ? 'bg-gray-50 hover:bg-white border-transparent hover:border-[#D8C4F0] hover:shadow-md'
+                : 'bg-[#0a0a12]/40 hover:bg-[#0a0a12] border-[#333] hover:border-[#fe88dd]/50 hover:shadow-[0_0_15px_rgba(254,136,221,0.1)]'
+              }`}
           >
+
+            {/* THUMB */}
             {item.image && (
-              <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+              <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden relative">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity ${isLight ? 'bg-[#D8C4F0]' : 'bg-[#fe88dd]'}`}></div>
               </div>
             )}
 
-            <div className="min-w-0">
-              <h4
-                className={`text-sm font-bold leading-tight mb-1 line-clamp-2 ${
-                  isLight ? 'text-gray-800' : 'text-white'
-                }`}
-              >
+            {/* TEXTO */}
+            <div className="flex-1 min-w-0 flex flex-col justify-center">
+
+              {item.category && (
+                <span className={`text-[9px] font-bold uppercase tracking-wider mb-1 w-fit px-1.5 rounded 
+                  ${isLight ? 'bg-gray-200 text-gray-600' : 'bg-[#222] text-gray-400 group-hover:text-[#fe88dd]'}
+                `}>
+                  {item.category}
+                </span>
+              )}
+
+              <h4 className={`text-sm font-bold leading-snug line-clamp-2 mb-1 transition-colors 
+                ${isLight ? 'text-gray-800' : 'text-gray-200 group-hover:text-white'}
+              `}>
                 {item.title}
               </h4>
 
-              <span
-                className={`text-[10px] font-medium ${
-                  isLight ? 'text-gray-400' : 'text-gray-400'
-                }`}
-              >
-                {item.category || 'Notícia'}
+              <span className={`text-[10px] font-medium ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                {item.publishedAt
+                  ? new Date(item.publishedAt).toLocaleDateString('pt-BR', {
+                      day: '2-digit',
+                      month: 'short',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    })
+                  : 'Agora'}
               </span>
             </div>
+
+            <div className={`absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 
+                transition-all duration-300 -translate-x-2 group-hover:translate-x-0 
+                ${isLight ? 'text-[#D8C4F0]' : 'text-[#fe88dd]'}
+            `}>
+              <ChevronRight size={16} />
+            </div>
+
           </div>
         ))}
+
       </div>
+
     </div>
   );
 };
+
 
 
 
