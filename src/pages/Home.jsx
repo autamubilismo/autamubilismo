@@ -61,7 +61,8 @@ const Home = ({ theme }) => {
           onNewsClick={(post) => {
             // por enquanto manda pra lista de artigos;
             // depois a gente pluga a página de detalhe pelo slug/id
-            navigate('/articles');
+            navigate(`/news/${post.slug}`);
+
           }}
         />
       </BentoCard>

@@ -1,7 +1,7 @@
 import { 
   Home, Calendar, Users, Wrench, Sparkles, Zap, BookOpen, 
   FileText, Headphones, Mail, Heart, Gamepad2, Smile, Trophy as TrophyIcon,
-  Music, Star, Briefcase, Utensils
+  Music, Star, Briefcase, Utensils, Newspaper
 } from 'lucide-react';
 
 // --- IMAGENS E CORES ---
@@ -13,17 +13,18 @@ export const NEON = { bg: '#09090b', purple: '#fe88dd', cyan: '#00fff2', pink: '
 
 // --- MENU ---
 export const SITE_MAP = [
-  { id: 'home', label: 'Home', icon: Home, path: '/', desc: 'Destaques' },
-  { id: 'season', label: 'Temporada', icon: Calendar, path: '/season', desc: '2025/26' },
-  { id: 'drivers', label: 'Pilotos', icon: Users, path: '/drivers', desc: 'Grid Atual' },
-  { id: 'teams', label: 'Equipes', icon: Wrench, path: '/teams', desc: 'Construtores' },
-  { id: 'fanzone', label: 'Fanzone', icon: Sparkles, path: '/fanzone', desc: 'Comunidade' },
-  { id: 'curiosities', label: 'Curiosidades', icon: Zap, path: '/curiosities', desc: 'Fatos' },
-  { id: 'glossary', label: 'Glossário', icon: BookOpen, path: '/glossary', desc: 'Termos' },
-  { id: 'articles', label: 'Artigos', icon: FileText, path: '/articles', desc: 'Opinião' },
-  { id: 'media', label: 'Multimídia', icon: Headphones, path: '/media', desc: 'Playlists' },
-  { id: 'contact', label: 'Contato', icon: Mail, path: '/contact', desc: 'Newsletter' },
-  { id: 'credits', label: 'Créditos', icon: Heart, path: '/credits', desc: 'Parceiros' },
+  { id: 'home', label: 'Home', icon: Home, path: '/', desc: 'Painel Principal' },
+  { id: 'news', label: 'Notícias', icon: Newspaper, path: '/news', desc: 'Últimas do Paddock' },
+  { id: 'season', label: 'Temporada', icon: Calendar, path: '/season', desc: 'Calendário & Pontos' },
+  { id: 'drivers', label: 'Pilotos', icon: Users, path: '/drivers', desc: 'Grid de 2025' },
+  { id: 'teams', label: 'Equipes', icon: Wrench, path: '/teams', desc: 'Carros & Motores' },
+  { id: 'fanzone', label: 'Fanzone', icon: Sparkles, path: '/fanzone', desc: 'Comunidade & Artes' },
+  { id: 'curiosities', label: 'Curiosidades', icon: Zap, path: '/curiosities', desc: 'Fatos & História' },
+  { id: 'glossary', label: 'Glossário', icon: BookOpen, path: '/glossary', desc: 'Dicionário da F1' },
+  { id: 'articles', label: 'Artigos', icon: FileText, path: '/articles', desc: 'Análises & Opinião' },
+  { id: 'media', label: 'Multimídia', icon: Headphones, path: '/media', desc: 'Playlists & Vídeos' },
+  { id: 'contact', label: 'Contato', icon: Mail, path: '/contact', desc: 'Fale com a gente' },
+  { id: 'credits', label: 'Créditos', icon: Heart, path: '/credits', desc: 'Quem faz' },
 ];
 
 // --- PILOTOS ---

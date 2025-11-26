@@ -1,5 +1,5 @@
 // src/services/newsService.js
-import { sanityClient } from '../lib/sanityClient';
+import { sanityClient } from '../lib/sanityClient.js';
 
 export async function fetchNews() {
   const query = `*[_type == "news"] | order(publishedAt desc) {

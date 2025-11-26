@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'autamubilismo-cms',
 
-  projectId: 'seuPc7nvssn2',
+  projectId: 'c7nvssn2',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
