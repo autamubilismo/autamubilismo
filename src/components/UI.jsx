@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   X, ChevronRight, Flag, CloudMoon, MapPin, Newspaper, Zap, Mail, Sparkles, 
-  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search, Loader2, AlertCircle
+  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search, Loader2, AlertCircle, Calendar
 } from 'lucide-react';
 import { LOGO_LIGHT_URL, LOGO_DARK_URL, SITE_MAP } from '../data';
 import { fetchNews } from '../services/newsService';
@@ -439,7 +439,39 @@ export const NewsWidget = ({ theme, onNewsClick }) => {
   );
 };
 
+export const FanzoneWidget = ({ theme }) => {
+  const isLight = theme === 'light';
+  return (
+    <div className={`h-full flex flex-col items-center justify-center p-4 text-center relative z-10`}>
+      <Sparkles size={32} className={`mb-2 ${theme==='light'?'text-purple-400':'text-[#bd00ff]'}`} />
+      <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Fanzone</h3>
+    </div>
+  );
+};
 
+export const SeasonWidget = ({ theme }) => {
+  const isLight = theme === 'light';
+  return (
+    <div className="h-full flex flex-col items-center justify-center text-center p-4 relative z-10">
+      <div className={`p-3 rounded-full mb-3 ${isLight ? 'bg-[#CFF7E8] text-teal-800' : 'bg-[#00fff2]/10 text-[#00fff2]'}`}>
+         <Calendar size={32} />
+      </div>
+      <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Temporada 2025</h3>
+      <p className={`text-[10px] font-bold uppercase tracking-widest opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Calendário & Pontos</p>
+    </div>
+  );
+};
+
+export const ContactWidget = ({ theme }) => {
+  const isLight = theme === 'light';
+  return (
+    <div className="h-full flex flex-col items-center justify-center text-center p-4 relative z-10">
+      <MessageSquare size={32} className={`mb-3 ${isLight ? 'text-pink-500' : 'text-[#fe88dd]'}`} />
+      <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Contato</h3>
+      <p className={`text-[10px] font-bold uppercase tracking-widest opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Mande um alô</p>
+    </div>
+  );
+};
 
 
 export const CuriosityWidget = ({ theme }) => (<div className="h-full flex flex-col items-center justify-center text-center p-2 relative z-10"><Zap size={32} className="mb-2 text-yellow-400" /><h4 className="font-bold text-sm">Você Sabia?</h4></div>);
@@ -470,12 +502,3 @@ export const NewsletterWidget = ({ theme }) => {
 };
 
 
-export const FanzoneWidget = ({ theme }) => {
-  const isLight = theme === 'light';
-  return (
-    <div className={`h-full flex flex-col items-center justify-center p-4 text-center relative z-10`}>
-      <Sparkles size={32} className={`mb-2 ${theme==='light'?'text-purple-400':'text-[#fe88dd]'}`} />
-      <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Fanzone</h3>
-    </div>
-  );
-};

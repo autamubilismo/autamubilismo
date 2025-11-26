@@ -52,20 +52,144 @@ export const DRIVERS_DATA = [
 
 ];
 
-// --- EQUIPES ---
+// --- EQUIPES 2026 (IMAGENS HD ATUALIZADAS) ---
 export const TEAMS_DATA = [
-  { id: 'mercedes', name: 'Mercedes', fullName: 'Mercedes-AMG PETRONAS F1 Team', domain: 'mercedesamgf1.com', color: '#00D2BE', engine: 'Mercedes', principal: 'Toto Wolff', base: 'Brackley, UK', chassis: 'W17', titles: 8, drivers: ['George Russell', 'Kimi Antonelli'], bio: "A força dominante da era híbrida busca retornar ao topo com uma mistura de experiência e juventude extrema.", image: 'https://images.unsplash.com/photo-1626722843337-5f55d3473417?q=80&w=1200' },
-  { name: 'Ferrari', domain: 'ferrari.com', color: '#FF0000', engine: 'Ferrari', drivers: ['Charles Leclerc', 'Lewis Hamilton'] },
-  { name: 'Red Bull Racing', domain: 'redbullracing.com', color: '#1E41FF', engine: 'Red Bull-Ford', drivers: ['Max Verstappen', 'Liam Lawson'] },
-  { name: 'McLaren', domain: 'mclaren.com', color: '#FF8700', engine: 'Mercedes', drivers: ['Lando Norris', 'Oscar Piastri'] },
-  { name: 'Aston Martin', domain: 'astonmartinf1.com', color: '#006F62', engine: 'Honda', drivers: ['Fernando Alonso', 'Lance Stroll'] },
-  { name: 'Alpine', domain: 'alpinecars.com', color: '#0090FF', engine: 'Renault', drivers: ['Pierre Gasly', 'Jack Doohan'] },
-  { name: 'Williams', domain: 'williamsf1.com', color: '#005AFF', engine: 'Mercedes', drivers: ['Alex Albon', 'Carlos Sainz'] },
-  { name: 'VCARB', domain: 'visacashapprb.com', color: '#1633EF', engine: 'Red Bull-Ford', drivers: ['Yuki Tsunoda', 'Isack Hadjar'] },
-  { name: 'Haas', domain: 'haasf1team.com', color: '#B6BABD', engine: 'Ferrari', drivers: ['Esteban Ocon', 'Oliver Bearman'] },
-  { name: 'Sauber', domain: 'sauber-group.com', color: '#52E252', engine: 'Ferrari', drivers: ['Nico Hulkenberg', 'Gabriel Bortoleto'] },
-  { name: 'Audi', domain: 'audi.com', color: '#000000', engine: 'Audi', drivers: ['TBA'], note: '2026' },
-  { name: 'Cadillac', domain: 'cadillac.com', color: '#E6BE56', engine: 'GM', drivers: ['TBA'], note: '2026' },
+  { 
+    id: 'mercedes', 
+    name: 'Mercedes', 
+    fullName: 'Mercedes-AMG PETRONAS F1 Team', 
+    color: '#00D2BE', 
+    engine: 'Mercedes', 
+    drivers: ['Russell', 'Antonelli'],
+    domain: 'mercedesamgf1.com',
+    image: 'https://images.unsplash.com/photo-1692707805708-74b576400b7c?q=80&w=1600', // Prata/Preto Futurista
+    titles: 8,
+    base: 'Brackley, UK',
+    bio: 'A flecha de prata busca retomar a hegemonia na nova era de 2026 com motores sustentáveis.'
+  },
+  { 
+    name: 'Ferrari', 
+    color: '#FF0000', 
+    engine: 'Ferrari', 
+    drivers: ['Leclerc', 'Hamilton'],
+    domain: 'ferrari.com',
+    image: 'https://images.unsplash.com/photo-1592853625597-7d17be820d0c?q=80&w=1600', // Vermelho Clássico HD
+    titles: 16,
+    base: 'Maranello, IT',
+    fullName: 'Scuderia Ferrari HP'
+  },
+  { 
+    name: 'Red Bull Racing', 
+    color: '#1E41FF', 
+    engine: 'Red Bull-Ford', 
+    drivers: ['Verstappen', 'Lawson'],
+    domain: 'redbullracing.com',
+    image: 'https://images.unsplash.com/photo-1589769819573-d3f4a3345391?q=80&w=1600', // Azul Escuro/Velocidade
+    titles: 6,
+    base: 'Milton Keynes, UK',
+    fullName: 'Oracle Red Bull Racing'
+  },
+  { 
+    name: 'McLaren', 
+    color: '#FF8700', 
+    engine: 'Mercedes', 
+    drivers: ['Norris', 'Piastri'],
+    domain: 'mclaren.com',
+    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1600', // Papaya HD
+    titles: 8,
+    base: 'Woking, UK',
+    fullName: 'McLaren Formula 1 Team'
+  },
+  { 
+    name: 'Aston Martin', 
+    color: '#006F62', 
+    engine: 'Honda', 
+    drivers: ['Alonso', 'Stroll'],
+    domain: 'astonmartinf1.com',
+    image: 'https://images.unsplash.com/photo-1631558361324-172852861830?q=80&w=1600', // Verde Britânico HD
+    titles: 0,
+    base: 'Silverstone, UK',
+    fullName: 'Aston Martin Aramco F1 Team'
+  },
+  { 
+    name: 'Alpine', 
+    color: '#0090FF', 
+    engine: 'Mercedes', // Rumor 2026: Alpine clientes Mercedes
+    drivers: ['Gasly', 'Doohan'],
+    domain: 'alpinecars.com',
+    image: 'https://images.unsplash.com/photo-1634472333187-c18776c4984b?q=80&w=1600', // Azul Alpine
+    titles: 2,
+    base: 'Enstone, UK',
+    fullName: 'BWT Alpine F1 Team'
+  },
+  { 
+    name: 'Williams', 
+    color: '#005AFF', 
+    engine: 'Mercedes', 
+    drivers: ['Albon', 'Sainz'],
+    domain: 'williamsf1.com',
+    image: 'https://images.unsplash.com/photo-1612620272995-8b77d8928454?q=80&w=1600', // Azul Williams
+    titles: 9,
+    base: 'Grove, UK',
+    fullName: 'Williams Racing'
+  },
+  { 
+    name: 'VCARB', 
+    color: '#1633EF', 
+    engine: 'Red Bull-Ford', 
+    drivers: ['Tsunoda', 'Hadjar'],
+    domain: 'visacashapprb.com',
+    image: 'https://images.unsplash.com/photo-1626722843337-5f55d3473417?q=80&w=1600', // Estilo vibrante
+    titles: 0,
+    base: 'Faenza, IT',
+    fullName: 'Visa Cash App RB Formula One Team'
+  },
+  { 
+    name: 'Haas', 
+    color: '#B6BABD', 
+    engine: 'Ferrari', 
+    drivers: ['Ocon', 'Bearman'],
+    domain: 'haasf1team.com',
+    image: 'https://images.unsplash.com/photo-1618486640092-0c3679e86f49?q=80&w=1600', // Preto/Branco/Cinza
+    titles: 0,
+    base: 'Kannapolis, USA',
+    fullName: 'MoneyGram Haas F1 Team'
+  },
+  { 
+    name: 'Sauber', 
+    color: '#52E252', 
+    engine: 'Ferrari', 
+    drivers: ['Hulkenberg', 'Bortoleto'],
+    domain: 'sauber-group.com',
+    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1600', // Verde Neon
+    titles: 0,
+    base: 'Hinwil, CH',
+    fullName: 'Stake F1 Team Kick Sauber'
+  },
+  { 
+    name: 'Audi', 
+    color: '#000000', 
+    engine: 'Audi', 
+    drivers: ['TBA'], 
+    note: '2026',
+    domain: 'audi.com',
+    image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1600', // Conceito Audi/Futurista
+    titles: 0,
+    base: 'Neuburg, DE',
+    fullName: 'Audi F1 Team'
+  },
+  { 
+    name: 'Cadillac', 
+    color: '#E6BE56', 
+    engine: 'GM', 
+    drivers: ['TBA'], 
+    note: '2026',
+    domain: 'cadillac.com',
+    image: 'https://images.unsplash.com/photo-1536643278213-2990d0f962d1?q=80&w=1600', // Dourado/Luxo
+    titles: 0,
+    base: 'USA',
+    fullName: 'Cadillac F1 Team'
+  },
 ];
 
 // --- CORRIDAS ---
@@ -159,3 +283,55 @@ export const MANIFESTO_POST = {
 export const GLOSSARY_DATA = [{ id: 1, term: 'Undercut', category: 'Estratégia', definition: 'Parar nos boxes antes...', example: '...' }];
 export const STANDINGS_DRIVERS = [{ pos: 1, name: 'Max Verstappen', points: 391 }];
 export const STANDINGS_TEAMS = [{ pos: 1, name: 'McLaren', points: 756 }];
+
+// --- CIRCUITOS (Reta Final 2025) ---
+export const CIRCUITS_DATA = [
+  { 
+    id: 'interlagos', 
+    name: 'Autódromo de Interlagos', 
+    gp: 'GP de São Paulo', 
+    country: 'Brasil', 
+    flag: '🇧🇷', 
+    date: '07-09 Nov', 
+    length: '4.309 km', 
+    laps: 71, 
+    record: '1:10.540 (Bottas, 2018)',
+    layout: 'https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Brazil_Circuit.png.transform/7col/image.png'
+  },
+  { 
+    id: 'las-vegas', 
+    name: 'Las Vegas Strip Circuit', 
+    gp: 'GP de Las Vegas', 
+    country: 'EUA', 
+    flag: '🇺🇸', 
+    date: '20-22 Nov', 
+    length: '6.201 km', 
+    laps: 50, 
+    record: '1:35.490 (Piastri, 2023)',
+    layout: 'https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Las_Vegas_Circuit.png.transform/7col/image.png'
+  },
+  { 
+    id: 'lusail', 
+    name: 'Lusail International Circuit', 
+    gp: 'GP do Catar', 
+    country: 'Catar', 
+    flag: '🇶🇦', 
+    date: '28-30 Nov', 
+    length: '5.419 km', 
+    laps: 57, 
+    record: '1:24.319 (Verstappen, 2023)',
+    layout: 'https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Qatar_Circuit.png.transform/7col/image.png'
+  },
+  { 
+    id: 'yas-marina', 
+    name: 'Yas Marina Circuit', 
+    gp: 'GP de Abu Dhabi', 
+    country: 'EAU', 
+    flag: '🇦🇪', 
+    date: '05-07 Dez', 
+    length: '5.281 km', 
+    laps: 58, 
+    record: '1:26.103 (Verstappen, 2021)',
+    layout: 'https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Abu_Dhabi_Circuit.png.transform/7col/image.png'
+  },
+];

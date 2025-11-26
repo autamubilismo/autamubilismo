@@ -9,6 +9,8 @@ import {
   FanzoneWidget,
   CuriosityWidget,
   NewsletterWidget,
+  SeasonWidget,  // <--- Importado
+  ContactWidget
 } from '../components/UI';
 import { client, urlFor } from '../lib/sanity';
 import { NEWS_WIDGET_QUERY, MANIFESTO_POST_QUERY } from '../lib/queries';
@@ -72,13 +74,10 @@ const Home = ({ theme }) => {
         <NextRaceWidget theme={theme} />
       </BentoCard>
 
-      {/* 3. COLUNA DIREITA SUPERIOR: Fanzone (1x1 - Abaixo da Corrida) */}
-      <BentoCard
-        theme={theme}
-        to="/fanzone"
-        className="md:col-span-1 md:row-span-1 overflow-hidden relative p-0 group cursor-pointer"
-      >
-        <FanzoneWidget theme={theme} />
+           {/* 3. COLUNA DIREITA SUPERIOR: Temporada 2025 (1x1 - Abaixo da Corrida) */}
+      {/* Substituiu Fanzone */}
+      <BentoCard theme={theme} to="/season" className="md:col-span-1 md:row-span-1 overflow-hidden relative p-0 group cursor-pointer">
+        <SeasonWidget theme={theme} />
       </BentoCard>
 
       {/* 4. COLUNA DIREITA INFERIOR: Curiosidades (1x1) */}
@@ -92,17 +91,10 @@ const Home = ({ theme }) => {
         <CuriosityWidget theme={theme} />
       </BentoCard>
 
-      {/* 5. COLUNA DIREITA INFERIOR: Apoie (1x1) */}
-      <BentoCard
-        theme={theme}
-        className={`md:col-span-1 flex flex-col items-center justify-center text-center ${
-          theme === 'light'
-            ? 'bg-[#D8C4F0] text-white'
-            : 'bg-[#1a1a20] border-[#fe88dd]'
-        }`}
-      >
-        <Coffee size={32} className="mb-2" />
-        <h3 className="font-bold">Apoie</h3>
+       {/* 5. COLUNA DIREITA INFERIOR: Contato (1x1) */}
+      {/* Substituiu Apoie */}
+      <BentoCard theme={theme} to="/contact" className={`md:col-span-1 cursor-pointer flex flex-col items-center justify-center text-center ${theme === 'light' ? 'bg-[#D8C4F0] text-white' : 'bg-[#1a1a20] border-[#bd00ff]'}`}>
+         <ContactWidget theme={theme} />
       </BentoCard>
 
       {/* 6. RODAPÉ ESQUERDA: Manifesto (2x1 Horizontal) */}

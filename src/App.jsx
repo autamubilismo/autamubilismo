@@ -17,6 +17,11 @@ import ArticleDetail from './pages/ArticleDetail.jsx';
 import ContactPage from './pages/Contact.jsx';
 import GlossaryPage from './pages/Glossary.jsx';
 import GenericPage from './pages/Generic.jsx';
+import TeamDetail from './pages/TeamDetail';
+import CircuitsPage from './pages/Circuits';
+import CuriositiesPage from './pages/Curiosities';
+import MultimediaPage from './pages/Multimedia';
+import CreditsPage from './pages/Credits';
 
 // NEWS
 import NewsPage from "./pages/NewsPage";
@@ -120,6 +125,15 @@ export default function App() {
 
           <main className="min-h-[60vh]">
             <Routes>
+              
+              {/* CURIOSIDADES */}
+<Route path="/curiosities" element={<CuriositiesPage theme={theme} />} />
+
+{/* MULTIMÍDIA */}
+<Route path="/media" element={<MultimediaPage theme={theme} />} />
+
+{/* CRÉDITOS */}
+<Route path="/credits" element={<CreditsPage theme={theme} />} />
 
               {/* HOME */}
               <Route path="/" element={<Home theme={theme} />} />
@@ -150,6 +164,9 @@ export default function App() {
               {/* CONTATO */}
               <Route path="/contact" element={<ContactPage theme={theme} />} />
 
+              {/* CIRCUITOS */}
+              <Route path="/circuits" element={<CircuitsPage theme={theme} />} />
+
               {/* GLOSSÁRIO */}
               <Route path="/glossary" element={<GlossaryPage theme={theme} />} />
 
@@ -165,6 +182,8 @@ export default function App() {
               {/* 404 */}
               <Route path="*" element={<div className="p-10 text-center">Página não encontrada</div>} />
 
+{/* DETALHES DA EQUIPE */}
+<Route path="/teams/:id" element={<TeamDetail theme={theme} />} />
             </Routes>
           </main>
 
