@@ -177,7 +177,7 @@ const RegulationsPage = ({ theme }) => {
 
       </div>
 
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');`}</style>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');');`}</style>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const ArticlesPage = ({ theme }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // carrega do Sanity
+  // --- Fetch do Sanity ---
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -21,16 +21,16 @@ const ArticlesPage = ({ theme }) => {
             _id,
             title,
             "slug": slug.current,
-            "imageUrl": mainImage.asset->url,
+            "imageUrl": image.asset->url,
             excerpt,
             publishedAt,
-            "category": category->title,
-            "author": author->name
+            category,
+            author
           }`
         );
         setPosts(data);
       } catch (err) {
-        console.error('Erro ao buscar posts do Sanity:', err);
+        console.error("Erro ao buscar posts do Sanity:", err);
       } finally {
         setLoading(false);
       }
@@ -39,16 +39,16 @@ const ArticlesPage = ({ theme }) => {
     fetchPosts();
   }, []);
 
-  // fallback pro que já existe no data.js
+  // --- Fallback local para artigos + manifesto ---
   const fallbackPosts = [...ARTICLES_DATA, MANIFESTO_POST].map((item) => ({
     _id: item.id,
     slug: item.id,
     title: item.title,
     imageUrl: item.image,
     excerpt: item.excerpt,
-    category: item.category || item.categoryLabel || 'Editorial',
-    author: item.author || 'Tamu',
-    publishedAt: item.time || '—',
+    category: item.category || item.categoryLabel || "Editorial",
+    author: item.author || "Tamu",
+    publishedAt: item.time || null,
     contentHtml: item.content,
   }));
 
@@ -66,23 +66,23 @@ const ArticlesPage = ({ theme }) => {
       <header className="mb-8">
         <h1
           className={`text-4xl md:text-5xl font-black mb-2 ${
-            isLight ? 'text-gray-900' : 'text-white'
+            isLight ? "text-gray-900" : "text-white"
           }`}
         >
           Textos & Manifestos
         </h1>
         <p
           className={`max-w-2xl ${
-            isLight ? 'text-gray-600' : 'text-gray-400'
+            isLight ? "text-gray-600" : "text-gray-400"
           }`}
         >
-          Análises, opiniões, surtos controlados e tudo que não cabe em
-          um simples tweet.
+          Análises, opiniões, surtos controlados e tudo que não cabe em um
+          simples tweet.
         </p>
       </header>
 
       {loading && !list.length ? (
-        <p className={isLight ? 'text-gray-500' : 'text-gray-400'}>
+        <p className={isLight ? "text-gray-500" : "text-gray-400"}>
           Carregando posts…
         </p>
       ) : (
@@ -95,7 +95,8 @@ const ArticlesPage = ({ theme }) => {
               onClick={() => handleOpen(post)}
             >
               <div className="flex flex-col md:flex-row gap-4 h-full">
-                {/* Thumb */}
+                
+                {/* --- Thumbnail (AGORA FUNCIONA) --- */}
                 {post.imageUrl && (
                   <div className="w-full md:w-40 h-40 rounded-2xl overflow-hidden bg-gray-200 shrink-0">
                     <img
@@ -106,51 +107,65 @@ const ArticlesPage = ({ theme }) => {
                   </div>
                 )}
 
-                {/* Texto */}
+                {/* --- Texto do Card --- */}
                 <div className="flex flex-col flex-1 min-w-0">
+                  
+                  {/* Categoria + Data */}
                   <div className="flex items-center gap-2 text-[11px] font-bold uppercase mb-1">
                     <span
                       className={
                         isLight
-                          ? 'px-2 py-0.5 rounded-full bg-[#F7B8C8] text-white'
-                          : 'px-2 py-0.5 rounded-full border border-[#fe88dd] text-[#fe88dd]'
+                          ? "px-2 py-0.5 rounded-full bg-[#F7B8C8] text-white"
+                          : "px-2 py-0.5 rounded-full border border-[#fe88dd] text-[#fe88dd]"
                       }
                     >
-                      {post.category || 'Artigo'}
+                      {post.category || "Artigo"}
                     </span>
+
+                    {/* --- Data formatada --- */}
                     {post.publishedAt && (
                       <span
                         className={
-                          isLight ? 'text-gray-400' : 'text-gray-500'
+                          isLight ? "text-gray-400" : "text-gray-500"
                         }
                       >
-                        {post.publishedAt}
+                        {new Date(post.publishedAt).toLocaleDateString(
+                          "pt-BR",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )}
                       </span>
                     )}
                   </div>
 
+                  {/* Título */}
                   <h2
                     className={`text-lg md:text-xl font-black mb-1 line-clamp-2 ${
-                      isLight ? 'text-gray-900' : 'text-white'
+                      isLight ? "text-gray-900" : "text-white"
                     }`}
                   >
                     {post.title}
                   </h2>
 
+                  {/* Resumo */}
                   {post.excerpt && (
                     <p
                       className={`text-sm line-clamp-3 ${
-                        isLight ? 'text-gray-600' : 'text-gray-400'
+                        isLight ? "text-gray-600" : "text-gray-400"
                       }`}
                     >
                       {post.excerpt}
                     </p>
                   )}
 
+                  {/* Autor */}
                   {post.author && (
                     <p
                       className={`mt-auto pt-3 text-xs font-medium ${
-                        isLight ? 'text-gray-500' : 'text-gray-500'
+                        isLight ? "text-gray-500" : "text-gray-500"
                       }`}
                     >
                       por {post.author}

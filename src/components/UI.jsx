@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   X, ChevronRight, Flag, CloudMoon, MapPin, Newspaper, Zap, Mail, Sparkles, 
-  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search, Loader2, AlertCircle, Calendar
+  Star, RotateCcw, Heart, MessageSquare, Menu, Sun, Moon, ArrowLeft, ArrowRight, Search, Loader2, AlertCircle, Calendar, Clock, Trophy, Wrench, FlagTriangleRight
 } from 'lucide-react';
 import { LOGO_LIGHT_URL, LOGO_DARK_URL, SITE_MAP } from '../data';
 import { fetchNews } from '../services/newsService';
@@ -15,48 +15,34 @@ export const ScrollToTop = () => {
 };
 
 // --- COMPONENTES ---
+// LOGO ATUALIZADO: Estático, Sem Efeitos e Gigante (3x Maior)
 export const LogoHelmet = ({ theme, size = 'normal' }) => {
   const isLight = theme === 'light';
   const [imageError, setImageError] = useState(false);
   useEffect(() => setImageError(false), [theme]);
   const currentLogoUrl = isLight ? LOGO_LIGHT_URL : LOGO_DARK_URL;
   
-  // 1. CAPACETE BEM MAIOR
-  // Mobile: w-48 | Desktop: w-80 (Gigante)
-  const containerClass = size === 'large' ? "w-48 h-48 md:w-80 md:h-80" : "w-16 h-16 md:w-20 md:h-20";
-  
-  // 2. TEXTO: Rosa Neon #fe88dd
-  const textClass = isLight 
-    ? 'text-gray-800' 
-    : 'text-[#fe88dd] drop-shadow-[0_0_15px_rgba(254,136,221,0.8)]'; 
-
-  const imgGlowClass = !isLight 
-    ? 'drop-shadow-[0_0_40px_rgba(254,136,221,0.5)] scale-110' 
-    : 'drop-shadow-2xl hover:scale-105';
+  // TAMANHO AUMENTADO (3X)
+  // Mobile: w-64 (256px) | Desktop: w-[48rem] (768px - Bem grande)
+  const containerClass = size === 'large' 
+    ? "w-64 h-auto md:w-[48rem]" 
+    : "w-32 h-auto md:w-48"; 
 
   if (!imageError) return (
-    <div className="flex flex-col md:flex-row items-center gap-0 md:gap-2"> {/* Gap reduzido */}
-        <div className={`${containerClass} transition-all duration-500 relative flex items-center justify-center`}>
+    <div className="flex flex-col items-center justify-center">
+        <div className={`${containerClass} relative flex items-center justify-center`}>
+            {/* IMAGEM LIMPA: Sem transição, sem hover, sem glow, sem sombra */}
             <img 
               src={currentLogoUrl} 
-              alt="Logo" 
+              alt="Autamubilismo" 
               onError={() => setImageError(true)} 
-              className={`w-full h-full object-contain transition-all duration-500 ${imgGlowClass}`} 
+              className="w-full h-full object-contain block"
             />
         </div>
-        
-        {/* 3. TEXTO MAIOR E MAIS JUNTO (tracking-tighter) */}
-        <h1 
-          className={`hidden md:block text-3xl md:text-6xl font-black tracking-tighter uppercase ${textClass}`} 
-          style={{ fontFamily: "'Russo One', sans-serif", lineHeight: '0.9' }}
-        >
-          Autamubilismo
-        </h1>
-        
-        <style>{`@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');`}</style>
     </div>
   );
-  return null;
+  
+  return <h1 className="text-2xl font-black tracking-widest uppercase text-gray-500">AUTAMUBILISMO</h1>;
 };
 
 export const BackButton = ({ to, theme }) => {
@@ -239,39 +225,79 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
 // --- WIDGETS ---
 export const NextRaceWidget = ({ theme }) => {
   const isLight = theme === 'light';
-  // Adicionei borda cinza claro (border-gray-200) para o modo Light
-  const boxClass = isLight ? 'bg-white/60 backdrop-blur-md text-gray-800 border border-gray-200' : 'bg-[#1a1a20] border border-[#fe88dd]/30 text-white shadow-[0_0_10px_rgba(254,136,221,0.2)]';
-  const accentColor = isLight ? 'text-[#9F7AEA]' : 'text-[#fe88dd]';
-  const strokeColor = isLight ? 'stroke-[#9F7AEA]' : 'stroke-[#fe88dd]';
-  const badgeClass = isLight ? 'bg-[#D8C4F0] text-gray-800' : 'bg-[#fe88dd] text-white shadow-[0_0_10px_#fe88dd]';
+  
+  // CORES DO TEMA
+  const accentColor = isLight ? 'text-teal-700' : 'text-[#fe88dd]';
+  const itemBg = isLight ? 'bg-gray-50' : 'bg-[#1a1a20] border border-white/5';
+  const highlightBg = isLight ? 'bg-teal-50 border-teal-200' : 'bg-[#fe88dd]/10 border-[#fe88dd]/30';
+
+  // AGENDA QATAR 2025 (Horário de Brasília - Estimado)
+  // Fim de semana de Sprint: Sexta (Quali Sprint), Sábado (Sprint + Quali), Domingo (Corrida)
+  const sessions = [
+    { day: 'SEX', date: '28 Nov', name: 'Treino Livre 1', time: '10:30', type: 'FP' },
+    { day: 'SEX', date: '28 Nov', name: 'Classif. Sprint', time: '14:30', type: 'SQ' },
+    { day: 'SÁB', date: '29 Nov', name: 'Sprint Race', time: '11:00', type: 'SPRINT', highlight: true },
+    { day: 'SÁB', date: '29 Nov', name: 'Classificação', time: '15:00', type: 'Q' },
+    { day: 'DOM', date: '30 Nov', name: 'Grande Prêmio', time: '13:00', type: 'RACE', main: true },
+  ];
 
   return (
-    <div className={`h-full flex flex-col justify-between relative overflow-hidden p-5 ${isLight ? 'text-gray-800' : 'text-white'}`}>
-<svg 
-  className={`absolute right-[-10px] bottom-[-10px] w-52 h-52 opacity-20 pointer-events-none ${isLight ? 'stroke-teal-900' : 'stroke-[#00fff2]'}`} 
-  viewBox="0 0 100 100" 
-  fill="none" 
-  strokeWidth="2"
-  strokeLinecap="round" 
-  strokeLinejoin="round"
->
-  {/* Traçado aproximado de Lusail (GP do Catar) */}
-  <path d="M 30 80 L 30 30 Q 30 20 40 20 L 50 25 Q 60 30 65 20 L 75 20 Q 85 20 90 30 L 90 50 Q 90 60 80 65 L 70 60 Q 60 55 60 65 L 60 70 Q 60 80 50 80 L 30 80" />
-</svg>
-      <div className="flex justify-between items-start relative z-10">
-        <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${badgeClass}`}><Flag size={12} /> Round 23</div>
-        <div className="flex flex-col items-end"><CloudMoon size={20} className={accentColor} /><span className="text-xs font-bold">28°C</span></div>
-      </div>
-      <div className="relative z-10 my-2 text-center">
-          <span className={`text-[10px] font-bold opacity-60 uppercase tracking-widest block mb-[-5px] ${accentColor}`}>Grande Prêmio</span>
-          <h3 className={`text-5xl font-black leading-none tracking-tighter ${isLight ? 'text-gray-800' : 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]'}`}>QATAR</h3>
-          <div className="flex items-center justify-center gap-1 mt-1 opacity-80"><MapPin size={12} className={accentColor} /> <span className="text-xs font-bold uppercase">Lusail Int. Circuit</span></div>
-      </div>
-      <div className="relative z-10 mt-auto">
-        <div className="flex gap-2 text-center">
-            {['05', '18', '42'].map((time, i) => (<div key={i} className={`flex-1 rounded-lg p-2 ${boxClass}`}><span className="block text-xl font-black leading-none">{time}</span><span className="text-[8px] font-bold opacity-60 uppercase">{['Dias', 'Hrs', 'Min'][i]}</span></div>))}
-        </div>
-      </div>
+    <div className={`h-full flex flex-col p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
+       
+       {/* CABEÇALHO */}
+       <div className="flex justify-between items-end mb-4 z-10">
+          <div>
+             <span className={`text-[10px] font-black uppercase tracking-widest opacity-60 flex items-center gap-1 mb-1`}>
+               <MapPin size={10} /> Lusail, Catar
+             </span>
+             <h3 className={`text-2xl font-black leading-none ${accentColor}`}>GP DO CATAR</h3>
+          </div>
+          <div className={`px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 border ${isLight ? 'bg-white border-gray-200 text-gray-500' : 'bg-black/30 border-white/10 text-gray-400'}`}>
+             <Clock size={10} /> Brasília (BRT)
+          </div>
+       </div>
+
+       {/* LISTA DE SESSÕES */}
+       <div className="flex-1 flex flex-col justify-between gap-1.5 z-10 overflow-y-auto custom-scrollbar">
+          {sessions.map((session, i) => (
+             <div 
+               key={i} 
+               className={`flex items-center justify-between p-2 rounded-xl border transition-all
+                 ${session.main ? `border ${highlightBg} shadow-sm` : `${itemBg} border-transparent opacity-80 hover:opacity-100`}
+               `}
+             >
+                <div className="flex items-center gap-3">
+                   {/* Data Box */}
+                   <div className={`flex flex-col items-center justify-center w-9 h-9 rounded-lg font-bold leading-none 
+                      ${session.main 
+                         ? (isLight ? 'bg-teal-600 text-white' : 'bg-[#fe88dd] text-white') 
+                         : (isLight ? 'bg-white text-gray-400' : 'bg-white/5 text-gray-500')}
+                   `}>
+                      <span className="text-[8px] uppercase">{session.day}</span>
+                      <span className="text-xs">{session.date.split(' ')[0]}</span>
+                   </div>
+                   
+                   {/* Nome da Sessão */}
+                   <div>
+                      <span className={`block text-xs font-bold ${session.main ? '' : 'opacity-90'}`}>
+                        {session.name}
+                      </span>
+                      {session.type === 'SPRINT' && <span className="text-[8px] uppercase font-black text-orange-400 tracking-wider">Sprint</span>}
+                   </div>
+                </div>
+
+                {/* Horário */}
+                <div className={`font-mono font-bold ${session.main ? 'text-lg' : 'text-sm opacity-70'}`}>
+                   {session.time}
+                </div>
+             </div>
+          ))}
+       </div>
+
+       {/* Decoração de fundo (Bandeira sutil) */}
+       <div className="absolute -right-6 -bottom-6 opacity-5 pointer-events-none rotate-12">
+          <Flag size={140} />
+       </div>
     </div>
   );
 };
@@ -452,64 +478,69 @@ export const FanzoneWidget = ({ theme }) => {
 export const SeasonWidget = ({ theme }) => {
   const isLight = theme === 'light';
   
-  // Dados simulados (idealmente viriam das props ou contexto)
-  const totalRounds = 24;
-  const currentRound = 22;
-  const progress = (currentRound / totalRounds) * 100;
-  const leader = "Max Verstappen";
-  const points = "391 pts";
+  const topDrivers = [
+    { pos: 1, name: 'Verstappen', team: 'RBR', pts: 403, color: '#1E41FF' },
+    { pos: 2, name: 'Norris', team: 'MCL', pts: 370, color: '#FF8700' },
+    { pos: 3, name: 'Leclerc', team: 'FER', pts: 319, color: '#FF0000' },
+  ];
+  
+  // Top 3 Construtores (Adicionado para preencher o espaço)
+  const topTeams = [
+    { pos: 1, name: 'McLaren', pts: 608, color: '#FF8700' },
+    { pos: 2, name: 'Ferrari', pts: 557, color: '#FF0000' },
+    { pos: 3, name: 'Red Bull', pts: 544, color: '#1E41FF' },
+  ];
+
+  const cardBg = isLight ? 'bg-gray-50 border border-gray-100' : 'bg-white/5 border border-white/5';
+  const textColor = isLight ? 'text-gray-800' : 'text-white';
+  const subText = isLight ? 'text-gray-500' : 'text-gray-400';
 
   return (
-    <div className="h-full flex flex-col justify-between p-5 relative overflow-hidden">
-       {/* Decoração de Fundo */}
-       <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${isLight ? 'bg-teal-500' : 'bg-[#00fff2]'}`} />
-       
-       {/* Header: Ícone e Ano */}
-       <div className="flex items-center justify-between relative z-10">
-          <div className="flex items-center gap-2">
-             <div className={`p-2 rounded-lg ${isLight ? 'bg-[#CFF7E8] text-teal-800' : 'bg-[#00fff2]/10 text-[#00fff2]'}`}>
-                <Calendar size={18} />
-             </div>
-             <span className={`text-xs font-bold uppercase tracking-widest ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>
-               2025
-             </span>
-          </div>
-          {/* Badge da Rodada */}
-          <span className={`text-[10px] font-black px-2 py-1 rounded border ${isLight ? 'border-teal-200 text-teal-700 bg-white' : 'border-[#00fff2]/30 text-[#00fff2] bg-[#00fff2]/5'}`}>
-            R{currentRound}/{totalRounds}
-          </span>
-       </div>
+    <div className={`h-full flex flex-col justify-between p-5 relative overflow-hidden text-left ${textColor}`}>
+      <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${isLight ? 'bg-teal-500' : 'bg-[#00fff2]'}`} />
+      
+      <div className="flex justify-between items-start mb-2 z-10">
+         <div className="flex items-center gap-2">
+            <div className={`p-1.5 rounded-lg ${isLight ? 'bg-teal-100 text-teal-700' : 'bg-[#00fff2]/20 text-[#00fff2]'}`}><Calendar size={14} /></div>
+            <div><h3 className="text-sm font-black uppercase leading-none">Temporada</h3><p className={`text-[10px] font-bold ${subText}`}>2025</p></div>
+         </div>
+         <div className="text-right">
+            <span className="text-[9px] font-bold opacity-60 uppercase">Round 23/24</span>
+            <div className={`w-16 h-1 rounded-full mt-0.5 ${isLight ? 'bg-gray-200' : 'bg-white/20'}`}><div className={`h-full w-[95%] rounded-full ${isLight ? 'bg-teal-500' : 'bg-[#00fff2]'}`}></div></div>
+         </div>
+      </div>
 
-       {/* Corpo: Progresso e Líder */}
-       <div className="relative z-10 mt-3">
-          <div className="flex justify-between items-end mb-1">
-             <h3 className={`text-sm font-black uppercase ${isLight ? 'text-gray-800' : 'text-white'}`}>
-                Status
-             </h3>
-             <span className={`text-[10px] font-bold ${isLight ? 'text-teal-600' : 'text-[#00fff2]'}`}>
-                {Math.round(progress)}%
-             </span>
-          </div>
-          
-          {/* Barra de Progresso */}
-          <div className={`w-full h-1.5 rounded-full mb-4 overflow-hidden ${isLight ? 'bg-gray-200' : 'bg-white/10'}`}>
-             <div 
-               className={`h-full rounded-full transition-all duration-1000 ease-out ${isLight ? 'bg-teal-500' : 'bg-[#00fff2] shadow-[0_0_8px_#00fff2]'}`} 
-               style={{ width: `${progress}%` }}
-             />
-          </div>
-          
-          {/* Info do Líder */}
-          <div className={`p-3 rounded-xl flex items-center justify-between ${isLight ? 'bg-gray-50' : 'bg-white/5 border border-white/5'}`}>
-             <div>
-               <p className={`text-[9px] uppercase font-bold opacity-60 mb-0.5 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Líder do Campeonato</p>
-               <p className={`text-xs font-black truncate ${isLight ? 'text-teal-900' : 'text-white'}`}>{leader}</p>
-             </div>
-             <div className={`text-xs font-bold ${isLight ? 'text-teal-600' : 'text-[#00fff2]'}`}>
-               {points}
-             </div>
-          </div>
-       </div>
+      <div className="flex-1 flex flex-col gap-3 z-10 justify-center">
+         {/* Pilotos */}
+         <div className={`rounded-xl p-2.5 ${cardBg}`}>
+            <div className="flex items-center gap-2 mb-2 opacity-70"><Trophy size={10} className="text-yellow-500" /><span className="text-[9px] font-black uppercase tracking-widest">Top 3 Pilotos</span></div>
+            <div className="space-y-1.5">
+               {topDrivers.map((d) => (
+                  <div key={d.pos} className="flex items-center justify-between text-xs">
+                     <div className="flex items-center gap-2"><span className={`font-mono w-2 opacity-50 text-[9px]`}>{d.pos}</span><div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: d.color }}></div><span className="font-bold truncate max-w-[80px]">{d.name}</span></div>
+                     <span className="font-mono opacity-80 text-[10px]">{d.pts}</span>
+                  </div>
+               ))}
+            </div>
+         </div>
+         {/* Construtores */}
+         <div className={`rounded-xl p-2.5 ${cardBg}`}>
+            <div className="flex items-center gap-2 mb-2 opacity-70"><Wrench size={10} className="text-blue-400" /><span className="text-[9px] font-black uppercase tracking-widest">Construtores</span></div>
+            <div className="space-y-1.5">
+               {topTeams.map((t) => (
+                  <div key={t.pos} className="flex items-center justify-between text-xs">
+                     <div className="flex items-center gap-2"><span className={`font-mono w-2 opacity-50 text-[9px]`}>{t.pos}</span><span className="font-bold truncate" style={{ color: t.color }}>{t.name}</span></div>
+                     <span className="font-mono opacity-80 text-[10px]">{t.pts}</span>
+                  </div>
+               ))}
+            </div>
+         </div>
+      </div>
+      
+      <div className="mt-2 pt-2 border-t border-white/5 flex justify-between items-center opacity-60 text-[9px] font-bold uppercase">
+         <span className="flex items-center gap-1"><FlagTriangleRight size={10} /> 2 GPs Restantes</span>
+         <span>Final: Abu Dhabi</span>
+      </div>
     </div>
   );
 };
