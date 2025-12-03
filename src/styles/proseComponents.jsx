@@ -43,7 +43,7 @@ export const proseComponents = (isLight) => ({
             ? // LIGHT: fundo rosinha, texto mais suave
               "border-l-4 border-[#F7B8C8] bg-[#FFF5F8]/90 rounded-2xl py-4 pl-6 pr-4 my-8 italic text-lg md:text-xl text-[#4B5563]"
             : // DARK: mantém o neon bonito
-              "border-l-4 border-[#fe88dd]/70 bg-[#1e1e24] rounded-2xl py-4 pl-6 pr-4 my-8 italic text-lg md:text-xl text-gray-100 shadow-[0_0_30px_rgba(189,0,255,0.25)]"
+              "border-l-4 border-[#ab0eff]/70 bg-[#1e1e24] rounded-2xl py-4 pl-6 pr-4 my-8 italic text-lg md:text-xl text-gray-100 shadow-[0_0_30px_rgba(189,0,255,0.25)]"
         }
       >
         {children}
@@ -93,7 +93,7 @@ export const proseComponents = (isLight) => ({
         className={
           isLight
             ? "font-semibold underline decoration-[#F7B8C8] decoration-2 underline-offset-4 hover:text-[#BE185D]"
-            : "font-semibold text-[#fe88dd] underline decoration-[#fe88dd]/60 decoration-2 underline-offset-4 hover:text-white"
+            : "font-semibold text-[#ab0eff] underline decoration-[#ab0eff]/60 decoration-2 underline-offset-4 hover:text-white"
         }
       >
         {children}

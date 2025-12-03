@@ -116,7 +116,7 @@ const ArticlesPage = ({ theme }) => {
                       className={
                         isLight
                           ? "px-2 py-0.5 rounded-full bg-[#F7B8C8] text-white"
-                          : "px-2 py-0.5 rounded-full border border-[#fe88dd] text-[#fe88dd]"
+                          : "px-2 py-0.5 rounded-full border border-[#ab0eff] text-[#ab0eff]"
                       }
                     >
                       {post.category || "Artigo"}

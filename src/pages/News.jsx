@@ -1,12 +1,30 @@
 // src/pages/News.jsx
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { sanityClient as client } from '../lib/sanityClient.js';
-import { BackButton, BentoCard } from '../components/UI';
+import { sanityClient as client } from "../lib/sanityClient.js";
+import { BackButton, BentoCard } from "../components/UI";
+
+// --- Formatação bonita da data (igual Articles/Textos & Manifestos) ---
+const formatDate = (dateString) => {
+  if (!dateString) return "";
+
+  const date = new Date(dateString);
+
+  let formatted = date
+    .toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+    .replace(".", "") // tira ponto de "nov."
+    .toUpperCase();   // deixa igual ao layout
+
+  return formatted;
+};
 
 const News = ({ theme }) => {
-  const isLight = theme === 'light';
+  const isLight = theme === "light";
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -28,7 +46,7 @@ const News = ({ theme }) => {
         );
         setNews(data);
       } catch (err) {
-        console.error('Erro ao buscar notícias do Sanity:', err);
+        console.error("Erro ao buscar notícias do Sanity:", err);
       } finally {
         setLoading(false);
       }
@@ -46,18 +64,18 @@ const News = ({ theme }) => {
     <div className="animate-in fade-in">
       <BackButton to="/" theme={theme} />
 
-      {/* HEADER IGUAL ARTICLES */}
+      {/* HEADER */}
       <header className="mb-8">
         <h1
           className={`text-4xl md:text-5xl font-black mb-2 ${
-            isLight ? 'text-gray-900' : 'text-white'
+            isLight ? "text-gray-900" : "text-white"
           }`}
         >
           Últimas Notícias
         </h1>
         <p
           className={`max-w-2xl ${
-            isLight ? 'text-gray-600' : 'text-gray-400'
+            isLight ? "text-gray-600" : "text-gray-400"
           }`}
         >
           Atualizações do paddock, bastidores, mercado de pilotos e tudo que
@@ -66,7 +84,7 @@ const News = ({ theme }) => {
       </header>
 
       {loading && !news.length ? (
-        <p className={isLight ? 'text-gray-500' : 'text-gray-400'}>
+        <p className={isLight ? "text-gray-500" : "text-gray-400"}>
           Carregando notícias…
         </p>
       ) : (
@@ -79,7 +97,8 @@ const News = ({ theme }) => {
               className="cursor-pointer group"
             >
               <div className="flex flex-col md:flex-row gap-4 h-full">
-                {/* THUMB IGUAL ARTICLES */}
+                
+                {/* THUMB */}
                 {item.imageUrl && (
                   <div className="w-full md:w-40 h-40 rounded-2xl overflow-hidden bg-gray-200 shrink-0">
                     <img
@@ -90,34 +109,28 @@ const News = ({ theme }) => {
                   </div>
                 )}
 
-                {/* TEXTO DO CARD */}
+                {/* TEXTO */}
                 <div className="flex flex-col flex-1 min-w-0">
-                  {/* BADGE + DATA IGUAIS */}
+                  
+                  {/* BADGE + DATA */}
                   <div className="flex items-center gap-2 text-[11px] font-bold uppercase mb-1">
                     <span
                       className={
                         isLight
-                          ? 'px-2 py-0.5 rounded-full bg-[#F7B8C8] text-white'
-                          : 'px-2 py-0.5 rounded-full border border-[#fe88dd] text-[#fe88dd]'
+                          ? "px-2 py-0.5 rounded-full bg-[#F7B8C8] text-white"
+                          : "px-2 py-0.5 rounded-full border border-[#ab0eff] text-[#ab0eff]"
                       }
                     >
-                      {item.category || 'Notícia'}
+                      {item.category || "Notícia"}
                     </span>
 
                     {item.publishedAt && (
                       <span
-                        className={
-                          isLight ? 'text-gray-400' : 'text-gray-500'
-                        }
+                        className={`tracking-wider ${
+                          isLight ? "text-gray-400" : "text-gray-500"
+                        }`}
                       >
-                        {new Date(item.publishedAt).toLocaleDateString(
-                          'pt-BR',
-                          {
-                            day: '2-digit',
-                            month: 'short',
-                            year: 'numeric',
-                          }
-                        )}
+                        {formatDate(item.publishedAt)}
                       </span>
                     )}
                   </div>
@@ -125,7 +138,7 @@ const News = ({ theme }) => {
                   {/* TÍTULO */}
                   <h2
                     className={`text-lg md:text-xl font-black mb-1 line-clamp-2 ${
-                      isLight ? 'text-gray-900' : 'text-white'
+                      isLight ? "text-gray-900" : "text-white"
                     }`}
                   >
                     {item.title}
@@ -135,7 +148,7 @@ const News = ({ theme }) => {
                   {item.excerpt && (
                     <p
                       className={`text-sm line-clamp-3 ${
-                        isLight ? 'text-gray-600' : 'text-gray-400'
+                        isLight ? "text-gray-600" : "text-gray-400"
                       }`}
                     >
                       {item.excerpt}
@@ -146,7 +159,7 @@ const News = ({ theme }) => {
                   {item.author && (
                     <p
                       className={`mt-auto pt-3 text-xs font-medium ${
-                        isLight ? 'text-gray-500' : 'text-gray-500'
+                        isLight ? "text-gray-500" : "text-gray-500"
                       }`}
                     >
                       por {item.author}

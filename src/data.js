@@ -19,7 +19,7 @@ export const NEON = {
   bg: '#141416', 
   purple: '#bd00ff', 
   cyan: '#00fff2', 
-  pink: '#ff0055', 
+  pink: '#ab0eff', 
   surface: '#1e1e24' 
 };
 
@@ -469,17 +469,21 @@ export const MANIFESTO_POST = {
   title: "Correndo como uma garota.",
   category: "Manifesto",
   time: "19 Nov",
-  image: "https://images.unsplash.com/photo-1592853625511-ad0ed2881895?q=80&w=1200",
   author: "Tamu",
+  image: "/img/web/manifesto.jpg",
+
   excerpt:
     "O automobilismo sempre foi feito de barulho, mas a internet transformou isso numa bagunça.",
-  content: `
+
+  // ⚡️ Duas versões: LIGHT e DARK
+  contentLight: `
     <section class="space-y-8">
-      <!-- INTRO -->
+
       <header class="space-y-4">
         <p class="text-sm font-bold tracking-[0.25em] uppercase opacity-70">
           manifesto do autamubilismo
         </p>
+
         <p class="text-xl md:text-2xl font-medium leading-relaxed">
           O automobilismo sempre foi feito de barulho — motores, torcida, narrador, coração acelerado —
           mas a internet transformou esse barulho numa bagunça. Informação jogada, fofoca sem fonte,
@@ -487,86 +491,135 @@ export const MANIFESTO_POST = {
         </p>
       </header>
 
-      <!-- BLOCO 1 -->
       <section class="space-y-4">
         <h2 class="text-3xl md:text-4xl font-black leading-tight">
           A gente decidiu fazer diferente.
         </h2>
+
         <p class="text-lg leading-relaxed">
           O <strong>autamubilismo</strong> nasce como um porto seguro para quem ama o esporte.
-          Não importa se você chegou ontem, se só torce por um piloto, se entende de asa dianteira
-          ou se só quer vibrar junto.
-          <span class="text-[#fe88dd] font-black">
-            Aqui, todo fã é fã de verdade.
-          </span>
+          <span class="text-[#ab0eff] font-black">Aqui, todo fã é fã de verdade.</span>
         </p>
+
         <p class="leading-relaxed">
           A gente acredita que corrida é cultura, e que cultura se vive junto.
-          Que um site não precisa ser rígido e engessado pra ser confiável.
         </p>
+
         <p class="leading-relaxed">
           Que dá pra informar com precisão e, ao mesmo tempo, falar com paixão.
         </p>
-        <p class="leading-relaxed">
-          Que dá pra reunir estatística limpa, análise séria e meme do paddock no mesmo lugar —
-          desde que tudo seja feito com responsabilidade e zero fanfic disfarçada de notícia.
-        </p>
       </section>
 
-      <!-- CAIXA "AQUI:" -->
-      <section class="my-10 p-8 rounded-[2.5rem] border border-[#fe88dd]/40 bg-[#FFF5F8]/80 dark:bg-[#1e1e24]/80 dark:border-[#fe88dd]/30 space-y-6">
+      <section class="my-10 p-8 rounded-[2.5rem] border border-[#ab0eff]/30 bg-[#FFF5F8]/70 space-y-6">
         <p class="font-black text-xs tracking-[0.35em] uppercase opacity-80">
           aqui, algumas coisas são inegociáveis:
         </p>
+
         <ul class="space-y-4 text-lg font-semibold">
           <li class="flex items-center gap-4">
             <span class="text-2xl">📊</span>
             <span>Dados importam.</span>
           </li>
+
           <li class="flex items-center gap-4">
             <span class="text-2xl">🔍</span>
             <span>Fontes importam.</span>
           </li>
+
           <li class="flex items-center gap-4">
             <span class="text-2xl">💖</span>
-            <span class="text-[#fe88dd]">Os fãs importam.</span>
+            <span class="text-[#ab0eff]">Os fãs importam.</span>
           </li>
         </ul>
       </section>
 
-      <!-- BLOCO 2 -->
-      <section class="space-y-4">
-        <p class="text-lg leading-relaxed">
-          Este é um espaço onde cada pessoa encontra seu time.
-        </p>
-        <blockquote class="border-l-4 border-[#fe88dd] pl-6 py-2 my-6 italic text-xl opacity-90">
-          “Se você é novato, senta perto.<br/>
-          Se você é veterano, traz a cadeira.”
-        </blockquote>
-        <p class="leading-relaxed">
-          Se você é do bonde do Hamilton, do Alonso, do Yuki, do Leclerc, do Bottas,
-          do Antonelli ou da própria F1 Academy —
-          <strong>você pertence.</strong>
-        </p>
-      </section>
-
-      <!-- BLOCO FINAL -->
-      <section class="mt-14 p-10 rounded-[3rem] text-center border border-[#fe88dd]/30 bg-gradient-to-br from-[#FFF5F8] via-white to-[#F7B8C8]/40 dark:from-transparent dark:via-[#111118] dark:to-[#bd00ff]/20">
-        <p class="text-2xl md:text-4xl font-black mb-6 leading-tight tracking-tight">
+      <section class="mt-14 p-10 rounded-[3rem] text-center border border-[#ab0eff]/30 bg-gradient-to-br from-[#FFF5F8] via-white to-[#F7B8C8]/40">
+        <p class="text-2xl md:text-4xl font-black mb-6 leading-tight">
           “O autamubilismo existe pra transformar a experiência
           de acompanhar corrida em algo mais humano.”
         </p>
+
         <div class="flex flex-col gap-2 text-xs md:text-sm font-bold uppercase tracking-[0.25em] opacity-80">
           <span>Mais acessível.</span>
           <span>Mais organizado.</span>
-          <span class="text-xl md:text-2xl mt-3 text-[#fe88dd] drop-shadow-md tracking-normal normal-case font-black">
+          <span class="text-xl md:text-2xl mt-3 text-[#ab0eff] tracking-normal font-black">
             Mais nosso.
           </span>
         </div>
       </section>
+
+    </section>
+  `,
+
+  contentDark: `
+    <section class="space-y-8">
+
+      <header class="space-y-4">
+        <p class="text-sm font-bold tracking-[0.25em] uppercase text-gray-400">
+          manifesto do autamubilismo
+        </p>
+
+        <p class="text-xl md:text-2xl leading-relaxed text-gray-300">
+          O automobilismo sempre foi feito de barulho — motores, torcida, narrador —
+          mas a internet transformou isso numa bagunça.
+        </p>
+      </header>
+
+      <section class="space-y-4 text-gray-300">
+        <h2 class="text-3xl md:text-4xl font-black text-white">
+          A gente decidiu fazer diferente.
+        </h2>
+
+        <p class="text-lg">
+          O <strong>autamubilismo</strong> nasce como um porto seguro para quem ama o esporte.
+          <span class="text-[#ab0eff] font-black">Aqui, todo fã é fã de verdade.</span>
+        </p>
+
+        <p>Que dá pra informar com precisão e ainda falar com paixão.</p>
+      </section>
+
+      <section class="my-10 p-8 rounded-[2.5rem] border border-[#ab0eff]/30 bg-[#1a1a20]/70 text-gray-200 space-y-6">
+        <p class="font-black text-xs tracking-[0.35em] uppercase text-gray-400">
+          aqui, algumas coisas são inegociáveis:
+        </p>
+
+        <ul class="space-y-4 text-lg font-semibold">
+          <li class="flex items-center gap-4">
+            <span class="text-2xl">📊</span>
+            <span>Dados importam.</span>
+          </li>
+
+          <li class="flex items-center gap-4">
+            <span class="text-2xl">🔍</span>
+            <span>Fontes importam.</span>
+          </li>
+
+          <li class="flex items-center gap-4">
+            <span class="text-2xl">💖</span>
+            <span class="text-[#ab0eff]">Os fãs importam.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mt-14 p-10 rounded-[3rem] text-center border border-[#ab0eff]/20 bg-gradient-to-br from-[#151515] via-[#1a1a20] to-[#ab0eff]/10 text-gray-200">
+        <p class="text-2xl md:text-4xl font-black mb-6 leading-tight text-white">
+          “O autamubilismo existe pra transformar a experiência
+          de acompanhar corrida em algo mais humano.”
+        </p>
+
+        <div class="flex flex-col gap-2 text-xs md:text-sm font-bold uppercase opacity-70">
+          <span>Mais acessível.</span>
+          <span>Mais organizado.</span>
+          <span class="text-xl md:text-2xl mt-3 text-[#ab0eff] font-black opacity-100">
+            Mais nosso.
+          </span>
+        </div>
+      </section>
+
     </section>
   `,
 };
+
 
 
 
@@ -618,7 +671,7 @@ export const GLOSSARY_SETS = [
     title: 'Estratégia de Pneus',
     description: 'Compostos Pirelli, janelas de pit stop e degradação.',
     icon: Disc,
-    color: '#ff0055',
+    color: '#ab0eff',
     items: [
       { id: 1, term: 'C1 a C5', definition: 'A gama de pneus slick da Pirelli. C1 é o mais duro (durável, lento), C5 é o mais macio (rápido, frágil).' },
       { id: 2, term: 'Graining', definition: 'Quando a borracha descasca e gruda de volta no pneu, criando uma superfície rugosa que reduz aderência.' },

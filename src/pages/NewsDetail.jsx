@@ -34,13 +34,13 @@ const NewsDetail = ({ theme = "light" }) => {
   // CORES E ESTILOS
   const textPrimary = isLight ? "text-gray-800" : "text-white";
   const textSecondary = isLight ? "text-gray-500" : "text-gray-400";
-  const accentColor = isLight ? "text-[#D8C4F0]" : "text-[#fe88dd]";
+  const accentColor = isLight ? "text-[#D8C4F0]" : "text-[#ab0eff]";
   const cardBg = isLight
     ? "bg-white shadow-xl"
     : "bg-[#121217] border border-[#333]";
   const badgeBg = isLight
     ? "bg-[#F7B8C8] text-white"
-    : "bg-[#fe88dd]/20 text-[#fe88dd] border border-[#fe88dd]/50";
+    : "bg-[#ab0eff]/20 text-[#ab0eff] border border-[#ab0eff]/50";
 
   // FUNÇÃO DE COPIAR LINK
   const handleCopyLink = () => {
@@ -96,7 +96,7 @@ const NewsDetail = ({ theme = "light" }) => {
       >
         <div
           className={`animate-spin rounded-full h-12 w-12 border-t-4 ${
-            isLight ? "border-[#F7B8C8]" : "border-[#fe88dd]"
+            isLight ? "border-[#F7B8C8]" : "border-[#ab0eff]"
           }`}
         ></div>
         <p className={`mt-4 font-bold ${textSecondary}`}>
@@ -241,7 +241,7 @@ const NewsDetail = ({ theme = "light" }) => {
                 className={`p-2.5 rounded-full transition-all hover:scale-110 relative ${
                   isLight
                     ? "bg-pink-100 text-pink-600 hover:bg-pink-200"
-                    : "bg-[#fe88dd]/10 text-[#fe88dd] border border-[#fe88dd]/30 hover:bg-[#fe88dd]/20"
+                    : "bg-[#ab0eff]/10 text-[#ab0eff] border border-[#ab0eff]/30 hover:bg-[#ab0eff]/20"
                 }`}
                 title="Copiar Link"
               >
@@ -284,7 +284,7 @@ const NewsDetail = ({ theme = "light" }) => {
               className={`text-xl md:text-2xl font-bold leading-relaxed mb-10 pl-6 border-l-4 italic ${
                 isLight
                   ? "text-gray-700 border-[#F7B8C8]"
-                  : "text-gray-200 border-[#fe88dd]"
+                  : "text-gray-200 border-[#ab0eff]"
               }`}
             >
               "{post.excerpt}"
@@ -321,7 +321,7 @@ const NewsDetail = ({ theme = "light" }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`hover:underline font-bold text-base ${
-                    isLight ? "text-purple-600" : "text-[#fe88dd]"
+                    isLight ? "text-purple-600" : "text-[#ab0eff]"
                   }`}
                 >
                   {post.source || "Ler matéria completa"}
@@ -349,7 +349,7 @@ const NewsDetail = ({ theme = "light" }) => {
       </div>
 
       <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');`}
+        {`@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');`}
       </style>
     </div>
   );

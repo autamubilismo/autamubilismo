@@ -33,7 +33,7 @@ const MultimediaPage = ({ theme }) => {
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
               
               {/* Botão de Play */}
-              <div className={`relative z-10 p-5 rounded-full transition-transform duration-300 group-hover:scale-125 ${isLight ? 'bg-white text-gray-900' : 'bg-[#fe88dd] text-white'}`}>
+              <div className={`relative z-10 p-5 rounded-full transition-transform duration-300 group-hover:scale-125 ${isLight ? 'bg-white text-gray-900' : 'bg-[#ab0eff] text-white'}`}>
                  {item.type === 'video' ? <Play fill="currentColor" /> : <Headphones />}
               </div>
 

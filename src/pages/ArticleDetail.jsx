@@ -20,13 +20,13 @@ const ArticleDetail = ({ theme = "light" }) => {
 
   const textPrimary = isLight ? "text-gray-800" : "text-white";
   const textSecondary = isLight ? "text-gray-500" : "text-gray-400";
-  const accentColor = isLight ? "text-[#D8C4F0]" : "text-[#fe88dd]";
+  const accentColor = isLight ? "text-[#D8C4F0]" : "text-[#ab0eff]";
   const cardBg = isLight
     ? "bg-white shadow-xl"
     : "bg-[#121217] border border-[#333]";
   const badgeBg = isLight
     ? "bg-[#F7B8C8] text-white"
-    : "bg-[#fe88dd]/20 text-[#fe88dd] border border-[#fe88dd]/50";
+    : "bg-[#ab0eff]/20 text-[#ab0eff] border border-[#ab0eff]/50";
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -52,11 +52,18 @@ const ArticleDetail = ({ theme = "light" }) => {
           { slug: id }
         );
 
-        if (data) {
+        // ⚠️ Só usa o artigo do Sanity se ele tiver conteúdo mesmo
+        const hasSanityContent =
+          data &&
+          Array.isArray(data.content) &&
+          data.content.length > 0;
+
+        if (hasSanityContent) {
           setPost(data);
           return;
         }
 
+        // fallback local (NEWS_DATA, ARTICLES_DATA, MANIFESTO_POST)
         const allLocal = [...NEWS_DATA, ...ARTICLES_DATA, MANIFESTO_POST];
         const found = allLocal.find((a) => a.id === id);
 
@@ -64,7 +71,7 @@ const ArticleDetail = ({ theme = "light" }) => {
           setPost({
             ...found,
             image: found.image,
-            contentHtml: found.content,
+            contentHtml: found.content, // HTML bruto do manifesto
           });
         }
       } catch (err) {
@@ -86,7 +93,7 @@ const ArticleDetail = ({ theme = "light" }) => {
       >
         <div
           className={`animate-spin rounded-full h-12 w-12 border-t-4 ${
-            isLight ? "border-[#F7B8C8]" : "border-[#fe88dd]"
+            isLight ? "border-[#F7B8C8]" : "border-[#ab0eff]"
           }`}
         />
         <p className={`mt-4 font-bold ${textSecondary}`}>
@@ -113,6 +120,15 @@ const ArticleDetail = ({ theme = "light" }) => {
       </div>
     );
   }
+
+  // ---------- DETECÇÃO DO TIPO DE CONTEÚDO ----------
+  const isSanityPortable = Array.isArray(post.content);
+  const htmlContent =
+    post.contentHtml ||
+    (!isSanityPortable && typeof post.content === "string"
+      ? post.content
+      : null);
+  // --------------------------------------------------
 
   return (
     <div
@@ -214,24 +230,24 @@ const ArticleDetail = ({ theme = "light" }) => {
               className={`text-xl md:text-2xl font-bold leading-relaxed mb-10 pl-6 border-l-4 italic ${
                 isLight
                   ? "text-gray-700 border-[#F7B8C8]"
-                  : "text-gray-200 border-[#fe88dd]"
+                  : "text-gray-200 border-[#ab0eff]"
               }`}
             >
               "{post.excerpt}"
             </div>
           )}
 
-          {/* 🔥 AQUI SEPARA SANITY x HTML FIXO */}
-          {post.content ? (
+          {/* SANITY (PortableText) vs HTML FIXO */}
+          {isSanityPortable ? (
             <article className={proseClass(isLight)}>
               <PortableText
                 value={post.content}
                 components={proseComponents(isLight)}
               />
             </article>
-          ) : post.contentHtml ? (
-            <article className="space-y-6 text-base leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+          ) : htmlContent ? (
+            <article className={proseClass(isLight)}>
+              <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </article>
           ) : (
             <article className={proseClass(isLight)}>

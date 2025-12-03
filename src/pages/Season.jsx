@@ -28,7 +28,7 @@ const SeasonPage = ({ theme }) => {
             <h2 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none ${isLight ? 'text-gray-800' : 'text-white'}`} >
               Temporada
             </h2>
-            <span className={`text-xl font-bold tracking-widest uppercase ${isLight ? 'text-[#D8C4F0]' : 'text-[#fe88dd]'}`}>
+            <span className={`text-xl font-bold tracking-widest uppercase ${isLight ? 'text-[#D8C4F0]' : 'text-[#ab0eff]'}`}>
               O Caminho para a Glória
             </span>
         </div>
@@ -87,10 +87,10 @@ const SeasonPage = ({ theme }) => {
            <BentoCard 
              theme={theme} 
              to="/standings"
-             className={`md:col-span-1 cursor-pointer group ${isLight ? 'bg-[#FBCAD2]' : 'bg-[#1a1a20] border-[#ff0055] hover:border-[#ff0055]'}`}
+             className={`md:col-span-1 cursor-pointer group ${isLight ? 'bg-[#FBCAD2]' : 'bg-[#1a1a20] border-[#ab0eff] hover:border-[#ab0eff]'}`}
            >
               <div className="flex flex-col h-full justify-between">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${isLight ? 'bg-white/60 text-pink-800' : 'bg-[#ff0055]/20 text-[#ff0055]'}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${isLight ? 'bg-white/60 text-pink-800' : 'bg-[#ab0eff]/20 text-[#ab0eff]'}`}>
                     <Trophy size={24} />
                   </div>
                   <div>

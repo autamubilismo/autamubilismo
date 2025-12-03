@@ -111,7 +111,7 @@ const DriverDetail = ({ theme }) => {
                  </div>
               </div>
               <div className={`p-5 rounded-3xl ${cardBg} flex flex-col justify-between min-h-[120px]`}>
-                 <Star className={isLight ? 'text-purple-500' : 'text-[#fe88dd]'} />
+                 <Star className={isLight ? 'text-purple-500' : 'text-[#ab0eff]'} />
                  <div>
                     <span className={`block text-2xl font-black ${textColor}`}>{driver.stats?.bestResult || 'N/A'}</span>
                     <span className={`text-[10px] font-bold uppercase ${textSub}`}>Melhor Res.</span>
@@ -154,7 +154,7 @@ const DriverDetail = ({ theme }) => {
                         const Icon = vibe.icon; 
                         return (
                             <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-full border ${isLight ? 'bg-gray-50 border-gray-200 text-gray-700' : 'bg-[#1a1a20] border-[#333] text-gray-200'}`}>
-                                {Icon && <Icon size={16} className={isLight ? 'text-gray-400' : 'text-[#fe88dd]'} />}
+                                {Icon && <Icon size={16} className={isLight ? 'text-gray-400' : 'text-[#ab0eff]'} />}
                                 <span className="text-xs font-bold uppercase">{vibe.label}</span>
                             </div>
                         )
@@ -163,8 +163,8 @@ const DriverDetail = ({ theme }) => {
               </div>
 
               {/* Segredo */}
-              <div className={`p-6 rounded-3xl relative overflow-hidden ${isLight ? 'bg-gray-900 text-white' : 'bg-[#fe88dd]/10 border border-[#fe88dd]/30 text-white'}`}>
-                 <Zap className={`absolute top-[-10px] right-[-10px] w-24 h-24 opacity-10 rotate-12 ${isLight ? 'text-white' : 'text-[#fe88dd]'}`} />
+              <div className={`p-6 rounded-3xl relative overflow-hidden ${isLight ? 'bg-gray-900 text-white' : 'bg-[#ab0eff]/10 border border-[#ab0eff]/30 text-white'}`}>
+                 <Zap className={`absolute top-[-10px] right-[-10px] w-24 h-24 opacity-10 rotate-12 ${isLight ? 'text-white' : 'text-[#ab0eff]'}`} />
                  <h4 className={`text-sm font-black uppercase tracking-widest mb-4 opacity-70`}>Fato Secreto</h4>
                  <p className="text-lg font-medium italic">
                     "{driver.secretFact || "Nada declarado..."}"

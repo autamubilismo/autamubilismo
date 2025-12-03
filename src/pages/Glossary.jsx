@@ -24,7 +24,7 @@ const GlossaryPage = ({ theme }) => {
       )
     : [];
 
-  const cardBg = isLight ? 'bg-white border-2 border-transparent hover:border-gray-200 shadow-lg' : 'bg-[#1a1a20] border border-[#333] hover:border-[#fe88dd]/50';
+  const cardBg = isLight ? 'bg-white border-2 border-transparent hover:border-gray-200 shadow-lg' : 'bg-[#1a1a20] border border-[#333] hover:border-[#ab0eff]/50';
   const textMain = isLight ? 'text-gray-800' : 'text-white';
   const textSub = isLight ? 'text-gray-500' : 'text-gray-400';
 
@@ -91,7 +91,7 @@ const GlossaryPage = ({ theme }) => {
     <div className="animate-in fade-in slide-in-from-right duration-500 pb-12">
       <button 
         onClick={() => { setSelectedSet(null); setSearchTerm(''); }}
-        className={`group mb-8 inline-flex items-center gap-2 text-sm font-bold transition-colors ${isLight ? 'text-gray-500 hover:text-[#D8C4F0]' : 'text-gray-400 hover:text-[#fe88dd]'}`}
+        className={`group mb-8 inline-flex items-center gap-2 text-sm font-bold transition-colors ${isLight ? 'text-gray-500 hover:text-[#D8C4F0]' : 'text-gray-400 hover:text-[#ab0eff]'}`}
       >
          <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" /> Voltar para Categorias
       </button>
@@ -122,10 +122,10 @@ const GlossaryPage = ({ theme }) => {
                     <div 
                       key={item.id} 
                       onClick={() => setExpandedTermId(isExpanded ? null : item.id)}
-                      className={`group cursor-pointer rounded-3xl overflow-hidden transition-all border ${isLight ? 'bg-white border-transparent hover:border-gray-200 shadow-sm' : `bg-[#1a1a20] ${isExpanded ? 'border-[#fe88dd]' : 'border-[#333] hover:border-[#fe88dd]/50'}`}`}
+                      className={`group cursor-pointer rounded-3xl overflow-hidden transition-all border ${isLight ? 'bg-white border-transparent hover:border-gray-200 shadow-sm' : `bg-[#1a1a20] ${isExpanded ? 'border-[#ab0eff]' : 'border-[#333] hover:border-[#ab0eff]/50'}`}`}
                     >
                         <div className="p-6 flex items-center justify-between">
-                            <h3 className={`text-lg font-bold ${isExpanded ? (isLight ? 'text-purple-600' : 'text-[#fe88dd]') : textMain}`}>{item.term}</h3>
+                            <h3 className={`text-lg font-bold ${isExpanded ? (isLight ? 'text-purple-600' : 'text-[#ab0eff]') : textMain}`}>{item.term}</h3>
                             {isExpanded ? <ChevronUp size={20} className={isLight?'text-gray-400':'text-gray-500'} /> : <ChevronDown size={20} className={isLight?'text-gray-400':'text-gray-500'} />}
                         </div>
                         
