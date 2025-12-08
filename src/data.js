@@ -43,28 +43,26 @@ export const SITE_MAP = [
 export const DRIVERS_DATA = [
   { 
     id: 'kimi', 
-    name: 'Kimi Antonelli', 
+    name: 'Andrea Kimi Antonelli', 
     number: 12, 
-    team: 'Mercedes', 
+    team: 'Mercedes-AMG', 
     color: '#00D2BE', 
     image: '/img/pilotos/antonelli/grid-antonelli.avif', 
-    bio: "O garoto prodígio que fez a Mercedes esquecer Carlos Sainz. Pulou a F3 direto para o abismo da F1 e caiu de pé.", 
-    country: 'Itália 🇮🇹', 
-    age: '18 anos', 
-    vibes: [
-      { icon: Gamepad2, label: 'Sim Racer' }, 
-      { icon: Utensils, label: 'Pasta Lover' }, 
-      { icon: Zap, label: 'Rookie' }
-    ], 
+    bio: "Andrea Kimi Antonelli nasceu em Bolonha, Itália, em 25 de agosto de 2006. Filho do ex-piloto Marco Antonelli, cresceu imerso no automobilismo. Dominou o kart, venceu a F4 Italiana, ADAC F4 e brilhou na Fórmula Regional Europeia e Middle East. Em 2025, estreou pela Mercedes como um dos pilotos mais jovens da história, mostrando maturidade, ritmo forte e consistência impressionante ao longo de seus primeiros 24 GPs.", 
+    country: 'Bolonha, Itália 🇮🇹', 
+    age: '19 anos', 
+    vibes: [{ icon: Gamepad2, label: 'Sim Racer' }, { icon: Utensils, label: 'Pasta Lover' }, { icon: Zap, label: 'Rookie' }], 
     stats: { 
-      xp: 'F2 (Prema)', 
-      podiums: '2', 
-      bestResult: 'P3 (Vegas)' 
+      points: '150', 
+      podiums: '3', 
+      bestResult: 'P2', 
+      xp: '24 GPs'
     }, 
     signature: "Kimi A.", 
     secretFact: "Leva seu simulador portátil para todos os hotéis.", 
     zodiac: "Virgem ♍" 
   },
+
   { 
     id: 'lewis', 
     name: 'Lewis Hamilton', 
@@ -72,11 +70,21 @@ export const DRIVERS_DATA = [
     team: 'Ferrari', 
     color: '#FF0000', 
     image: '/img/pilotos/hamilton/grid-hamilton.avif', 
+    bio: "Lewis Hamilton, nascido em Stevenage em 7 de janeiro de 1985, é uma das maiores lendas da Fórmula 1. Sete vezes campeão mundial, redefiniu padrões de pilotagem, performance e impacto cultural no esporte. Em 2025, já na Ferrari, manteve sua consistência exemplar e sua reputação de competidor feroz, trazendo sua liderança e influência para Maranello.", 
+    country: 'Reino Unido 🇬🇧', 
+    age: '40 anos', 
+    vibes: [{ icon: Star, label: 'Lenda' }], 
+    stats: { 
+      points: '171', 
+      podiums: '1', 
+      bestResult: 'P2', 
+      xp: '327 GPs'
+    }, 
     signature: "Lewis 44", 
     secretFact: "Roscoe tem seu próprio passe VIP.", 
-    zodiac: "Capricórnio ♑", 
-    vibes: [{ icon: Star, label: 'Lenda' }] 
+    zodiac: "Capricórnio ♑" 
   },
+
   { 
     id: 'gabriel', 
     name: 'Gabriel Bortoleto', 
@@ -84,12 +92,21 @@ export const DRIVERS_DATA = [
     team: 'Sauber', 
     color: '#52E252', 
     image: '/img/pilotos/bortoleto/grid-bortoleto.avif', 
+    bio: "Gabriel Bortoleto nasceu no Brasil em 2004 e rapidamente se tornou um dos maiores talentos da nova geração. Campeão da Fórmula 3, entrou na Fórmula 1 com maturidade além da idade. Em 2025, somou 19 pontos e mostrou velocidade, técnica e estabilidade, garantindo resultados sólidos para a Sauber. Sua condução suave e inteligente o coloca entre os jovens mais promissores do grid.", 
     country: 'Brasil 🇧🇷', 
+    age: '21 anos', 
+    vibes: [{ icon: Zap, label: 'Rápido' }], 
+    stats: { 
+      points: '19', 
+      podiums: '0', 
+      bestResult: 'P6', 
+      xp: '24 GPs'
+    }, 
     signature: "Bortoleto", 
     secretFact: "Adora feijoada.", 
-    zodiac: "Libra ♎", 
-    vibes: [{ icon: Zap, label: 'Rápido' }] 
+    zodiac: "Libra ♎" 
   },
+
   { 
     id: 'max', 
     name: 'Max Verstappen', 
@@ -97,11 +114,21 @@ export const DRIVERS_DATA = [
     team: 'Red Bull', 
     color: '#1E41FF', 
     image: '/img/pilotos/verstappen/grid-verstappen.avif', 
+    bio: "Max Verstappen, nascido em 1997, é um fenômeno da Fórmula 1. Depois de dominar a categoria por anos, seguiu extremamente competitivo em 2025, somando vitórias, pódios e mantendo um nível técnico absurdo. Conhecido pelo estilo agressivo, controle de corrida e leitura afiada, é um dos nomes mais dominantes da história moderna da F1.", 
+    country: 'Países Baixos 🇳🇱', 
+    age: '28 anos', 
+    vibes: [{ icon: TrophyIcon, label: 'Campeão' }], 
+    stats: { 
+      points: '421', 
+      podiums: '15', 
+      bestResult: 'P1', 
+      xp: '233 GPs'
+    }, 
     signature: "Max V.", 
     secretFact: "Prefere FIFA a entrevistas.", 
-    zodiac: "Libra ♎", 
-    vibes: [{ icon: TrophyIcon, label: 'Campeão' }] 
+    zodiac: "Libra ♎" 
   },
+
   { 
     id: 'lando', 
     name: 'Lando Norris', 
@@ -109,11 +136,21 @@ export const DRIVERS_DATA = [
     team: 'McLaren', 
     color: '#FF8700', 
     image: '/img/pilotos/norris/grid-norris.avif', 
+    bio: "Lando Norris nasceu em 1999 e tornou-se um dos pilotos mais completos do grid. Em 2025, viveu sua melhor temporada, conquistando vitórias, pódios e o título mundial ao lado da McLaren. Sua combinação de velocidade, carisma e consistência elevou sua reputação a um patamar histórico.", 
+    country: 'Reino Unido 🇬🇧', 
+    age: '26 anos', 
+    vibes: [{ icon: Gamepad2, label: 'Gamer' }], 
+    stats: { 
+      points: '423', 
+      podiums: '18', 
+      bestResult: 'P1', 
+      xp: '152 GPs'
+    }, 
     signature: "Lando", 
     secretFact: "DJ nas horas vagas.", 
-    zodiac: "Escorpião ♏", 
-    vibes: [{ icon: Gamepad2, label: 'Gamer' }] 
+    zodiac: "Escorpião ♏" 
   },
+
   { 
     id: 'charles', 
     name: 'Charles Leclerc', 
@@ -121,11 +158,21 @@ export const DRIVERS_DATA = [
     team: 'Ferrari', 
     color: '#FF0000', 
     image: '/img/pilotos/leclerc/grid-leclerc.avif', 
+    bio: "Charles Leclerc nasceu em Mônaco em 1997 e tornou-se o principal nome da Ferrari na última década. Conhecido por sua velocidade de uma volta, precisão e emocionalidade intensa, entregou uma temporada forte em 2025, com pódios e consistência no top 10. Seu talento bruto segue inquestionável no cenário da F1.", 
+    country: 'Mônaco 🇲🇨', 
+    age: '28 anos', 
+    vibes: [{ icon: Music, label: 'Piano' }], 
+    stats: { 
+      points: '242', 
+      podiums: '7', 
+      bestResult: 'P2', 
+      xp: '171 GPs'
+    }, 
     signature: "Charles 16", 
     secretFact: "Toca piano para relaxar.", 
-    zodiac: "Libra ♎", 
-    vibes: [{ icon: Music, label: 'Piano' }] 
+    zodiac: "Libra ♎" 
   },
+
   { 
     id: 'oscar', 
     name: 'Oscar Piastri', 
@@ -133,23 +180,43 @@ export const DRIVERS_DATA = [
     team: 'McLaren', 
     color: '#FF8700', 
     image: '/img/pilotos/piastri/grid-piastri.avif', 
+    bio: "Oscar Piastri, nascido na Austrália em 2001, é um dos talentos mais limpos e precisos do grid. Em 2025, conquistou vitórias, pódios e consolidou sua posição como vice-líder técnico da McLaren. Seu estilo calmo, calculado e maduro faz dele um competidor extremamente perigoso.", 
+    country: 'Austrália 🇦🇺', 
+    age: '24 anos', 
+    vibes: [{ icon: Smile, label: 'Calmo' }], 
+    stats: { 
+      points: '410', 
+      podiums: '16', 
+      bestResult: 'P1', 
+      xp: '70 GPs'
+    }, 
     signature: "Oscar P.", 
     secretFact: "O homem mais calmo do mundo.", 
-    zodiac: "Áries ♈", 
-    vibes: [{ icon: Smile, label: 'Calmo' }] 
+    zodiac: "Áries ♈" 
   },
+
   { 
     id: 'george', 
     name: 'George Russell', 
     number: 63, 
-    team: 'Mercedes', 
+    team: 'Mercedes-AMG', 
     color: '#00D2BE', 
     image: '/img/pilotos/russell/grid-russell.avif', 
+    bio: "George Russell nasceu em 1998 e rapidamente ascendeu como um dos pilotos mais técnicos de sua geração. Em 2025, entregou vitórias, pódios e uma temporada extremamente consistente para a Mercedes, reforçando seu status de líder interno e competidor cerebral.", 
+    country: 'Reino Unido 🇬🇧', 
+    age: '27 anos', 
+    vibes: [{ icon: Briefcase, label: 'CEO' }], 
+    stats: { 
+      points: '319', 
+      podiums: '9', 
+      bestResult: 'P1', 
+      xp: '152 GPs'
+    }, 
     signature: "GR63", 
     secretFact: "Ama uma pose de powerpoint.", 
-    zodiac: "Aquário ♒", 
-    vibes: [{ icon: Briefcase, label: 'CEO' }] 
+    zodiac: "Aquário ♒" 
   },
+
   { 
     id: 'carlos', 
     name: 'Carlos Sainz', 
@@ -157,10 +224,21 @@ export const DRIVERS_DATA = [
     team: 'Williams', 
     color: '#005AFF', 
     image: '/img/pilotos/sainz/grid-sainz.avif', 
+    bio: "Carlos Sainz nasceu em Madri em 1994 e construiu uma carreira marcada por solidez e inteligência estratégica. Em 2025, correndo pela Williams, entregou pódios e resultados fortes mesmo com equipamento limitado, reforçando sua reputação como um dos pilotos mais consistentes do pelotão.", 
+    country: 'Espanha 🇪🇸', 
+    age: '31 anos', 
+    vibes: [{ icon: Zap, label: 'Smooth Operator' }], 
+    stats: { 
+      points: '64', 
+      podiums: '2', 
+      bestResult: 'P3', 
+      xp: '230 GPs'
+    }, 
     signature: "Chili", 
     secretFact: "Smooth Operator original.", 
     zodiac: "Virgem ♍" 
   },
+
   { 
     id: 'oliver', 
     name: 'Oliver Bearman', 
@@ -168,10 +246,21 @@ export const DRIVERS_DATA = [
     team: 'Haas', 
     color: '#B6BABD', 
     image: '/img/pilotos/bearman/grid-bearman.avif', 
+    bio: "Oliver Bearman nasceu em 2005 no Reino Unido e rapidamente se tornou um prodígio do automobilismo. Sua temporada completa de estreia em 2025 mostrou velocidade, maturidade e capacidade de pontuar com equipamento limitado, consolidando seu status como futura estrela da F1.", 
+    country: 'Reino Unido 🇬🇧', 
+    age: '20 anos', 
+    vibes: [{ icon: Zap, label: 'Prodígio' }], 
+    stats: { 
+      points: '41', 
+      podiums: '0', 
+      bestResult: 'P4', 
+      xp: '27 GPs'
+    }, 
     signature: "Ollie", 
     secretFact: "Estudou para a prova de direção durante o GP.", 
     zodiac: "Touro ♉" 
   },
+
   { 
     id: 'liam', 
     name: 'Liam Lawson', 
@@ -179,9 +268,21 @@ export const DRIVERS_DATA = [
     team: 'Red Bull', 
     color: '#1E41FF', 
     image: '/img/pilotos/lawson/grid-lawson.avif', 
+    bio: "Liam Lawson, nascido na Nova Zelândia em 2002, finalmente garantiu uma vaga fixa na Fórmula 1 e entregou uma temporada forte em 2025. Sua condução agressiva, carisma e capacidade de extrair performance mesmo sob pressão fizeram dele um destaque do pelotão intermediário.", 
+    country: 'Nova Zelândia 🇳🇿', 
+    age: '23 anos', 
+    vibes: [{ icon: Zap, label: 'Agressivo' }], 
+    stats: { 
+      points: '38', 
+      podiums: '0', 
+      bestResult: 'P5', 
+      xp: '35 GPs'
+    }, 
     signature: "Lawson", 
+    secretFact: "Adora carros JDM.", 
     zodiac: "Aquário ♒" 
   },
+
   { 
     id: 'isack', 
     name: 'Isack Hadjar', 
@@ -189,9 +290,21 @@ export const DRIVERS_DATA = [
     team: 'VCARB', 
     color: '#1633EF', 
     image: '/img/pilotos/hadjar/grid-hadjar.avif', 
+    bio: "Isack Hadjar nasceu na França em 2004 e teve uma ascensão meteórica até a Fórmula 1. Em 2025, conquistou seu primeiro pódio e mostrou agressividade controlada, velocidade natural e excelente adaptação à categoria, consolidando-se como uma das maiores promessas recentes.", 
+    country: 'França 🇫🇷', 
+    age: '21 anos', 
+    vibes: [{ icon: Zap, label: 'Promessa' }], 
+    stats: { 
+      points: '51', 
+      podiums: '1', 
+      bestResult: 'P3', 
+      xp: '23 GPs'
+    }, 
     signature: "Hadjar", 
+    secretFact: "Treina kart até de madrugada.", 
     zodiac: "Libra ♎" 
   },
+
   { 
     id: 'nico', 
     name: 'Nico Hulkenberg', 
@@ -199,9 +312,21 @@ export const DRIVERS_DATA = [
     team: 'Sauber', 
     color: '#52E252', 
     image: '/img/pilotos/hulkenberg/grid-hulkenberg.avif', 
+    bio: "Nico Hülkenberg, nascido em 1987, é um dos veteranos mais respeitados da Fórmula 1. Em 2025, conquistou um pódio histórico após anos de espera. Sua pilotagem técnica, experiência e leitura de corrida continuam sendo valiosas para qualquer equipe.", 
+    country: 'Alemanha 🇩🇪', 
+    age: '38 anos', 
+    vibes: [{ icon: TrophyIcon, label: 'Veterano' }], 
+    stats: { 
+      points: '51', 
+      podiums: '1', 
+      bestResult: 'P3', 
+      xp: '251 GPs'
+    }, 
     signature: "Hulk", 
+    secretFact: "O rei das sextas-feiras.", 
     zodiac: "Leão ♌" 
   },
+
   { 
     id: 'esteban', 
     name: 'Esteban Ocon', 
@@ -209,9 +334,21 @@ export const DRIVERS_DATA = [
     team: 'Haas', 
     color: '#B6BABD', 
     image: '/img/pilotos/ocon/grid-ocon.avif', 
+    bio: "Esteban Ocon, nascido em 1996, sempre foi reconhecido por sua consistência, defesa impecável e frieza estratégica. Em 2025, competiu pela Haas e entregou resultados sólidos, mostrando maturidade e profissionalismo mesmo em condições desafiadoras.", 
+    country: 'França 🇫🇷', 
+    age: '29 anos', 
+    vibes: [{ icon: Zap, label: 'Consistente' }], 
+    stats: { 
+      points: '56', 
+      podiums: '0', 
+      bestResult: 'P7', 
+      xp: '427 GPs'
+    }, 
     signature: "Ocon", 
+    secretFact: "Dirige melhor sob pressão.", 
     zodiac: "Virgem ♍" 
   },
+
   { 
     id: 'fernando', 
     name: 'Fernando Alonso', 
@@ -219,9 +356,21 @@ export const DRIVERS_DATA = [
     team: 'Aston Martin', 
     color: '#006F62', 
     image: '/img/pilotos/alonso/grid-alonso.avif', 
+    bio: "Fernando Alonso, nascido em 1981, é um dos maiores talentos da história da Fórmula 1. Bicampeão mundial, dono de velocidade pura, inteligência estratégica e longevidade espetacular, seguiu extremamente competitivo em 2025, acumulando top 10s e mantendo sua reputação de lenda viva do esporte.", 
+    country: 'Espanha 🇪🇸', 
+    age: '44 anos', 
+    vibes: [{ icon: Star, label: 'Lenda' }], 
+    stats: { 
+      points: '56', 
+      podiums: '0', 
+      bestResult: 'P7', 
+      xp: '427 GPs'
+    }, 
     signature: "Alo 14", 
+    secretFact: "Provavelmente venceria se corresse sozinho.", 
     zodiac: "Leão ♌" 
   },
+
   { 
     id: 'lance', 
     name: 'Lance Stroll', 
@@ -229,9 +378,21 @@ export const DRIVERS_DATA = [
     team: 'Aston Martin', 
     color: '#006F62', 
     image: '/img/pilotos/stroll/grid-stroll.avif', 
+    bio: "Lance Stroll nasceu em 1998 no Canadá e construiu uma carreira marcada por bons desempenhos, incluindo pódios e grandes atuações na chuva. Em 2025, continuou entregando resultados sólidos com a Aston Martin, pontuando regularmente e mostrando evolução técnica.", 
+    country: 'Canadá 🇨🇦', 
+    age: '27 anos', 
+    vibes: [{ icon: Zap, label: 'Determinado' }], 
+    stats: { 
+      points: '33', 
+      podiums: '0', 
+      bestResult: 'P9', 
+      xp: '190 GPs'
+    }, 
     signature: "Lance", 
+    secretFact: "Adora guiar na chuva.", 
     zodiac: "Escorpião ♏" 
   },
+
   { 
     id: 'pierre', 
     name: 'Pierre Gasly', 
@@ -239,9 +400,21 @@ export const DRIVERS_DATA = [
     team: 'Alpine', 
     color: '#0090FF', 
     image: '/img/pilotos/gasly/grid-gasly.avif', 
+    bio: "Pierre Gasly nasceu em 1996 e conquistou seu espaço na Fórmula 1 com talento, resiliência e carisma. Vencedor de corrida, entregou uma temporada regular em 2025, somando pontos importantes para a Alpine e mantendo sua reputação de piloto técnico e rápido.", 
+    country: 'França 🇫🇷', 
+    age: '29 anos', 
+    vibes: [{ icon: Music, label: 'Estiloso' }], 
+    stats: { 
+      points: '22', 
+      podiums: '0', 
+      bestResult: 'P7', 
+      xp: '177 GPs'
+    }, 
     signature: "Gasly", 
+    secretFact: "Viciado em moda.", 
     zodiac: "Aquário ♒" 
   },
+
   { 
     id: 'alex', 
     name: 'Alex Albon', 
@@ -249,9 +422,21 @@ export const DRIVERS_DATA = [
     team: 'Williams', 
     color: '#005AFF', 
     image: '/img/pilotos/albon/grid-albon.avif', 
+    bio: "Alexander Albon nasceu em Londres em 23 de março de 1996 e representa a Tailândia na Fórmula 1. Sua carreira é marcada por resiliência e evolução constante. Em 2025, viveu sua melhor temporada, somando 73 pontos, 11 top 10 e uma volta mais rápida. Suas conduções calmas, limpas e extremamente técnicas o mantêm como um dos pilotos mais valorizados do pelotão intermediário.", 
+    country: 'Tailândia 🇹🇭', 
+    age: '29 anos', 
+    vibes: [{ icon: Smile, label: 'Calmo' }], 
+    stats: { 
+      points: '73', 
+      podiums: '0', 
+      bestResult: 'P7', 
+      xp: '128 GPs'
+    }, 
     signature: "Albon", 
+    secretFact: "Come arroz com ovo em todo GP.", 
     zodiac: "Áries ♈" 
   },
+
   { 
     id: 'yuki', 
     name: 'Yuki Tsunoda', 
@@ -259,150 +444,191 @@ export const DRIVERS_DATA = [
     team: 'VCARB', 
     color: '#1633EF', 
     image: '/img/pilotos/tsunoda/grid-tsunoda.avif', 
+    bio: "Yuki Tsunoda, nascido em 2000 no Japão, é conhecido por sua velocidade explosiva e personalidade marcante. Em 2025, entregou atuações consistentes e seguiu evoluindo como um dos pilotos mais carismáticos e talentosos do grid.", 
+    country: 'Japão 🇯🇵', 
+    age: '25 anos', 
+    vibes: [{ icon: Utensils, label: 'Ramen Lover' }], 
+    stats: { 
+      points: '11', 
+      podiums: '0', 
+      bestResult: 'P8', 
+      xp: '89 GPs'
+    }, 
     signature: "Yuki", 
+    secretFact: "Come mais que a equipe inteira junta.", 
     zodiac: "Touro ♉" 
   },
 ];
 
+
 // --- EQUIPES 2026 (IMAGENS HD ATUALIZADAS) ---
 export const TEAMS_DATA = [
   { 
-    id: 'mercedes', 
-    name: 'Mercedes', 
+    id: 'mercedes',
+    name: 'Mercedes',
     fullName: 'Mercedes-AMG PETRONAS F1 Team', 
     color: '#00D2BE', 
     engine: 'Mercedes', 
-    drivers: ['Russell', 'Antonelli'],
+    drivers: ['George Russell', 'Kimi Antonelli'],
     domain: 'mercedesamgf1.com',
-    image: 'https://images.unsplash.com/photo-1692707805708-74b576400b7c?q=80&w=1600',
+    image: '/img/equipes/mercedes/logo-mercedes.png',
     titles: 8,
-    base: 'Brackley, UK',
-    bio: 'A flecha de prata busca retomar a hegemonia na nova era de 2026 com motores sustentáveis.'
+    base: 'Brackley, Inglaterra',
+    principal: 'Toto Wolff',
+    bio: 'A Mercedes dominou a F1 na era turbo-híbrida (2014-2021) com 8 títulos consecutivos de construtores, estabelecendo um dos períodos mais dominantes da história do esporte. Sediada em Brackley (chassis) e Brixworth (motores), a equipe alemã é conhecida por sua excelência técnica e gestão impecável. Para 2026, representa uma nova era pós-Hamilton, com George Russell como líder estabelecido e Kimi Antonelli, jovem prodígio italiano, fazendo sua estreia. A Mercedes também fornece motores para McLaren, Williams e Alpine, tornando-se o maior fornecedor do grid. A equipe busca retornar ao topo após temporadas desafiadoras.'
   },
+
   { 
+    id: 'ferrari',
     name: 'Ferrari', 
+    fullName: 'Scuderia Ferrari HP',
     color: '#FF0000', 
     engine: 'Ferrari', 
-    drivers: ['Leclerc', 'Hamilton'],
+    drivers: ['Charles Leclerc', 'Lewis Hamilton'],
     domain: 'ferrari.com',
-    image: 'https://images.unsplash.com/photo-1592853625597-7d17be820d0c?q=80&w=1600',
+    image: '/img/equipes/ferrari/logo-ferrari.png',
     titles: 16,
-    base: 'Maranello, IT',
-    fullName: 'Scuderia Ferrari HP'
+    base: 'Maranello, Itália',
+    principal: 'Fred Vasseur',
+    bio: 'A Ferrari é a única equipe presente desde a primeira temporada da Fórmula 1 em 1950, sendo sinônimo do esporte. Com 16 títulos de construtores e 15 de pilotos, a Scuderia é a equipe mais vitoriosa da história. Sediada em Maranello, a Ferrari produz seus próprios motores e chassis, sendo a verdadeira equipe de fábrica da categoria. Para 2026, conta com a dupla de sonho formada por Charles Leclerc, piloto da casa e futuro da equipe, e Lewis Hamilton, o heptacampeão mundial que se juntou à Ferrari em 2025 na transferência mais impactante da história recente da F1. A equipe busca retornar ao topo após anos sem títulos.'
   },
+
   { 
+    id: 'redbull',
     name: 'Red Bull Racing', 
+    fullName: 'Oracle Red Bull Racing',
     color: '#1E41FF', 
-    engine: 'Red Bull-Ford', 
-    drivers: ['Verstappen', 'Lawson'],
+    engine: 'Red Bull Powertrains-Ford', 
+    drivers: ['Max Verstappen', 'Isaack Hadjar'],
     domain: 'redbullracing.com',
-    image: 'https://images.unsplash.com/photo-1589769819573-d3f4a3345391?q=80&w=1600',
-    titles: 6,
-    base: 'Milton Keynes, UK',
-    fullName: 'Oracle Red Bull Racing'
+    image: '/img/equipes/redbull/logo-redbull.png',
+    titles: 7,
+    base: 'Milton Keynes, Inglaterra',
+    principal: 'Laurent Mekies',
+    bio: 'A Red Bull Racing entrou na F1 em 2005 após comprar a Jaguar e rapidamente se estabeleceu como uma potência. Com 7 títulos de construtores e 7 de pilotos (2010-2013 com Vettel e 2021-2024 com Verstappen), a equipe austríaca dominou a última era da F1. Para 2026, marca uma nova fase com motores próprios desenvolvidos em parceria com a Ford, encerrando a parceria com Honda. Max Verstappen continua como líder, enquanto Isack Hadjar, promovido da Racing Bulls, representa a nova geração de talentos da academia Red Bull. A equipe enfrenta o desafio de se adaptar aos novos regulamentos enquanto mantém a competitividade.'
   },
+
   { 
+    id: 'mclaren',
     name: 'McLaren', 
+    fullName: 'McLaren F1 Team',
     color: '#FF8700', 
     engine: 'Mercedes', 
-    drivers: ['Norris', 'Piastri'],
+    drivers: ['Lando Norris', 'Oscar Piastri'],
     domain: 'mclaren.com',
-    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1600',
+    image: '/img/equipes/mclaren/logo-mclaren.png',
     titles: 8,
-    base: 'Woking, UK',
-    fullName: 'McLaren Formula 1 Team'
+    base: 'Woking, Inglaterra',
+    principal: 'Andrea Stella',
+    bio: 'A McLaren é uma das equipes mais icônicas da Fórmula 1, fundada por Bruce McLaren em 1963. Com 8 títulos de construtores e 12 de pilotos, a equipe de Woking é a segunda mais bem-sucedida da história da F1. Após anos difíceis, a McLaren ressurgiu como força competitiva a partir de 2021 com o retorno dos motores Mercedes. Em 2025, conquistou o campeonato de construtores e viu Lando Norris tornar-se campeão mundial, marcando o início de uma nova era dourada. A dupla Norris-Piastri é considerada uma das mais fortes do grid, combinando juventude, talento e experiência crescente.'
   },
+
   { 
+    id: 'astonmartin',
     name: 'Aston Martin', 
+    fullName: 'Aston Martin Aramco F1 Team',
     color: '#006F62', 
     engine: 'Honda', 
-    drivers: ['Alonso', 'Stroll'],
+    drivers: ['Fernando Alonso', 'Lance Stroll'],
     domain: 'astonmartinf1.com',
-    image: 'https://images.unsplash.com/photo-1631558361324-172852861830?q=80&w=1600',
+    image: '/img/equipes/astonmartin/logo-astonmartin.png',
     titles: 0,
-    base: 'Silverstone, UK',
-    fullName: 'Aston Martin Aramco F1 Team'
+    base: 'Silverstone, Inglaterra',
+    principal: 'Adrian Newey',
+    bio: 'A Aston Martin renasceu em 2021 quando o empresário Lawrence Stroll renomeou a Racing Point, trazendo de volta o icônico nome britânico à F1. Com investimentos massivos em infraestrutura, incluindo um túnel de vento de última geração e novas instalações em Silverstone, a equipe busca se estabelecer entre as grandes. Para 2026, representa uma mudança histórica: Adrian Newey, o designer mais bem-sucedido da história da F1, assume como chefe de equipe, e a Honda retorna como parceira de motores. Fernando Alonso, bicampeão mundial, continua desafiando a idade aos 44 anos, enquanto Lance Stroll complementa a formação.'
   },
+
   { 
+    id: 'alpine',
     name: 'Alpine', 
+    fullName: 'BWT Alpine F1 Team',
     color: '#0090FF', 
     engine: 'Mercedes',
-    drivers: ['Gasly', 'Doohan'],
+    drivers: ['Pierre Gasly', 'Franco Colapinto'],
     domain: 'alpinecars.com',
-    image: 'https://images.unsplash.com/photo-1634472333187-c18776c4984b?q=80&w=1600',
+    image: '/img/equipes/alpine/logo-alpine.png',
     titles: 2,
-    base: 'Enstone, UK',
-    fullName: 'BWT Alpine F1 Team'
+    base: 'Enstone, Inglaterra',
+    principal: 'Flavio Briatore / Steve Nielsen',
+    bio: 'A Alpine representa a operação francesa na F1, com raízes que remontam à Benetton e aos títulos mundiais com a Renault em 2005 e 2006. Sediada em Enstone, a equipe passou por transformação significativa em 2026 ao abandonar os motores Renault (pela primeira vez desde os anos 90) em favor dos Mercedes. Esta mudança marca o fim de uma era, com a Alpine tornando-se equipe cliente após décadas como equipe de fábrica. Pierre Gasly lidera a formação, enquanto Franco Colapinto, que impressionou ao substituir Jack Doohan em 2025, confirma-se como titular. A equipe busca reconstruir sua competitividade sob nova liderança.'
   },
+
   { 
-    name: 'Williams', 
-    color: '#005AFF', 
-    engine: 'Mercedes', 
-    drivers: ['Albon', 'Sainz'],
-    domain: 'williamsf1.com',
-    image: 'https://images.unsplash.com/photo-1612620272995-8b77d8928454?q=80&w=1600',
-    titles: 9,
-    base: 'Grove, UK',
-    fullName: 'Williams Racing'
-  },
-  { 
-    name: 'VCARB', 
-    color: '#1633EF', 
-    engine: 'Red Bull-Ford', 
-    drivers: ['Tsunoda', 'Hadjar'],
-    domain: 'visacashapprb.com',
-    image: 'https://images.unsplash.com/photo-1626722843337-5f55d3473417?q=80&w=1600',
-    titles: 0,
-    base: 'Faenza, IT',
-    fullName: 'Visa Cash App RB Formula One Team'
-  },
-  { 
+    id: 'haas',
     name: 'Haas', 
+    fullName: 'MoneyGram Haas F1 Team',
     color: '#B6BABD', 
     engine: 'Ferrari', 
-    drivers: ['Ocon', 'Bearman'],
+    drivers: ['Esteban Ocon', 'Oliver Bearman'],
     domain: 'haasf1team.com',
-    image: 'https://images.unsplash.com/photo-1618486640092-0c3679e86f49?q=80&w=1600',
+    image: '/img/equipes/haas/logo-haas.png',
     titles: 0,
-    base: 'Kannapolis, USA',
-    fullName: 'MoneyGram Haas F1 Team'
+    base: 'Kannapolis, EUA / Banbury, Inglaterra',
+    principal: 'Ayao Komatsu',
+    bio: 'A Haas é a equipe americana que estreou na F1 em 2016, fundada pelo empresário Gene Haas. Operando com base nos EUA e instalações na Inglaterra, a equipe adota um modelo único de parceria estreita com a Ferrari, fornecedora de motores e diversos componentes. Para 2026, a Haas mantém sua dupla renovada de 2025: Esteban Ocon, experiente vencedor de GP, e Oliver Bearman, jovem talento britânico que impressionou em sua temporada de estreia. A equipe tem mostrado progresso consistente e busca se estabelecer no meio do grid, aproveitando os novos regulamentos para dar um salto competitivo.'
   },
+
   { 
-    name: 'Sauber', 
-    color: '#52E252', 
-    engine: 'Ferrari', 
-    drivers: ['Hulkenberg', 'Bortoleto'],
-    domain: 'sauber-group.com',
-    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1600',
+    id: 'rb',
+    name: 'Racing Bulls', 
+    fullName: 'Visa Cash App RB F1 Team',
+    color: '#1633EF', 
+    engine: 'Red Bull Powertrains-Ford', 
+    drivers: ['Liam Lawson', 'Arvid Lindblad'],
+    domain: 'visacashapprb.com',
+    image: '/img/equipes/rb/logo-rb.png',
     titles: 0,
-    base: 'Hinwil, CH',
-    fullName: 'Stake F1 Team Kick Sauber'
+    base: 'Faenza, Itália',
+    principal: 'Alan Permane',
+    bio: 'A Racing Bulls (anteriormente Toro Rosso e AlphaTauri) é a equipe irmã da Red Bull Racing, servindo como plataforma de desenvolvimento para jovens talentos da academia Red Bull. Sediada em Faenza, Itália, a equipe tem tradição em revelar futuros campeões como Sebastian Vettel e Max Verstappen. Para 2026, continua sua missão com Liam Lawson, piloto neozelandês que retorna após ser rebaixado da Red Bull em 2025, e Arvid Lindblad, prodígio britânico-sueco de apenas 18 anos fazendo sua estreia direta da Fórmula 2. A equipe compartilhará os novos motores Red Bull-Ford com a equipe principal.'
   },
+
   { 
+    id: 'williams',
+    name: 'Williams', 
+    fullName: 'Williams Racing',
+    color: '#005AFF', 
+    engine: 'Mercedes', 
+    drivers: ['Alex Albon', 'Carlos Sainz'],
+    domain: 'williamsf1.com',
+    image: '/img/equipes/williams/logo-williams.png',
+    titles: 9,
+    base: 'Grove, Inglaterra',
+    principal: 'James Vowles',
+    bio: 'A Williams é uma das equipes mais lendárias da F1, fundada por Sir Frank Williams em 1977. Com 9 títulos de construtores e 7 de pilotos, a equipe de Grove atravessou anos difíceis desde seu último título em 1997. Sob nova liderança de James Vowles (ex-Mercedes), a Williams passa por reconstrução significativa. Para 2026, conta com Alex Albon como líder e Carlos Sainz, experiente piloto espanhol que deixou a Ferrari, formando uma dupla sólida. A parceria com Mercedes continua fornecendo motores competitivos. A equipe busca aproveitar os novos regulamentos para retornar ao topo do grid.'
+  },
+
+  { 
+    id: 'audi',
     name: 'Audi', 
+    fullName: 'Audi F1 Team',
     color: '#000000', 
     engine: 'Audi', 
-    drivers: ['TBA'], 
-    note: '2026',
+    drivers: ['Nico Hulkenberg', 'Gabriel Bortoleto'],
     domain: 'audi.com',
-    image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1600',
+    image: '/img/equipes/audi/logo-audi.png',
     titles: 0,
-    base: 'Neuburg, DE',
-    fullName: 'Audi F1 Team'
+    base: 'Hinwil, Suíça',
+    principal: 'Jonathan Wheatley',
+    bio: 'A Audi marca o retorno de uma grande montadora alemã à F1, tendo adquirido a equipe Sauber em 2024. Esta é a primeira incursão da Audi na Fórmula 1, embora sua empresa predecessora Auto Union tenha competido antes da Segunda Guerra Mundial. Sediada em Hinwil, Suíça, a equipe passa por transformação completa para se tornar operação de fábrica com motores próprios. Para 2026, conta com Nico Hülkenberg, experiente piloto alemão que finalmente conquistou seu primeiro pódio em 2025, e Gabriel Bortoleto, jovem brasileiro campeão da F2 2024. Jonathan Wheatley, ex-Red Bull, lidera a transição como chefe de equipe. A Audi chega com grandes ambições e recursos para se estabelecer entre as principais forças da categoria.'
   },
+
   { 
+    id: 'cadillac',
     name: 'Cadillac', 
+    fullName: 'Cadillac F1 Team',
     color: '#E6BE56', 
-    engine: 'GM', 
-    drivers: ['TBA'], 
-    note: '2026',
+    engine: 'Ferrari', 
+    drivers: ['Valteri Bottas', 'Sergio Perez'],
     domain: 'cadillac.com',
-    image: 'https://images.unsplash.com/photo-1536643278213-2990d0f962d1?q=80&w=1600',
+    image: '/img/equipes/cadillac/logo-cadillac.png',
     titles: 0,
-    base: 'USA',
-    fullName: 'Cadillac F1 Team'
+    base: 'Estados Unidos',
+    principal: 'A confirmar',
+    bio: 'A Cadillac faz história como a 11ª equipe do grid e a segunda equipe americana na F1 moderna (ao lado da Haas), marcando a expansão mais significativa da categoria em anos. Parte do grupo General Motors, a Cadillac inicialmente usará motores Ferrari enquanto desenvolve sua própria unidade de potência prevista para 2029. Para sua temporada de estreia, escolheu experiência: Valtteri Bottas (ex-Mercedes e Sauber) e Sergio Pérez (ex-Red Bull), dois pilotos veteranos com mais de 500 GPs combinados. A entrada da Cadillac reflete o crescimento da F1 nos Estados Unidos, onde a categoria agora disputa três corridas. A equipe chega com ambições de longo prazo e apoio de uma das maiores montadoras mundiais.'
   },
 ];
+
 
 // --- CORRIDAS ---
 export const RACES_2025 = [

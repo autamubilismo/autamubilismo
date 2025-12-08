@@ -27,7 +27,7 @@ const CreditsPage = ({ theme }) => {
             {/* NOVO CAPACETE CENTRALIZADO COM FILTROS */}
             <div className="flex justify-center mb-8">
                 <img 
-                    src="/img/web/HELMETDEFAULT.png" 
+                    src="/img/web/helmet.png" 
                     alt="Capacete Autamubilismo" 
                     // Classes para tamanho, transição suave e aplicação do filtro dinâmico
                     className={`w-32 h-32 md:w-40 md:h-40 object-contain transition-all duration-700 ${helmetFilterClass}`}

@@ -97,16 +97,16 @@ const ContactPage = ({ theme }) => {
                 Vamos conversar?
               </span>
               <div className="flex gap-3">
-                 <a href="https://instagram.com/SEU_PERFIL" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-pink-50 text-pink-500 hover:bg-pink-100' : 'bg-[#ab0eff]/10 text-[#ab0eff] hover:bg-[#ab0eff]/20'}`}>
+                 <a href="https://instagram.com/autamubilismo" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-pink-50 text-pink-500 hover:bg-pink-100' : 'bg-[#ab0eff]/10 text-[#ab0eff] hover:bg-[#ab0eff]/20'}`}>
                     <Instagram size={20} />
                  </a>
-                 <a href="https://twitter.com/SEU_PERFIL" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-blue-50 text-blue-400 hover:bg-blue-100' : 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20'}`}>
+                 <a href="https://twitter.com/autamubilismo" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-blue-50 text-blue-400 hover:bg-blue-100' : 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20'}`}>
                     <Twitter size={20} />
                  </a>
-                 <a href="https://tiktok.com/@SEU_PERFIL" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-gray-100 text-black hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20'}`}>
+                 <a href="https://tiktok.com/@autamubilismo" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-gray-100 text-black hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20'}`}>
                     <TikTokIcon size={20} />
                  </a>
-                 <a href="mailto:seu@email.com" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-yellow-50 text-yellow-600 hover:bg-yellow-100' : 'bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20'}`}>
+                 <a href="mailto:autamubilismo@gmail.com" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-yellow-50 text-yellow-600 hover:bg-yellow-100' : 'bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20'}`}>
                     <Mail size={20} />
                  </a>
               </div>

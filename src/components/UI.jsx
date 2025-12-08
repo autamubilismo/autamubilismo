@@ -379,11 +379,12 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
 // 1. PRÓXIMA CORRIDA: Abu Dhabi (Fim de Temporada)
 export const NextRaceWidget = ({ theme }) => {
   const isLight = theme === 'light';
-  const accentColor = isLight ? 'text-teal-700' : 'text-[#ab0eff]';
-  const itemBg = isLight
-    ? 'bg-gray-50'
-    : 'bg-[#1a1a20] border border-white/5';
+  const boxClass = isLight ? 'bg-white/60 backdrop-blur-md text-gray-800 border border-gray-200' : 'bg-[#1a1a20] border border-[#ff0055]/30 text-white shadow-[0_0_10px_rgba(255,0,85,0.2)]';
+  const accentColor = isLight ? 'text-[#9F7AEA]' : 'text-[#ff0055]';
+  const strokeColor = isLight ? 'stroke-[#9F7AEA]' : 'stroke-[#ff0055]';
+  const badgeClass = isLight ? 'bg-[#D8C4F0] text-gray-800' : 'bg-[#ff0055] text-white shadow-[0_0_10px_#ff0055]';
 
+  // Agenda para Yas Marina (Sem Sprint)
   const sessions = [
     { day: 'SEX', date: '05 Dez', name: 'Treino Livre 1', time: '06:30', type: 'FP' },
     { day: 'SEX', date: '05 Dez', name: 'Treino Livre 2', time: '10:00', type: 'FP' },
@@ -393,94 +394,37 @@ export const NextRaceWidget = ({ theme }) => {
   ];
 
   return (
-    <div
-      className={`h-full flex flex-col p-5 relative overflow-hidden ${
-        isLight ? 'text-gray-800' : 'text-white'
-      }`}
-    >
-      <svg
-        className={`absolute -right-4 -bottom-8 w-60 h-60 opacity-10 pointer-events-none ${
-          isLight ? 'stroke-teal-900' : 'stroke-[#00fff2]'
-        }`}
-        viewBox="0 0 100 100"
-        fill="none"
-        strokeWidth="1.5"
-      >
-        <path
-          d="M20 80 L20 30 L40 30 L40 50 L60 50 L60 20 L90 20 L90 80 L70 80 L70 60 L50 60 L50 80 Z"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+    <div className={`h-full flex flex-col p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
+       
+       {/* 🏁 ALTERAÇÃO AQUI: Bandeira de Fundo (Flag) em vez de traçado */}
+       <div className={`absolute -right-8 -bottom-8 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-teal-900' : 'text-[#ff0055]'}`}>
+          <Flag size={200} />
+       </div>
 
-      <div className="flex justify-between items-end mb-4 z-10">
-        <div>
-          <span className="text-[10px] font-black uppercase tracking-widest opacity-60 flex items-center gap-1 mb-1">
-            <MapPin size={10} /> Yas Marina, EAU
-          </span>
-          <h3 className={`text-2xl font-black leading-none ${accentColor}`}>
-            ABU DHABI
-          </h3>
-        </div>
-        <div
-          className={`px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 border ${
-            isLight
-              ? 'bg-white border-gray-200 text-gray-500'
-              : 'bg-black/30 border-white/10 text-gray-400'
-          }`}
-        >
-          <Clock size={10} /> Brasília (BRT)
-        </div>
-      </div>
-
-      <div className="flex-1 flex flex-col justify-between gap-1.5 z-10 overflow-y-auto custom-scrollbar">
-        {sessions.map((session, i) => (
-          <div
-            key={i}
-            className={`flex items-center justify-between p-2 rounded-xl border transition-all ${
-              session.main
-                ? `border ${accentColor}/30 shadow-sm bg-white/10`
-                : `${itemBg} border-transparent opacity-80 hover:opacity-100`
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className={`flex flex-col items-center justify-center w-9 h-9 rounded-lg font-bold leading-none ${
-                  session.main
-                    ? isLight
-                      ? 'bg-teal-600 text-white'
-                      : 'bg-[#ab0eff] text-white'
-                    : isLight
-                      ? 'bg-white text-gray-400'
-                      : 'bg-white/10 text-gray-500'
-                }`}
-              >
-                <span className="text-[8px] uppercase">{session.day}</span>
-                <span className="text-xs">{session.date.split(' ')[0]}</span>
-              </div>
-              <div>
-                <span
-                  className={`block text-xs font-bold ${
-                    session.main ? '' : 'opacity-90'
-                  }`}
-                >
-                  {session.name}
-                </span>
-              </div>
-            </div>
-            <div
-              className={`font-mono font-bold ${
-                session.main ? 'text-lg' : 'text-sm opacity-70'
-              }`}
-            >
-              {session.time}
-            </div>
+       <div className="flex justify-between items-end mb-4 z-10">
+          <div>
+             <span className={`text-[10px] font-black uppercase tracking-widest opacity-60 flex items-center gap-1 mb-1`}><MapPin size={10} /> Yas Marina, EAU</span>
+             <h3 className={`text-2xl font-black leading-none ${accentColor}`}>ABU DHABI</h3>
           </div>
-        ))}
-      </div>
+          <div className={`px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 border ${isLight ? 'bg-white border-gray-200 text-gray-500' : 'bg-black/30 border-white/10 text-gray-400'}`}><Clock size={10} /> Brasília (BRT)</div>
+       </div>
+       <div className="flex-1 flex flex-col justify-between gap-1.5 z-10 overflow-y-auto custom-scrollbar">
+          {sessions.map((session, i) => (
+             <div key={i} className={`flex items-center justify-between p-2 rounded-xl border transition-all ${session.main ? `border ${accentColor}/30 shadow-sm bg-white/10` : `${isLight ? 'bg-gray-50' : 'bg-white/5'} border-transparent opacity-80 hover:opacity-100`}`}>
+                <div className="flex items-center gap-3">
+                   <div className={`flex flex-col items-center justify-center w-9 h-9 rounded-lg font-bold leading-none ${session.main ? (isLight ? 'bg-teal-600 text-white' : 'bg-[#ff0055] text-white') : (isLight ? 'bg-white text-gray-400' : 'bg-white/10 text-gray-500')}`}>
+                      <span className="text-[8px] uppercase">{session.day}</span><span className="text-xs">{session.date.split(' ')[0]}</span>
+                   </div>
+                   <div><span className={`block text-xs font-bold ${session.main ? '' : 'opacity-90'}`}>{session.name}</span></div>
+                </div>
+                <div className={`font-mono font-bold ${session.main ? 'text-lg' : 'text-sm opacity-70'}`}>{session.time}</div>
+             </div>
+          ))}
+       </div>
     </div>
   );
 };
+
 
 // NEWS WIDGET (ENXUTO, 3–4 NOTÍCIAS)
 export const NewsWidget = ({ theme = 'light', onNewsClick }) => {
@@ -633,8 +577,9 @@ export const FanzoneWidget = ({ theme }) => {
 export const SeasonWidget = ({ theme }) => {
   const isLight = theme === 'light';
   
+  // DADOS FINAIS 2025
   const topDrivers = [
-    { pos: 1, name: 'Norris', team: 'MCL', pts: 408, color: '#FF8700' },
+    { pos: 1, name: 'Lando Norris', team: 'MCL', pts: 408, color: '#FF8700' },
     { pos: 2, name: 'Verstappen', team: 'RBR', pts: 396, color: '#1E41FF' },
     { pos: 3, name: 'Piastri', team: 'MCL', pts: 392, color: '#FF8700' },
     { pos: 4, name: 'Russell', team: 'MER', pts: 309, color: '#00D2BE' },
@@ -647,123 +592,89 @@ export const SeasonWidget = ({ theme }) => {
     { name: 'Red Bull', pts: 426, color: '#1E41FF', width: '53%' },
   ];
 
-  const cardBg = isLight
-    ? 'bg-gray-50 border border-gray-100'
-    : 'bg-white/5 border border-white/5';
+  const cardBg = isLight ? 'bg-gray-50 border border-gray-100' : 'bg-white/5 border border-white/5';
   const textColor = isLight ? 'text-gray-800' : 'text-white';
   const subText = isLight ? 'text-gray-500' : 'text-gray-400';
+  const accentColor = isLight ? 'text-teal-700' : 'text-[#ff0055]';
+  const accentBg = isLight ? 'bg-teal-100' : 'bg-[#ff0055]/20';
+  
+  // Cor do Destaque do Campeão (Dourado/Amarelo)
+  const championColor = '#FFD700';
 
   return (
-    <div
-      className={`h-full flex flex-col justify-between p-5 relative overflow-hidden text-left ${textColor}`}
-    >
-      <div
-        className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${
-          isLight ? 'bg-teal-500' : 'bg-[#00fff2]'
-        }`}
-      />
-
+    <div className={`h-full flex flex-col justify-between p-5 relative overflow-hidden text-left ${textColor}`}>
+      {/* Efeito de Fundo */}
+      <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${isLight ? 'bg-teal-500' : 'bg-[#ff0055]'}`} />
+      
+      {/* CABEÇALHO */}
       <div className="flex justify-between items-start mb-3 z-10">
-        <div className="flex items-center gap-2">
-          <div
-            className={`p-1.5 rounded-lg ${
-              isLight
-                ? 'bg-teal-100 text-teal-700'
-                : 'bg-[#00fff2]/20 text-[#00fff2]'
-            }`}
-          >
-            <Calendar size={14} />
-          </div>
-          <div>
-            <h3 className="text-sm font-black uppercase leading-none">
-              Temporada
-            </h3>
-            <p className={`text-[10px] font-bold ${subText}`}>2025</p>
-          </div>
-        </div>
-        <div className="text-right">
-          <span className="text-[9px] font-bold opacity-60 uppercase">
-            Round 23/24
-          </span>
-          <div
-            className={`w-16 h-1 rounded-full mt-0.5 ${
-              isLight ? 'bg-gray-200' : 'bg-white/20'
-            }`}
-          >
-            <div
-              className={`h-full w-[95%] rounded-full ${
-                isLight ? 'bg-teal-500' : 'bg-[#00fff2]'
-              }`}
-            />
-          </div>
-        </div>
+         <div className="flex items-center gap-2">
+            <div className={`p-1.5 rounded-lg ${accentBg} ${accentColor}`}>
+               <Trophy size={14} />
+            </div>
+            <div>
+               <h3 className="text-sm font-black uppercase leading-none">Temporada 2025</h3>
+               <p className={`text-[10px] font-bold ${subText}`}>Finalizada</p>
+            </div>
+         </div>
+         <div className="text-right">
+            <span className="text-[9px] font-bold opacity-60 uppercase text-yellow-500">Campeão</span>
+            <div className="font-black text-sm text-yellow-500">L. NORRIS 👑</div>
+         </div>
       </div>
 
-      <div className="flex-1 flex flex-col justify-between gap-2 z-10">
-        <div className={`rounded-xl p-3 ${cardBg}`}>
-          <div className="flex items-center gap-2 mb-2 opacity-70">
-            <Trophy size={10} className="text-yellow-500" />
-            <span className="text-[9px] font-black uppercase tracking-widest">
-              Top 5 Pilotos
-            </span>
-          </div>
-          <div className="space-y-1.5">
-            {topDrivers.map((d) => (
-              <div
-                key={d.pos}
-                className="flex items-center justify-between text-xs"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="font-mono w-2 opacity-50 text-[9px]">
-                    {d.pos}
-                  </span>
-                  <div
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: d.color }}
-                  />
-                  <span className="font-bold truncate max-w-[80px]">
-                    {d.name}
-                  </span>
-                </div>
-                <span className="font-mono opacity-80 text-[10px]">
-                  {d.pts}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* CORPO: Leaderboard */}
+      <div className="flex-1 flex flex-col gap-3 z-10 justify-center">
+         
+         {/* Top 5 Pilotos */}
+         <div className={`rounded-xl p-2.5 ${cardBg}`}>
+            <div className="flex items-center justify-between mb-2 opacity-70">
+               <span className="text-[9px] font-black uppercase tracking-widest">Top 5 Pilotos</span>
+            </div>
+            <div className="space-y-1.5">
+               {topDrivers.map((d) => (
+                  <div key={d.pos} className="flex items-center justify-between text-xs">
+                     <div className="flex items-center gap-2">
+                        {/* Se for P1, destaca em Amarelo/Ouro */}
+                        <span className={`font-mono w-2 opacity-50 text-[9px] ${d.pos === 1 ? 'text-yellow-500 font-bold' : ''}`}>{d.pos}</span>
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: d.color }}></div>
+                        <span className={`truncate max-w-[80px] ${d.pos === 1 ? 'font-black' : 'font-medium'}`}>{d.name}</span>
+                     </div>
+                     <span className="font-mono opacity-80 text-[10px]">{d.pts}</span>
+                  </div>
+               ))}
+            </div>
+         </div>
 
-        <div className={`rounded-xl p-3 ${cardBg}`}>
-          <div className="flex items-center gap-2 mb-2 opacity-70">
-            <Wrench size={10} className="text-blue-400" />
-            <span className="text-[9px] font-black uppercase tracking-widest">
-              Construtores
-            </span>
-          </div>
-          <div className="space-y-2">
-            {constructors.map((t, i) => (
-              <div key={i}>
-                <div className="flex justify-between text-[9px] font-bold mb-0.5">
-                  <span>{t.name}</span>
-                  <span className="font-mono">
-                    {t.pts}{' '}
-                    <span className="text-[8px] opacity-60">pts</span>
-                  </span>
-                </div>
-                <div
-                  className={`w-full h-1 rounded-full ${
-                    isLight ? 'bg-gray-200' : 'bg-white/10'
-                  }`}
-                >
-                  <div
-                    className="h-full rounded-full"
-                    style={{ width: t.width, backgroundColor: t.color }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+         {/* Construtores (Campeã) */}
+         <div className={`rounded-xl p-2.5 ${cardBg}`}>
+            <div className="flex items-center gap-2 mb-2 opacity-70">
+               <Wrench size={10} className="text-blue-400" />
+               <span className="text-[9px] font-black uppercase tracking-widest">Construtores (Campeã)</span>
+            </div>
+            <div className="space-y-1.5">
+               {constructors.map((t, i) => (
+                  <div key={i}>
+                     <div className="flex justify-between text-[9px] font-bold mb-0.5">
+                        <span>{t.name}</span>
+                        <span className="font-mono">{t.pts}</span>
+                     </div>
+                     <div className={`w-full h-1 rounded-full ${isLight?'bg-gray-200':'bg-white/10'}`}>
+                        <div className="h-full rounded-full" style={{ width: t.width, backgroundColor: t.color }}></div>
+                     </div>
+                  </div>
+               ))}
+            </div>
+         </div>
+
+      </div>
+      
+      {/* Footer: Botão para Regulamento 2026 */}
+      <div className="mt-2 pt-2 border-t border-white/5">
+         <Link to="/regulation" className={`flex items-center justify-between w-full p-2 rounded-lg text-[10px] font-black uppercase transition-colors ${isLight ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' : 'bg-white/10 hover:bg-white/20 text-white'}`}>
+            <span>Ver Regulamento 2026</span>
+            <ArrowRight size={12} />
+         </Link>
       </div>
     </div>
   );

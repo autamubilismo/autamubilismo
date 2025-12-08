@@ -1,0 +1,84 @@
+{
+  "platform": "react",
+  "code": {
+    "lang": "js",
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
+  },
+  "style": {
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
+  },
+  "images": {
+    "scheme": "inlined",
+    "publicDir": "../public",
+    "publicUrlPrefix": "/static/"
+  },
+  "tokens": {
+    "scheme": "theo",
+    "tokensFilePath": "plasmic-tokens.theo.json"
+  },
+  "srcDir": "src/components",
+  "defaultPlasmicDir": "./plasmic",
+  "projects": [
+    {
+      "projectId": "gY2snNpZVMz843KPnxWK1X",
+      "projectApiToken": "4l4ACBBhAreQgCSRVkfq1Ha090F5YH2scLVCDuFiKOGXRUzTjMPZlb7Wz3fvnBYVfqdTVfljjXCMaSi1b8Vw",
+      "projectName": "autamubilismo",
+      "version": "latest",
+      "cssFilePath": "plasmic/autamubilismo/plasmic.module.css",
+      "components": [
+        {
+          "id": "GXofiqV8Ybth",
+          "name": "Homepage",
+          "type": "managed",
+          "projectId": "gY2snNpZVMz843KPnxWK1X",
+          "renderModuleFilePath": "plasmic/autamubilismo/PlasmicHomepage.jsx",
+          "importSpec": {
+            "modulePath": "Homepage.jsx"
+          },
+          "cssFilePath": "plasmic/autamubilismo/PlasmicHomepage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
+        }
+      ],
+      "icons": [],
+      "images": [],
+      "indirect": false,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "styleTokensProviderFilePath": "plasmic/autamubilismo/PlasmicStyleTokensProvider.jsx",
+      "projectModuleFilePath": "plasmic/autamubilismo/plasmic.jsx",
+      "codeComponents": [
+        {
+          "id": "xig-Pfp2QVe5",
+          "name": "PlasmicHead",
+          "displayName": "hostless-plasmic-head",
+          "componentImportPath": "@plasmicapp/react-web"
+        },
+        {
+          "id": "pvEfz0n_AJoj",
+          "name": "Fetcher",
+          "displayName": "plasmic-data-source-fetcher",
+          "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        }
+      ],
+      "customFunctions": []
+    }
+  ],
+  "globalVariants": {
+    "variantGroups": [
+      {
+        "id": "psmwmIUfnn6I",
+        "name": "Screen",
+        "projectId": "gY2snNpZVMz843KPnxWK1X",
+        "contextFilePath": "plasmic/autamubilismo/PlasmicGlobalVariant__Screen.jsx"
+      }
+    ]
+  },
+  "wrapPagesWithGlobalContexts": true,
+  "preserveJsImportExtensions": false,
+  "cliVersion": "0.1.348",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.348/dist/plasmic.schema.json"
+}
