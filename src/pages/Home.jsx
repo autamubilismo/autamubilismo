@@ -20,40 +20,50 @@ const Home = ({ theme }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const newsData = await client.fetch(NEWS_WIDGET_QUERY);
+        // 1. Busca NOTÍCIAS (Pega as 4 mais recentes)
+        const newsData = await client.fetch(`*[_type == "news"] | order(publishedAt desc)[0...4]`);
         const formattedNews = newsData.map((item) => ({
           ...item,
-          type: 'news',
-          image: item.image
-            ? urlFor(item.image).width(400).height(400).url()
-            : null,
-          dateObj: new Date(item.publishedAt || Date.now()),
+          type: 'news', // Marca como notícia
+          // Garante data (se não tiver publishedAt, usa criação)
+          dateObj: new Date(item.publishedAt || item._createdAt || Date.now()),
+          // Tenta pegar a imagem, se der erro retorna null
+          image: item.image ? urlFor(item.image).width(400).url() : null,
         }));
 
+        // 2. Busca ARTIGOS (Pega os 4 mais recentes)
+        // Nota: uso coalesce(image, mainImage) para tentar os dois nomes comuns de imagem no Sanity
         const articlesData = await client.fetch(`
-          *[_type == "article"] | order(publishedAt desc)[0..2] {
+          *[_type == "article"] | order(publishedAt desc)[0...4] {
             _id,
             title,
-            slug,
-            "image": image.asset->url,
+            excerpt,
+            "slug": slug.current,
+            "image": coalesce(image.asset->url, mainImage.asset->url),
             publishedAt,
-            "category": "Opinião",
-            "author": author
+            _createdAt,
+            "category": coalesce(category->title, category, "Opinião"),
+            author
           }
         `);
 
         const formattedArticles = articlesData.map((item) => ({
           ...item,
-          type: 'article',
-          image: item.image
-            ? urlFor(item.image).width(400).height(400).url()
-            : null,
-          dateObj: new Date(item.publishedAt || Date.now()),
+          type: 'article', // Marca como artigo
+          dateObj: new Date(item.publishedAt || item._createdAt || Date.now()),
+          // Imagem já vem como URL da query acima
+          image: item.image || null, 
         }));
 
-        const combinedFeed = [...formattedNews, ...formattedArticles].sort(
-          (a, b) => b.dateObj - a.dateObj
-        );
+        console.log("📰 Notícias encontradas:", formattedNews.length);
+        console.log("📝 Artigos encontrados:", formattedArticles.length);
+
+        // 3. JUNTAR E ORDENAR
+        // DICA: Se você quer garantir que apareçam artigos, pode aumentar o slice do Widget depois
+        const combinedFeed = [...formattedNews, ...formattedArticles]
+          .sort((a, b) => b.dateObj - a.dateObj); // Mais recente primeiro
+
+        console.log("Feed Final Combinado:", combinedFeed);
 
         setFeed(combinedFeed);
       } catch (err) {
@@ -90,7 +100,7 @@ const Home = ({ theme }) => {
         animate-in fade-in zoom-in duration-300
       "
     >
-      {/* 1. NEWS */}
+      {/* 1. NEWS WIDGET (Alimenta com o feed misturado) */}
       <BentoCard
         theme={theme}
         className="lg:col-span-2 lg:row-span-2"
@@ -99,8 +109,11 @@ const Home = ({ theme }) => {
           theme={theme}
           posts={feed}
           onNewsClick={(post) => {
+            // Lógica de clique corrigida
             const route = post.type === 'article' ? '/articles' : '/news';
-            navigate(`${route}/${post.slug?.current || post.slug}`);
+            // Suporte a slug objeto ou string
+            const slugFinal = post.slug?.current || post.slug;
+            navigate(`${route}/${slugFinal}`);
           }}
         />
       </BentoCard>
@@ -126,33 +139,29 @@ const Home = ({ theme }) => {
       {/* 4. MANIFESTO */}
       <BentoCard 
         theme={theme} 
-        to="/manifesto" 
+        to="/manifesto"
         className="md:col-span-2 md:row-span-1 cursor-pointer relative overflow-hidden min-h-[220px]"
       >
-         {/* Fundo Decorativo */}
          {manifesto?.imageUrl && (
             <div className="absolute inset-0 z-0">
                 <img src={manifesto.imageUrl} alt="Manifesto" className="w-full h-full object-cover opacity-30 transition-transform duration-700 group-hover:scale-110" />
                 <div className={`absolute inset-0 bg-gradient-to-t ${isLight ? 'from-white via-white/50' : 'from-black via-black/50'} to-transparent`}></div>
             </div>
          )}
-
          <div className="flex items-center justify-between h-full relative z-10 p-6 gap-4">
             <div className="flex-1">
-               <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-3 w-fit ${theme === 'light' ? 'bg-[#F7B8C8] text-white' : 'border border-[#ff0055] text-[#ff0055]'}`}>
+               <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-3 w-fit ${theme === 'light' ? 'bg-[#F7B8C8] text-white' : 'border border-[#bd00ff] text-[#bd00ff]'}`}>
                  {manifesto?.categoryTitle || 'Editorial'}
                </span>
                <h2 className={`text-2xl md:text-3xl font-black leading-tight ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
-                 {manifesto?.title || <>Correndo como uma <span className={theme === 'light' ? 'text-[#D8C4F0]' : 'text-[#ff0055]'}>Garota.</span></>}
+                 {manifesto?.title || <>Correndo como uma <span className={theme === 'light' ? 'text-[#D8C4F0]' : 'text-[#bd00ff]'}>Garota.</span></>}
                </h2>
             </div>
-            
-            {/* LOGO DO CAPACETE */}
             <div className="flex-shrink-0">
                <img 
                  src="/img/web/helmet.png" 
                  alt="Autamubilismo" 
-                 className={`w-20 h-20 md:w-24 md:h-24 object-contain transition-transform duration-500 group-hover:rotate-12 ${!isLight ? 'drop-shadow-[0_0_15px_#ff0055]' : ''}`}
+                 className={`w-20 h-20 md:w-24 md:h-24 object-contain transition-transform duration-500 group-hover:rotate-12 ${!isLight ? 'drop-shadow-[0_0_15px_#bd00ff]' : ''}`}
                />
             </div>
          </div>

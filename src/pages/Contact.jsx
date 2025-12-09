@@ -37,7 +37,7 @@ const ContactPage = ({ theme }) => {
 
   const inputClass = isLight
     ? 'bg-gray-50 border-gray-200 focus:border-[#F7B8C8] focus:ring-[#F7B8C8] text-gray-800'
-    : 'bg-[#0a0a12] border-[#333] focus:border-[#ab0eff] focus:ring-[#ab0eff] text-white placeholder-gray-600';
+    : 'bg-[#0a0a12] border-[#333] focus:border-[#caa5d8] focus:ring-[#caa5d8] text-white placeholder-gray-600';
 
   const labelClass = `block text-[10px] font-black uppercase tracking-widest mb-2 ${isLight ? 'text-gray-400' : 'text-gray-500'}`;
 
@@ -58,16 +58,16 @@ const ContactPage = ({ theme }) => {
         {/* COLUNA DA BIO */}
         <div className={`lg:col-span-3 p-8 md:p-10 rounded-[2.5rem] relative overflow-hidden flex flex-col justify-between ${cardClass}`}>
            {/* Decoração de fundo */}
-           <Sparkles className={`absolute top-[-20px] right-[-20px] w-40 h-40 opacity-5 rotate-12 ${isLight ? 'text-pink-600' : 'text-[#ab0eff]'}`} />
+           <Sparkles className={`absolute top-[-20px] right-[-20px] w-40 h-40 opacity-5 rotate-12 ${isLight ? 'text-pink-600' : 'text-[#caa5d8]'}`} />
 
            <div className="relative z-10">
               <div className="flex items-center gap-5 mb-8">
-                 <div className={`w-20 h-20 rounded-full flex items-center justify-center text-3xl shadow-inner ${isLight ? 'bg-pink-50 border-4 border-white' : 'bg-[#ab0eff]/10 text-[#ab0eff] border-4 border-[#ab0eff]/20'}`}>
+                 <div className={`w-20 h-20 rounded-full flex items-center justify-center text-3xl shadow-inner ${isLight ? 'bg-pink-50 border-4 border-white' : 'bg-[#caa5d8]/10 text-[#caa5d8] border-4 border-[#caa5d8]/20'}`}>
                     👩‍💻
                  </div>
                  <div>
                     <h3 className={`text-3xl font-black leading-none ${isLight ? 'text-gray-800' : 'text-white'}`}>Oi, sou a Tamu!</h3>
-                    <span className={`text-xs font-bold uppercase tracking-widest ${isLight ? 'text-pink-400' : 'text-[#ab0eff]'}`}>Founder & Editora</span>
+                    <span className={`text-xs font-bold uppercase tracking-widest ${isLight ? 'text-pink-400' : 'text-[#caa5d8]'}`}>Founder & Editora</span>
                  </div>
               </div>
 
@@ -79,7 +79,7 @@ const ContactPage = ({ theme }) => {
                    Sou apaixonada por carros desde pequena. Com um <strong>pai mecânico</strong> <Wrench size={18} className={`inline mb-1 ${isLight?'text-gray-400':'text-gray-500'}`} />, cresci entre motores e lanternas.
                  </p>
                  
-                 <div className={`p-6 rounded-3xl my-8 ${isLight ? 'bg-[#FFF5F8] border-l-4 border-[#F7B8C8]' : 'bg-[#ab0eff]/5 border-l-4 border-[#ab0eff]'}`}>
+                 <div className={`p-6 rounded-3xl my-8 ${isLight ? 'bg-[#FFF5F8] border-l-4 border-[#F7B8C8]' : 'bg-[#caa5d8]/5 border-l-4 border-[#caa5d8]'}`}>
                     <p className={`italic font-medium ${isLight ? 'text-gray-700' : 'text-gray-200'}`}>
                       "O automobilismo vem ganhando cada vez mais garotas, e eu queria criar um espaço seguro para todos os públicos."
                     </p>
@@ -97,7 +97,7 @@ const ContactPage = ({ theme }) => {
                 Vamos conversar?
               </span>
               <div className="flex gap-3">
-                 <a href="https://instagram.com/autamubilismo" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-pink-50 text-pink-500 hover:bg-pink-100' : 'bg-[#ab0eff]/10 text-[#ab0eff] hover:bg-[#ab0eff]/20'}`}>
+                 <a href="https://instagram.com/autamubilismo" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-pink-50 text-pink-500 hover:bg-pink-100' : 'bg-[#caa5d8]/10 text-[#caa5d8] hover:bg-[#caa5d8]/20'}`}>
                     <Instagram size={20} />
                  </a>
                  <a href="https://twitter.com/autamubilismo" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full transition-all hover:scale-110 ${isLight ? 'bg-blue-50 text-blue-400 hover:bg-blue-100' : 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20'}`}>
@@ -155,7 +155,7 @@ const ContactPage = ({ theme }) => {
                ></textarea>
             </div>
 
-            <button className={`w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg mt-4 ${isLight ? 'bg-gray-900 text-white hover:bg-black shadow-gray-300' : 'bg-[#ab0eff] text-white hover:bg-[#e06fc0] shadow-[#ab0eff]/20'}`}>
+            <button className={`w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg mt-4 ${isLight ? 'bg-gray-900 text-white hover:bg-black shadow-gray-300' : 'bg-[#caa5d8] text-white hover:bg-[#e06fc0] shadow-[#caa5d8]/20'}`}>
                Enviar Mensagem <Send size={20} />
             </button>
           </form>

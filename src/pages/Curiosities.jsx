@@ -68,7 +68,7 @@ const CuriositiesPage = ({ theme }) => {
             className={`p-8 rounded-[2rem] transition-all hover:-translate-y-1 hover:shadow-xl flex flex-col gap-4 ${
               isLight 
                 ? 'bg-white shadow-lg border-2 border-transparent hover:border-gray-100' 
-                : 'bg-[#1a1a20] border border-[#333] hover:border-[#ab0eff]/30'
+                : 'bg-[#1a1a20] border border-[#333] hover:border-[#caa5d8]/30'
             }`}
           >
              <div className={`p-4 rounded-2xl w-fit ${isLight ? 'bg-gray-50' : 'bg-black/30'} ${item.color}`}>

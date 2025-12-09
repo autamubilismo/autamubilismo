@@ -40,3 +40,68 @@
 .read-the-docs {
   color: #888;
 }
+
+@media (max-width: 768px) {
+  .header-selector {
+    background-image: url('/img/web/helmet.png');
+    background-size: cover;
+    background-position: center;
+    /* Ajustes adicionais para garantir visibilidade e usabilidade */
+    min-height: 50px; /* Ajuste conforme necessário */
+    width: 100%;
+    display: block; /* Garante que o elemento ocupe o espaço */
+    text-indent: -9999px; /* Esconde o texto original se houver */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header Mobile com Imagem de Fundo */
+  .header-selector {
+    background-image: url('/img/web/helmet.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Altura maior para ver a imagem toda */
+    min-height: 220px !important; 
+    width: 100%;
+    display: block;
+    position: relative;
+  }
+
+  /* Esconde o conteúdo original do header (menu, logo, search) quando a imagem de fundo estiver ativa, 
+     SE esse for o comportamento desejado. Caso contrário, remova este bloco. 
+     Neste caso, assumo que você quer que a imagem substitua o fundo, mas o menu continue por cima. 
+     Se a imagem JÁ TEM o logo e menu desenhados, use a classe abaixo para esconder os elementos HTML. */
+  
+  /* .header-content-wrapper { display: none; } */
+}
+
+/* Garante que o conteúdo não seja cortado nos cards Bento no mobile */
+@media (max-width: 640px) {
+  .bento-card-content {
+    height: auto !important;
+    min-height: 200px;
+  }
+}
+
+/* --- HEADER MOBILE --- */
+@media (max-width: 768px) {
+  /* Alvo: O container do header (div que tem o bg-header) */
+  .header-selector {
+    background-image: url('/img/web/helmet.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Força uma altura mínima para a imagem aparecer, caso esteja colapsando */
+    min-height: 180px; 
+  }
+  
+  /* Ajuste para o botão de tema ficar dentro da área rosa (assumindo que a imagem tem uma área rosa) */
+  .theme-toggle-btn {
+    position: absolute;
+    /* Ajuste esses valores conforme sua imagem */
+    top: 20px; 
+    right: 20px;
+    z-index: 50;
+  }
+}

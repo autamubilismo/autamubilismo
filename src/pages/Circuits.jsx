@@ -9,11 +9,11 @@ const CircuitsPage = ({ theme }) => {
   // Cores dinâmicas
   const cardBg = isLight 
     ? 'bg-white shadow-lg border-2 border-transparent hover:border-[#F7B8C8]' 
-    : 'bg-[#121217] border border-[#333] hover:border-[#ab0eff]/50 shadow-lg';
+    : 'bg-[#121217] border border-[#333] hover:border-[#caa5d8]/50 shadow-lg';
   
   const accentText = isLight ? 'text-gray-800' : 'text-white';
   const subText = isLight ? 'text-gray-500' : 'text-gray-400';
-  const iconColor = isLight ? 'text-[#F7B8C8]' : 'text-[#ab0eff]';
+  const iconColor = isLight ? 'text-[#F7B8C8]' : 'text-[#caa5d8]';
 
   // Fundo do container do traçado (ajustado para contraste se a imagem for branca)
   const trackContainerBg = isLight 
@@ -56,7 +56,7 @@ const CircuitsPage = ({ theme }) => {
             {/* --- CORPO DO CARD (INFO) --- */}
             <div className="p-6 relative">
                 {/* Badge da Data */}
-                <div className={`absolute -top-5 left-6 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg flex items-center gap-2 ${isLight ? 'bg-white text-gray-800 border border-gray-100' : 'bg-[#ab0eff] text-white'}`}>
+                <div className={`absolute -top-5 left-6 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg flex items-center gap-2 ${isLight ? 'bg-white text-gray-800 border border-gray-100' : 'bg-[#caa5d8] text-white'}`}>
                     <Calendar size={12} /> {circuit.date}
                 </div>
 

@@ -45,7 +45,7 @@ const StandingsPage = ({ theme }) => {
   ];
 
   // --- ESTILOS ---
-  const activeTab = isLight ? 'bg-white shadow text-gray-900' : 'bg-[#ff0055] text-white shadow-[0_0_15px_#ff0055]';
+  const activeTab = isLight ? 'bg-white shadow text-gray-900' : 'bg-[#bd00ff] text-white shadow-[0_0_15px_#bd00ff]';
   const inactiveTab = isLight ? 'text-gray-500 hover:text-gray-700' : 'text-gray-500 hover:text-white';
   const cardBg = isLight ? 'bg-white border border-gray-100 shadow-sm' : 'bg-[#1a1a20] border border-[#333]';
   const rankBg = (pos) => {

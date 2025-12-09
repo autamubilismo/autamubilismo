@@ -118,7 +118,7 @@ const News = ({ theme }) => {
                       className={
                         isLight
                           ? "px-2 py-0.5 rounded-full bg-[#F7B8C8] text-white"
-                          : "px-2 py-0.5 rounded-full border border-[#ab0eff] text-[#ab0eff]"
+                          : "px-2 py-0.5 rounded-full border border-[#caa5d8] text-[#caa5d8]"
                       }
                     >
                       {item.category || "Notícia"}

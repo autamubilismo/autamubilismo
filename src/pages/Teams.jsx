@@ -32,7 +32,7 @@ const TeamsPage = ({ theme }) => {
               className={`group relative overflow-hidden rounded-[2.5rem] p-0 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl flex flex-col
                 ${isLight 
                   ? 'bg-white shadow-lg border-2 border-transparent hover:border-gray-200' 
-                  : 'bg-[#1a1a20] border border-[#333] hover:border-[#ff0055]/30 shadow-[0_0_20px_rgba(0,0,0,0.3)]'
+                  : 'bg-[#1a1a20] border border-[#333] hover:border-[#bd00ff]/30 shadow-[0_0_20px_rgba(0,0,0,0.3)]'
                 }`}
             >
               {/* Barra Superior de Cor da Equipe */}
@@ -73,7 +73,7 @@ const TeamsPage = ({ theme }) => {
                   <div className="mt-auto pt-6 border-t border-gray-100/10 flex items-center justify-between">
                       <div className="flex flex-col gap-2">
                           <div className="flex items-center gap-2 opacity-80">
-                             <Users size={14} className={isLight ? 'text-gray-400' : 'text-[#ff0055]'} />
+                             <Users size={14} className={isLight ? 'text-gray-400' : 'text-[#bd00ff]'} />
                              <span className={`text-[10px] font-bold uppercase tracking-widest ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Pilotos</span>
                           </div>
                           <div className="flex gap-2">
@@ -86,7 +86,7 @@ const TeamsPage = ({ theme }) => {
                           </div>
                       </div>
                       
-                      <div className={`p-3 rounded-full transition-transform duration-300 group-hover:translate-x-2 ${isLight ? 'bg-gray-50 text-gray-400 group-hover:text-gray-800' : 'bg-white/5 text-gray-500 group-hover:text-[#ff0055]'}`}>
+                      <div className={`p-3 rounded-full transition-transform duration-300 group-hover:translate-x-2 ${isLight ? 'bg-gray-50 text-gray-400 group-hover:text-gray-800' : 'bg-white/5 text-gray-500 group-hover:text-[#bd00ff]'}`}>
                           <ArrowRight size={20} />
                       </div>
                   </div>

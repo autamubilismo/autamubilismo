@@ -11,14 +11,14 @@ const RegulationsPage = ({ theme }) => {
   // --- PALETA DE CORES UNIFICADA ---
   const cardBg = isLight 
     ? 'bg-white shadow-lg border-2 border-transparent hover:border-[#F7B8C8]' 
-    : 'bg-[#1a1a20] border border-[#333] hover:border-[#ab0eff]/50 shadow-lg';
+    : 'bg-[#1a1a20] border border-[#333] hover:border-[#caa5d8]/50 shadow-lg';
   
   const textMain = isLight ? 'text-gray-800' : 'text-white';
   const textSub = isLight ? 'text-gray-500' : 'text-gray-400';
   
   // Cor de destaque (Rosa Neon no Dark)
-  const accentColor = isLight ? 'text-purple-600' : 'text-[#ab0eff]';
-  const bgAccent = isLight ? 'bg-purple-100' : 'bg-[#ab0eff]/10 border border-[#ab0eff]/20';
+  const accentColor = isLight ? 'text-purple-600' : 'text-[#caa5d8]';
+  const bgAccent = isLight ? 'bg-purple-100' : 'bg-[#caa5d8]/10 border border-[#caa5d8]/20';
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-12">
@@ -42,14 +42,14 @@ const RegulationsPage = ({ theme }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
 
         {/* 1. MOTOR (Destaque Grande) */}
-        <div className={`lg:col-span-4 p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group ${isLight ? 'bg-[#CFF7E8]' : 'bg-[#1a1a20] border border-[#ab0eff]/50'}`}>
+        <div className={`lg:col-span-4 p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group ${isLight ? 'bg-[#CFF7E8]' : 'bg-[#1a1a20] border border-[#caa5d8]/50'}`}>
            <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
               <Zap size={200} />
            </div>
            
            <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
-                 <div className={`p-3 rounded-2xl ${isLight ? 'bg-white text-teal-700' : 'bg-[#ab0eff] text-black'}`}>
+                 <div className={`p-3 rounded-2xl ${isLight ? 'bg-white text-teal-700' : 'bg-[#caa5d8] text-black'}`}>
                     <BatteryCharging size={24} />
                  </div>
                  <h3 className={`text-3xl font-black uppercase ${isLight ? 'text-teal-900' : 'text-white'}`}>Unidade de Potência</h3>
@@ -71,12 +71,12 @@ const RegulationsPage = ({ theme }) => {
                     </div>
                  </div>
                  <div>
-                    <div className={`flex justify-between text-xs font-bold uppercase mb-2 ${isLight ? 'text-teal-900' : 'text-[#ab0eff]'}`}>
+                    <div className={`flex justify-between text-xs font-bold uppercase mb-2 ${isLight ? 'text-teal-900' : 'text-[#caa5d8]'}`}>
                        <span>Elétrico (MGU-K)</span>
                        <span>~470 hp (350kW)</span>
                     </div>
                     <div className={`w-full h-3 rounded-full overflow-hidden ${isLight ? 'bg-black/10' : 'bg-white/10'}`}>
-                       <div className={`h-full w-[45%] ${isLight ? 'bg-teal-400' : 'bg-[#ab0eff] shadow-[0_0_10px_#ab0eff]'}`}></div>
+                       <div className={`h-full w-[45%] ${isLight ? 'bg-teal-400' : 'bg-[#caa5d8] shadow-[0_0_10px_#caa5d8]'}`}></div>
                     </div>
                  </div>
               </div>
@@ -86,7 +86,7 @@ const RegulationsPage = ({ theme }) => {
         {/* 2. COMBUSTÍVEL */}
         <div className={`lg:col-span-2 p-8 rounded-[2.5rem] flex flex-col justify-between ${cardBg}`}>
             <div>
-               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${isLight ? 'bg-green-100 text-green-600' : 'bg-white/5 text-[#ab0eff]'}`}>
+               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${isLight ? 'bg-green-100 text-green-600' : 'bg-white/5 text-[#caa5d8]'}`}>
                   <Leaf size={24} />
                </div>
                <h3 className={`text-xl font-black mb-2 ${textMain}`}>100% Sustentável</h3>
@@ -103,7 +103,7 @@ const RegulationsPage = ({ theme }) => {
         {/* 3. AERODINÂMICA ATIVA */}
         <div className={`lg:col-span-3 p-8 rounded-[2.5rem] ${cardBg}`}>
             <div className="flex items-center gap-3 mb-6">
-               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${isLight ? 'bg-blue-100 text-blue-600' : 'bg-white/5 text-[#ab0eff]'}`}>
+               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${isLight ? 'bg-blue-100 text-blue-600' : 'bg-white/5 text-[#caa5d8]'}`}>
                   <Wind size={24} />
                </div>
                <h3 className={`text-xl font-black uppercase ${textMain}`}>Aero Ativa</h3>
@@ -115,7 +115,7 @@ const RegulationsPage = ({ theme }) => {
                   <p className={`text-sm font-medium ${textSub}`}>Asas fechadas para <strong>máximo downforce</strong> nas curvas.</p>
                </div>
                <div className={`p-4 rounded-2xl ${isLight ? 'bg-gray-50' : 'bg-white/5'}`}>
-                  <span className={`text-xs font-black uppercase block mb-1 ${isLight ? 'text-purple-500' : 'text-[#ab0eff]'}`}>X-Mode</span>
+                  <span className={`text-xs font-black uppercase block mb-1 ${isLight ? 'text-purple-500' : 'text-[#caa5d8]'}`}>X-Mode</span>
                   <p className={`text-sm font-medium ${textSub}`}>Asas abertas para <strong>menor arrasto</strong> nas retas.</p>
                </div>
             </div>
@@ -124,7 +124,7 @@ const RegulationsPage = ({ theme }) => {
         {/* 4. CHASSIS */}
         <div className={`lg:col-span-3 p-8 rounded-[2.5rem] ${cardBg}`}>
             <div className="flex items-center gap-3 mb-6">
-               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${isLight ? 'bg-orange-100 text-orange-600' : 'bg-white/5 text-[#ab0eff]'}`}>
+               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${isLight ? 'bg-orange-100 text-orange-600' : 'bg-white/5 text-[#caa5d8]'}`}>
                   <Minimize2 size={24} />
                </div>
                <h3 className={`text-xl font-black uppercase ${textMain}`}>Chassis "Ágil"</h3>
@@ -148,7 +148,7 @@ const RegulationsPage = ({ theme }) => {
 
         {/* 5. SEGURANÇA */}
         <div className={`lg:col-span-2 p-8 rounded-[2.5rem] flex flex-col justify-center items-center text-center ${cardBg}`}>
-           <ShieldCheck size={48} className={`mb-4 opacity-80 ${isLight ? 'text-gray-400' : 'text-[#ab0eff]'}`} />
+           <ShieldCheck size={48} className={`mb-4 opacity-80 ${isLight ? 'text-gray-400' : 'text-[#caa5d8]'}`} />
            <h3 className={`text-xl font-black uppercase mb-2 ${textMain}`}>Segurança</h3>
            <p className={`text-sm font-medium opacity-80 ${textSub}`}>Estruturas de impacto mais robustas e roll hoop reforçado.</p>
         </div>
@@ -158,19 +158,19 @@ const RegulationsPage = ({ theme }) => {
             className={`lg:col-span-4 p-8 rounded-[2.5rem] relative overflow-hidden flex items-center justify-between cursor-pointer group transition-all hover:scale-[1.01] 
             ${isLight 
                ? 'bg-white shadow-lg border-2 border-transparent hover:border-red-200' 
-               : 'bg-[#1a1a20] border border-[#333] hover:border-[#ab0eff] shadow-[0_0_20px_rgba(254,136,221,0.05)]'
+               : 'bg-[#1a1a20] border border-[#333] hover:border-[#caa5d8] shadow-[0_0_20px_rgba(254,136,221,0.05)]'
             }`}
          >
             <div>
                <div className="flex items-center gap-2 mb-2">
-                  <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${isLight ? 'bg-red-100 text-red-600' : 'bg-[#ab0eff]/20 text-[#ab0eff]'}`}>Novo DRS</span>
+                  <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-md ${isLight ? 'bg-red-100 text-red-600' : 'bg-[#caa5d8]/20 text-[#caa5d8]'}`}>Novo DRS</span>
                </div>
                <h3 className={`text-2xl md:text-3xl font-black uppercase mb-1 ${textMain}`}>Manual Override</h3>
                <p className={`text-sm md:text-base opacity-70 ${textSub}`}>
                  Sistema de "boost" elétrico para ultrapassagens (MGU-K) até 355km/h.
                </p>
             </div>
-            <div className={`p-5 rounded-full transition-transform group-hover:rotate-12 ${isLight ? 'bg-red-50 text-red-500' : 'bg-[#ab0eff]/20 text-[#ab0eff]'}`}>
+            <div className={`p-5 rounded-full transition-transform group-hover:rotate-12 ${isLight ? 'bg-red-50 text-red-500' : 'bg-[#caa5d8]/20 text-[#caa5d8]'}`}>
                 <Gauge size={32} />
             </div>
          </div>

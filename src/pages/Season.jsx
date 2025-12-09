@@ -14,7 +14,7 @@ const SeasonPage = ({ theme }) => {
 
   const activeTabClass = isLight 
     ? 'bg-white text-gray-900 shadow-md' 
-    : 'bg-[#ff0055] text-white shadow-[0_0_15px_#ff0055]';
+    : 'bg-[#bd00ff] text-white shadow-[0_0_15px_#bd00ff]';
   
   const inactiveTabClass = isLight 
     ? 'text-gray-400 hover:text-gray-600' 
@@ -65,7 +65,7 @@ const SeasonPage = ({ theme }) => {
             <h2 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none ${isLight ? 'text-gray-800' : 'text-white'}`} style={{ fontFamily: "'Russo One', sans-serif" }}>
               Temporada
             </h2>
-            <span className={`text-xl font-bold tracking-widest uppercase ${isLight ? 'text-[#D8C4F0]' : 'text-[#ff0055]'}`}>
+            <span className={`text-xl font-bold tracking-widest uppercase ${isLight ? 'text-[#D8C4F0]' : 'text-[#bd00ff]'}`}>
               {year === '2026' ? 'A Nova Era Híbrida' : 'O Caminho para a Glória'}
             </span>
         </div>
@@ -94,17 +94,17 @@ const SeasonPage = ({ theme }) => {
             {/* 1. REGULAMENTO (Destaque Principal) */}
             <BentoCard 
                 theme={theme} 
-                to="/regulation" 
-                className={`lg:col-span-2 p-8 md:p-10 cursor-pointer group overflow-hidden relative min-h-[300px] flex flex-col justify-center ${isLight ? 'bg-gradient-to-br from-[#D8C4F0] to-[#CFF7E8]' : 'bg-[#1a1a20] border border-[#ff0055] shadow-[0_0_30px_rgba(255,0,85,0.1)]'}`}
+                to="/regulations" 
+                className={`lg:col-span-2 p-8 md:p-10 cursor-pointer group overflow-hidden relative min-h-[300px] flex flex-col justify-center ${isLight ? 'bg-gradient-to-br from-[#D8C4F0] to-[#CFF7E8]' : 'bg-[#1a1a20] border border-[#bd00ff] shadow-[0_0_30px_rgba(255,0,85,0.1)]'}`}
             >
                 <div className="absolute right-0 top-0 w-64 h-64 opacity-10"><Scale size={256} /></div>
                 <div className="relative z-10 max-w-xl">
-                    <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 ${isLight ? 'bg-white text-purple-600' : 'bg-[#ff0055] text-white'}`}>Revolução</span>
+                    <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 ${isLight ? 'bg-white text-purple-600' : 'bg-[#bd00ff] text-white'}`}>Revolução</span>
                     <h3 className={`text-3xl md:text-5xl font-black mb-4 leading-tight ${isLight ? 'text-gray-800' : 'text-white'}`}>Regulamento Técnico</h3>
                     <p className={`text-lg mb-8 ${isLight ? 'text-gray-700' : 'text-gray-300'}`}>
                         Motores 50% elétricos, adeus ao MGU-H, carros mais curtos e leves (-30kg). Descubra o "Manual Override" que substituirá o DRS.
                     </p>
-                    <div className={`flex items-center gap-2 font-bold ${isLight ? 'text-purple-800' : 'text-[#ff0055]'}`}>Ler Guia Completo <ArrowRight size={20} /></div>
+                    <div className={`flex items-center gap-2 font-bold ${isLight ? 'text-purple-800' : 'text-[#bd00ff]'}`}>Ler Guia Completo <ArrowRight size={20} /></div>
                 </div>
             </BentoCard>
 
@@ -129,10 +129,10 @@ const SeasonPage = ({ theme }) => {
             </div>
 
             {/* 3. CALENDÁRIO COMPLETO 2026 (Estilizado) */}
-            <div className={`lg:col-span-3 p-8 rounded-[2.5rem] ${isLight ? 'bg-[#FFF5F8] border-2 border-[#F7B8C8]' : 'bg-[#1a1a20] border border-[#ff0055]'}`}>
+            <div className={`lg:col-span-3 p-8 rounded-[2.5rem] ${isLight ? 'bg-[#FFF5F8] border-2 border-[#F7B8C8]' : 'bg-[#1a1a20] border border-[#bd00ff]'}`}>
                <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-3">
-                     <Globe size={32} className={isLight ? 'text-pink-500' : 'text-[#ff0055]'} />
+                     <Globe size={32} className={isLight ? 'text-pink-500' : 'text-[#bd00ff]'} />
                      <div>
                         <h3 className={`text-2xl font-black uppercase ${isLight ? 'text-gray-800' : 'text-white'}`}>Calendário 2026</h3>
                         <p className={`text-sm ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>24 Corridas • 6 Sprints • 5 Continentes</p>
@@ -148,7 +148,7 @@ const SeasonPage = ({ theme }) => {
                {/* Grid de Corridas */}
                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {CALENDAR_2026.map((race) => (
-                    <div key={race.round} className={`p-4 rounded-2xl flex items-center justify-between group hover:scale-[1.02] transition-transform ${isLight ? 'bg-white shadow-sm' : 'bg-white/5 border border-white/5 hover:border-[#ff0055]/50'}`}>
+                    <div key={race.round} className={`p-4 rounded-2xl flex items-center justify-between group hover:scale-[1.02] transition-transform ${isLight ? 'bg-white shadow-sm' : 'bg-white/5 border border-white/5 hover:border-[#bd00ff]/50'}`}>
                        <div>
                           <div className="flex items-center gap-2 mb-1">
                              <span className="text-xl">{race.flag}</span>
@@ -206,9 +206,9 @@ const SeasonPage = ({ theme }) => {
            </BentoCard>
 
            {/* Card Classificação */}
-           <BentoCard theme={theme} to="/standings" className={`md:col-span-1 cursor-pointer group ${isLight ? 'bg-[#FBCAD2]' : 'bg-[#1a1a20] border-[#ff0055] hover:border-[#ff0055]'}`}>
+           <BentoCard theme={theme} to="/standings" className={`md:col-span-1 cursor-pointer group ${isLight ? 'bg-[#FBCAD2]' : 'bg-[#1a1a20] border-[#bd00ff] hover:border-[#bd00ff]'}`}>
               <div className="flex flex-col h-full justify-between">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${isLight ? 'bg-white/60 text-pink-800' : 'bg-[#ff0055]/20 text-[#ff0055]'}`}><Trophy size={24} /></div>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${isLight ? 'bg-white/60 text-pink-800' : 'bg-[#bd00ff]/20 text-[#bd00ff]'}`}><Trophy size={24} /></div>
                   <div><h3 className={`text-2xl font-black uppercase mb-1 ${isLight ? 'text-pink-900' : 'text-white'}`}>Classificação</h3><p className="text-xs font-medium opacity-70">Pilotos & Construtores</p></div>
                   <div className={`mt-4 text-sm font-bold py-2 px-3 rounded-lg flex items-center justify-between ${isLight ? 'bg-white/50 text-pink-900' : 'bg-black/30 text-white'}`}><span>P1. Norris</span><span>408 pts</span></div>
               </div>
@@ -220,7 +220,7 @@ const SeasonPage = ({ theme }) => {
            </BentoCard>
 
            {/* Card Grid Atual */}
-           <BentoCard theme={theme} to="/drivers" className={`md:col-span-2 flex flex-col justify-center cursor-pointer group ${isLight ? 'bg-white border-2 hover:border-gray-200' : 'bg-[#121217] border border-[#333] hover:border-[#ff0055]'}`}>
+           <BentoCard theme={theme} to="/drivers" className={`md:col-span-2 flex flex-col justify-center cursor-pointer group ${isLight ? 'bg-white border-2 hover:border-gray-200' : 'bg-[#121217] border border-[#333] hover:border-[#bd00ff]'}`}>
               <div className="flex flex-col sm:flex-row items-center justify-between gap-6 w-full">
                 <div className="flex items-center gap-5">
                    <div className={`p-4 rounded-2xl ${isLight ? 'bg-gray-100' : 'bg-[#1a1a20]'}`}><Users size={28} className={isLight ? 'text-gray-700' : 'text-white'} /></div>

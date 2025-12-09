@@ -20,13 +20,13 @@ const ArticleDetail = ({ theme = "light" }) => {
 
   const textPrimary = isLight ? "text-gray-800" : "text-white";
   const textSecondary = isLight ? "text-gray-500" : "text-gray-400";
-  const accentColor = isLight ? "text-[#D8C4F0]" : "text-[#ab0eff]";
+  const accentColor = isLight ? "text-[#D8C4F0]" : "text-[#caa5d8]";
   const cardBg = isLight
     ? "bg-white shadow-xl"
     : "bg-[#121217] border border-[#333]";
   const badgeBg = isLight
     ? "bg-[#F7B8C8] text-white"
-    : "bg-[#ab0eff]/20 text-[#ab0eff] border border-[#ab0eff]/50";
+    : "bg-[#caa5d8]/20 text-[#caa5d8] border border-[#caa5d8]/50";
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -93,7 +93,7 @@ const ArticleDetail = ({ theme = "light" }) => {
       >
         <div
           className={`animate-spin rounded-full h-12 w-12 border-t-4 ${
-            isLight ? "border-[#F7B8C8]" : "border-[#ab0eff]"
+            isLight ? "border-[#F7B8C8]" : "border-[#caa5d8]"
           }`}
         />
         <p className={`mt-4 font-bold ${textSecondary}`}>
@@ -230,7 +230,7 @@ const ArticleDetail = ({ theme = "light" }) => {
               className={`text-xl md:text-2xl font-bold leading-relaxed mb-10 pl-6 border-l-4 italic ${
                 isLight
                   ? "text-gray-700 border-[#F7B8C8]"
-                  : "text-gray-200 border-[#ab0eff]"
+                  : "text-gray-200 border-[#caa5d8]"
               }`}
             >
               "{post.excerpt}"

@@ -8,7 +8,7 @@ const ManifestoPage = ({ theme }) => {
   // Cores
   const textMain = isLight ? 'text-gray-900' : 'text-white';
   const textSec = isLight ? 'text-gray-600' : 'text-gray-400';
-  const accent = '#ff0055'; // Rosa Neon
+  const accent = '#bd00ff'; // Rosa Neon
   const bgPage = isLight ? 'bg-[#FFF5F8]' : 'bg-[#050505]';
 
   return (
@@ -65,7 +65,7 @@ const ManifestoPage = ({ theme }) => {
                {[
                  { icon: TrendingUp, text: "Dados importam.", color: "text-blue-500" },
                  { icon: Search, text: "Fontes importam.", color: "text-green-500" },
-                 { icon: Heart, text: "Os fãs importam.", color: "text-[#ff0055]" } // Rosa Neon
+                 { icon: Heart, text: "Os fãs importam.", color: "text-[#bd00ff]" } // Rosa Neon
                ].map((item, idx) => (
                  <div key={idx} className={`p-6 rounded-3xl flex flex-col items-center text-center gap-3 transition-transform hover:-translate-y-1 ${isLight ? 'bg-white shadow-lg' : 'bg-[#1e1e24] border border-[#333]'}`}>
                     <item.icon size={32} className={item.color} />

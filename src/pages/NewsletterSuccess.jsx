@@ -10,7 +10,7 @@ const NewsletterSuccess = ({ theme }) => {
     ? 'bg-white shadow-xl border-2 border-transparent' 
     : 'bg-[#121217] border border-[#333] shadow-[0_0_20px_rgba(255,0,85,0.1)]';
 
-  const iconBg = isLight ? 'bg-green-100 text-green-600' : 'bg-[#ff0055]/20 text-[#ff0055] border border-[#ff0055]/30';
+  const iconBg = isLight ? 'bg-green-100 text-green-600' : 'bg-[#bd00ff]/20 text-[#bd00ff] border border-[#bd00ff]/30';
 
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 animate-in fade-in zoom-in duration-500">
@@ -18,7 +18,7 @@ const NewsletterSuccess = ({ theme }) => {
       <div className={`max-w-md w-full p-8 md:p-12 rounded-[3rem] text-center relative overflow-hidden ${cardBg}`}>
         
         {/* Confete/Brilho de fundo */}
-        <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent ${isLight ? 'via-[#F7B8C8]' : 'via-[#ff0055]'} to-transparent opacity-50`}></div>
+        <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent ${isLight ? 'via-[#F7B8C8]' : 'via-[#bd00ff]'} to-transparent opacity-50`}></div>
 
         <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ${iconBg}`}>
            <CheckCircle size={40} />
@@ -40,7 +40,7 @@ const NewsletterSuccess = ({ theme }) => {
 
         <Link 
           to="/" 
-          className={`inline-flex items-center justify-center w-full py-4 rounded-2xl font-bold text-lg transition-transform active:scale-95 ${isLight ? 'bg-gray-900 text-white hover:bg-black' : 'bg-[#ff0055] text-white hover:bg-[#d40046] shadow-lg shadow-[#ff0055]/20'}`}
+          className={`inline-flex items-center justify-center w-full py-4 rounded-2xl font-bold text-lg transition-transform active:scale-95 ${isLight ? 'bg-gray-900 text-white hover:bg-black' : 'bg-[#bd00ff] text-white hover:bg-[#d40046] shadow-lg shadow-[#bd00ff]/20'}`}
         >
            Voltar para a Home
         </Link>

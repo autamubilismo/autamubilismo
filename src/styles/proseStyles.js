@@ -14,7 +14,7 @@ export const proseClass = (isLight) => `
   ${
     isLight
       ? "prose-h2:border-l-4 prose-h2:border-[#F7B8C8] prose-h2:pl-4"
-      : "prose-h2:border-l-4 prose-h2:border-[#ab0eff] prose-h2:pl-4"
+      : "prose-h2:border-l-4 prose-h2:border-[#caa5d8] prose-h2:pl-4"
   }
 
   ${
@@ -28,7 +28,7 @@ export const proseClass = (isLight) => `
   ${
     isLight
       ? "prose-a:text-[#D8C4F0] hover:prose-a:text-[#F7B8C8]"
-      : "prose-a:text-[#00fff2] hover:prose-a:text-[#ab0eff]"
+      : "prose-a:text-[#00fff2] hover:prose-a:text-[#caa5d8]"
   }
   prose-a:no-underline hover:prose-a:underline
 
@@ -44,14 +44,14 @@ export const proseClass = (isLight) => `
   ${
     isLight
       ? "prose-blockquote:bg-[#FFF5F8] prose-blockquote:border-l-4 prose-blockquote:border-[#F7B8C8] prose-blockquote:text-[#6B7280]"
-      : "prose-blockquote:bg-[#1e1e24] prose-blockquote:border-l-4 prose-blockquote:border-[#ab0eff] prose-blockquote:text-[#9CA3AF]"
+      : "prose-blockquote:bg-[#1e1e24] prose-blockquote:border-l-4 prose-blockquote:border-[#caa5d8] prose-blockquote:text-[#9CA3AF]"
   }
 
   /* LISTAS */
   ${
     isLight
       ? "prose-li:marker:text-[#F7B8C8]"
-      : "prose-li:marker:text-[#ab0eff]"
+      : "prose-li:marker:text-[#caa5d8]"
   }
 
   /* IMAGENS */

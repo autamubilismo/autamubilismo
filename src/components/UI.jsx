@@ -15,6 +15,7 @@ export const ScrollToTop = () => {
 };
 
 // --- COMPONENTES ---
+// LOGO ATUALIZADO: Tamanho Original + Flexibilidade
 // LOGO ATUALIZADO: Estático, Sem Efeitos e Gigante (3x Maior)
 export const LogoHelmet = ({ theme, size = 'normal' }) => {
   const isLight = theme === 'light';
@@ -181,7 +182,7 @@ export const BentoCard = ({
           {subtitle && (
             <span
               className={`text-xs font-bold tracking-wider uppercase mb-1 block ${
-                isLight ? 'text-[#D8C4F0]' : 'text-[#ab0eff]'
+                isLight ? 'text-[#D8C4F0]' : 'text-[#caa5d8]'
               }`}
             >
               {subtitle}
@@ -251,7 +252,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
 
   const borderClass = isLight
     ? 'border-4 border-[#F7B8C8] shadow-[0_8px_20px_-5px_rgba(247,184,200,0.6)]'
-    : 'border-4 border-[#ab0eff] shadow-[0_0_15px_rgba(254,136,221,0.5)]';
+    : 'border-4 border-[#caa5d8] shadow-[0_0_15px_rgba(254,136,221,0.5)]';
 
   const backBgClass = isLight
     ? 'bg-gradient-to-b from-[#FFF5F8] to-[#FEE4EF]'
@@ -309,7 +310,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
               className={`w-20 h-20 rounded-full overflow-hidden border-4 ${
                 isLight
                   ? 'border-white shadow-md'
-                  : 'border-[#ab0eff] shadow-[0_0_10px_#ab0eff]'
+                  : 'border-[#caa5d8] shadow-[0_0_10px_#caa5d8]'
               }`}
             >
               <img
@@ -330,7 +331,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
                 className={`inline-block mt-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
                   isLight
                     ? 'bg-white text-gray-600 shadow-sm'
-                    : 'bg-[#ab0eff]/20 text-[#ab0eff] border border-[#ab0eff]/30'
+                    : 'bg-[#caa5d8]/20 text-[#caa5d8] border border-[#caa5d8]/30'
                 }`}
               >
                 {driver.team}
@@ -348,7 +349,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
             className={`p-4 rounded-2xl text-sm italic font-medium relative mx-1 ${
               isLight
                 ? 'bg-white text-gray-600 shadow-inner'
-                : 'bg-[#1a1a20] text-gray-300 border border-[#ab0eff]/30'
+                : 'bg-[#1a1a20] text-gray-300 border border-[#caa5d8]/30'
             }`}
           >
             <span className="absolute -top-3 -left-1 text-4xl opacity-20 font-serif">
@@ -363,7 +364,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
           <div className="mt-1 transform -rotate-3 opacity-40">
             <p
               className={`font-handwriting text-3xl ${
-                isLight ? 'text-gray-400' : 'text-[#ab0eff]'
+                isLight ? 'text-gray-400' : 'text-[#caa5d8]'
               }`}
               style={{ fontFamily: 'cursive' }}
             >
@@ -376,68 +377,135 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
   );
 };
 
-// 1. PRÓXIMA CORRIDA: Abu Dhabi (Fim de Temporada)
+
+// 1. PRÓXIMA CORRIDA: Estilo "Blocos/Cards" (Estruturado)
 export const NextRaceWidget = ({ theme }) => {
   const isLight = theme === 'light';
-  const boxClass = isLight ? 'bg-white/60 backdrop-blur-md text-gray-800 border border-gray-200' : 'bg-[#1a1a20] border border-[#ff0055]/30 text-white shadow-[0_0_10px_rgba(255,0,85,0.2)]';
-  const accentColor = isLight ? 'text-[#9F7AEA]' : 'text-[#ff0055]';
-  const strokeColor = isLight ? 'stroke-[#9F7AEA]' : 'stroke-[#ff0055]';
-  const badgeClass = isLight ? 'bg-[#D8C4F0] text-gray-800' : 'bg-[#ff0055] text-white shadow-[0_0_10px_#ff0055]';
+  
+  const BRAND = {
+    roxo: '#caa5d8',
+    rosa: '#fac4dc',
+    // Cores Neon para Dark Mode
+    neonRoxo: '#bd00ff',
+    neonCyan: '#00fff2' 
+  };
 
-  // Agenda para Yas Marina (Sem Sprint)
   const sessions = [
-    { day: 'SEX', date: '05 Dez', name: 'Treino Livre 1', time: '06:30', type: 'FP' },
-    { day: 'SEX', date: '05 Dez', name: 'Treino Livre 2', time: '10:00', type: 'FP' },
-    { day: 'SÁB', date: '06 Dez', name: 'Treino Livre 3', time: '07:30', type: 'FP' },
-    { day: 'SÁB', date: '06 Dez', name: 'Classificação', time: '11:00', type: 'Q', highlight: true },
-    { day: 'DOM', date: '07 Dez', name: 'Grande Prêmio', time: '10:00', type: 'RACE', main: true },
+    { day: 'SEX', date: '05', name: 'Treino Livre 1', time: '06:30', type: 'FP' },
+    { day: 'SEX', date: '05', name: 'Treino Livre 2', time: '10:00', type: 'FP' },
+    { day: 'SÁB', date: '06', name: 'Treino Livre 3', time: '07:30', type: 'FP' },
+    { day: 'SÁB', date: '06', name: 'Classificação', time: '11:00', type: 'Q', highlight: true },
+    { day: 'DOM', date: '07', name: 'Grande Prêmio', time: '10:00', type: 'RACE', main: true },
   ];
 
   return (
-    <div className={`h-full flex flex-col p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
+    <div className={`h-full flex flex-col p-4 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
        
-       {/* 🏁 ALTERAÇÃO AQUI: Bandeira de Fundo (Flag) em vez de traçado */}
-       <div className={`absolute -right-8 -bottom-8 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-teal-900' : 'text-[#ff0055]'}`}>
+       <div className={`absolute -right-6 -bottom-10 opacity-[0.07] pointer-events-none rotate-12 transition-colors duration-500 ${isLight ? 'text-purple-900' : 'text-[#bd00ff]'}`}>
           <Flag size={200} />
        </div>
 
-       <div className="flex justify-between items-end mb-4 z-10">
+       {/* CABEÇALHO */}
+       <div className="flex justify-between items-end mb-3 z-10 relative">
           <div>
-             <span className={`text-[10px] font-black uppercase tracking-widest opacity-60 flex items-center gap-1 mb-1`}><MapPin size={10} /> Yas Marina, EAU</span>
-             <h3 className={`text-2xl font-black leading-none ${accentColor}`}>ABU DHABI</h3>
+             <span className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.2em] opacity-50 mb-0.5">
+                <MapPin size={9} /> Yas Marina, EAU
+             </span>
+             <h3 
+               className="text-2xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text"
+               style={{ 
+                 backgroundImage: isLight 
+                   ? `linear-gradient(to right, ${BRAND.roxo}, ${BRAND.rosa})` 
+                   : `linear-gradient(to right, #fff, ${BRAND.neonRoxo})` // Branco para Roxo Neon
+               }}
+             >
+               ABU DHABI
+             </h3>
           </div>
-          <div className={`px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 border ${isLight ? 'bg-white border-gray-200 text-gray-500' : 'bg-black/30 border-white/10 text-gray-400'}`}><Clock size={10} /> Brasília (BRT)</div>
+          
+          <div className={`px-2 py-0.5 rounded-full text-[8px] font-bold flex items-center gap-1 border shadow-sm ${isLight ? 'bg-white border-gray-100 text-gray-400' : 'bg-white/10 border-white/5 text-gray-300'}`}>
+             <Clock size={9} /> 
+             <span>BRT</span>
+          </div>
        </div>
-       <div className="flex-1 flex flex-col justify-between gap-1.5 z-10 overflow-y-auto custom-scrollbar">
-          {sessions.map((session, i) => (
-             <div key={i} className={`flex items-center justify-between p-2 rounded-xl border transition-all ${session.main ? `border ${accentColor}/30 shadow-sm bg-white/10` : `${isLight ? 'bg-gray-50' : 'bg-white/5'} border-transparent opacity-80 hover:opacity-100`}`}>
-                <div className="flex items-center gap-3">
-                   <div className={`flex flex-col items-center justify-center w-9 h-9 rounded-lg font-bold leading-none ${session.main ? (isLight ? 'bg-teal-600 text-white' : 'bg-[#ff0055] text-white') : (isLight ? 'bg-white text-gray-400' : 'bg-white/10 text-gray-500')}`}>
-                      <span className="text-[8px] uppercase">{session.day}</span><span className="text-xs">{session.date.split(' ')[0]}</span>
-                   </div>
-                   <div><span className={`block text-xs font-bold ${session.main ? '' : 'opacity-90'}`}>{session.name}</span></div>
-                </div>
-                <div className={`font-mono font-bold ${session.main ? 'text-lg' : 'text-sm opacity-70'}`}>{session.time}</div>
-             </div>
-          ))}
+
+       {/* LISTA EM BLOCOS */}
+       <div className="flex-1 flex flex-col justify-between gap-1.5 z-10">
+          {sessions.map((session, i) => {
+             const isMain = session.main;
+             const isHighlight = session.highlight;
+
+             let blockStyle = {};
+             let textClass = "";
+             
+             if (isMain) {
+                // CORRIDA
+                blockStyle = { 
+                   background: isLight 
+                     ? `linear-gradient(90deg, ${BRAND.roxo}, ${BRAND.rosa})` 
+                     : `linear-gradient(90deg, ${BRAND.neonRoxo}, #9d00ff)`, // Degradê Roxo Neon
+                   border: 'none',
+                   boxShadow: isLight ? '0 4px 10px -2px rgba(0,0,0,0.1)' : `0 0 15px ${BRAND.neonRoxo}40`
+                };
+                textClass = "text-white";
+             } else if (isHighlight) {
+                // QUALI
+                blockStyle = {
+                   background: isLight ? 'white' : 'rgba(255,255,255,0.03)',
+                   borderColor: isLight ? BRAND.roxo : BRAND.neonCyan, // Cyan para destaque no Dark
+                   borderWidth: '1px',
+                   borderStyle: 'solid'
+                };
+                textClass = isLight ? "text-gray-800" : "text-white";
+             } else {
+                // TREINOS
+                blockStyle = {
+                   background: isLight ? 'white' : 'rgba(255,255,255,0.02)',
+                   borderColor: isLight ? '#f3f4f6' : 'transparent', 
+                   borderWidth: '1px',
+                   borderStyle: 'solid'
+                };
+                textClass = isLight ? "text-gray-500" : "text-gray-500";
+             }
+
+             return (
+               <div key={i} className={`flex items-center justify-between p-2 rounded-xl transition-all duration-300 group hover:scale-[1.01] ${isMain ? '' : 'shadow-sm'}`} style={blockStyle}>
+                  <div className="flex items-center gap-3">
+                     <div className={`flex flex-col items-center justify-center w-8 h-8 rounded-lg font-bold leading-none ${isMain ? 'bg-white/20 text-white backdrop-blur-sm' : (isLight ? 'bg-gray-50 text-gray-400' : 'bg-white/5 text-gray-500')}`}>
+                        <span className="text-[7px] uppercase opacity-70 tracking-wider">{session.day}</span>
+                        <span className="text-xs">{session.date}</span>
+                     </div>
+                     <div className={textClass}>
+                        <span className={`block text-[10px] ${isMain || isHighlight ? 'font-black uppercase tracking-wide' : 'font-bold'}`}>{session.name}</span>
+                     </div>
+                  </div>
+                  <div className={`font-mono font-bold tracking-tight ${isMain ? 'text-sm text-white' : 'text-xs ' + (isLight ? 'text-gray-400' : 'text-gray-500')}`}>{session.time}</div>
+               </div>
+             );
+          })}
        </div>
     </div>
   );
 };
 
 
-// NEWS WIDGET (ENXUTO, 3–4 NOTÍCIAS)
-export const NewsWidget = ({ theme = 'light', onNewsClick }) => {
+// NEWS WIDGET (Cores Exatas da Marca)
+export const NewsWidget = ({ theme = 'light', onNewsClick, posts }) => {
   const isLight = theme === 'light';
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
+  const [internalNews, setInternalNews] = useState([]);
+  const [loading, setLoading] = useState(!posts);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (posts && posts.length > 0) {
+      setLoading(false);
+      return;
+    }
     async function load() {
       try {
         const data = await fetchNews();
-        setNews(data || []);
+        setInternalNews(data || []);
       } catch (err) {
         console.error(err);
         setError('Erro ao carregar notícias');
@@ -446,105 +514,97 @@ export const NewsWidget = ({ theme = 'light', onNewsClick }) => {
       }
     }
     load();
-  }, []);
+  }, [posts]);
 
-  // ALTURA FIXA AQUI — resolve tudo
+  const dataToShow = (posts && posts.length > 0) ? posts : internalNews;
+
+  // --- 🎨 CORES: PASTEL (Light) vs NEON (Dark) ---
+  const BRAND = {
+    // Light (Pastel)
+    roxo: '#caa5d8',
+    rosa: '#fac4dc',
+    azul: '#bbd3f2',
+    // Dark (Neon)
+    neonRoxo: '#bd00ff',
+    neonCyan: '#00fff2'
+  };
+
+  const getBadgeStyle = (type) => {
+    if (type === 'article') {
+      // OPINIÃO
+      return isLight
+        ? { background: `linear-gradient(90deg, ${BRAND.roxo}, ${BRAND.rosa})`, color: 'white' }
+        // DARK: Borda Roxa Neon + Texto Brilhante
+        : { borderColor: BRAND.neonRoxo, color: BRAND.neonRoxo, backgroundColor: 'transparent', border: '1px solid', boxShadow: `0 0 5px ${BRAND.neonRoxo}40` };
+    }
+    // NEWS
+    return isLight
+      ? { backgroundColor: BRAND.azul, color: 'white' }
+      // DARK: Borda Cyan Neon
+      : { borderColor: BRAND.neonCyan, color: BRAND.neonCyan, backgroundColor: 'transparent', border: '1px solid', boxShadow: `0 0 5px ${BRAND.neonCyan}40` };
+  };
+
+  const getCategoryName = (item) => {
+    if (!item.category) return item.type === 'article' ? "Opinião" : "News";
+    return typeof item.category === 'object' ? item.category.title : item.category;
+  };
+
   return (
-    <div className="flex flex-col h-[320px]">  
-      {/* Cabeçalho */}
+    <div className="flex flex-col h-full min-h-0">  
       <div className="flex items-center justify-between mb-3 px-1 shrink-0">
         <div className="flex items-center gap-2">
-          <Newspaper
-            size={18}
-            className={isLight ? 'text-gray-700' : 'text-[#ff9ad0]'}
-          />
-          <span
-            className={`text-sm font-black uppercase tracking-widest ${
-              isLight ? 'text-gray-800' : 'text-white'
-            }`}
-          >
+          <Newspaper size={18} className={isLight ? 'text-gray-700' : 'text-[#bd00ff]'} />
+          <span className={`text-sm font-black uppercase tracking-widest ${isLight ? 'text-gray-800' : 'text-white'}`}>
             Últimas do paddock
           </span>
         </div>
       </div>
 
-      {/* Área scrollável */}
       <div className="flex-1 flex flex-col gap-2.5 overflow-y-auto pr-1.5 custom-scrollbar">
-        {loading && (
-          <div className="flex-1 flex items-center justify-center opacity-70 gap-2">
-            <Loader2 size={24} className="animate-spin" />
-          </div>
-        )}
+        {loading && <div className="flex-1 flex items-center justify-center opacity-70 gap-2"><Loader2 size={24} className="animate-spin" /></div>}
+        
+        {!loading && dataToShow.length === 0 && <div className="flex-1 flex items-center justify-center text-xs opacity-50">Nenhuma notícia encontrada.</div>}
 
-        {error && (
-          <div className="flex-1 flex items-center justify-center text-xs text-red-400">
-            {error}
-          </div>
-        )}
-
-        {!loading && !error && news.slice(0, 4).map((item) => (
+        {!loading && dataToShow.slice(0, 5).map((item) => (
           <button
-            key={item._id}
-            onClick={() =>
-              onNewsClick?.({
-                slug: item.slug,
-                id: item._id,
-                title: item.title,
-              })
-            }
-            className={`group relative flex gap-3 p-3 rounded-xl text-left border transition-all duration-200 cursor-pointer
-              ${
-                isLight
-                  ? "bg-gray-50 hover:bg-white border-gray-200 hover:border-[#D8C4F0] hover:shadow-sm"
-                  : "bg-[#0a0a12]/60 hover:bg-[#0a0a12] border-[#262626] hover:border-[#ab0eff]/50"
+            key={item._id || item.id}
+            onClick={() => onNewsClick?.({ slug: item.slug?.current || item.slug, id: item._id || item.id, title: item.title, type: item.type })}
+            className={`group relative flex gap-3 p-3 rounded-xl text-left border transition-all duration-300 cursor-pointer shrink-0
+              ${isLight
+                  ? "bg-white border-gray-100 hover:shadow-md hover:-translate-y-0.5"
+                  : "bg-[#0a0a12]/40 hover:bg-[#0a0a12] border-[#262626]"
               }`}
+            style={{ borderColor: isLight ? '#f3f4f6' : '#262626' }}
+            onMouseEnter={(e) => {
+                if(isLight) e.currentTarget.style.borderColor = BRAND.roxo;
+                else e.currentTarget.style.borderColor = BRAND.neonRoxo; // Borda Neon no Hover
+            }}
+            onMouseLeave={(e) => {
+                if(isLight) e.currentTarget.style.borderColor = '#f3f4f6';
+                else e.currentTarget.style.borderColor = '#262626';
+            }}
           >
-            {item.image && (
-              <div className="w-14 h-14 shrink-0 rounded-lg overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
+            {(item.image || item.mainImage) && (
+              <div className="w-14 h-14 shrink-0 rounded-lg overflow-hidden relative shadow-sm">
+                <img src={item.image || item.mainImage?.asset?.url} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
               </div>
             )}
 
             <div className="flex-1 min-w-0 flex flex-col justify-center">
-              {item.category && (
-                <span
-                  className={`text-[10px] font-semibold uppercase tracking-wider mb-1 w-fit px-1.5 py-0.5 rounded ${
-                    isLight
-                      ? "bg-gray-200 text-gray-600"
-                      : "bg-[#1a1a1f] text-gray-400"
-                  }`}
-                >
-                  {item.category}
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md shadow-sm" style={getBadgeStyle(item.type)}>
+                  {getCategoryName(item)}
                 </span>
-              )}
-
-              <h4
-                className={`text-sm font-bold leading-snug line-clamp-2 ${
-                  isLight
-                    ? "text-gray-900"
-                    : "text-gray-100 group-hover:text-white"
-                }`}
-              >
+                <span className={`text-[9px] font-medium opacity-60 ${isLight ? "text-gray-500" : "text-gray-400"}`}>
+                  {item.publishedAt ? new Date(item.publishedAt).toLocaleDateString('pt-BR', {day: '2-digit', month: 'short'}) : 'Hoje'}
+                </span>
+              </div>
+              <h4 className={`text-sm font-bold leading-snug line-clamp-2 ${isLight ? "text-gray-800" : "text-gray-100 group-hover:text-white"}`}>
                 {item.title}
               </h4>
-
-              <span
-                className={`text-[10px] font-medium ${
-                  isLight ? "text-gray-400" : "text-gray-500"
-                }`}
-              >
-                Agora
-              </span>
             </div>
-
-            <ChevronRight
-              size={14}
-              className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100"
-            />
+            
+            <ChevronRight size={14} className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1" style={{ color: isLight ? BRAND.roxo : BRAND.neonCyan }} />
           </button>
         ))}
       </div>
@@ -574,10 +634,19 @@ export const FanzoneWidget = ({ theme }) => {
   );
 };
 
+// SEASON WIDGET (Visual Cute + Cores Oficiais da F1)
 export const SeasonWidget = ({ theme }) => {
   const isLight = theme === 'light';
   
-  // DADOS FINAIS 2025
+  const BRAND = {
+    roxo: '#caa5d8',
+    rosa: '#fac4dc',
+    azul: '#bbd3f2',
+    neonRoxo: '#bd00ff',
+    neonCyan: '#00fff2'
+  };
+
+  // DADOS (Cores Oficiais mantidas)
   const topDrivers = [
     { pos: 1, name: 'Lando Norris', team: 'MCL', pts: 408, color: '#FF8700' },
     { pos: 2, name: 'Verstappen', team: 'RBR', pts: 396, color: '#1E41FF' },
@@ -592,88 +661,87 @@ export const SeasonWidget = ({ theme }) => {
     { name: 'Red Bull', pts: 426, color: '#1E41FF', width: '53%' },
   ];
 
-  const cardBg = isLight ? 'bg-gray-50 border border-gray-100' : 'bg-white/5 border border-white/5';
-  const textColor = isLight ? 'text-gray-800' : 'text-white';
-  const subText = isLight ? 'text-gray-500' : 'text-gray-400';
-  const accentColor = isLight ? 'text-teal-700' : 'text-[#ff0055]';
-  const accentBg = isLight ? 'bg-teal-100' : 'bg-[#ff0055]/20';
-  
-  // Cor do Destaque do Campeão (Dourado/Amarelo)
-  const championColor = '#FFD700';
+  const boxClass = isLight ? 'bg-white border-gray-100' : 'bg-white/5 border-white/5';
+  const subText = isLight ? 'text-gray-400' : 'text-gray-500';
 
   return (
-    <div className={`h-full flex flex-col justify-between p-5 relative overflow-hidden text-left ${textColor}`}>
-      {/* Efeito de Fundo */}
-      <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full opacity-10 blur-xl ${isLight ? 'bg-teal-500' : 'bg-[#ff0055]'}`} />
+    <div className={`h-full flex flex-col justify-between p-4 relative overflow-hidden text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
+      
+      {/* Decoração: Cyan no Dark Mode */}
+      <div 
+        className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20 blur-3xl pointer-events-none"
+        style={{ background: isLight ? BRAND.azul : BRAND.neonCyan }}
+      />
       
       {/* CABEÇALHO */}
-      <div className="flex justify-between items-start mb-3 z-10">
-         <div className="flex items-center gap-2">
-            <div className={`p-1.5 rounded-lg ${accentBg} ${accentColor}`}>
-               <Trophy size={14} />
+      <div className="flex justify-between items-start mb-2 z-10 relative">
+         <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-xl shadow-sm" style={{ backgroundColor: isLight ? 'white' : 'rgba(255,255,255,0.1)' }}>
+               <Trophy size={16} style={{ color: isLight ? BRAND.roxo : BRAND.neonRoxo }} />
             </div>
             <div>
-               <h3 className="text-sm font-black uppercase leading-none">Temporada 2025</h3>
-               <p className={`text-[10px] font-bold ${subText}`}>Finalizada</p>
+               <h3 className="text-sm font-black uppercase leading-none tracking-wide text-transparent bg-clip-text"
+                 style={{ backgroundImage: isLight ? `linear-gradient(to right, ${BRAND.roxo}, ${BRAND.rosa})` : `linear-gradient(to right, #fff, ${BRAND.neonRoxo})` }}>
+                 Temporada 2025
+               </h3>
+               <p className={`text-[9px] font-bold uppercase tracking-wider mt-0.5 ${subText}`}>Finalizada</p>
             </div>
          </div>
          <div className="text-right">
-            <span className="text-[9px] font-bold opacity-60 uppercase text-yellow-500">Campeão</span>
-            <div className="font-black text-sm text-yellow-500">L. NORRIS 👑</div>
+            <span className="text-[8px] font-bold opacity-50 uppercase tracking-widest block mb-0.5">Campeão</span>
+            <div className="flex items-center justify-end gap-1">
+               <span className="font-black text-xs">L. NORRIS</span>
+               <span className="text-sm">👑</span>
+            </div>
          </div>
       </div>
 
-      {/* CORPO: Leaderboard */}
-      <div className="flex-1 flex flex-col gap-3 z-10 justify-center">
-         
-         {/* Top 5 Pilotos */}
-         <div className={`rounded-xl p-2.5 ${cardBg}`}>
-            <div className="flex items-center justify-between mb-2 opacity-70">
-               <span className="text-[9px] font-black uppercase tracking-widest">Top 5 Pilotos</span>
+      {/* CORPO */}
+      <div className="flex-1 flex flex-col gap-2 z-10 justify-center">
+         <div className={`rounded-2xl p-3 border shadow-sm ${boxClass}`}>
+            <div className="flex items-center justify-between mb-2 opacity-50">
+               <span className="text-[8px] font-black uppercase tracking-[0.2em]">Top 5 Pilotos</span>
             </div>
             <div className="space-y-1.5">
                {topDrivers.map((d) => (
-                  <div key={d.pos} className="flex items-center justify-between text-xs">
-                     <div className="flex items-center gap-2">
-                        {/* Se for P1, destaca em Amarelo/Ouro */}
-                        <span className={`font-mono w-2 opacity-50 text-[9px] ${d.pos === 1 ? 'text-yellow-500 font-bold' : ''}`}>{d.pos}</span>
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: d.color }}></div>
-                        <span className={`truncate max-w-[80px] ${d.pos === 1 ? 'font-black' : 'font-medium'}`}>{d.name}</span>
+                  <div key={d.pos} className="flex items-center justify-between text-xs group">
+                     <div className="flex items-center gap-2.5">
+                        <span className={`font-mono w-3 text-[9px] ${d.pos === 1 ? 'font-black text-yellow-500' : 'opacity-40'}`}>{d.pos}</span>
+                        <div className="w-1.5 h-1.5 rounded-full shadow-[0_0_5px_rgba(0,0,0,0.1)]" style={{ backgroundColor: d.color }}></div>
+                        <span className={`truncate max-w-[90px] ${d.pos === 1 ? 'font-bold' : 'font-medium'}`}>{d.name}</span>
                      </div>
-                     <span className="font-mono opacity-80 text-[10px]">{d.pts}</span>
+                     <span className="font-mono opacity-60 text-[9px] group-hover:opacity-100 transition-opacity">{d.pts} pts</span>
                   </div>
                ))}
             </div>
          </div>
 
-         {/* Construtores (Campeã) */}
-         <div className={`rounded-xl p-2.5 ${cardBg}`}>
-            <div className="flex items-center gap-2 mb-2 opacity-70">
-               <Wrench size={10} className="text-blue-400" />
-               <span className="text-[9px] font-black uppercase tracking-widest">Construtores (Campeã)</span>
+         <div className={`rounded-2xl p-3 border shadow-sm ${boxClass}`}>
+            <div className="flex items-center gap-1.5 mb-2 opacity-50">
+               <Wrench size={10} />
+               <span className="text-[8px] font-black uppercase tracking-[0.2em]">Construtores</span>
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-2">
                {constructors.map((t, i) => (
                   <div key={i}>
-                     <div className="flex justify-between text-[9px] font-bold mb-0.5">
-                        <span>{t.name}</span>
-                        <span className="font-mono">{t.pts}</span>
+                     <div className="flex justify-between text-[9px] font-bold mb-1 px-0.5">
+                        <span style={{ color: t.color }}>{t.name}</span>
+                        <span className="font-mono opacity-60">{t.pts}</span>
                      </div>
-                     <div className={`w-full h-1 rounded-full ${isLight?'bg-gray-200':'bg-white/10'}`}>
-                        <div className="h-full rounded-full" style={{ width: t.width, backgroundColor: t.color }}></div>
+                     <div className={`w-full h-1.5 rounded-full overflow-hidden ${isLight ? 'bg-gray-100' : 'bg-white/10'}`}>
+                        <div className="h-full rounded-full transition-all duration-1000" style={{ width: t.width, backgroundColor: t.color }}/>
                      </div>
                   </div>
                ))}
             </div>
          </div>
-
       </div>
       
-      {/* Footer: Botão para Regulamento 2026 */}
-      <div className="mt-2 pt-2 border-t border-white/5">
-         <Link to="/regulation" className={`flex items-center justify-between w-full p-2 rounded-lg text-[10px] font-black uppercase transition-colors ${isLight ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' : 'bg-white/10 hover:bg-white/20 text-white'}`}>
-            <span>Ver Regulamento 2026</span>
-            <ArrowRight size={12} />
+      {/* Footer */}
+      <div className="mt-1 pt-1 flex justify-center">
+         <Link to="/regulation" className={`text-[9px] font-bold uppercase tracking-widest py-1 px-3 rounded-full transition-all flex items-center gap-1 group ${isLight ? 'text-gray-400 hover:text-gray-600 hover:bg-gray-50' : 'text-gray-500 hover:text-white hover:bg-white/10'}`}>
+           Ver Regulamento 2026
+           <ArrowRight size={8} className="transition-transform group-hover:translate-x-0.5" />
          </Link>
       </div>
     </div>
@@ -687,7 +755,7 @@ export const ContactWidget = ({ theme }) => {
       <MessageSquare
         size={32}
         className={`mb-3 ${
-          isLight ? 'text-pink-500' : 'text-[#ab0eff]'
+          isLight ? 'text-pink-500' : 'text-[#caa5d8]'
         }`}
       />
       <h3
@@ -790,11 +858,12 @@ export const NewsletterWidget = ({ theme }) => {
 
         <button
           type="submit"
-          className={`px-8 py-3 rounded-xl font-bold text-sm transition-transform active:scale-95 whitespace-nowrap shrink-0 ${
-            isLight
-              ? "bg-gray-900 text-white hover:bg-black"
-              : "bg-[#ab0eff] text-white hover:bg-[#a000db]"
-          }`}
+          className={`px-8 py-3 rounded-xl font-bold text-sm transition-transform active:scale-95 whitespace-nowrap shrink-0 text-white shadow-lg
+            ${isLight
+              ? "bg-gray-900 hover:bg-black"
+              // DARK MODE: Degradê igual ao logo (Roxo -> Rosa Neon)
+              : "bg-gradient-to-r from-[#bd00ff] to-[#d946ef] hover:opacity-90 shadow-[0_0_15px_rgba(189,0,255,0.4)]"
+            }`}
         >
           Assinar
         </button>

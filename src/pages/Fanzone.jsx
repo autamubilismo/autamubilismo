@@ -58,7 +58,7 @@ const FanzonePage = ({ theme }) => {
            <h3 className={`text-3xl font-black uppercase tracking-tighter ${isLight ? 'text-gray-800' : 'text-white'}`}>
              Sua Coleção
            </h3>
-           <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600' : 'bg-[#ab0eff]/20 text-[#ab0eff] border border-[#ab0eff]/30'}`}>
+           <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600' : 'bg-[#caa5d8]/20 text-[#caa5d8] border border-[#caa5d8]/30'}`}>
              Grid 2025
            </span>
         </div>
