@@ -17,9 +17,23 @@ export default async function handler(req, res) {
   // A API key vem do ambiente do SERVIDOR (segura)
   const apiKey = process.env.BREVO_API_KEY;
 
+  // DEBUG DETALHADO
+  console.log('=== DEBUG INÍCIO ===');
+  console.log('Todas as variáveis disponíveis:', Object.keys(process.env));
+  console.log('Variáveis com BREVO:', Object.keys(process.env).filter(k => k.includes('BREVO')));
+  console.log('API Key existe?', !!apiKey);
+  console.log('API Key (primeiros 20 chars):', apiKey ? apiKey.substring(0, 20) + '...' : 'UNDEFINED');
+  console.log('=== DEBUG FIM ===');
+
   if (!apiKey) {
-    console.error('BREVO_API_KEY não configurada no servidor');
-    return res.status(500).json({ error: 'Configuração do servidor incompleta' });
+    console.error('❌ BREVO_API_KEY não encontrada');
+    return res.status(500).json({ 
+      error: 'Configuração do servidor incompleta',
+      debug: {
+        availableKeys: Object.keys(process.env).filter(k => !k.includes('VERCEL')),
+        hasBrevoKey: false
+      }
+    });
   }
 
   try {
