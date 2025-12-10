@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+User-agent: FacebookExternalHit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+Sitemap: https://www.autamubilismo.com/sitemap.xml
