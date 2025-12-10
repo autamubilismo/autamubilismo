@@ -25,7 +25,8 @@ const [status, setStatus] = useState("idle"); // idle | loading | success | erro
   try {
     setStatus("loading");
 
-    const res = await fetch("/api/contact", {
+    // 🎯 Agora chama SUA API, não a Brevo diretamente
+    const res = await fetch("/api/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,17 +34,22 @@ const [status, setStatus] = useState("idle"); // idle | loading | success | erro
       body: JSON.stringify({ name, email, message }),
     });
 
+    const data = await res.json();
+
     if (res.ok) {
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
+      console.log("✅ Email enviado! ID:", data.messageId);
     } else {
+      console.error("❌ Erro Brevo:", data);
       setStatus("error");
     }
   } catch (err) {
-    console.error(err);
+    console.error("❌ Erro geral:", err);
     setStatus("error");
   }
 };
+
 
 
   // Ícone do TikTok Customizado
