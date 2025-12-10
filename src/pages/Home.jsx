@@ -24,15 +24,12 @@ const Home = ({ theme }) => {
         const newsData = await client.fetch(`*[_type == "news"] | order(publishedAt desc)[0...4]`);
         const formattedNews = newsData.map((item) => ({
           ...item,
-          type: 'news', // Marca como notícia
-          // Garante data (se não tiver publishedAt, usa criação)
+          type: 'news',
           dateObj: new Date(item.publishedAt || item._createdAt || Date.now()),
-          // Tenta pegar a imagem, se der erro retorna null
           image: item.image ? urlFor(item.image).width(400).url() : null,
         }));
 
         // 2. Busca ARTIGOS (Pega os 4 mais recentes)
-        // Nota: uso coalesce(image, mainImage) para tentar os dois nomes comuns de imagem no Sanity
         const articlesData = await client.fetch(`
           *[_type == "article"] | order(publishedAt desc)[0...4] {
             _id,
@@ -49,21 +46,17 @@ const Home = ({ theme }) => {
 
         const formattedArticles = articlesData.map((item) => ({
           ...item,
-          type: 'article', // Marca como artigo
+          type: 'article',
           dateObj: new Date(item.publishedAt || item._createdAt || Date.now()),
-          // Imagem já vem como URL da query acima
           image: item.image || null, 
         }));
 
-        console.log("📰 Notícias encontradas:", formattedNews.length);
-        console.log("📝 Artigos encontrados:", formattedArticles.length);
-
-        // 3. JUNTAR E ORDENAR
-        // DICA: Se você quer garantir que apareçam artigos, pode aumentar o slice do Widget depois
-        const combinedFeed = [...formattedNews, ...formattedArticles]
-          .sort((a, b) => b.dateObj - a.dateObj); // Mais recente primeiro
-
-        console.log("Feed Final Combinado:", combinedFeed);
+        // 3. JUNTAR E ORDENAR (Mix equilibrado: 2 de cada + sobra)
+        const topNews = formattedNews.slice(0, 3);
+        const topArticles = formattedArticles.slice(0, 3);
+        
+        const combinedFeed = [...topNews, ...topArticles]
+          .sort((a, b) => b.dateObj - a.dateObj); 
 
         setFeed(combinedFeed);
       } catch (err) {
@@ -96,22 +89,25 @@ const Home = ({ theme }) => {
         md:grid-cols-3
         lg:grid-cols-4
         gap-4 md:gap-6
-        auto-rows-[230px]
+        /* 👇 CORREÇÃO CRUCIAL AQUI 👇 */
+        /* Mobile: Altura Automática (Cresce com o conteúdo) */
+        auto-rows-auto 
+        /* Desktop: Altura Fixa (Bento Grid alinhado) */
+        md:auto-rows-[230px]
         animate-in fade-in zoom-in duration-300
       "
     >
-      {/* 1. NEWS WIDGET (Alimenta com o feed misturado) */}
+      {/* 1. NEWS WIDGET */}
       <BentoCard
         theme={theme}
-        className="lg:col-span-2 lg:row-span-2"
+        /* Mobile: min-h-[400px] para caber as 5 notícias sem scroll interno */
+        className="lg:col-span-2 lg:row-span-2 min-h-[420px] md:min-h-0" 
       >
         <NewsWidget
           theme={theme}
           posts={feed}
           onNewsClick={(post) => {
-            // Lógica de clique corrigida
             const route = post.type === 'article' ? '/articles' : '/news';
-            // Suporte a slug objeto ou string
             const slugFinal = post.slug?.current || post.slug;
             navigate(`${route}/${slugFinal}`);
           }}
@@ -122,7 +118,8 @@ const Home = ({ theme }) => {
       <BentoCard
         theme={theme}
         to="/season"
-        className="lg:col-span-1 lg:row-span-2 cursor-pointer"
+        /* Mobile: min-h-[300px] para caber os treinos */
+        className="lg:col-span-1 lg:row-span-2 cursor-pointer min-h-[340px] md:min-h-0"
       >
         <NextRaceWidget theme={theme} />
       </BentoCard>
@@ -131,7 +128,8 @@ const Home = ({ theme }) => {
       <BentoCard
         theme={theme}
         to="/season"
-        className="lg:col-span-1 lg:row-span-2 overflow-hidden relative p-0 group cursor-pointer"
+        /* Mobile: min-h-[300px] para caber a tabela */
+        className="lg:col-span-1 lg:row-span-2 overflow-hidden relative p-0 group cursor-pointer min-h-[340px] md:min-h-0"
       >
         <SeasonWidget theme={theme} />
       </BentoCard>
@@ -139,7 +137,7 @@ const Home = ({ theme }) => {
       {/* 4. MANIFESTO */}
       <BentoCard 
         theme={theme} 
-        to="/manifesto"
+        to={`/articles/${manifesto?.slug?.current || 'manifesto'}`} 
         className="md:col-span-2 md:row-span-1 cursor-pointer relative overflow-hidden min-h-[220px]"
       >
          {manifesto?.imageUrl && (
@@ -150,18 +148,18 @@ const Home = ({ theme }) => {
          )}
          <div className="flex items-center justify-between h-full relative z-10 p-6 gap-4">
             <div className="flex-1">
-               <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-3 w-fit ${theme === 'light' ? 'bg-[#F7B8C8] text-white' : 'border border-[#bd00ff] text-[#bd00ff]'}`}>
+               <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-3 w-fit ${theme === 'light' ? 'bg-[#F7B8C8] text-white' : 'border border-[#ff0055] text-[#ff0055]'}`}>
                  {manifesto?.categoryTitle || 'Editorial'}
                </span>
                <h2 className={`text-2xl md:text-3xl font-black leading-tight ${theme === 'light' ? 'text-gray-800' : 'text-white'}`}>
-                 {manifesto?.title || <>Correndo como uma <span className={theme === 'light' ? 'text-[#D8C4F0]' : 'text-[#bd00ff]'}>Garota.</span></>}
+                 {manifesto?.title || <>Correndo como uma <span className={theme === 'light' ? 'text-[#D8C4F0]' : 'text-[#ff0055]'}>Garota.</span></>}
                </h2>
             </div>
             <div className="flex-shrink-0">
                <img 
                  src="/img/web/helmet.png" 
                  alt="Autamubilismo" 
-                 className={`w-20 h-20 md:w-24 md:h-24 object-contain transition-transform duration-500 group-hover:rotate-12 ${!isLight ? 'drop-shadow-[0_0_15px_#bd00ff]' : ''}`}
+                 className={`w-20 h-20 md:w-24 md:h-24 object-contain transition-transform duration-500 group-hover:rotate-12 ${!isLight ? 'drop-shadow-[0_0_15px_#ff0055]' : ''}`}
                />
             </div>
          </div>

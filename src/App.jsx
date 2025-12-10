@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Menu, Sun, Moon, Search } from 'lucide-react';
 import { LogoHelmet, NavigationOverlay, SearchOverlay, ScrollToTop } from './components/UI';
 
-// 👇 1. IMPORTANTE: Importamos os links sociais aqui
+// 👇 IMPORTANTE: Importamos os links sociais
 import { SOCIAL_LINKS } from './data';
 
 // --- IMPORTAÇÃO DAS PÁGINAS ---
@@ -65,7 +65,7 @@ export default function App() {
     backgroundSize: '40px 40px'
   };
 
-  // Cor sólida para o Header
+  // Cor sólida para o Header e Footer
   const headerBg = theme === 'light' ? 'bg-[#FFF5F8]' : 'bg-[#141416]';
   const footerBg = theme === 'light' ? 'bg-white border-t border-gray-100' : 'bg-[#0a0a0e] border-t border-[#333]';
 
@@ -78,43 +78,55 @@ export default function App() {
         <NavigationOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} theme={theme} setView={() => {}} />
         <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} theme={theme} />
         
-        {/* --- HEADER ANTIGO (O QUE VOCÊ GOSTOU) --- */}
-        <div className={`w-full ${headerBg} relative z-20`}>
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
-            {/* O SEGREDO ESTÁ AQUI: min-h-[180px] */}
-            <header className="flex justify-between items-center min-h-[180px]">
+        {/* --- HEADER --- */}
+        <div className={`w-full ${headerBg} relative z-20 bg-cover bg-center transition-all duration-300`}>
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 md:py-6">
+            
+            {/* Header Flex Container */}
+            <header className="flex justify-between items-center min-h-[100px] md:min-h-[180px]">
               
-              {/* ESQUERDA */}
+              {/* ESQUERDA: Menu */}
               <div className="flex-1 flex justify-start">
                 <button 
                   onClick={() => setMenuOpen(true)} 
-                  className={`group flex items-center gap-3 px-5 py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 backdrop-blur-md text-gray-800 shadow-md border-2 border-transparent hover:border-[#F7B8C8]' : 'bg-[#1a1a20]/80 backdrop-blur-md text-[#00fff2] border border-[#333] hover:border-[#00fff2] hover:shadow-[0_0_20px_rgba(0,255,242,0.4)]'}`}
+                  className={`group flex items-center gap-2 md:gap-3 px-3 md:px-5 py-2 md:py-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 backdrop-blur-md text-gray-800 shadow-md border-2 border-transparent hover:border-[#F7B8C8]' : 'bg-[#1a1a20]/80 backdrop-blur-md text-[#00fff2] border border-[#333] hover:border-[#00fff2] hover:shadow-[0_0_20px_rgba(0,255,242,0.4)]'}`}
                 >
-                  <Menu size={24} className={`transition-transform duration-300 group-hover:rotate-90`} />
-                  <span className="font-black tracking-widest text-sm">MENU</span>
+                  <Menu size={20} className={`md:w-6 md:h-6 transition-transform duration-300 group-hover:rotate-90`} />
+                  <span className="font-black tracking-widest text-xs md:text-sm hidden sm:inline">MENU</span>
                 </button>
               </div>
 
-              {/* CENTRO (LOGO GIGANTE) */}
+              {/* CENTRO: Logo (Capacete no Mobile / Gigante no Desktop) */}
               <div className="flex-0 cursor-pointer z-20 transform hover:scale-105 transition-transform duration-500">
-                <Link to="/">
-                   <LogoHelmet theme={theme} size="large" />
+                <Link to="/" className="flex items-center justify-center">
+                   
+                   {/* MOBILE: Capacete */}
+                   <img
+                     src="/img/web/helmet.png" 
+                     alt="Autamubilismo"
+                     className="h-12 w-auto block md:hidden object-contain"
+                   />
+
+                   {/* DESKTOP: Logo Gigante */}
+                   <div className="hidden md:block">
+                      <LogoHelmet theme={theme} size="large" />
+                   </div>
                 </Link>
               </div>
 
-              {/* DIREITA */}
-              <div className="flex-1 flex justify-end gap-3">
+              {/* DIREITA: Busca e Tema */}
+              <div className="flex-1 flex justify-end gap-2 md:gap-3">
                 <button 
                   onClick={() => setSearchOpen(true)} 
-                  className={`p-3 rounded-full flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-white/80 backdrop-blur-md shadow-sm text-gray-400 hover:text-gray-600' : 'bg-[#1a1a20]/80 backdrop-blur-md text-gray-500 border border-[#333] hover:text-[#00fff2]'}`}
+                  className={`p-2 md:p-3 rounded-full flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-white/80 backdrop-blur-md shadow-sm text-gray-400 hover:text-gray-600' : 'bg-[#1a1a20]/80 backdrop-blur-md text-gray-500 border border-[#333] hover:text-[#00fff2]'}`}
                 >
-                  <Search size={24} />
+                  <Search size={20} className="md:w-6 md:h-6" />
                 </button>
                 <button 
                   onClick={toggleTheme} 
-                  className={`p-3 rounded-full transition-all duration-300 ${theme === 'light' ? 'bg-white/80 backdrop-blur-md shadow-lg text-yellow-500' : 'bg-[#1a1a20]/80 backdrop-blur-md text-[#00fff2] border border-[#333]'}`}
+                  className={`p-2 md:p-3 rounded-full transition-all duration-300 ${theme === 'light' ? 'bg-white/80 backdrop-blur-md shadow-lg text-yellow-500' : 'bg-[#1a1a20]/80 backdrop-blur-md text-[#00fff2] border border-[#333]'}`}
                 >
-                  {theme === 'light' ? <Sun size={24} /> : <Moon size={24} />}
+                  {theme === 'light' ? <Sun size={20} className="md:w-6 md:h-6" /> : <Moon size={20} className="md:w-6 md:h-6" />}
                 </button>
               </div>
 
@@ -164,7 +176,7 @@ export default function App() {
             </main>
           </div>
 
-          {/* 👇 FOOTER 👇 */}
+          {/* FOOTER */}
           <footer className={`mt-20 pt-16 pb-8 ${footerBg} relative z-20`}>
              <div className="max-w-7xl mx-auto px-6 md:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-center md:text-left">
@@ -172,7 +184,7 @@ export default function App() {
                    {/* Coluna 1: Logo */}
                    <div className="col-span-1 flex flex-col items-center md:items-start">
                       <div className="w-32 mb-4 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-                         <LogoHelmet theme={theme} />
+                         <LogoHelmet theme={theme} size="normal" />
                       </div>
                       <p className={`text-sm ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'} leading-relaxed`}>
                          O automobilismo além da pista.
@@ -199,11 +211,9 @@ export default function App() {
                       </ul>
                    </div>
 
-                   {/* 👇 COLUNA 4: Conecte-se 👇 */}
+                   {/* Coluna 4: Conecte-se */}
                    <div>
                       <h4 className={`font-bold uppercase tracking-widest mb-4 text-xs ${theme === 'light' ? 'text-gray-900' : 'text-white'}`}>Conecte-se</h4>
-                      
-                      {/* Ícones Sociais */}
                       <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
                         {SOCIAL_LINKS && SOCIAL_LINKS.map((social) => (
                           <a 
@@ -222,8 +232,6 @@ export default function App() {
                           </a>
                         ))}
                       </div>
-
-                      {/* Links extras */}
                       <ul className={`space-y-2 text-sm font-medium ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
                          <li><Link to="/contact" className="hover:underline hover:text-[#caa5d8]">Fale Conosco</Link></li>
                          <li><Link to="/credits" className="hover:underline hover:text-[#caa5d8]">Créditos</Link></li>
