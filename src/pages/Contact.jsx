@@ -5,23 +5,46 @@ import { BackButton } from '../components/UI';
 const ContactPage = ({ theme }) => {
   const isLight = theme === 'light';
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+const [status, setStatus] = useState("idle"); // idle | loading | success | error
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { name, email, message } = formData;
-    if (!name || !email || !message) {
-        alert("Por favor, preencha todos os campos!");
-        return;
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { name, email, message } = formData;
+
+  if (!name || !email || !message) {
+    alert("Por favor, preencha todos os campos!");
+    return;
+  }
+
+  try {
+    setStatus("loading");
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    if (res.ok) {
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      setStatus("error");
     }
-    const subject = `Contato do Site: ${name}`;
-    const body = `Nome: ${name}%0D%0AE-mail: ${email}%0D%0A%0D%0AMensagem:%0D%0A${message}`;
-    window.location.href = `mailto:seu@email.com?subject=${subject}&body=${body}`;
-  };
+  } catch (err) {
+    console.error(err);
+    setStatus("error");
+  }
+};
+
 
   // Ícone do TikTok Customizado
   const TikTokIcon = ({ size = 20 }) => (
@@ -155,9 +178,29 @@ const ContactPage = ({ theme }) => {
                ></textarea>
             </div>
 
-            <button className={`w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg mt-4 ${isLight ? 'bg-gray-900 text-white hover:bg-black shadow-gray-300' : 'bg-[#caa5d8] text-white hover:bg-[#e06fc0] shadow-[#caa5d8]/20'}`}>
-               Enviar Mensagem <Send size={20} />
-            </button>
+            <button
+  type="submit"
+  disabled={status === "loading"}
+  className={`w-full py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-transform active:scale-95 shadow-lg mt-4 ${
+    isLight
+      ? "bg-gray-900 text-white hover:bg-black shadow-gray-300 disabled:opacity-60 disabled:hover:bg-gray-900"
+      : "bg-[#caa5d8] text-white hover:bg-[#e06fc0] shadow-[#caa5d8]/20 disabled:opacity-60 disabled:hover:bg-[#caa5d8]"
+  }`}
+>
+  {status === "loading" ? "Enviando..." : "Enviar Mensagem"} <Send size={20} />
+</button>
+{status === "success" && (
+  <p className="text-sm text-green-500 mt-2">
+    Mensagem enviada com sucesso! 💌
+  </p>
+)}
+
+{status === "error" && (
+  <p className="text-sm text-red-500 mt-2">
+    Opa… deu erro ao enviar. Tenta de novo em alguns minutos.
+  </p>
+)}
+
           </form>
         </div>
 
