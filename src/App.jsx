@@ -34,6 +34,7 @@ import CuriositiesPage from './pages/Curiosities';
 import MultimediaPage from './pages/Multimedia';
 import CreditsPage from './pages/Credits';
 import NewsletterSuccess from './pages/NewsletterSuccess';
+import Calendar2026Page from './pages/Calendar2026Page';
 
 export default function App() {
   const [theme, setTheme] = useState('light');
@@ -171,6 +172,7 @@ export default function App() {
                 <Route path="/credits" element={<CreditsPage theme={theme} />} />
                 <Route path="/newsletter-success" element={<NewsletterSuccess theme={theme} />} />
                 <Route path="/manifesto" element={<ManifestoPage theme={theme} />} />
+                <Route path="/calendar-2026" element={<Calendar2026Page theme={theme} />} />
                 <Route path="*" element={<GenericPage title="Página não encontrada" theme={theme} />} />
               </Routes>
             </main>

@@ -122,7 +122,7 @@ export const NavigationOverlay = ({ isOpen, onClose, theme }) => {
 
               <ChevronRight
                 className={`ml-auto opacity-0 group-hover:opacity-100 transition-opacity hidden md:block ${
-                  isLight ? 'text-[#D8C4F0]' : 'text-[#bd00ff]'
+                  isLight ? 'text-[#D8C4F0]' : 'text-[#caa5d8]'
                 }`}
               />
             </Link>
