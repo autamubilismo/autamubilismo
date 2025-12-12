@@ -1,19 +1,6 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// sanitização simples pra evitar HTML estranho
-function escapeHtml(str = "") {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
 export default async function handler(req, res) {
-  // só aceita POST
   if (req.method !== "POST") {
     return res.status(405).json({ ok: false, error: "Method not allowed" });
   }
@@ -21,64 +8,39 @@ export default async function handler(req, res) {
   try {
     const { name, email, message } = req.body || {};
 
-    // validação básica
     if (!name || !email || !message) {
       return res.status(400).json({ ok: false, error: "Missing fields" });
     }
 
-    // envs obrigatórias
-    if (!process.env.RESEND_API_KEY) {
+    const apiKey = process.env.RESEND_API_KEY;
+    const to = process.env.CONTACT_TO_EMAIL;
+    const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+
+    if (!apiKey) {
       return res.status(500).json({ ok: false, error: "Missing RESEND_API_KEY" });
     }
-
-    if (!process.env.CONTACT_TO_EMAIL) {
+    if (!to) {
       return res.status(500).json({ ok: false, error: "Missing CONTACT_TO_EMAIL" });
     }
 
-    const fromEmail =
-      process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+    const resend = new Resend(apiKey);
 
-    const safeName = escapeHtml(name);
-    const safeEmail = escapeHtml(email);
-    const safeMessage = escapeHtml(message);
-
-    const text = `
-Novo contato — Autamubilismo
-
-Nome: ${name}
-Email: ${email}
-
-Mensagem:
-${message}
-`;
-
-    const { error } = await resend.emails.send({
+    const result = await resend.emails.send({
       from: `Autamubilismo <${fromEmail}>`,
-      to: [process.env.CONTACT_TO_EMAIL],
+      to: [to],
       reply_to: `${name} <${email}>`,
       subject: `📩 Contato — ${name}`,
-      text,
-      html: `
-        <div style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; line-height: 1.5;">
-          <h2>Novo contato — Autamubilismo</h2>
-          <p><strong>Nome:</strong> ${safeName}</p>
-          <p><strong>Email:</strong> ${safeEmail}</p>
-          <p><strong>Mensagem:</strong></p>
-          <div style="white-space: pre-wrap; padding: 12px; border: 1px solid #eee; border-radius: 12px;">
-            ${safeMessage}
-          </div>
-        </div>
-      `,
+      text: `Novo contato — Autamubilismo\n\nNome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}\n`,
     });
 
-    if (error) {
-      console.error("❌ Resend error:", error);
-      return res.status(502).json({ ok: false, error: "Resend failed" });
+    if (result?.error) {
+      console.error("Resend error:", result.error);
+      return res.status(502).json({ ok: false, error: "Resend failed", details: result.error });
     }
 
-    return res.status(200).json({ ok: true });
+    return res.status(200).json({ ok: true, id: result?.data?.id });
   } catch (err) {
-    console.error("❌ Server error:", err);
-    return res.status(500).json({ ok: false, error: "Server error" });
+    console.error("CONTACT API crash:", err);
+    return res.status(500).json({ ok: false, error: "Server error", details: String(err?.message || err) });
   }
 }
