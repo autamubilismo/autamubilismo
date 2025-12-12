@@ -7,6 +7,9 @@ import {
 import { LOGO_LIGHT_URL, LOGO_DARK_URL, SITE_MAP } from '../data';
 import { fetchNews } from '../services/newsService';
 
+import { useState } from "react";
+import { Mail } from "lucide-react";
+
 // --- HELPERS ---
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -789,37 +792,33 @@ export const NewsletterWidget = ({ theme }) => {
   const isLight = theme === "light";
 
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(null); // idle | loading | success | error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("BREVO KEY →", import.meta.env.BREVO_API_KEY);
-
     if (!email) return;
 
-    const apiKey = import.meta.env.BREVO_API_KEY;
-
     try {
-      const res = await fetch("https://api.brevo.com/v3/contacts", {
+      setStatus("loading");
+
+      // 🔥 AGORA chama o SEU backend
+      const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "api-key": apiKey,
         },
-        body: JSON.stringify({
-          email,
-          listIds: [2], // <-- coloque aqui o ID da lista no Brevo
-        }),
+        body: JSON.stringify({ email }),
       });
 
-      if (res.ok) {
-        setStatus("success");
-        setEmail("");
-      } else {
-        setStatus("error");
+      if (!res.ok) {
+        throw new Error("Newsletter failed");
       }
+
+      setStatus("success");
+      setEmail("");
     } catch (error) {
+      console.error(error);
       setStatus("error");
     }
   };
@@ -829,7 +828,9 @@ export const NewsletterWidget = ({ theme }) => {
       <div className="flex items-center gap-4 shrink-0">
         <div
           className={`p-4 rounded-full ${
-            isLight ? "bg-white shadow-sm" : "bg-[#1a1a20] border border-[#333]"
+            isLight
+              ? "bg-white shadow-sm"
+              : "bg-[#1a1a20] border border-[#333]"
           }`}
         >
           <Mail size={24} />
@@ -858,14 +859,16 @@ export const NewsletterWidget = ({ theme }) => {
 
         <button
           type="submit"
+          disabled={status === "loading"}
           className={`px-8 py-3 rounded-xl font-bold text-sm transition-transform active:scale-95 whitespace-nowrap shrink-0 text-white shadow-lg
-            ${isLight
-              ? "bg-gray-900 hover:bg-black"
-              // DARK MODE: Degradê igual ao logo (Roxo -> Rosa Neon)
-              : "bg-gradient-to-r from-[#bd00ff] to-[#d946ef] hover:opacity-90 shadow-[0_0_15px_rgba(189,0,255,0.4)]"
-            }`}
+            ${
+              isLight
+                ? "bg-gray-900 hover:bg-black"
+                : "bg-gradient-to-r from-[#bd00ff] to-[#d946ef] hover:opacity-90 shadow-[0_0_15px_rgba(189,0,255,0.4)]"
+            }
+          `}
         >
-          Assinar
+          {status === "loading" ? "Assinando..." : "Assinar"}
         </button>
       </form>
 
@@ -883,4 +886,3 @@ export const NewsletterWidget = ({ theme }) => {
     </div>
   );
 };
-
