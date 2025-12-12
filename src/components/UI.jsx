@@ -7,8 +7,7 @@ import {
 import { LOGO_LIGHT_URL, LOGO_DARK_URL, SITE_MAP } from '../data';
 import { fetchNews } from '../services/newsService';
 
-import { useState } from "react";
-import { Mail } from "lucide-react";
+
 
 // --- HELPERS ---
 export const ScrollToTop = () => {
