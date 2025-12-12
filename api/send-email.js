@@ -1,94 +1,71 @@
-// api/send-email.js (para Vercel Serverless Functions)
-// ou pages/api/send-email.js (para Next.js)
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+function escapeHtml(str = "") {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
 export default async function handler(req, res) {
-  // Só aceita POST
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Método não permitido' });
-  }
-
-  const { name, email, message } = req.body;
-
-  // Validação
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
-  }
-
-  // A API key vem do ambiente do SERVIDOR (segura)
-  const apiKey = process.env.BREVO_API_KEY;
-
-  // DEBUG DETALHADO
-  console.log('=== DEBUG INÍCIO ===');
-  console.log('Todas as variáveis disponíveis:', Object.keys(process.env));
-  console.log('Variáveis com BREVO:', Object.keys(process.env).filter(k => k.includes('BREVO')));
-  console.log('API Key existe?', !!apiKey);
-  console.log('API Key (primeiros 20 chars):', apiKey ? apiKey.substring(0, 20) + '...' : 'UNDEFINED');
-  console.log('=== DEBUG FIM ===');
-
-  if (!apiKey) {
-    console.error('❌ BREVO_API_KEY não encontrada');
-    return res.status(500).json({ 
-      error: 'Configuração do servidor incompleta',
-      debug: {
-        availableKeys: Object.keys(process.env).filter(k => !k.includes('VERCEL')),
-        hasBrevoKey: false
-      }
-    });
+  if (req.method !== "POST") {
+    return res.status(405).json({ ok: false, error: "Method not allowed" });
   }
 
   try {
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': apiKey, // Key segura no servidor
-      },
-      body: JSON.stringify({
-        sender: {
-          name: 'Autamubilismo',
-          email: 'autamubilismo@gmail.com',
-        },
-        to: [
-          {
-            email: 'autamubilismo@gmail.com',
-            name: 'Autamubilismo',
-          },
-        ],
-        replyTo: {
-          email,
-          name,
-        },
-        subject: `Novo contato pelo site – ${name}`,
-        htmlContent: `
-          <h2>Novo contato pelo site Autamubilismo</h2>
-          <p><strong>Nome:</strong> ${name}</p>
-          <p><strong>E-mail:</strong> ${email}</p>
-          <p><strong>Mensagem:</strong></p>
-          <p>${message.replace(/\n/g, '<br />')}</p>
-        `,
-      }),
-    });
+    const { name, email, message } = req.body || {};
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error('Erro Brevo:', data);
-      return res.status(response.status).json({ 
-        error: 'Erro ao enviar email',
-        details: data 
-      });
+    if (!name || !email || !message) {
+      return res.status(400).json({ ok: false, error: "Missing fields" });
     }
 
-    return res.status(200).json({ 
-      success: true,
-      messageId: data.messageId 
+    const to = process.env.CONTACT_TO_EMAIL;
+    const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
+
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ ok: false, error: "Missing RESEND_API_KEY" });
+    }
+    if (!to) {
+      return res.status(500).json({ ok: false, error: "Missing CONTACT_TO_EMAIL" });
+    }
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = escapeHtml(message);
+
+    const subject = `📩 Contato — ${name}`;
+
+    const { data, error } = await resend.emails.send({
+      from: `Autamubilismo <${fromEmail}>`,
+      to: [to],
+      replyTo: email, // você responde direto pro visitante
+      subject,
+      text: `Novo contato no Autamubilismo\n\nNome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}\n`,
+      html: `
+        <div style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; line-height: 1.5;">
+          <h2 style="margin: 0 0 12px;">Novo contato — Autamubilismo</h2>
+          <p style="margin: 0 0 6px;"><strong>Nome:</strong> ${safeName}</p>
+          <p style="margin: 0 0 6px;"><strong>Email:</strong> ${safeEmail}</p>
+          <p style="margin: 12px 0 6px;"><strong>Mensagem:</strong></p>
+          <div style="white-space: pre-wrap; padding: 12px; border: 1px solid #eee; border-radius: 12px;">
+            ${safeMessage}
+          </div>
+        </div>
+      `,
     });
 
-  } catch (error) {
-    console.error('Erro geral:', error);
-    return res.status(500).json({ 
-      error: 'Erro interno do servidor',
-      message: error.message 
-    });
+    if (error) {
+      console.error("Resend error:", error);
+      return res.status(502).json({ ok: false, error: "Resend failed" });
+    }
+
+    return res.status(200).json({ ok: true, messageId: data?.id });
+  } catch (err) {
+    console.error("Server error:", err);
+    return res.status(500).json({ ok: false, error: "Server error" });
   }
 }

@@ -14,7 +14,7 @@ const BackButton = ({ to, theme }) => {
       to={to}
       className={`group mb-8 inline-flex items-center gap-2 text-sm font-bold transition-all hover:pl-2 ${
         isLight
-          ? 'text-gray-400 hover:text-pink-500' // Ajustado: Roxo neon removido, agora é um rosa suave
+          ? 'text-gray-400 hover:text-[#fac4dc]' // Ajustado: Roxo neon removido, agora é um rosa suave
           : 'text-gray-500 hover:text-[#00fff2]'
       }`}
     >
@@ -134,7 +134,7 @@ const SeasonPage = ({ theme }) => {
               Temporada
             </h2>
             <div className="flex items-center gap-3">
-              <span className={`text-xl font-bold tracking-widest uppercase flex items-center gap-2 ${isLight ? 'text-pink-500' : 'text-[#bd00ff]'}`}>
+              <span className={`text-xl font-bold tracking-widest uppercase flex items-center gap-2 ${isLight ? 'text-[#fac4dc]' : 'text-[#bd00ff]'}`}>
                 {year === '2026' ? 'Nova Era Híbrida' : 'O Caminho para a Glória'}
                 {year === '2026' && <Sparkles size={18} className="animate-pulse" />}
               </span>
@@ -261,7 +261,7 @@ const SeasonPage = ({ theme }) => {
                         <td className="p-4">
                            <div className="flex flex-col">
                              {/* Ajustado: Hover agora é pink-500, mais suave */}
-                             <span className={`font-bold text-base transition-colors ${isLight ? 'group-hover:text-pink-500' : 'group-hover:text-[#bd00ff]'}`}>{d.name}</span>
+                             <span className={`font-bold text-base transition-colors ${isLight ? 'group-hover:text-[#fac4dc]' : 'group-hover:text-[#bd00ff]'}`}>{d.name}</span>
                              <span className={`text-[10px] uppercase font-bold tracking-wide mt-0.5 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>{d.team}</span>
                            </div>
                         </td>
