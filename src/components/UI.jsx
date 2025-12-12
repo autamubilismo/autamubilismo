@@ -794,11 +794,11 @@ export const NewsletterWidget = ({ theme }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("BREVO KEY →", import.meta.env.VITE_BREVO_API_KEY);
+    console.log("BREVO KEY →", import.meta.env.BREVO_API_KEY);
 
     if (!email) return;
 
-    const apiKey = import.meta.env.VITE_BREVO_API_KEY;
+    const apiKey = import.meta.env.BREVO_API_KEY;
 
     try {
       const res = await fetch("https://api.brevo.com/v3/contacts", {
