@@ -14,6 +14,7 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required().min(10),
     }),
+
     defineField({
       name: 'slug',
       title: 'Slug (URL)',
@@ -24,6 +25,7 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'category',
       title: 'Categoria',
@@ -38,6 +40,7 @@ export default defineType({
         ],
       },
     }),
+
     defineField({
       name: 'publishedAt',
       title: 'Data de publicação',
@@ -45,12 +48,14 @@ export default defineType({
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: 'author',
       title: 'Autor(a)',
       type: 'string',
       initialValue: 'Tamu',
     }),
+
     defineField({
       name: 'image',
       title: 'Imagem de capa',
@@ -64,6 +69,7 @@ export default defineType({
         }),
       ],
     }),
+
     defineField({
       name: 'excerpt',
       title: 'Resumo / Lide',
@@ -71,17 +77,47 @@ export default defineType({
       rows: 3,
       description: 'Primeiro parágrafo de impacto, que aparece na home.',
     }),
+
+    // ✅ SEO / Open Graph
+    defineField({
+      name: 'seo',
+      title: 'SEO / Open Graph',
+      type: 'object',
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: 'metaTitle',
+          title: 'Título OG / SEO',
+          type: 'string',
+        }),
+        defineField({
+          name: 'metaDescription',
+          title: 'Descrição OG / SEO',
+          type: 'text',
+          rows: 3,
+        }),
+        defineField({
+          name: 'ogImage',
+          title: 'Imagem Open Graph',
+          type: 'image',
+          options: { hotspot: true },
+        }),
+      ],
+    }),
+
     defineField({
       name: 'content',
       title: 'Conteúdo',
       type: 'blockContent',
     }),
+
     defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
       of: [{ type: 'string' }],
     }),
+
     defineField({
       name: 'featured',
       title: 'Destaque editorial?',
@@ -89,6 +125,7 @@ export default defineType({
       initialValue: true,
     }),
   ],
+
   preview: {
     select: {
       title: 'title',
@@ -96,6 +133,7 @@ export default defineType({
       media: 'image',
     },
   },
+
   orderings: [
     {
       title: 'Mais recentes',

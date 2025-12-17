@@ -139,7 +139,7 @@ const Home = ({ theme }) => {
       {/* 4. MANIFESTO */}
       <BentoCard
         theme={theme}
-        to={`/articles/${manifesto?.slug?.current || 'manifesto'}`}
+        to="/manifesto"
         className="md:col-span-2 md:row-span-1 cursor-pointer relative overflow-hidden min-h-[220px]"
       >
         {manifesto?.imageUrl && (

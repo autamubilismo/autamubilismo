@@ -34,9 +34,7 @@ const news = defineType({
       name: "image",
       title: "Imagem de capa",
       type: "image",
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
     }),
 
     defineField({
@@ -58,7 +56,6 @@ const news = defineType({
       type: "datetime",
     }),
 
-    // ⭐ NOVOS CAMPOS DE FONTE ⭐
     defineField({
       name: "sourceLabel",
       title: "Fonte (ex: Fórmula 1, Motorsport...)",
@@ -69,6 +66,36 @@ const news = defineType({
       name: "sourceUrl",
       title: "Link da fonte",
       type: "url",
+    }),
+
+    // ✅ SEO / OG (Open Graph)
+    defineField({
+      name: "seo",
+      title: "SEO / Open Graph",
+      type: "object",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "metaTitle",
+          title: "Título OG/SEO (opcional)",
+          type: "string",
+          description: "Se vazio, usamos o Título do post.",
+        }),
+        defineField({
+          name: "metaDescription",
+          title: "Descrição OG/SEO (opcional)",
+          type: "text",
+          rows: 3,
+          description: "Se vazio, usamos o Resumo curto.",
+        }),
+        defineField({
+          name: "ogImage",
+          title: "Imagem OG (opcional)",
+          type: "image",
+          options: { hotspot: true },
+          description: "Se vazio, usamos a Imagem de capa.",
+        }),
+      ],
     }),
 
     defineField({

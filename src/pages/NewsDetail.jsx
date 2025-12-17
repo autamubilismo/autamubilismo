@@ -6,7 +6,6 @@ import {
   User,
   Clock,
   MessageCircle,
-  Twitter,
   Link as LinkIcon,
   ExternalLink,
 } from "lucide-react";
@@ -19,6 +18,32 @@ import { sanityClient as client } from "../lib/sanityClient";
 import { proseClass } from "../styles/proseStyles";
 import { proseComponents } from "../styles/proseComponents";
 
+// Ícone customizado do X (Twitter)
+const XIcon = ({ size = 18 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+// Ícone customizado do Facebook
+const FacebookIcon = ({ size = 18 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+  </svg>
+);
+
 const NewsDetail = ({ theme = "light" }) => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
@@ -28,8 +53,7 @@ const NewsDetail = ({ theme = "light" }) => {
   const isLight = theme === "light";
 
   // URL para compartilhamento
-  const shareUrl =
-    typeof window !== "undefined" ? window.location.href : "";
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
   // CORES E ESTILOS
   const textPrimary = isLight ? "text-gray-800" : "text-white";
@@ -50,7 +74,7 @@ const NewsDetail = ({ theme = "light" }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // FETCH NO SANITY (com mapeamento dos campos de fonte)
+  // FETCH NO SANITY
   useEffect(() => {
     client
       .fetch(
@@ -63,9 +87,16 @@ const NewsDetail = ({ theme = "light" }) => {
           category,
           author,
           publishedAt,
-          // ⬇️ mapeia o campo sourceLabel do Sanity para "source"
           "source": sourceLabel,
           sourceUrl,
+
+          // ✅ OG/SEO
+          seo{
+            metaTitle,
+            metaDescription,
+            "ogImage": ogImage.asset->url
+          },
+
           body[] {
             ...,
             _type == "image" => {
@@ -119,11 +150,16 @@ const NewsDetail = ({ theme = "light" }) => {
           Notícia não encontrada. 🏁
         </h1>
         <p className={textSecondary}>
-          Talves ela tenha sido removida ou o link esteja incorreto.
+          Talvez ela tenha sido removida ou o link esteja incorreto.
         </p>
       </div>
     );
   }
+
+  // ✅ Fallback OG/SEO (pronto pra usar em meta tags / pre-render / SSR)
+  const ogTitle = post?.seo?.metaTitle || post.title;
+  const ogDesc = post?.seo?.metaDescription || post.excerpt || "";
+  const ogImage = post?.seo?.ogImage || post.image || "";
 
   return (
     <div
@@ -149,9 +185,7 @@ const NewsDetail = ({ theme = "light" }) => {
               {post.publishedAt && (
                 <span className="flex items-center gap-1">
                   <Calendar size={14} />
-                  {new Date(post.publishedAt).toLocaleDateString(
-                    "pt-BR"
-                  )}
+                  {new Date(post.publishedAt).toLocaleDateString("pt-BR")}
                 </span>
               )}
               <span className="flex items-center gap-1">
@@ -163,9 +197,7 @@ const NewsDetail = ({ theme = "light" }) => {
           {/* TÍTULO */}
           <h1
             className={`text-4xl md:text-6xl font-black leading-[1.1] mb-6 ${textPrimary} ${
-              !isLight
-                ? "drop-shadow-[0_0_15px_rgba(254,136,221,0.3)]"
-                : ""
+              !isLight ? "drop-shadow-[0_0_15px_rgba(254,136,221,0.3)]" : ""
             }`}
             style={{ fontFamily: "'Russo One', sans-serif" }}
           >
@@ -178,9 +210,7 @@ const NewsDetail = ({ theme = "light" }) => {
             <div className="flex items-center gap-3">
               <div
                 className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  isLight
-                    ? "bg-gray-200"
-                    : "bg-[#1a1a20] border border-[#333]"
+                  isLight ? "bg-gray-200" : "bg-[#1a1a20] border border-[#333]"
                 }`}
               >
                 <User size={20} className={accentColor} />
@@ -218,7 +248,7 @@ const NewsDetail = ({ theme = "light" }) => {
                 <MessageCircle size={18} />
               </a>
 
-              {/* Twitter / X */}
+              {/* X (Twitter) */}
               <a
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                   post.title
@@ -232,7 +262,24 @@ const NewsDetail = ({ theme = "light" }) => {
                 }`}
                 title="X / Twitter"
               >
-                <Twitter size={18} />
+                <XIcon size={18} />
+              </a>
+
+              {/* Facebook */}
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                  shareUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2.5 rounded-full transition-all hover:scale-110 ${
+                  isLight
+                    ? "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                    : "bg-blue-500/10 text-blue-400 border border-blue-500/30 hover:bg-blue-500/20"
+                }`}
+                title="Facebook"
+              >
+                <FacebookIcon size={18} />
               </a>
 
               {/* Copiar Link */}
@@ -275,16 +322,12 @@ const NewsDetail = ({ theme = "light" }) => {
         )}
 
         {/* --- CARD DE CONTEÚDO --- */}
-        <div
-          className={`max-w-3xl mx-auto ${cardBg} p-8 md:p-12 rounded-[2.5rem]`}
-        >
+        <div className={`max-w-3xl mx-auto ${cardBg} p-8 md:p-12 rounded-[2.5rem]`}>
           {/* Excerpt (Resumo) */}
           {post.excerpt && (
             <div
               className={`text-xl md:text-2xl font-bold leading-relaxed mb-10 pl-6 border-l-4 italic ${
-                isLight
-                  ? "text-gray-700 border-[#F7B8C8]"
-                  : "text-gray-200 border-[#caa5d8]"
+                isLight ? "text-gray-700 border-[#F7B8C8]" : "text-gray-200 border-[#caa5d8]"
               }`}
             >
               "{post.excerpt}"
@@ -294,10 +337,7 @@ const NewsDetail = ({ theme = "light" }) => {
           {/* Conteúdo do Sanity (Portable Text) */}
           <article className={proseClass(isLight)}>
             {post.body ? (
-              <PortableText
-                value={post.body}
-                components={proseComponents(isLight)}
-              />
+              <PortableText value={post.body} components={proseComponents(isLight)} />
             ) : (
               <p>{post.excerpt}</p>
             )}
@@ -307,9 +347,7 @@ const NewsDetail = ({ theme = "light" }) => {
           {(post.source || post.sourceUrl) && (
             <div
               className={`mt-12 p-5 rounded-2xl text-sm flex flex-col sm:flex-row items-start sm:items-center gap-3 ${
-                isLight
-                  ? "bg-gray-50 text-gray-600"
-                  : "bg-white/5 text-gray-300"
+                isLight ? "bg-gray-50 text-gray-600" : "bg-white/5 text-gray-300"
               }`}
             >
               <span className="flex items-center gap-2 font-black uppercase tracking-wider text-[10px] opacity-70">
@@ -327,21 +365,15 @@ const NewsDetail = ({ theme = "light" }) => {
                   {post.source || "Ler matéria completa"}
                 </a>
               ) : (
-                <span className="font-bold">
-                  {post.source || "Fonte não informada"}
-                </span>
+                <span className="font-bold">{post.source || "Fonte não informada"}</span>
               )}
             </div>
           )}
 
           <div
-            className={`mt-16 pt-8 border-t ${
-              isLight ? "border-gray-100" : "border-gray-800"
-            } text-center`}
+            className={`mt-16 pt-8 border-t ${isLight ? "border-gray-100" : "border-gray-800"} text-center`}
           >
-            <p
-              className={`text-sm font-medium italic ${textSecondary}`}
-            >
+            <p className={`text-sm font-medium italic ${textSecondary}`}>
               🏁 Fim da transmissão.
             </p>
           </div>

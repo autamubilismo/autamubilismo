@@ -24,3 +24,9 @@
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+.article-html,
+.article-html * {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+}

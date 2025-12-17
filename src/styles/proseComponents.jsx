@@ -1,4 +1,8 @@
+console.log("✅ proseComponents.js carregou");
+
 // src/styles/proseComponents.js
+
+
 
 export const proseComponents = (isLight) => ({
   // ==== TIPOS ESPECIAIS (imagens, etc) ====
@@ -21,29 +25,36 @@ export const proseComponents = (isLight) => ({
 
   // ==== BLOCOS (parágrafo, títulos, citação...) ====
   block: {
+    // 🔹 H2 – título de seção (elegante, não gritão)
     h2: ({ children }) => (
-      <h2 className="text-2xl md:text-3xl font-black mt-10 mb-4 tracking-tight">
+      <h2 className="text-2xl md:text-3xl font-semibold mt-12 mb-4 tracking-tight leading-snug">
         {children}
       </h2>
     ),
+
+    // 🔹 H3 – subtítulo (mais leve, apoio visual)
     h3: ({ children }) => (
-      <h3 className="text-xl md:text-2xl font-semibold mt-8 mb-3">
+      <h3 className="text-lg md:text-xl font-medium mt-8 mb-3 tracking-tight uppercase text-[#D8C4F0]">
         {children}
       </h3>
     ),
+
+    // 🔹 Parágrafo padrão
     normal: ({ children }) => (
-      <p className="mb-6 leading-relaxed">{children}</p>
+      <p className="mb-6 leading-relaxed font-normal text-base md:text-lg">
+        {children}
+      </p>
     ),
 
-    // ⭐ AQUI É A QUOTE ⭐
+    // ⭐ QUOTE / BLOCKQUOTE ⭐
     blockquote: ({ children }) => (
       <blockquote
         className={
           isLight
-            ? // LIGHT: fundo rosinha, texto mais suave
-              "border-l-4 border-[#F7B8C8] bg-[#FFF5F8]/90 rounded-2xl py-4 pl-6 pr-4 my-8 italic text-lg md:text-xl text-[#4B5563]"
-            : // DARK: mantém o neon bonito
-              "border-l-4 border-[#caa5d8]/70 bg-[#1e1e24] rounded-2xl py-4 pl-6 pr-4 my-8 italic text-lg md:text-xl text-gray-100 shadow-[0_0_30px_rgba(189,0,255,0.25)]"
+            ? // LIGHT: editorial, suave
+              "border-l-4 border-[#F7B8C8] bg-[#FFF5F8]/90 rounded-2xl py-4 pl-6 pr-4 my-10 italic text-lg md:text-xl text-[#4B5563]"
+            : // DARK: neon contido
+              "border-l-4 border-[#caa5d8]/70 bg-[#1e1e24] rounded-2xl py-4 pl-6 pr-4 my-10 italic text-lg md:text-xl text-gray-100 shadow-[0_0_30px_rgba(189,0,255,0.25)]"
         }
       >
         {children}
@@ -54,26 +65,33 @@ export const proseComponents = (isLight) => ({
   // ==== LISTAS ====
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc pl-6 mb-6 space-y-2">{children}</ul>
+      <ul className="list-disc pl-6 mb-6 space-y-2">
+        {children}
+      </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal pl-6 mb-6 space-y-2">{children}</ol>
+      <ol className="list-decimal pl-6 mb-6 space-y-2">
+        {children}
+      </ol>
     ),
   },
 
   // ==== MARCAS (negrito, itálico, link) ====
   marks: {
+    // 🔸 Negrito elegante (sem gritar)
     strong: ({ children }) => (
       <strong
         className={
           isLight
-            ? "font-semibold text-gray-900"
-            : "font-semibold text-white"
+            ? "font-medium text-gray-900"
+            : "font-medium text-white"
         }
       >
         {children}
       </strong>
     ),
+
+    // 🔸 Itálico suave
     em: ({ children }) => (
       <em
         className={
@@ -85,6 +103,8 @@ export const proseComponents = (isLight) => ({
         {children}
       </em>
     ),
+
+    // 🔸 Links com presença, sem pesar
     link: ({ children, value }) => (
       <a
         href={value?.href}
@@ -92,8 +112,8 @@ export const proseComponents = (isLight) => ({
         rel={value?.blank ? "noreferrer noopener" : undefined}
         className={
           isLight
-            ? "font-semibold underline decoration-[#F7B8C8] decoration-2 underline-offset-4 hover:text-[#BE185D]"
-            : "font-semibold text-[#caa5d8] underline decoration-[#caa5d8]/60 decoration-2 underline-offset-4 hover:text-white"
+            ? "font-medium underline decoration-[#F7B8C8] decoration-2 underline-offset-4 hover:text-[#BE185D]"
+            : "font-medium text-[#caa5d8] underline decoration-[#caa5d8]/60 decoration-2 underline-offset-4 hover:text-white"
         }
       >
         {children}

@@ -159,7 +159,7 @@ export default function App() {
                 <Route path="/calendar" element={<CalendarPage theme={theme} />} />
                 <Route path="/standings" element={<StandingsPage theme={theme} />} />
                 <Route path="/circuits" element={<CircuitsPage theme={theme} />} />
-                <Route path="/regulation" element={<RegulationsPage theme={theme} />} />
+                <Route path="/regulations" element={<RegulationsPage theme={theme} />} />
                 <Route path="/news" element={<NewsList theme={theme} />} />
                 <Route path="/news/:slug" element={<NewsDetail theme={theme} />} />
                 <Route path="/articles" element={<ArticlesPage theme={theme} />} />
