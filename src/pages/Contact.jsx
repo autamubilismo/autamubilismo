@@ -150,12 +150,12 @@ const ContactPage = ({ theme }) => {
               }`}
             >
               <p>
-                Tenho <strong>33 anos</strong>, uma filha, sou designer,
+                Me chamo Tamara Viamonte, enho <strong>33 anos</strong>, uma filha, sou designer,
                 biomédica e aspirante a jornalista amadora neste site.
               </p>
               <p>
                 Sou apaixonada por carros desde pequena. Com um{" "}
-                <strong>pai mecânico</strong>{" "}
+                <strong>pai mecânico e taxista</strong>{" "}
                 <Wrench
                   size={18}
                   className={`inline mb-1 ${

@@ -219,7 +219,7 @@ const NewsDetail = ({ theme = "light" }) => {
                 <p className={`text-sm font-bold ${textPrimary}`}>
                   {post.author || "Redação Autamubilismo"}
                 </p>
-                <p className={`text-xs ${textSecondary}`}>Jornalista</p>
+                <p className={`text-xs ${textSecondary}`}>Colunista</p>
               </div>
             </div>
 

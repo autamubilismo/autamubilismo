@@ -99,7 +99,23 @@ const LogoHelmet = ({ theme, size = 'normal' }) => {
   );
 };
 
-// 2. BOTÃO VOLTAR (Removido pois não é usado na Home e causava conflito)
+// 2. BOTÃO VOLTAR
+const BackButton = ({ to, theme }) => {
+  const isLight = theme === 'light';
+  return (
+    <Link
+      to={to}
+      className={`group mb-6 inline-flex items-center gap-2 text-sm font-bold transition-all px-4 py-2 rounded-full ${
+        isLight
+          ? 'text-gray-500 hover:text-[#8e7bb0] hover:bg-white hover:shadow-sm'
+          : 'text-gray-400 hover:text-[#00fff2] hover:bg-white/5'
+      }`}
+    >
+      <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
+      Voltar
+    </Link>
+  );
+};
 
 // 3. MENU OVERLAY
 const NavigationOverlay = ({ isOpen, onClose, theme }) => {
