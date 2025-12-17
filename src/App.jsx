@@ -5,6 +5,7 @@ import { LogoHelmet, NavigationOverlay, SearchOverlay, ScrollToTop } from './com
 
 // 👇 IMPORTANTE: Importamos os links sociais
 import { SOCIAL_LINKS } from './data';
+import { Analytics } from "@vercel/analytics/react"
 
 // --- IMPORTAÇÃO DAS PÁGINAS ---
 import Home from './pages/Home';
