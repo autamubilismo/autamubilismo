@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/news/:slug",
@@ -7,6 +9,10 @@
     {
       "source": "/articles/:slug",
       "destination": "/api/articles/:slug"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
