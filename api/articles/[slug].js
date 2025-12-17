@@ -1,4 +1,11 @@
-import { sanityClient } from '../../src/sanityClient'
+import { createClient } from '@sanity/client'
+
+const sanityClient = createClient({
+  projectId: 'c7nvssn2',
+  dataset: 'production',
+  apiVersion: '2025-01-01',
+  useCdn: true,
+})
 
 export default async function handler(req, res) {
   const { slug } = req.query
@@ -20,7 +27,6 @@ export default async function handler(req, res) {
       return res.status(404).send('Article not found')
     }
 
-    // Use metaTitle/metaDescription do SEO se existir, senão use title/excerpt
     const ogTitle = (article.metaTitle || article.title || 'Autamubilismo').replace(/"/g, '&quot;')
     const ogDescription = (article.metaDescription || article.excerpt || '').replace(/"/g, '&quot;')
     const ogImage = article.imageUrl || ''
@@ -33,7 +39,6 @@ export default async function handler(req, res) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${ogTitle} - Autamubilismo</title>
     
-    <!-- Open Graph -->
     <meta property="og:title" content="${ogTitle}" />
     <meta property="og:description" content="${ogDescription}" />
     <meta property="og:image" content="${ogImage}" />
@@ -41,7 +46,6 @@ export default async function handler(req, res) {
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Autamubilismo" />
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${ogTitle}" />
     <meta name="twitter:description" content="${ogDescription}" />
