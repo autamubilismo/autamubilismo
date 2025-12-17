@@ -9,15 +9,20 @@ import {
 } from 'lucide-react';
 
 // ==============================================================================
-// 🚨 INSTRUÇÕES PARA O SEU PROJETO LOCAL:
-// 1. DESCOMENTE os imports abaixo.
-// 2. VERIFIQUE o caminho do sanityClient.
-// 3. REMOVA os componentes "MOCK" temporários.
+// ✅ IMPORTS CORRETOS (App.jsx está em src/, então não precisa de ./src/)
 // ==============================================================================
+import { client, urlFor } from './sanityClient';
 
-/* // --- IMPORTS DO SEU PROJETO ---
-import { client, urlFor } from './sanityClient'; // 👈 AJUSTE O CAMINHO SE NECESSÁRIO
-import { MANIFESTO_POST_QUERY } from './queries'; // 👈 SE TIVER ESSE ARQUIVO
+// ⚠️ IMPORTANTE: Se você tiver o arquivo queries.js, descomente a linha abaixo:
+// import { MANIFESTO_POST_QUERY } from './queries';
+
+// Caso contrário, use esta definição temporária:
+const MANIFESTO_POST_QUERY = `*[_type == "manifesto"][0]{ 
+  _id, 
+  title, 
+  content, 
+  image 
+}`;
 
 import DriversPage from './pages/Drivers';
 import DriverDetail from './pages/DriverDetail';
@@ -44,57 +49,6 @@ import NewsletterSuccess from './pages/NewsletterSuccess';
 import Calendar2026Page from './pages/Calendar2026Page';
 import { SOCIAL_LINKS } from './data';
 import { Analytics } from "@vercel/analytics/react";
-*/
-
-// ==============================================================================
-// 🛠️ MOCKS TEMPORÁRIOS (PARA O PREVIEW FUNCIONAR AQUI)
-// ==============================================================================
-
-const SOCIAL_LINKS = [
-  { id: 'insta', icon: Instagram, url: '#', label: 'Instagram' },
-  { id: 'twitter', icon: Twitter, url: '#', label: 'Twitter' },
-  { id: 'youtube', icon: Youtube, url: '#', label: 'YouTube' },
-];
-
-const GenericPage = ({ title, theme }) => (
-  <div className={`min-h-[60vh] flex flex-col items-center justify-center text-center p-8 transition-colors ${theme === 'light' ? 'bg-[#FFF5F8] text-gray-800' : 'bg-[#050505] text-white'}`}>
-    <h1 className="text-4xl md:text-5xl font-black mb-4">{title}</h1>
-    <p className="opacity-60 max-w-md text-lg">Página de exemplo para o preview.</p>
-    <Link to="/" className={`mt-8 px-8 py-3 rounded-full font-bold text-sm transition-transform hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-gray-900 text-white shadow-lg' : 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]'}`}>
-       Voltar ao Início
-    </Link>
-  </div>
-);
-
-// Mocks de páginas para o Canvas não quebrar
-const DriversPage = (props) => <GenericPage title="Pilotos" {...props} />;
-const DriverDetail = (props) => <GenericPage title="Detalhes do Piloto" {...props} />;
-const TeamsPage = (props) => <GenericPage title="Equipas" {...props} />;
-const TeamDetail = (props) => <GenericPage title="Detalhes da Equipa" {...props} />;
-const SeasonPage = (props) => <GenericPage title="Temporada" {...props} />;
-const CalendarPage = (props) => <GenericPage title="Calendário" {...props} />;
-const StandingsPage = (props) => <GenericPage title="Classificação" {...props} />;
-const CircuitsPage = (props) => <GenericPage title="Circuitos" {...props} />;
-const RegulationsPage = (props) => <GenericPage title="Regulamento" {...props} />;
-const FanzonePage = (props) => <GenericPage title="Fanzone" {...props} />;
-const ArticlesPage = (props) => <GenericPage title="Artigos" {...props} />;
-const ArticleDetail = (props) => <GenericPage title="Detalhes do Artigo" {...props} />;
-const ContactPage = (props) => <GenericPage title="Contacto" {...props} />;
-const GlossaryPage = (props) => <GenericPage title="Glossário" {...props} />;
-const NewsList = (props) => <GenericPage title="Notícias" {...props} />;
-const NewsDetail = (props) => <GenericPage title="Detalhe da Notícia" {...props} />;
-const ManifestoPage = (props) => <GenericPage title="Manifesto" {...props} />;
-const CuriositiesPage = (props) => <GenericPage title="Curiosidades" {...props} />;
-const MultimediaPage = (props) => <GenericPage title="Multimédia" {...props} />;
-const CreditsPage = (props) => <GenericPage title="Créditos" {...props} />;
-const NewsletterSuccess = (props) => <GenericPage title="Newsletter Sucesso" {...props} />;
-const Calendar2026Page = (props) => <GenericPage title="Calendário 2026" {...props} />;
-const Analytics = () => null; 
-
-// Mock do client Sanity para o Canvas não quebrar
-const client = { fetch: async () => [] }; 
-const urlFor = () => ({ width: () => ({ url: () => '' }) });
-const MANIFESTO_POST_QUERY = '';
 
 // ==============================================================================
 // 🎨 CONFIGURAÇÃO VISUAL & NOVA HOME
@@ -102,7 +56,7 @@ const MANIFESTO_POST_QUERY = '';
 
 // URLs do Logo
 const LOGO_IMG_LIGHT = "/img/web/LIGHT-MODE-HEADER.png"; 
-const LOGO_IMG_DARK = "/img/logo_dark.png"; 
+const LOGO_IMG_DARK = "/img/web/DARK-MODE-HEADER.png"; 
 const HELMET_ICON = "/img/web/helmet.png";
 
 // Mapa para o Menu Overlay
@@ -138,16 +92,29 @@ const LogoHelmet = ({ theme, size = 'normal' }) => {
   const [imgError, setImgError] = useState(false);
   
   const logoUrl = isLight ? LOGO_IMG_LIGHT : LOGO_IMG_DARK;
-  const containerClass = size === 'large' ? "h-32 md:h-40 max-w-[80vw]" : "h-16 md:h-20 max-w-[200px]"; 
+  
+  // Tamanhos diferentes para mobile vs desktop
+  const mobileHelmetSize = size === 'large' ? "h-16" : "h-12"; 
+  const desktopLogoSize = size === 'large' ? "h-48 lg:h-56 xl:h-64" : "h-20 md:h-24"; // ← 2x maior!
 
   if (!imgError) {
     return (
-      <div className={`relative flex items-center justify-center ${size === 'large' ? 'p-4' : ''}`}>
+      <div className={`relative flex items-center justify-center ${size === 'large' ? 'p-2 md:p-4' : ''}`}>
         <div className={`absolute inset-0 blur-2xl opacity-40 rounded-full ${isLight ? 'bg-pink-300' : 'bg-purple-600'} animate-pulse`} />
+        
+        {/* MOBILE: Mostra apenas o helmet */}
+        <img 
+          src={HELMET_ICON} 
+          alt="Autamubilismo Helmet" 
+          className={`${mobileHelmetSize} w-auto object-contain transition-all duration-500 drop-shadow-lg relative z-10 md:hidden`}
+          onError={() => setImgError(true)} 
+        />
+        
+        {/* DESKTOP: Mostra o logo completo MAIOR (2x) */}
         <img 
           src={logoUrl} 
           alt="Autamubilismo" 
-          className={`${containerClass} w-auto object-contain transition-all duration-500 drop-shadow-lg relative z-10`}
+          className={`hidden md:block ${desktopLogoSize} w-auto max-w-[500px] object-contain transition-all duration-500 drop-shadow-lg relative z-10`}
           onError={() => setImgError(true)} 
         />
       </div>
@@ -156,7 +123,7 @@ const LogoHelmet = ({ theme, size = 'normal' }) => {
   
   return (
     <div className="flex flex-col justify-center items-center md:items-start leading-none select-none relative z-10">
-      <h1 className={`font-black tracking-tighter italic ${size === 'large' ? 'text-5xl md:text-7xl' : 'text-2xl md:text-3xl'} ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600' : 'text-white'}`}>
+      <h1 className={`font-black tracking-tighter italic ${size === 'large' ? 'text-3xl md:text-6xl lg:text-7xl' : 'text-xl md:text-2xl'} ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600' : 'text-white'}`}>
         AUTA<span className={isLight ? 'text-[#caa5d8]' : 'text-[#bd00ff]'}>MU</span>BILISMO
       </h1>
     </div>
@@ -246,7 +213,7 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
   return <div onClick={onClick} className={`${baseClasses} ${onClick ? 'cursor-pointer' : ''}`}><CardWrapper>{content}</CardWrapper></div>;
 };
 
-// --- COMPONENTES ESPECÍFICOS DA HOME (NEWS, PHOTOCARD, ETC) ---
+// --- COMPONENTES ESPECÍFICOS DA HOME ---
 
 const KpopPhotocard = ({ driver, theme, onClick }) => {
   const isLight = theme === 'light';
@@ -307,15 +274,13 @@ const NextRaceWidget = ({ theme }) => {
   );
 };
 
-// --- WIDGET DE NOTÍCIAS (Recebe 'posts' via prop da Home) ---
+// --- WIDGET DE NOTÍCIAS ---
 const NewsWidget = ({ theme, posts, onNewsClick }) => {
   const isLight = theme === 'light';
   
-  // Se não houver posts ainda, mostrar carregando
   const loading = !posts || posts.length === 0;
   const displayPosts = posts || [];
   
-  // Cores da Marca
   const C = { 
     roxo: '#caa5d8', 
     rosa: '#fac4dc', 
@@ -336,10 +301,9 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
 
   return (
     <div className="flex flex-col h-full min-h-0 relative p-6 md:p-8">
-      {/* Cabeçalho */}
       <div className="flex items-center justify-between mb-6 px-1 shrink-0">
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-xl ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-white/10 text-[#bd00ff]'}`}>
+          <div className={`p-2 rounded-xl ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-white/10 text-[#caa5d8]'}`}>
              <Newspaper size={22} />
           </div>
           <span className={`text-sm font-black uppercase tracking-[0.2em] ${isLight ? 'text-gray-600' : 'text-white'}`}>
@@ -348,7 +312,6 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
         </div>
       </div>
 
-      {/* Lista de Notícias */}
       <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-3 custom-scrollbar pb-2">
         {loading && (
           <div className="flex-1 flex flex-col items-center justify-center opacity-60 gap-3">
@@ -367,7 +330,6 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
                 : "bg-[#0a0a12]/60 hover:bg-[#121217] border-[#222] hover:border-[#00fff2]/40 hover:-translate-y-1"
               }`}
           >
-            {/* Imagem (Maior e com shadow) */}
             {item.image && (
               <div className="w-24 shrink-0 rounded-2xl overflow-hidden relative shadow-md self-center aspect-square">
                 <img 
@@ -379,10 +341,7 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
               </div>
             )}
 
-            {/* Conteúdo de Texto */}
             <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
-              
-              {/* Meta info (Badge + Data) */}
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <span 
                   className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg shadow-sm whitespace-nowrap" 
@@ -395,13 +354,11 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
                 </span>
               </div>
 
-              {/* Título */}
-              <h4 className={`text-sm md:text-[15px] font-bold leading-snug line-clamp-3 ${isLight ? "text-gray-800 group-hover:text-purple-600" : "text-gray-200 group-hover:text-white"} transition-colors`}>
+              <h4 className={`text-sm md:text-[15px] font-bold leading-snug line-clamp-3 ${isLight ? "text-gray-800" : "text-gray-200 group-hover:text-white"} transition-colors`}>
                 {item.title}
               </h4>
             </div>
 
-            {/* Ícone de seta no hover */}
             <div className={`absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 ${isLight ? 'text-pink-400' : 'text-[#00fff2]'}`}>
                <ChevronRight size={20} />
             </div>
@@ -409,7 +366,6 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
         ))}
       </div>
       
-      {/* Gradiente de fade no fundo para indicar scroll */}
       <div className={`absolute bottom-0 left-0 right-0 h-8 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#121217]/80'} to-transparent`} />
     </div>
   );
@@ -479,15 +435,15 @@ const NewsletterWidget = ({ theme }) => {
   const [status, setStatus] = useState(null);
   const handleSubmit = async (e) => { e.preventDefault(); if (!email) return; try { setStatus("loading"); await new Promise(r => setTimeout(r, 1500)); setStatus("success"); setEmail(""); } catch (error) { setStatus("error"); } };
   return (
-    <div className="h-full flex flex-col md:flex-row items-center justify-between p-8 md:p-10 gap-8 relative z-10">
+    <div className="h-full flex flex-col md:flex-row items-center justify-center p-8 md:p-10 gap-6 md:gap-8 relative z-10">
       <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-white'}`} />
-      <div className="flex items-center gap-6 shrink-0 relative z-10">
-        <div className={`p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-[#333] text-white"}`}><Mail size={32} /></div>
-        <div><h3 className={`font-black text-2xl md:text-3xl mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>Newsletter</h3><p className={`text-sm md:text-base font-medium ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>Fofocas quentinhas na sua caixa de entrada.</p></div>
+      <div className="flex items-center gap-4 md:gap-6 shrink-0 relative z-10">
+        <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-[#333] text-white"}`}><Mail size={32} /></div>
+        <div><h3 className={`font-black text-xl md:text-2xl mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>Newsletter</h3><p className={`text-xs md:text-sm font-medium ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>Fofocas quentinhas na sua caixa de entrada.</p></div>
       </div>
-      <form className="flex flex-1 gap-4 w-full max-w-lg relative z-10" onSubmit={handleSubmit}>
-        <div className="relative flex-1 group"><input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full h-14 px-6 rounded-2xl text-base font-bold outline-none transition-all ${isLight ? "bg-white border-2 border-transparent focus:border-[#D8C4F0] text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-[#00fff2] text-white placeholder-gray-600"}`} /></div>
-        <button type="submit" disabled={status === "loading" || status === "success"} className={`h-14 px-10 rounded-2xl font-black text-sm uppercase tracking-wider transition-all active:scale-95 whitespace-nowrap shadow-xl flex items-center gap-3 ${isLight ? "bg-gray-900 hover:bg-black text-white hover:shadow-2xl" : "bg-[#bd00ff] hover:bg-[#a000db] text-white shadow-[0_0_20px_rgba(189,0,255,0.4)]"} ${status === "success" ? "bg-green-500 hover:bg-green-600" : ""}`}>{status === "loading" && <Loader2 size={18} className="animate-spin" />}{status === "success" ? "Enviado!" : "Assinar"}</button>
+      <form className="flex flex-1 gap-3 md:gap-4 w-full max-w-lg relative z-10" onSubmit={handleSubmit}>
+        <div className="relative flex-1 group"><input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all ${isLight ? "bg-white border-2 border-transparent focus:border-[#D8C4F0] text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-[#00fff2] text-white placeholder-gray-600"}`} /></div>
+        <button type="submit" disabled={status === "loading" || status === "success"} className={`h-12 md:h-14 px-6 md:px-10 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all active:scale-95 whitespace-nowrap shadow-xl flex items-center gap-3 ${isLight ? "bg-gray-900 hover:bg-black text-white hover:shadow-2xl" : "bg-[#bd00ff] hover:bg-[#a000db] text-white shadow-[0_0_20px_rgba(189,0,255,0.4)]"} ${status === "success" ? "bg-green-500 hover:bg-green-600" : ""}`}>{status === "loading" && <Loader2 size={18} className="animate-spin" />}{status === "success" ? "Enviado!" : "Assinar"}</button>
       </form>
     </div>
   );
@@ -500,20 +456,24 @@ const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
   
-  // Estados para dados reais
   const [feed, setFeed] = useState([]);
   const [manifesto, setManifesto] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // --- FETCH DOS DADOS REAIS ---
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 1. Busca NOTÍCIAS (Pega as 4 mais recentes)
+        setIsLoading(true);
+        
+        // 1. Busca NOTÍCIAS
         const newsData = await client.fetch(
           `*[_type == "news"] | order(publishedAt desc)[0...4]`
         );
+        
         const formattedNews = newsData.map((item) => ({
           ...item,
           type: 'news',
@@ -521,7 +481,7 @@ const Home = () => {
           image: item.image ? urlFor(item.image).width(400).url() : null,
         }));
 
-        // 2. Busca ARTIGOS (Pega os 4 mais recentes)
+        // 2. Busca ARTIGOS
         const articlesData = await client.fetch(`
           *[_type == "article"] | order(publishedAt desc)[0...4] {
             _id,
@@ -552,8 +512,12 @@ const Home = () => {
         );
 
         setFeed(combinedFeed);
+        setError(null);
       } catch (err) {
         console.error('Erro ao carregar feed:', err);
+        setError('Não foi possível carregar as notícias');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -574,10 +538,12 @@ const Home = () => {
     };
 
     fetchData();
-    fetchManifestoData();
+    if (MANIFESTO_POST_QUERY) {
+      fetchManifestoData();
+    }
   }, []);
 
-  // Padrões de Fundo "Girlie" & "Premium"
+  // Padrões de Fundo
   const lightPattern = {
     backgroundColor: '#FFF5F8',
     backgroundImage: `
@@ -599,31 +565,39 @@ const Home = () => {
     backgroundSize: '100% 100%, 100% 100%, 40px 40px, 40px 40px'
   };
 
-  // Mock Data para Home (Driver do Dia pode virar dinâmico depois)
-  const DRIVER_OF_DAY = { name: "Lando Norris", team: "McLaren", number: "4", image: "https://placehold.co/600x800/FF8700/white?text=Lando+Norris", zodiac: "Escorpião", secretFact: "Tem medo de peixes mas ama sushi.", signature: "L4ndo", vibes: [{ icon: Sparkles }] };
+  const DRIVER_OF_DAY = { name: "Lando Norris", team: "McLaren", number: "4", image: '/img/pilotos/norris/grid-norris.avif', zodiac: "Escorpião", secretFact: "Tem medo de peixes mas ama sushi.", signature: "L4ndo", vibes: [{ icon: Sparkles }] };
 
   return (
     <div className={`min-h-screen transition-colors duration-700 ease-in-out selection:bg-pink-300 selection:text-purple-900 flex flex-col`} style={theme === 'light' ? lightPattern : darkPattern}>
       <NavigationOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} theme={theme} />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} theme={theme} />
 
-      <header className="sticky top-0 z-40 w-full backdrop-blur-xl border-b border-white/20 px-4 py-4 md:px-8 flex items-center justify-between transition-all duration-300 shadow-sm">
-        <div className="flex items-center gap-3">
-          <button onClick={() => setIsMenuOpen(true)} className={`p-3 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 text-gray-800 shadow-lg hover:text-pink-500 hover:shadow-pink-200' : 'bg-[#1a1a20]/80 text-white border border-[#333] hover:text-[#00fff2] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}>
-            <Menu size={24} />
-          </button>
-        </div>
-        
-        <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 transform hover:scale-105 transition-transform duration-500 cursor-pointer">
-           <LogoHelmet theme={theme} size="large" />
-        </div>
-        
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-2 mr-2">
-             <button onClick={() => setIsSearchOpen(true)} className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-black uppercase tracking-wider transition-all ${theme === 'light' ? 'bg-white hover:bg-gray-50 text-gray-400 shadow-md ring-1 ring-pink-100' : 'bg-white/5 hover:bg-white/10 text-gray-400 border border-white/5'}`}><Search size={16} /><span>Buscar</span></button>
+      <header className="sticky top-0 z-40 w-full backdrop-blur-xl border-b border-white/20 transition-all duration-300 shadow-sm">
+        <div className="max-w-[1400px] mx-auto px-4 py-4 md:px-8 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button onClick={() => setIsMenuOpen(true)} className={`flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 text-gray-800 shadow-lg hover:text-pink-500 hover:shadow-pink-200' : 'bg-[#1a1a20]/80 text-white border border-[#333] hover:text-[#00fff2] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}>
+              <Menu size={20} />
+              <span className="font-black text-xs tracking-widest uppercase">Menu</span>
+            </button>
           </div>
-          <button onClick={() => setIsSearchOpen(true)} className="md:hidden p-3 rounded-full bg-white/20 backdrop-blur-md text-current"><Search size={24} /></button>
-          <button onClick={toggleTheme} className={`p-3 rounded-full transition-all active:scale-90 shadow-xl ${theme === 'light' ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200 hover:shadow-yellow-200 ring-2 ring-yellow-200' : 'bg-[#bd00ff]/20 text-[#bd00ff] border border-[#bd00ff]/30 hover:bg-[#bd00ff]/30 hover:shadow-[0_0_15px_rgba(189,0,255,0.3)]'}`}>{theme === 'light' ? <Sun size={24} className="fill-current" /> : <Moon size={24} className="fill-current" />}</button>
+          
+          <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 transform hover:scale-105 transition-transform duration-500 cursor-pointer">
+             <LogoHelmet theme={theme} size="large" />
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <button onClick={() => setIsSearchOpen(true)} className={`hidden md:flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all hover:scale-105 ${theme === 'light' ? 'bg-white hover:bg-gray-50 text-gray-400 shadow-md ring-1 ring-pink-100' : 'bg-white/5 hover:bg-white/10 text-gray-400 border border-white/5'}`}>
+              <Search size={18} />
+              <span>Buscar</span>
+            </button>
+            <button onClick={() => setIsSearchOpen(true)} className={`md:hidden p-2.5 rounded-full transition-all ${theme === 'light' ? 'bg-white/80 text-gray-400 shadow-md' : 'bg-white/5 text-gray-400 border border-white/5'}`}>
+              <Search size={20} />
+            </button>
+            <button onClick={toggleTheme} className={`flex items-center gap-2 px-4 py-2.5 rounded-full transition-all active:scale-95 shadow-lg ${theme === 'light' ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200 hover:shadow-yellow-200 ring-2 ring-yellow-200' : 'bg-[#bd00ff]/20 text-[#bd00ff] border border-[#bd00ff]/30 hover:bg-[#bd00ff]/30 hover:shadow-[0_0_15px_rgba(189,0,255,0.3)]'}`}>
+              {theme === 'light' ? <Sun size={18} className="fill-current" /> : <Moon size={18} className="fill-current" />}
+              <span className="hidden sm:inline font-black text-xs tracking-widest uppercase">{theme === 'light' ? 'Light' : 'Dark'}</span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -635,11 +609,11 @@ const Home = () => {
       )}
 
       <main className="flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full">
-        <div className="mb-12 mt-8 md:mb-20 text-center md:text-left relative">
-          <h2 className={`text-5xl md:text-8xl font-black tracking-tighter mb-4 leading-[0.9] ${theme === 'light' ? 'text-gray-900 drop-shadow-sm' : 'text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'}`}>
-            Olá, <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-[#caa5d8] via-purple-400 to-pink-500' : 'from-[#bd00ff] via-purple-500 to-[#00fff2]'}`}>Padoquete!</span> 👋
+        <div className="mb-8 md:mb-12 text-center md:text-left relative">
+          <h2 className={`text-3xl md:text-5xl font-black tracking-tighter mb-3 leading-[0.9] ${theme === 'light' ? 'text-gray-900 drop-shadow-sm' : 'text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'}`}>
+            Olá, <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-pink-400 via-[#caa5d8] to-[#fac4dc]' : 'from-[#ff00ff] via-[#bd00ff] to-[#00fff2]'}`}>F1 Lover!</span> 
           </h2>
-          <p className={`text-lg md:text-2xl font-medium max-w-2xl ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
+          <p className={`text-sm md:text-lg font-medium max-w-2xl ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
             Tudo o que você precisa saber sobre a F1, com aquele toque de caos e brilho que a gente ama.
           </p>
         </div>
@@ -650,7 +624,7 @@ const Home = () => {
             <BentoCard theme={theme} className="h-full min-h-[460px]" noPadding>
               <NewsWidget 
                 theme={theme} 
-                posts={feed} 
+                posts={isLoading ? [] : feed} 
                 onNewsClick={(post) => {
                   const route = post.type === 'article' ? '/articles' : '/news';
                   const slugFinal = post.slug?.current || post.slug;
@@ -691,7 +665,7 @@ const Home = () => {
   );
 };
 
-// --- LAYOUT PADRÃO (Para páginas "Legadas") ---
+// --- LAYOUT PADRÃO ---
 const MainLayout = ({ children, theme, toggleTheme, menuOpen, setMenuOpen, searchOpen, setSearchOpen }) => {
   const headerBg = theme === 'light' ? 'bg-[#FFF5F8]/90 backdrop-blur-md' : 'bg-[#141416]/90 backdrop-blur-md';
   
@@ -701,20 +675,29 @@ const MainLayout = ({ children, theme, toggleTheme, menuOpen, setMenuOpen, searc
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} theme={theme} />
       
       <div className={`w-full ${headerBg} sticky top-0 z-40 transition-all duration-300 border-b ${theme === 'light' ? 'border-gray-200/50' : 'border-white/5'}`}>
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-3">
           <header className="flex justify-between items-center">
             <div className="flex-1 flex justify-start">
               <button onClick={() => setMenuOpen(true)} className={`group flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white text-gray-800 shadow-sm border border-gray-100' : 'bg-[#1a1a20] text-[#00fff2] border border-[#333]'}`}>
                 <Menu size={20} />
-                <span className="font-black tracking-widest text-xs hidden sm:inline">MENU</span>
+                <span className="font-black tracking-widest text-xs uppercase">Menu</span>
               </button>
             </div>
             <div className="flex-0 cursor-pointer z-20 transform hover:scale-105 transition-transform duration-500">
               <Link to="/"><LogoHelmet theme={theme} size="normal" /></Link>
             </div>
             <div className="flex-1 flex justify-end gap-2">
-              <button onClick={() => setSearchOpen(true)} className={`p-2.5 rounded-full flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-white text-gray-400 hover:text-gray-600 shadow-sm' : 'bg-[#1a1a20] text-gray-500 border border-[#333] hover:text-[#00fff2]'}`}><Search size={20} /></button>
-              <button onClick={toggleTheme} className={`p-2.5 rounded-full transition-all duration-300 ${theme === 'light' ? 'bg-white text-yellow-500 shadow-sm' : 'bg-[#1a1a20] text-[#00fff2] border border-[#333]'}`}>{theme === 'light' ? <Sun size={20} /> : <Moon size={20} />}</button>
+              <button onClick={() => setSearchOpen(true)} className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all hover:scale-105 ${theme === 'light' ? 'bg-white text-gray-400 hover:text-gray-600 shadow-sm' : 'bg-[#1a1a20] text-gray-400 border border-[#333] hover:text-[#00fff2]'}`}>
+                <Search size={18} />
+                <span>Buscar</span>
+              </button>
+              <button onClick={() => setSearchOpen(true)} className={`md:hidden p-2.5 rounded-full flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-white text-gray-400 hover:text-gray-600 shadow-sm' : 'bg-[#1a1a20] text-gray-500 border border-[#333] hover:text-[#00fff2]'}`}>
+                <Search size={20} />
+              </button>
+              <button onClick={toggleTheme} className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 ${theme === 'light' ? 'bg-white text-yellow-500 shadow-sm' : 'bg-[#1a1a20] text-[#00fff2] border border-[#333]'}`}>
+                {theme === 'light' ? <Sun size={18} /> : <Moon size={18} />}
+                <span className="hidden sm:inline font-black text-xs tracking-widest uppercase">{theme === 'light' ? 'Light' : 'Dark'}</span>
+              </button>
             </div>
           </header>
         </div>
@@ -737,13 +720,11 @@ const AppContent = () => {
   const location = useLocation();
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
-  // RENDERIZA A NOVA HOME PARA A ROTA RAIZ '/'
   if (location.pathname === '/') return <Home />;
 
   return (
     <MainLayout theme={theme} toggleTheme={toggleTheme} menuOpen={menuOpen} setMenuOpen={setMenuOpen} searchOpen={searchOpen} setSearchOpen={setSearchOpen}>
       <Routes>
-        {/* ROTAS EXPLÍCITAS USANDO SEUS COMPONENTES IMPORTADOS */}
         <Route path="/drivers" element={<DriversPage theme={theme} />} />
         <Route path="/drivers/:id" element={<DriverDetail theme={theme} />} />
         <Route path="/teams" element={<TeamsPage theme={theme} />} />
@@ -766,8 +747,6 @@ const AppContent = () => {
         <Route path="/newsletter-success" element={<NewsletterSuccess theme={theme} />} />
         <Route path="/manifesto" element={<ManifestoPage theme={theme} />} />
         <Route path="/calendar-2026" element={<Calendar2026Page theme={theme} />} />
-        
-        {/* Rota genérica para qualquer coisa não encontrada */}
         <Route path="*" element={<GenericPage title="Página não encontrada" theme={theme} />} />
       </Routes>
     </MainLayout>
