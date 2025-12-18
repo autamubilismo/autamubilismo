@@ -3,7 +3,7 @@ import { Gamepad2, Utensils, Zap, Star, Trophy as TrophyIcon, Music, Smile, Brie
 export const DRIVERS_DATA = [
   { 
     id: 'kimi', 
-    name: 'Andrea Kimi Antonelli', 
+    name: 'Kimi Antonelli', 
     number: 12, 
     team: 'Mercedes-AMG', 
     color: '#00D2BE', 

@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 
 // ==============================================================================
-// ✅ IMPORTS CORRETOS (App.jsx está em src/, então não precisa de ./src/)
+// ✅ IMPORTS CORRETOS (Mantidos conforme solicitado)
 // ==============================================================================
 import { client, urlFor } from './sanityClient';
 
@@ -93,16 +93,14 @@ const LogoHelmet = ({ theme, size = 'normal' }) => {
   
   const logoUrl = isLight ? LOGO_IMG_LIGHT : LOGO_IMG_DARK;
   
-  // Tamanhos diferentes para mobile vs desktop
   const mobileHelmetSize = size === 'large' ? "h-16" : "h-12"; 
-  const desktopLogoSize = size === 'large' ? "h-48 lg:h-56 xl:h-64" : "h-20 md:h-24"; // ← 2x maior!
+  const desktopLogoSize = size === 'large' ? "h-48 lg:h-56 xl:h-64" : "h-20 md:h-24"; 
 
   if (!imgError) {
     return (
       <div className={`relative flex items-center justify-center ${size === 'large' ? 'p-2 md:p-4' : ''}`}>
-        <div className={`absolute inset-0 blur-2xl opacity-40 rounded-full ${isLight ? 'bg-pink-300' : 'bg-purple-600'} animate-pulse`} />
+        <div className={`absolute inset-0 blur-2xl opacity-40 rounded-full ${isLight ? 'bg-pink-300' : 'bg-cyan-500'} animate-pulse`} />
         
-        {/* MOBILE: Mostra apenas o helmet */}
         <img 
           src={HELMET_ICON} 
           alt="Autamubilismo Helmet" 
@@ -110,7 +108,6 @@ const LogoHelmet = ({ theme, size = 'normal' }) => {
           onError={() => setImgError(true)} 
         />
         
-        {/* DESKTOP: Mostra o logo completo MAIOR (2x) */}
         <img 
           src={logoUrl} 
           alt="Autamubilismo" 
@@ -123,8 +120,8 @@ const LogoHelmet = ({ theme, size = 'normal' }) => {
   
   return (
     <div className="flex flex-col justify-center items-center md:items-start leading-none select-none relative z-10">
-      <h1 className={`font-black tracking-tighter italic ${size === 'large' ? 'text-3xl md:text-6xl lg:text-7xl' : 'text-xl md:text-2xl'} ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600' : 'text-white'}`}>
-        AUTA<span className={isLight ? 'text-[#caa5d8]' : 'text-[#bd00ff]'}>MU</span>BILISMO
+      <h1 className={`font-black tracking-tighter italic ${size === 'large' ? 'text-3xl md:text-6xl lg:text-7xl' : 'text-xl md:text-2xl'} ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-cyan-400'}`}>
+        AUTA<span className={isLight ? 'text-pink-400' : 'text-fuchsia-400'}>MU</span>BILISMO
       </h1>
     </div>
   );
@@ -135,28 +132,28 @@ const NavigationOverlay = ({ isOpen, onClose, theme }) => {
   const isLight = theme === 'light';
 
   return (
-    <div className={`fixed inset-0 z-50 flex flex-col overflow-y-auto animate-in slide-in-from-left duration-500 ${isLight ? 'bg-[#FFF5F8]/90 backdrop-blur-2xl' : 'bg-[#050505]/90 backdrop-blur-2xl'}`}>
+    <div className={`fixed inset-0 z-50 flex flex-col overflow-y-auto animate-in slide-in-from-left duration-500 ${isLight ? 'bg-[#FFF0F5]/95 backdrop-blur-2xl' : 'bg-[#050510]/95 backdrop-blur-2xl'}`}>
       <div className="p-6 flex justify-end">
         <button onClick={onClose} className="p-3 rounded-full hover:bg-black/5 transition-colors group">
-          <X size={28} className={`${isLight ? 'text-gray-600 group-hover:text-pink-500' : 'text-white group-hover:text-purple-400'} transition-colors`} />
+          <X size={28} className={`${isLight ? 'text-pink-500 group-hover:text-purple-600' : 'text-cyan-400 group-hover:text-fuchsia-400'} transition-colors`} />
         </button>
       </div>
       <div className="flex-1 max-w-6xl mx-auto w-full p-6 md:p-10 pb-32">
-        <div className="mb-10 px-2 border-b border-pink-200/30 pb-4 flex items-center gap-4">
-            <h2 className={`text-4xl md:text-6xl font-black mb-2 tracking-tighter ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500' : 'text-white'}`}>Menu</h2>
-            <Sparkles className={`w-8 h-8 ${isLight ? 'text-pink-400' : 'text-purple-400'} animate-pulse`} />
+        <div className={`mb-10 px-2 border-b pb-4 flex items-center gap-4 ${isLight ? 'border-pink-200' : 'border-white/10'}`}>
+            <h2 className={`text-4xl md:text-6xl font-black mb-2 tracking-tighter ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500'}`}>Menu</h2>
+            <Sparkles className={`w-8 h-8 ${isLight ? 'text-pink-400' : 'text-cyan-400'} animate-pulse`} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {SITE_MAP.map((item) => (
-            <Link key={item.id} to={item.path} onClick={onClose} className={`group relative p-5 rounded-3xl flex items-center gap-5 text-left transition-all duration-300 hover:scale-[1.02] border ${isLight ? 'bg-white/60 border-white hover:border-[#F7B8C8] hover:shadow-xl hover:shadow-[#F7B8C8]/30' : 'bg-[#121217]/60 border-[#333] hover:border-[#00fff2] hover:shadow-[0_0_20px_rgba(0,255,242,0.2)]'}`}>
-              <div className={`w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center transition-colors shadow-sm ${isLight ? 'bg-gradient-to-br from-pink-100 to-purple-100 text-[#D8C4F0] group-hover:from-pink-200 group-hover:to-purple-200' : 'bg-[#1a1a20] text-[#00fff2] group-hover:bg-[#00fff2] group-hover:text-black'}`}>
-                {item.icon && <item.icon size={26} className={isLight ? 'text-purple-500' : ''} />}
+            <Link key={item.id} to={item.path} onClick={onClose} className={`group relative p-5 rounded-[2rem] flex items-center gap-5 text-left transition-all duration-300 hover:scale-[1.02] border ${isLight ? 'bg-white/70 border-pink-100 hover:border-pink-300 hover:shadow-lg hover:shadow-pink-100' : 'bg-[#121217]/60 border-white/5 hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(0,255,242,0.2)]'}`}>
+              <div className={`w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center transition-colors shadow-sm ${isLight ? 'bg-pink-50 text-pink-500 group-hover:bg-pink-100' : 'bg-white/5 text-cyan-400 group-hover:bg-cyan-500/20 group-hover:text-cyan-300'}`}>
+                {item.icon && <item.icon size={26} />}
               </div>
               <div className="flex-1 min-w-0">
-                <span className={`block text-xl font-bold tracking-tight truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{item.label}</span>
-                <span className={`block text-xs font-medium uppercase tracking-wider mt-1 opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>{item.desc}</span>
+                <span className={`block text-xl font-black tracking-tight truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{item.label}</span>
+                <span className={`block text-xs font-bold uppercase tracking-wider mt-1 opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>{item.desc}</span>
               </div>
-              <ChevronRight className={`transition-all transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 ${isLight ? 'text-pink-400' : 'text-[#caa5d8]'}`} />
+              <ChevronRight className={`transition-all transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 ${isLight ? 'text-pink-400' : 'text-fuchsia-400'}`} />
             </Link>
           ))}
         </div>
@@ -169,11 +166,11 @@ const SearchOverlay = ({ isOpen, onClose, theme }) => {
   if (!isOpen) return null;
   const isLight = theme === 'light';
   return (
-    <div className={`fixed inset-0 z-50 flex flex-col animate-in fade-in slide-in-from-top-8 duration-300 backdrop-blur-3xl ${isLight ? 'bg-white/80' : 'bg-[#050505]/80'}`}>
+    <div className={`fixed inset-0 z-50 flex flex-col animate-in fade-in slide-in-from-top-8 duration-300 backdrop-blur-3xl ${isLight ? 'bg-pink-50/90' : 'bg-[#050510]/90'}`}>
       <div className="p-8 flex items-center gap-6 max-w-5xl mx-auto w-full mt-20">
-        <Search size={32} className={isLight ? 'text-pink-400' : 'text-[#00fff2]'} />
-        <input type="text" autoFocus placeholder="Busque por pilotos, equipes..." className={`flex-1 bg-transparent text-4xl md:text-5xl font-black outline-none placeholder:opacity-20 ${isLight ? 'text-gray-900 placeholder-pink-300' : 'text-white placeholder-gray-600'}`} />
-        <button onClick={onClose} className="p-4 hover:bg-pink-50 rounded-full"><X size={32} className={isLight ? 'text-gray-500 hover:text-pink-500' : 'text-white'} /></button>
+        <Search size={32} className={isLight ? 'text-pink-500' : 'text-cyan-400 drop-shadow-[0_0_5px_cyan]'} />
+        <input type="text" autoFocus placeholder="Busque por pilotos, equipes..." className={`flex-1 bg-transparent text-4xl md:text-5xl font-black outline-none placeholder:opacity-30 ${isLight ? 'text-gray-900 placeholder-pink-400' : 'text-white placeholder-cyan-700'}`} />
+        <button onClick={onClose} className={`p-4 rounded-full transition-colors ${isLight ? 'hover:bg-pink-100 text-gray-400 hover:text-pink-500' : 'hover:bg-white/10 text-gray-500 hover:text-white'}`}><X size={32} /></button>
       </div>
     </div>
   );
@@ -185,7 +182,7 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
     <div className={`relative z-10 h-full flex flex-col ${noPadding ? '' : 'p-6 md:p-8'}`}>
       {(title || subtitle) && (
         <div className="mb-5 relative">
-          {subtitle && <span className={`text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 block opacity-80 ${isLight ? 'text-purple-400' : 'text-[#caa5d8]'}`}>{subtitle}</span>}
+          {subtitle && <span className={`text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 block opacity-80 ${isLight ? 'text-pink-400' : 'text-cyan-400'}`}>{subtitle}</span>}
           {title && <h3 className={`text-xl md:text-2xl font-black leading-none ${isLight ? 'text-gray-900' : 'text-white font-mono'}`}>{title}</h3>}
           {isLight && <Heart size={12} className="absolute -right-2 top-0 text-pink-300 opacity-50 rotate-12" />}
         </div>
@@ -196,15 +193,20 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
   
   const baseClasses = `relative overflow-hidden transition-all duration-500 group ${className} 
     ${isLight 
-      ? 'bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_40px_-10px_rgba(236,72,153,0.15)] border border-white/80 hover:border-pink-200 hover:shadow-[0_25px_60px_-10px_rgba(236,72,153,0.3)] hover:-translate-y-1 ring-1 ring-white/50' 
-      : 'bg-[#121217]/60 backdrop-blur-xl rounded-[2rem] border border-white/10 hover:border-[#00fff2]/50 hover:shadow-[0_0_40px_rgba(0,255,242,0.15)] hover:-translate-y-1'
+      ? 'bg-white/60 backdrop-blur-xl rounded-[2.5rem] shadow-[0_10px_30px_rgba(255,182,193,0.3)] border border-pink-100 hover:border-pink-300 hover:shadow-[0_20px_50px_rgba(255,105,180,0.25)] hover:-translate-y-1' 
+      : 'bg-[#090912]/80 backdrop-blur-xl rounded-[2rem] border border-white/5 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(0,255,242,0.15)] hover:-translate-y-1 ring-1 ring-white/5'
     } active:scale-[0.98]`;
   
   const CardWrapper = ({ children }) => (
     <>
-      <div className={`absolute top-0 left-0 right-0 h-32 bg-gradient-to-b ${isLight ? 'from-pink-100/30' : 'from-white/10'} to-transparent opacity-50 pointer-events-none`} />
+      <div className={`absolute top-0 left-0 right-0 h-32 bg-gradient-to-b ${isLight ? 'from-pink-100/40' : 'from-cyan-900/10'} to-transparent opacity-50 pointer-events-none`} />
       <div className={`absolute inset-0 opacity-[0.05] pointer-events-none group-hover:opacity-[0.1] transition-opacity duration-700`} 
-           style={{ backgroundImage: `radial-gradient(circle at 2px 2px, ${isLight ? '#ec4899' : '#fff'} 1px, transparent 0)`, backgroundSize: '24px 24px' }} />
+           style={{ 
+             backgroundImage: isLight 
+                ? 'radial-gradient(circle at 2px 2px, #ec4899 1px, transparent 0)' 
+                : 'linear-gradient(to right, #4f4f4f 1px, transparent 1px), linear-gradient(to bottom, #4f4f4f 1px, transparent 1px)', 
+             backgroundSize: isLight ? '24px 24px' : '40px 40px' 
+           }} />
       {children}
     </>
   );
@@ -223,7 +225,7 @@ const KpopPhotocard = ({ driver, theme, onClick }) => {
   return (
     <div className="group relative w-full aspect-[3/4.2] cursor-pointer" style={{ perspective: '1200px' }} onClick={(e) => { e.stopPropagation(); setIsFlipped(!isFlipped); if (onClick) onClick(); }}>
       <div className="relative w-full h-full transition-all duration-700 ease-out-back" style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
-        <div className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-pink-200 shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-[#caa5d8] shadow-[0_0_30px_rgba(202,165,216,0.2)]'} bg-gray-200 z-10`} style={{ backfaceVisibility: 'hidden' }}>
+        <div className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-pink-200 shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-fuchsia-500/50 shadow-[0_0_30px_rgba(232,121,249,0.3)]'} bg-gray-200 z-10`} style={{ backfaceVisibility: 'hidden' }}>
           <img src={driver.image} alt={driver.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           <div className="absolute top-4 right-5 text-8xl font-black text-white opacity-20 pointer-events-none tracking-tighter mix-blend-overlay">{driver.number}</div>
@@ -232,14 +234,14 @@ const KpopPhotocard = ({ driver, theme, onClick }) => {
             <div className="flex items-center justify-center gap-2 text-white/90 text-[10px] font-bold uppercase tracking-[0.2em] animate-pulse bg-white/20 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10"><RotateCcw size={12} /> Virar</div>
           </div>
         </div>
-        <div className={`absolute inset-0 rounded-[2.5rem] p-6 flex flex-col justify-between text-center ${isLight ? 'bg-gradient-to-br from-pink-50 via-white to-purple-50 border-[8px] border-white ring-4 ring-pink-200' : 'bg-[#121217] border-[6px] border-[#1a1a20] ring-4 ring-[#caa5d8]'} `} style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+        <div className={`absolute inset-0 rounded-[2.5rem] p-6 flex flex-col justify-between text-center ${isLight ? 'bg-gradient-to-br from-pink-50 via-white to-purple-50 border-[8px] border-white ring-4 ring-pink-200' : 'bg-[#09090c] border-[6px] border-[#1a1a20] ring-4 ring-cyan-500/50 shadow-[0_0_20px_rgba(0,255,242,0.3)]'} `} style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
            <div className="flex flex-col items-center gap-3 mt-4">
-            <div className={`w-24 h-24 rounded-full overflow-hidden border-4 shadow-lg ${isLight ? 'border-pink-300' : 'border-[#caa5d8]'}`}><img src={driver.image} className="w-full h-full object-cover" alt="Avatar" /></div>
-            <div><h3 className={`font-black text-2xl leading-none ${isLight ? 'text-gray-800' : 'text-white'}`}>{driver.name}</h3><span className={`inline-block mt-2 px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600' : 'bg-[#caa5d8]/20 text-[#caa5d8]'}`}>{driver.team}</span></div>
+            <div className={`w-24 h-24 rounded-full overflow-hidden border-4 shadow-lg ${isLight ? 'border-pink-300' : 'border-cyan-400'}`}><img src={driver.image} className="w-full h-full object-cover" alt="Avatar" /></div>
+            <div><h3 className={`font-black text-2xl leading-none ${isLight ? 'text-gray-800' : 'text-white'}`}>{driver.name}</h3><span className={`inline-block mt-2 px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600' : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30'}`}>{driver.team}</span></div>
            </div>
-           <div className="flex justify-center gap-4 text-xs font-bold uppercase opacity-60 tracking-widest"><span>{driver.zodiac}</span><span>•</span><span>#{driver.number}</span></div>
-           <div className={`p-5 rounded-2xl text-sm italic font-medium relative mx-2 ${isLight ? 'bg-white/80 text-gray-600 shadow-inner ring-1 ring-pink-100' : 'bg-[#1a1a20] text-gray-300 border border-white/5'}`}><span className="absolute -top-3 -left-2 text-4xl opacity-20 font-serif">"</span>{driver.secretFact}<span className="absolute -bottom-5 -right-2 text-4xl opacity-20 font-serif">"</span></div>
-           <div className="mt-2 transform -rotate-6 opacity-60 pb-4"><p className={`font-handwriting text-3xl ${isLight ? 'text-gray-400' : 'text-[#caa5d8]'}`} style={{ fontFamily: 'cursive' }}>{driver.signature}</p></div>
+           <div className={`flex justify-center gap-4 text-xs font-bold uppercase tracking-widest ${isLight ? 'text-gray-400' : 'text-gray-500'}`}><span>{driver.zodiac}</span><span>•</span><span>#{driver.number}</span></div>
+           <div className={`p-5 rounded-2xl text-sm italic font-medium relative mx-2 ${isLight ? 'bg-white/80 text-gray-600 shadow-inner ring-1 ring-pink-100' : 'bg-[#1a1a20] text-cyan-200 border border-cyan-500/20'}`}><span className="absolute -top-3 -left-2 text-4xl opacity-20 font-serif">"</span>{driver.secretFact}<span className="absolute -bottom-5 -right-2 text-4xl opacity-20 font-serif">"</span></div>
+           <div className="mt-2 transform -rotate-6 opacity-60 pb-4"><p className={`font-handwriting text-3xl ${isLight ? 'text-pink-400' : 'text-fuchsia-400'}`} style={{ fontFamily: 'cursive' }}>{driver.signature}</p></div>
         </div>
       </div>
     </div>
@@ -248,7 +250,15 @@ const KpopPhotocard = ({ driver, theme, onClick }) => {
 
 const NextRaceWidget = ({ theme }) => {
   const isLight = theme === 'light';
-  const C = { roxo: '#caa5d8', rosa: '#fac4dc', neonRoxo: '#bd00ff', neonCyan: '#00fff2' };
+  // Girlie Colors vs Vaporwave Colors
+  const C = { 
+    roxo: '#caa5d8', 
+    rosa: '#fac4dc', 
+    neonRoxo: '#bd00ff', 
+    neonCyan: '#00fff2',
+    neonPink: '#ff00ff'
+  };
+  
   const sessions = [
     { day: 'SEX', date: '05', name: 'Treino Livre 1', time: '06:30', type: 'FP' },
     { day: 'SEX', date: '05', name: 'Treino Livre 2', time: '10:00', type: 'FP' },
@@ -258,14 +268,25 @@ const NextRaceWidget = ({ theme }) => {
   ];
   return (
     <div className={`h-full flex flex-col p-6 md:p-8 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
-       <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-purple-900' : 'text-[#bd00ff]'}`}><Flag size={240} /></div>
+       <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}><Flag size={240} /></div>
        <div className="flex justify-between items-end mb-6 z-10 relative">
-          <div><span className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] opacity-60 mb-1"><MapPin size={11} /> Yas Marina, EAU</span><h3 className="text-3xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text" style={{ backgroundImage: isLight ? `linear-gradient(to right, ${C.roxo}, ${C.rosa})` : `linear-gradient(to right, #fff, ${C.neonRoxo})` }}>ABU DHABI</h3></div>
-          <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center gap-1.5 border shadow-sm ${isLight ? 'bg-white border-pink-100 text-gray-500' : 'bg-white/10 border-white/5 text-gray-300'}`}><Clock size={12} /> <span>BRT</span></div>
+          <div>
+            <span className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] opacity-60 mb-1 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}><MapPin size={11} /> Yas Marina, EAU</span>
+            <h3 className="text-3xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text" 
+                style={{ backgroundImage: isLight ? `linear-gradient(to right, #ec4899, #a855f7)` : `linear-gradient(to right, ${C.neonCyan}, ${C.neonPink})` }}>
+              ABU DHABI
+            </h3>
+          </div>
+          <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center gap-1.5 border shadow-sm ${isLight ? 'bg-white border-pink-100 text-pink-500' : 'bg-black/40 border-cyan-500/30 text-cyan-400'}`}><Clock size={12} /> <span>BRT</span></div>
        </div>
        <div className="flex-1 flex flex-col justify-between gap-2.5 z-10">
           {sessions.map((session, i) => (
-             <div key={i} className={`flex items-center justify-between p-3 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] hover:px-4 ${session.main ? 'shadow-lg shadow-purple-500/20' : ''}`} style={session.main ? { background: isLight ? `linear-gradient(90deg, ${C.roxo}, ${C.rosa})` : `linear-gradient(90deg, ${C.neonRoxo}, #9d00ff)`, color: 'white' } : session.highlight ? { background: isLight ? 'white' : 'rgba(255,255,255,0.03)', borderColor: isLight ? C.roxo : C.neonCyan, borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#333' : 'white' } : { background: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.02)', borderColor: isLight ? '#fce7f3' : 'transparent', borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#9ca3af' : '#6b7280' }}>
+             <div key={i} className={`flex items-center justify-between p-3 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] hover:px-4 ${session.main ? (isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]') : ''}`} 
+                  style={session.main 
+                    ? { background: isLight ? `linear-gradient(90deg, #ec4899, #a855f7)` : `linear-gradient(90deg, ${C.neonRoxo}, ${C.neonPink})`, color: 'white' } 
+                    : session.highlight 
+                      ? { background: isLight ? 'white' : 'rgba(0, 255, 242, 0.05)', borderColor: isLight ? '#fbcfe8' : C.neonCyan, borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#333' : 'white' } 
+                      : { background: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.02)', borderColor: isLight ? '#fce7f3' : 'transparent', borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#9ca3af' : '#6b7280' }}>
                 <div className="flex items-center gap-4"><div className={`flex flex-col items-center justify-center w-10 h-10 rounded-xl font-bold leading-none ${session.main ? 'bg-white/20 text-white backdrop-blur-sm' : (isLight ? 'bg-pink-50 text-pink-400' : 'bg-white/5 text-gray-500')}`}><span className="text-[8px] uppercase opacity-70 tracking-wider mb-0.5">{session.day}</span><span className="text-sm">{session.date}</span></div><div><span className={`block text-xs ${session.main || session.highlight ? 'font-black uppercase tracking-wide' : 'font-bold'}`}>{session.name}</span></div></div><div className={`font-mono font-bold tracking-tight ${session.main ? 'text-base' : 'text-sm opacity-80'}`}>{session.time}</div>
              </div>
           ))}
@@ -287,23 +308,24 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
     azul: '#bbd3f2', 
     neonRoxo: '#bd00ff', 
     neonCyan: '#00fff2',
+    neonPink: '#ff00ff'
   };
 
   const getBadgeStyle = (type) => (
     type === 'article' 
       ? (isLight 
-          ? { background: `linear-gradient(90deg, ${C.roxo}, ${C.rosa})`, color: 'white' } 
-          : { borderColor: C.neonRoxo, color: C.neonRoxo, border: '1px solid' }) 
+          ? { background: `linear-gradient(90deg, #ec4899, #a855f7)`, color: 'white' } 
+          : { borderColor: C.neonPink, color: C.neonPink, border: '1px solid', boxShadow: `0 0 5px ${C.neonPink}` }) 
       : (isLight 
-          ? { backgroundColor: C.azul, color: 'white' } 
-          : { borderColor: C.neonCyan, color: C.neonCyan, border: '1px solid' })
+          ? { backgroundColor: '#e0f2fe', color: '#0284c7' } 
+          : { borderColor: C.neonCyan, color: C.neonCyan, border: '1px solid', boxShadow: `0 0 5px ${C.neonCyan}` })
   );
 
   return (
     <div className="flex flex-col h-full min-h-0 relative p-6 md:p-8">
       <div className="flex items-center justify-between mb-6 px-1 shrink-0">
         <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-xl ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-white/10 text-[#caa5d8]'}`}>
+          <div className={`p-2 rounded-xl ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-white/10 text-cyan-400 border border-cyan-500/30'}`}>
              <Newspaper size={22} />
           </div>
           <span className={`text-sm font-black uppercase tracking-[0.2em] ${isLight ? 'text-gray-600' : 'text-white'}`}>
@@ -315,7 +337,7 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
       <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-3 custom-scrollbar pb-2">
         {loading && (
           <div className="flex-1 flex flex-col items-center justify-center opacity-60 gap-3">
-            <Loader2 size={32} className="animate-spin text-purple-400" />
+            <Loader2 size={32} className={`animate-spin ${isLight ? 'text-pink-400' : 'text-cyan-400'}`} />
             <span className="text-sm font-bold tracking-wide">Buscando fofocas...</span>
           </div>
         )}
@@ -327,7 +349,7 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
             className={`group relative flex items-stretch gap-4 p-4 rounded-3xl text-left border transition-all duration-300 cursor-pointer shrink-0 
               ${isLight 
                 ? "bg-white border-pink-50 hover:border-pink-200 hover:shadow-xl hover:shadow-pink-100 hover:-translate-y-1" 
-                : "bg-[#0a0a12]/60 hover:bg-[#121217] border-[#222] hover:border-[#00fff2]/40 hover:-translate-y-1"
+                : "bg-[#0a0a12]/60 hover:bg-[#121217] border-white/5 hover:border-fuchsia-500/50 hover:shadow-[0_0_15px_rgba(189,0,255,0.2)] hover:-translate-y-1"
               }`}
           >
             {item.image && (
@@ -359,14 +381,14 @@ const NewsWidget = ({ theme, posts, onNewsClick }) => {
               </h4>
             </div>
 
-            <div className={`absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 ${isLight ? 'text-pink-400' : 'text-[#00fff2]'}`}>
+            <div className={`absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 ${isLight ? 'text-pink-400' : 'text-cyan-400'}`}>
                <ChevronRight size={20} />
             </div>
           </button>
         ))}
       </div>
       
-      <div className={`absolute bottom-0 left-0 right-0 h-8 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#121217]/80'} to-transparent`} />
+      <div className={`absolute bottom-0 left-0 right-0 h-8 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`} />
     </div>
   );
 };
@@ -375,37 +397,37 @@ const FanzoneWidget = ({ theme }) => {
   const isLight = theme === 'light';
   return (
     <div className="h-full flex flex-col items-center justify-center p-6 text-center relative z-10 group">
-      <div className={`p-5 rounded-full mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg ${isLight ? 'bg-pink-50 text-pink-400 ring-4 ring-pink-100' : 'bg-[#1a1a20] text-[#bd00ff]'}`}><Sparkles size={32} /></div>
+      <div className={`p-5 rounded-full mb-4 transition-transform duration-500 group-hover:scale-110 shadow-lg ${isLight ? 'bg-pink-50 text-pink-400 ring-4 ring-pink-100' : 'bg-black/40 text-fuchsia-400 ring-2 ring-fuchsia-500/50 shadow-[0_0_15px_rgba(232,121,249,0.4)]'}`}><Sparkles size={32} /></div>
       <h3 className={`font-black text-xl mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>Fanzone</h3>
-      <p className={`text-xs uppercase font-bold tracking-widest opacity-50 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Vote no Driver of The Day</p>
+      <p className={`text-xs uppercase font-bold tracking-widest opacity-50 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}>Vote no Driver of The Day</p>
     </div>
   );
 };
 
 const SeasonWidget = ({ theme }) => {
   const isLight = theme === 'light';
-  const C = { roxo: '#caa5d8', rosa: '#fac4dc', azul: '#bbd3f2', neonRoxo: '#bd00ff', neonCyan: '#00fff2' };
+  const C = { roxo: '#caa5d8', rosa: '#fac4dc', azul: '#bbd3f2', neonRoxo: '#bd00ff', neonCyan: '#00fff2', neonPink: '#ff00ff' };
   const topDrivers = [{ pos: 1, name: 'L. Norris', team: 'MCL', pts: 408, color: '#FF8700' }, { pos: 2, name: 'M. Verstappen', team: 'RBR', pts: 396, color: '#1E41FF' }, { pos: 3, name: 'O. Piastri', team: 'MCL', pts: 392, color: '#FF8700' }, { pos: 4, name: 'G. Russell', team: 'MER', pts: 309, color: '#00D2BE' }, { pos: 5, name: 'C. Leclerc', team: 'FER', pts: 230, color: '#FF0000' }];
   const constructors = [{ name: 'McLaren', pts: 800, color: '#FF8700', percent: '100%' }, { name: 'Mercedes', pts: 459, color: '#00D2BE', percent: '57%' }, { name: 'Red Bull', pts: 426, color: '#1E41FF', percent: '53%' }];
-  const boxClass = isLight ? 'bg-white border-pink-100' : 'bg-white/5 border-white/5';
+  const boxClass = isLight ? 'bg-white border-pink-100 shadow-sm' : 'bg-[#0a0a10] border-white/5';
   
   return (
     <div className={`h-full flex flex-col justify-between p-6 md:p-8 relative overflow-hidden text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
       <div className="absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: isLight ? C.azul : C.neonCyan }} />
       <div className="flex justify-between items-start mb-6 z-10 relative">
-         <div className="flex items-center gap-3"><div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-purple-50 text-purple-400' : 'bg-white/10 text-[#bd00ff]'}`}><Trophy size={20} /></div><div><h3 className="text-base font-black uppercase leading-none tracking-wide text-transparent bg-clip-text" style={{ backgroundImage: isLight ? `linear-gradient(to right, ${C.roxo}, ${C.rosa})` : `linear-gradient(to right, #fff, ${C.neonRoxo})` }}>Temporada 2025</h3><p className="text-[10px] font-bold uppercase tracking-wider mt-1 opacity-50">Campeonato Encerrado</p></div></div>
+         <div className="flex items-center gap-3"><div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-purple-50 text-purple-400' : 'bg-white/10 text-fuchsia-400 border border-fuchsia-500/20'}`}><Trophy size={20} /></div><div><h3 className="text-base font-black uppercase leading-none tracking-wide text-transparent bg-clip-text" style={{ backgroundImage: isLight ? `linear-gradient(to right, ${C.roxo}, ${C.rosa})` : `linear-gradient(to right, ${C.neonCyan}, ${C.neonPink})` }}>Temporada 2025</h3><p className={`text-[10px] font-bold uppercase tracking-wider mt-1 opacity-50 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Campeonato Encerrado</p></div></div>
       </div>
       <div className="flex-1 grid grid-cols-1 gap-4 z-10">
-         <div className={`rounded-3xl p-4 border shadow-sm flex flex-col justify-center ${boxClass}`}>
-            <div className="flex items-center justify-between mb-3 px-1"><span className="text-[9px] font-black uppercase tracking-[0.2em] opacity-50">Top 5 Pilotos</span><span className="text-[9px] font-bold opacity-30">PTS</span></div>
-            <div className="space-y-2">{topDrivers.map((d) => (<div key={d.pos} className="flex items-center justify-between text-xs group"><div className="flex items-center gap-3"><span className={`font-mono w-5 text-[10px] text-center rounded-lg py-0.5 ${d.pos === 1 ? 'bg-yellow-100 text-yellow-600 font-bold' : 'opacity-40'}`}>{d.pos}</span><div className="w-2 h-2 rounded-full" style={{ backgroundColor: d.color }}></div><span className={`truncate max-w-[100px] ${d.pos === 1 ? 'font-bold' : 'font-medium'}`}>{d.name}</span></div><span className="font-mono font-medium opacity-60 text-[11px] group-hover:opacity-100 transition-opacity">{d.pts}</span></div>))}</div>
+         <div className={`rounded-3xl p-4 border flex flex-col justify-center ${boxClass}`}>
+            <div className="flex items-center justify-between mb-3 px-1"><span className={`text-[9px] font-black uppercase tracking-[0.2em] opacity-50 ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>Top 5 Pilotos</span><span className="text-[9px] font-bold opacity-30">PTS</span></div>
+            <div className="space-y-2">{topDrivers.map((d) => (<div key={d.pos} className="flex items-center justify-between text-xs group"><div className="flex items-center gap-3"><span className={`font-mono w-5 text-[10px] text-center rounded-lg py-0.5 ${d.pos === 1 ? 'bg-yellow-100 text-yellow-600 font-bold' : 'opacity-40'}`}>{d.pos}</span><div className="w-2 h-2 rounded-full shadow-[0_0_5px_currentColor]" style={{ backgroundColor: d.color, color: d.color }}></div><span className={`truncate max-w-[100px] ${d.pos === 1 ? 'font-bold' : 'font-medium'}`}>{d.name}</span></div><span className="font-mono font-medium opacity-60 text-[11px] group-hover:opacity-100 transition-opacity">{d.pts}</span></div>))}</div>
          </div>
-         <div className={`rounded-3xl p-4 border shadow-sm flex flex-col justify-center ${boxClass}`}>
+         <div className={`rounded-3xl p-4 border flex flex-col justify-center ${boxClass}`}>
             <div className="flex items-center gap-2 mb-3 px-1 opacity-50"><Wrench size={12} /><span className="text-[9px] font-black uppercase tracking-[0.2em]">Construtores</span></div>
-            <div className="space-y-3">{constructors.map((t, i) => (<div key={i}><div className="flex justify-between text-[10px] font-bold mb-1.5 px-0.5"><span style={{ color: t.color }}>{t.name}</span><span className="font-mono opacity-60">{t.pts}</span></div><div className={`w-full h-2 rounded-full overflow-hidden ${isLight ? 'bg-pink-50' : 'bg-white/10'}`}><div className="h-full rounded-full transition-all duration-1000 ease-out origin-left hover:brightness-110" style={{ width: t.percent, backgroundColor: t.color }} /></div></div>))}</div>
+            <div className="space-y-3">{constructors.map((t, i) => (<div key={i}><div className="flex justify-between text-[10px] font-bold mb-1.5 px-0.5"><span style={{ color: t.color }}>{t.name}</span><span className="font-mono opacity-60">{t.pts}</span></div><div className={`w-full h-2 rounded-full overflow-hidden ${isLight ? 'bg-pink-50' : 'bg-white/10'}`}><div className="h-full rounded-full transition-all duration-1000 ease-out origin-left hover:brightness-110 shadow-[0_0_5px_currentColor]" style={{ width: t.percent, backgroundColor: t.color, color: t.color }} /></div></div>))}</div>
          </div>
       </div>
-      <div className="mt-4 pt-4 border-t border-dashed border-gray-200/50 dark:border-white/10 flex justify-center"><Link to="/regulations" className={`text-[10px] font-bold uppercase tracking-widest py-2 px-5 rounded-full transition-all flex items-center gap-2 hover:scale-105 ${isLight ? 'bg-gray-50 text-gray-400 hover:text-gray-600' : 'bg-white/5 text-gray-500 hover:text-white'}`}>Ver Regulamento 2026 <ArrowRight size={10} /></Link></div>
+      <div className={`mt-4 pt-4 border-t border-dashed flex justify-center ${isLight ? 'border-pink-200' : 'border-white/10'}`}><Link to="/regulations" className={`text-[10px] font-bold uppercase tracking-widest py-2 px-5 rounded-full transition-all flex items-center gap-2 hover:scale-105 ${isLight ? 'bg-gray-50 text-gray-400 hover:text-gray-600' : 'bg-white/5 text-gray-500 hover:text-white border border-white/5 hover:border-cyan-500/50'}`}>Ver Regulamento 2026 <ArrowRight size={10} /></Link></div>
     </div>
   );
 };
@@ -414,20 +436,23 @@ const ContactWidget = ({ theme }) => {
   const isLight = theme === 'light';
   return (
     <div className="h-full flex flex-col items-center justify-center text-center p-4 relative z-10 group">
-      <div className={`p-4 rounded-full mb-3 transition-transform duration-300 group-hover:rotate-12 ${isLight ? 'bg-pink-50 text-pink-400' : 'bg-[#1a1a20] text-[#caa5d8]'}`}><MessageSquare size={28} /></div>
+      <div className={`p-4 rounded-full mb-3 transition-transform duration-300 group-hover:rotate-12 ${isLight ? 'bg-pink-50 text-pink-400' : 'bg-black/40 text-cyan-400 border border-cyan-500/20'}`}><MessageSquare size={28} /></div>
       <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Contato</h3>
-      <p className={`text-[10px] font-bold uppercase tracking-widest opacity-60 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Mande um alô</p>
+      <p className={`text-[10px] font-bold uppercase tracking-widest opacity-60 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}>Mande um alô</p>
     </div>
   );
 };
 
-const CuriosityWidget = ({ theme }) => (
-  <div className="h-full flex flex-col items-center justify-center text-center p-2 relative z-10">
-    <div className="bg-yellow-400/10 p-3 rounded-full mb-2"><Zap size={24} className="text-yellow-400" /></div>
-    <h4 className="font-bold text-sm leading-tight">Você Sabia?</h4>
-    <span className="text-[9px] opacity-60 mt-1 block px-2">Clique para uma curiosidade aleatória da F1.</span>
-  </div>
-);
+const CuriosityWidget = ({ theme }) => {
+  const isLight = theme === 'light';
+  return (
+    <div className="h-full flex flex-col items-center justify-center text-center p-2 relative z-10">
+      <div className={`p-3 rounded-full mb-2 ${isLight ? 'bg-yellow-100 text-yellow-500' : 'bg-yellow-500/10 text-yellow-400'}`}><Zap size={24} /></div>
+      <h4 className={`font-bold text-sm leading-tight ${isLight ? 'text-gray-800' : 'text-white'}`}>Você Sabia?</h4>
+      <span className={`text-[9px] opacity-60 mt-1 block px-2 ${isLight ? 'text-gray-500' : 'text-gray-400'}`}>Clique para uma curiosidade aleatória da F1.</span>
+    </div>
+  );
+};
 
 const NewsletterWidget = ({ theme }) => {
   const isLight = theme === "light";
@@ -436,14 +461,14 @@ const NewsletterWidget = ({ theme }) => {
   const handleSubmit = async (e) => { e.preventDefault(); if (!email) return; try { setStatus("loading"); await new Promise(r => setTimeout(r, 1500)); setStatus("success"); setEmail(""); } catch (error) { setStatus("error"); } };
   return (
     <div className="h-full flex flex-col md:flex-row items-center justify-center p-8 md:p-10 gap-6 md:gap-8 relative z-10">
-      <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-white'}`} />
+      <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-cyan-500'}`} />
       <div className="flex items-center gap-4 md:gap-6 shrink-0 relative z-10">
-        <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-[#333] text-white"}`}><Mail size={32} /></div>
-        <div><h3 className={`font-black text-xl md:text-2xl mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>Newsletter</h3><p className={`text-xs md:text-sm font-medium ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>Fofocas quentinhas na sua caixa de entrada.</p></div>
+        <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-fuchsia-500/30 text-fuchsia-400"}`}><Mail size={32} /></div>
+        <div><h3 className={`font-black text-xl md:text-2xl mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>Newsletter</h3><p className={`text-xs md:text-sm font-medium ${isLight ? 'text-gray-400' : 'text-cyan-200'}`}>Fofocas quentinhas na sua caixa de entrada.</p></div>
       </div>
       <form className="flex flex-1 gap-3 md:gap-4 w-full max-w-lg relative z-10" onSubmit={handleSubmit}>
-        <div className="relative flex-1 group"><input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all ${isLight ? "bg-white border-2 border-transparent focus:border-[#D8C4F0] text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-[#00fff2] text-white placeholder-gray-600"}`} /></div>
-        <button type="submit" disabled={status === "loading" || status === "success"} className={`h-12 md:h-14 px-6 md:px-10 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all active:scale-95 whitespace-nowrap shadow-xl flex items-center gap-3 ${isLight ? "bg-gray-900 hover:bg-black text-white hover:shadow-2xl" : "bg-[#bd00ff] hover:bg-[#a000db] text-white shadow-[0_0_20px_rgba(189,0,255,0.4)]"} ${status === "success" ? "bg-green-500 hover:bg-green-600" : ""}`}>{status === "loading" && <Loader2 size={18} className="animate-spin" />}{status === "success" ? "Enviado!" : "Assinar"}</button>
+        <div className="relative flex-1 group"><input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all ${isLight ? "bg-white border-2 border-transparent focus:border-pink-300 text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-cyan-400 text-white placeholder-gray-600"}`} /></div>
+        <button type="submit" disabled={status === "loading" || status === "success"} className={`h-12 md:h-14 px-6 md:px-10 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all active:scale-95 whitespace-nowrap shadow-xl flex items-center gap-3 ${isLight ? "bg-gray-900 hover:bg-black text-white hover:shadow-2xl" : "bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-[0_0_20px_rgba(192,38,211,0.4)] hover:shadow-[0_0_30px_rgba(192,38,211,0.6)]"} ${status === "success" ? "bg-green-500 hover:bg-green-600" : ""}`}>{status === "loading" && <Loader2 size={18} className="animate-spin" />}{status === "success" ? "Enviado!" : "Assinar"}</button>
       </form>
     </div>
   );
@@ -543,26 +568,24 @@ const Home = () => {
     }
   }, []);
 
-  // Padrões de Fundo
+  // Padrões de Fundo (Novos Girlie & Vaporwave)
   const lightPattern = {
-    backgroundColor: '#FFF5F8',
+    backgroundColor: '#FFF0F5', // LavenderBlush
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(247, 184, 200, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(216, 196, 240, 0.4) 0px, transparent 50%),
-      conic-gradient(from 0deg at 50% 50%, rgba(247, 184, 200, 0.2) 0deg, transparent 60deg, rgba(216, 196, 240, 0.2) 120deg, transparent 180deg, rgba(247, 184, 200, 0.2) 240deg, transparent 300deg, rgba(216, 196, 240, 0.2) 360deg)
+      radial-gradient(at 10% 10%, rgba(252, 205, 238, 0.5) 0px, transparent 50%),
+      radial-gradient(at 90% 0%, rgba(255, 182, 193, 0.5) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(230, 230, 250, 0.5) 0px, transparent 50%)
     `,
     backgroundSize: '100% 100%'
   };
 
   const darkPattern = {
-    backgroundColor: '#0a0a0c',
+    backgroundColor: '#050510',
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(189, 0, 255, 0.2) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(0, 255, 242, 0.2) 0px, transparent 50%),
-      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+      linear-gradient(rgba(0, 255, 242, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(189, 0, 255, 0.05) 1px, transparent 1px)
     `,
-    backgroundSize: '100% 100%, 100% 100%, 40px 40px, 40px 40px'
+    backgroundSize: '40px 40px'
   };
 
   const DRIVER_OF_DAY = { name: "Lando Norris", team: "McLaren", number: "4", image: '/img/pilotos/norris/grid-norris.avif', zodiac: "Escorpião", secretFact: "Tem medo de peixes mas ama sushi.", signature: "L4ndo", vibes: [{ icon: Sparkles }] };
@@ -572,7 +595,7 @@ const Home = () => {
       <NavigationOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} theme={theme} />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} theme={theme} />
 
-      <header className="sticky top-0 z-40 w-full backdrop-blur-xl border-b border-white/20 transition-all duration-300 shadow-sm">
+      <header className={`sticky top-0 z-40 w-full backdrop-blur-xl border-b transition-all duration-300 shadow-sm ${theme === 'light' ? 'border-pink-200/50 bg-white/70' : 'border-white/5 bg-[#050510]/80'}`}>
         <div className="max-w-[1400px] mx-auto px-4 py-4 md:px-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button onClick={() => setIsMenuOpen(true)} className={`flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 text-gray-800 shadow-lg hover:text-pink-500 hover:shadow-pink-200' : 'bg-[#1a1a20]/80 text-white border border-[#333] hover:text-[#00fff2] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}>
@@ -582,7 +605,9 @@ const Home = () => {
           </div>
           
           <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 transform hover:scale-105 transition-transform duration-500 cursor-pointer">
-             <LogoHelmet theme={theme} size="large" />
+             <Link to="/">
+              <LogoHelmet theme={theme} size="large" />
+             </Link>
           </div>
           
           <div className="flex items-center gap-2">
@@ -605,13 +630,17 @@ const Home = () => {
           <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
             <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#bd00ff]/10 blur-[120px] rounded-full animate-pulse" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#00fff2]/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+            {/* Vaporwave Sun */}
+            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-600 rounded-full blur-[100px] opacity-10" />
+            {/* Horizon Line */}
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />
           </div>
       )}
 
       <main className="flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full">
         <div className="mb-8 md:mb-12 text-center md:text-left relative">
           <h2 className={`text-3xl md:text-5xl font-black tracking-tighter mb-3 leading-[0.9] ${theme === 'light' ? 'text-gray-900 drop-shadow-sm' : 'text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'}`}>
-            Olá, <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-pink-400 via-[#caa5d8] to-[#fac4dc]' : 'from-[#ff00ff] via-[#bd00ff] to-[#00fff2]'}`}>F1 Lover!</span> 
+            Olá, <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-pink-500 via-purple-400 to-pink-500' : 'from-[#ff00ff] via-[#bd00ff] to-[#00fff2]'}`}>F1 Lover!</span> 
           </h2>
           <p className={`text-sm md:text-lg font-medium max-w-2xl ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
             Tudo o que você precisa saber sobre a F1, com aquele toque de caos e brilho que a gente ama.
@@ -647,9 +676,11 @@ const Home = () => {
         </div>
       </main>
 
-      <footer className={`py-16 md:py-24 text-center border-t relative z-20 mt-10 ${theme === 'light' ? 'border-gray-200 bg-white/60 backdrop-blur-lg' : 'border-white/5 bg-black/60 backdrop-blur-lg'}`}>
+      <footer className={`py-16 md:py-24 text-center border-t relative z-20 mt-10 ${theme === 'light' ? 'border-pink-200 bg-white/60 backdrop-blur-lg' : 'border-white/5 bg-black/60 backdrop-blur-lg'}`}>
          <div className="flex flex-col items-center justify-center gap-6 mb-8 opacity-90">
-            <LogoHelmet theme={theme} size="normal" />
+            <Link to="/">
+               <LogoHelmet theme={theme} size="normal" />
+            </Link>
             <div className="flex gap-6 mt-4">
                {SOCIAL_LINKS.map(social => (
                   <a key={social.id} href={social.url} className={`p-3 rounded-full transition-all hover:-translate-y-1 ${theme === 'light' ? 'bg-white text-gray-400 hover:text-pink-500 shadow-md hover:shadow-pink-200' : 'bg-[#1a1a20] text-gray-500 hover:text-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}>
@@ -667,14 +698,14 @@ const Home = () => {
 
 // --- LAYOUT PADRÃO ---
 const MainLayout = ({ children, theme, toggleTheme, menuOpen, setMenuOpen, searchOpen, setSearchOpen }) => {
-  const headerBg = theme === 'light' ? 'bg-[#FFF5F8]/90 backdrop-blur-md' : 'bg-[#141416]/90 backdrop-blur-md';
+  const headerBg = theme === 'light' ? 'bg-[#FFF0F5]/90 backdrop-blur-md' : 'bg-[#141416]/90 backdrop-blur-md';
   
   return (
     <div className={`min-h-screen flex flex-col ${theme === 'light' ? 'text-gray-800' : 'text-gray-200'}`}>
       <NavigationOverlay isOpen={menuOpen} onClose={() => setMenuOpen(false)} theme={theme} />
       <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} theme={theme} />
       
-      <div className={`w-full ${headerBg} sticky top-0 z-40 transition-all duration-300 border-b ${theme === 'light' ? 'border-gray-200/50' : 'border-white/5'}`}>
+      <div className={`w-full ${headerBg} sticky top-0 z-40 transition-all duration-300 border-b ${theme === 'light' ? 'border-pink-200/50' : 'border-white/5'}`}>
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-3">
           <header className="flex justify-between items-center">
             <div className="flex-1 flex justify-start">
@@ -703,7 +734,7 @@ const MainLayout = ({ children, theme, toggleTheme, menuOpen, setMenuOpen, searc
         </div>
       </div>
 
-      <div className={`flex-1 relative z-10 flex flex-col ${theme === 'light' ? 'bg-[#FFF5F8]' : 'bg-[#141416]'}`}>
+      <div className={`flex-1 relative z-10 flex flex-col ${theme === 'light' ? 'bg-[#FFF0F5]' : 'bg-[#141416]'}`}>
         <div className="max-w-7xl mx-auto p-4 md:p-8 relative z-10 w-full flex-1">
           <main className="min-h-[60vh]">{children}</main>
         </div>
