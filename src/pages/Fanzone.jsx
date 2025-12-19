@@ -4,8 +4,9 @@ import {
   MessageCircle, Users, Sparkles, ChevronLeft, Heart, 
   RotateCcw, Star, Music, Crown 
 } from 'lucide-react';
-import { BackButton, KpopPhotocard } from '../components/UI';
+import {  KpopPhotocard } from '../components/widgets';
 import { DRIVERS_DATA } from '../data';
+import { BackButton } from '../components/ui';
 
 // ============================================================================
 // 📄 PÁGINA FANZONE

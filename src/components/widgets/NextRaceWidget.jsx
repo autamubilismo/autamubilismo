@@ -1,186 +1,69 @@
-// src/components/widgets/NextRaceWidget.jsx
-import React from "react";
-import { Flag, MapPin, Clock } from "lucide-react";
-import { F1_2026_PRESEASON, F1_2026_CALENDAR } from "../../data/f1Calendar2026";
-import { getNextEvent } from "../../utils/f1Calendar";
+import React from 'react';
+import { MapPin, Clock, Flag } from 'lucide-react';
+import { GIRLIE_COLORS, VAPORWAVE_COLORS } from '../../constants/theme';
 
 export const NextRaceWidget = ({ theme }) => {
-  const isLight = theme === "light";
-
-  const BRAND = {
-    roxo: "#caa5d8",
-    rosa: "#fac4dc",
-    neonRoxo: "#bd00ff",
-    neonCyan: "#00fff2",
-  };
-
-  const nextEvent = getNextEvent({
-    preseasonTests: F1_2026_PRESEASON,
-    races: F1_2026_CALENDAR,
-  });
-
-  if (!nextEvent) {
-    return (
-      <div
-        className={`h-full flex flex-col p-4 relative overflow-hidden ${
-          isLight ? "text-gray-800" : "text-white"
-        }`}
-      >
-        <p className="text-[10px] uppercase text-gray-500 mb-1">
-          Próximo evento
-        </p>
-        <p className="text-sm">Temporada encerrada 🎉</p>
-      </div>
-    );
-  }
-
-  const isTest = nextEvent.kind === "TEST";
-
-  const title = nextEvent.title; // "Pré-temporada — Teste 1" ou "ABU DHABI"
-  const circuitLabel = nextEvent.circuitLabel;
-  const timezoneLabel = nextEvent.timezoneLabel || "BRT";
-  const sessions = nextEvent.sessions || [];
-
+  const isLight = theme === 'light';
+  const C = isLight ? GIRLIE_COLORS : VAPORWAVE_COLORS;
+  
+  const sessions = [
+    { day: 'SEX', date: '05', name: 'Treino Livre 1', time: '06:30', type: 'FP' },
+    { day: 'SEX', date: '05', name: 'Treino Livre 2', time: '10:00', type: 'FP' },
+    { day: 'SÁB', date: '06', name: 'Treino Livre 3', time: '07:30', type: 'FP' },
+    { day: 'SÁB', date: '06', name: 'Classificação', time: '11:00', type: 'Q', highlight: true },
+    { day: 'DOM', date: '07', name: 'Grande Prêmio', time: '10:00', type: 'RACE', main: true },
+  ];
+  
   return (
-    <div
-      className={`h-full flex flex-col p-4 relative overflow-hidden ${
-        isLight ? "text-gray-800" : "text-white"
-      }`}
-    >
-      {/* FLAG DE FUNDO */}
-      <div
-        className={`absolute -right-6 -bottom-10 opacity-[0.07] pointer-events-none rotate-12 transition-colors duration-500 ${
-          isLight ? "text-purple-900" : "text-[#bd00ff]"
-        }`}
-      >
-        <Flag size={200} />
+    <div className={`h-full flex flex-col p-6 md:p-8 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
+      <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}>
+        <Flag size={240} />
       </div>
-
-      {/* CABEÇALHO */}
-      <div className="flex justify-between items-end mb-3 z-10 relative">
+      
+      <div className="flex justify-between items-end mb-6 z-10 relative">
         <div>
-          <span className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-[0.2em] opacity-50 mb-0.5">
-            <MapPin size={9} /> {circuitLabel}
+          <span className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] opacity-60 mb-1 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}>
+            <MapPin size={11} /> Yas Marina, EAU
           </span>
-
-          {/* Se quiser diferenciar visualmente teste vs corrida */}
-          {isTest && (
-            <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.16em] text-pink-300 mb-0.5">
-              Pré-temporada
-            </span>
-          )}
-
-          <h3
-            className="text-2xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text"
-            style={{
-              backgroundImage: isLight
-                ? `linear-gradient(to right, ${BRAND.roxo}, ${BRAND.rosa})`
-                : `linear-gradient(to right, #fff, ${BRAND.neonRoxo})`,
-            }}
+          <h3 
+            className="text-3xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text" 
+            style={{ backgroundImage: isLight ? `linear-gradient(to right, #ec4899, #a855f7)` : `linear-gradient(to right, ${C.neonCyan}, ${C.neonPink})` }}
           >
-            {title}
+            ABU DHABI
           </h3>
         </div>
-
-        <div
-          className={`px-2 py-0.5 rounded-full text-[8px] font-bold flex items-center gap-1 border shadow-sm ${
-            isLight
-              ? "bg-white border-gray-100 text-gray-400"
-              : "bg-white/10 border-white/5 text-gray-300"
-          }`}
-        >
-          <Clock size={9} />
-          <span>{timezoneLabel}</span>
+        <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center gap-1.5 border shadow-sm ${isLight ? 'bg-white border-pink-100 text-pink-500' : 'bg-black/40 border-cyan-500/30 text-cyan-400'}`}>
+          <Clock size={12} /> <span>BRT</span>
         </div>
       </div>
-
-      {/* LISTA EM BLOCOS (REUSA SEU ESTILO) */}
-      <div className="flex-1 flex flex-col justify-between gap-1.5 z-10">
-        {sessions.map((session, i) => {
-          const isMain = session.main;
-          const isHighlight = session.highlight;
-
-          let blockStyle = {};
-          let textClass = "";
-
-          if (isMain) {
-            // sessão principal (corrida ou "dia chave")
-            blockStyle = {
-              background: isLight
-                ? `linear-gradient(90deg, ${BRAND.roxo}, ${BRAND.rosa})`
-                : `linear-gradient(90deg, ${BRAND.neonRoxo}, #9d00ff)`,
-              border: "none",
-              boxShadow: isLight
-                ? "0 4px 10px -2px rgba(0,0,0,0.1)"
-                : `0 0 15px ${BRAND.neonRoxo}40`,
-            };
-            textClass = "text-white";
-          } else if (isHighlight) {
-            blockStyle = {
-              background: isLight ? "white" : "rgba(255,255,255,0.03)",
-              borderColor: isLight ? BRAND.roxo : BRAND.neonCyan,
-              borderWidth: "1px",
-              borderStyle: "solid",
-            };
-            textClass = isLight ? "text-gray-800" : "text-white";
-          } else {
-            blockStyle = {
-              background: isLight ? "white" : "rgba(255,255,255,0.02)",
-              borderColor: isLight ? "#f3f4f6" : "transparent",
-              borderWidth: "1px",
-              borderStyle: "solid",
-            };
-            textClass = isLight ? "text-gray-500" : "text-gray-500";
-          }
-
-          return (
-            <div
-              key={i}
-              className={`flex items-center justify-between p-2 rounded-xl transition-all duration-300 group hover:scale-[1.01] ${
-                isMain ? "" : "shadow-sm"
-              }`}
-              style={blockStyle}
-            >
-              <div className="flex items-center gap-3">
-                <div
-                  className={`flex flex-col items-center justify-center w-8 h-8 rounded-lg font-bold leading-none ${
-                    isMain
-                      ? "bg-white/20 text-white backdrop-blur-sm"
-                      : isLight
-                      ? "bg-gray-50 text-gray-400"
-                      : "bg-white/5 text-gray-500"
-                  }`}
-                >
-                  <span className="text-[7px] uppercase opacity-70 tracking-wider">
-                    {session.day}
-                  </span>
-                  <span className="text-xs">{session.date}</span>
-                </div>
-                <div className={textClass}>
-                  <span
-                    className={`block text-[10px] ${
-                      isMain || isHighlight
-                        ? "font-black uppercase tracking-wide"
-                        : "font-bold"
-                    }`}
-                  >
-                    {session.name}
-                  </span>
-                </div>
+      
+      <div className="flex-1 flex flex-col justify-between gap-2.5 z-10">
+        {sessions.map((session, i) => (
+          <div 
+            key={i} 
+            className={`flex items-center justify-between p-3 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] hover:px-4 ${session.main ? (isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]') : ''}`} 
+            style={session.main 
+              ? { background: isLight ? `linear-gradient(90deg, #ec4899, #a855f7)` : `linear-gradient(90deg, ${C.neonRoxo}, ${C.neonPink})`, color: 'white' } 
+              : session.highlight 
+                ? { background: isLight ? 'white' : 'rgba(0, 255, 242, 0.05)', borderColor: isLight ? '#fbcfe8' : C.neonCyan, borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#333' : 'white' } 
+                : { background: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.02)', borderColor: isLight ? '#fce7f3' : 'transparent', borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#9ca3af' : '#6b7280' }}
+          >
+            <div className="flex items-center gap-4">
+              <div className={`flex flex-col items-center justify-center w-10 h-10 rounded-xl font-bold leading-none ${session.main ? 'bg-white/20 text-white backdrop-blur-sm' : (isLight ? 'bg-pink-50 text-pink-400' : 'bg-white/5 text-gray-500')}`}>
+                <span className="text-[8px] uppercase opacity-70 tracking-wider mb-0.5">{session.day}</span>
+                <span className="text-sm">{session.date}</span>
               </div>
-              <div
-                className={`font-mono font-bold tracking-tight ${
-                  isMain
-                    ? "text-sm text-white"
-                    : "text-xs " +
-                      (isLight ? "text-gray-400" : "text-gray-500")
-                }`}
-              >
-                {session.time || "--:--"}
+              <div>
+                <span className={`block text-xs ${session.main || session.highlight ? 'font-black uppercase tracking-wide' : 'font-bold'}`}>
+                  {session.name}
+                </span>
               </div>
             </div>
-          );
-        })}
+            <div className={`font-mono font-bold tracking-tight ${session.main ? 'text-base' : 'text-sm opacity-80'}`}>
+              {session.time}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
