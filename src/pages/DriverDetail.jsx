@@ -4,7 +4,7 @@ import {
   Trophy, MapPin, Flag, Star, Zap, 
   LayoutGrid, ChevronLeft, Heart, Sparkles, Crown, Flame
 } from 'lucide-react';
-import { BackButton } from '../components/UI';
+import { BackButton } from '../components/ui';
 import { DRIVERS_DATA } from '../data';
 
 const DriverDetail = ({ theme }) => {
