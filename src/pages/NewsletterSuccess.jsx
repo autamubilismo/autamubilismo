@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Mail, ArrowLeft } from 'lucide-react';
-import { BackButton } from '../components/UI';
+import { BackButton } from '../components/ui';
 
 const NewsletterSuccess = ({ theme }) => {
   const isLight = theme === 'light';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Search, ChevronRight, ArrowLeft, BookOpen, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
-import { BackButton } from '../components/UI';
+import { BackButton } from '../components/ui';
 import { GLOSSARY_SETS } from '../data';
 
 const GlossaryPage = ({ theme }) => {
