@@ -4,3 +4,4 @@ export * from './glossary';
 export * from './calendar';
 export * from './news';
 export * from './ui-config';
+export * from './standings2026';
