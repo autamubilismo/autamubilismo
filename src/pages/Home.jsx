@@ -16,8 +16,10 @@ import { SearchOverlay } from '../components/layout/SearchOverlay';
 import { NextRaceWidget } from '../components/widgets/NextRaceWidget';
 import { NewsWidget } from '../components/widgets/NewsWidget';
 import { SeasonWidget } from '../components/widgets/SeasonWidget';
-import { FanzoneWidget, ContactWidget, CuriosityWidget } from '../components/widgets/SimpleWidgets';
+import { ContactWidget } from '../components/widgets/SimpleWidgets';
 import { NewsletterWidget, KpopPhotocard } from '../components/widgets/NewsletterWidget';
+import { FanzoneWidget } from '../components/widgets';
+import { CuriosityWidget } from '../components/widgets/CuriosityWidget';
 
 const MANIFESTO_POST_QUERY = `*[_type == "manifesto"][0]{ 
   _id, 
@@ -124,7 +126,8 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
     name: "Lando Norris", 
     team: "McLaren", 
     number: "4", 
-    image: '/img/pilotos/norris/grid-norris.avif', 
+    image: '/img/pilotos/norris/grid-norris.avif',
+    photocardImage: '/img/pilotos/norris/norris-photocard.jpg',
     zodiac: "Escorpião", 
     secretFact: "Tem medo de peixes mas ama sushi.", 
     signature: "L4ndo" 
@@ -246,14 +249,14 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
           </div>
           
           <div className="lg:col-span-1">
-            <BentoCard theme={theme} className="h-full flex items-center justify-center min-h-[200px]" onClick={() => console.log('Vote!')}>
+            <BentoCard theme={theme} className="h-full flex items-center justify-center min-h-[200px]">
               <FanzoneWidget theme={theme} />
             </BentoCard>
           </div>
           
           <div className="lg:col-span-1">
             <div className="grid grid-rows-2 gap-6 h-full min-h-[200px]">
-              <BentoCard theme={theme} className="flex items-center justify-center" onClick={() => alert('Curiosidade!')} noPadding>
+              <BentoCard theme={theme} className="flex items-center justify-center" noPadding>
                 <CuriosityWidget theme={theme} />
               </BentoCard>
               <BentoCard theme={theme} className="flex items-center justify-center" to="/contact" noPadding>

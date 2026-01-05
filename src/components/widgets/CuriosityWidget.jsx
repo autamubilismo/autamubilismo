@@ -1,21 +1,101 @@
-import React from 'react';
-import { Sparkles, MessageSquare, Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Zap, RefreshCw, X } from 'lucide-react';
 
-export const ContactWidget = ({ theme }) => {
-  const isLight = theme === 'light';
-  
-  return (
-    <div className="h-full flex flex-col items-center justify-center text-center p-4 relative z-10 group">
-      <div className={`p-4 rounded-full mb-3 transition-transform duration-300 group-hover:rotate-12 ${isLight ? 'bg-pink-50 text-pink-400' : 'bg-black/40 text-cyan-400 border border-cyan-500/20'}`}>
-        <MessageSquare size={28} />
-      </div>
-      <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Contato</h3>
-      <p className={`text-[10px] font-bold uppercase tracking-widest opacity-60 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}>
-        Mande um alô
-      </p>
-    </div>
-  );
-};
+// Dados de curiosidades - você pode importar de outro arquivo se preferir
+// import { CURIOSITIES_DATA } from '../../data/curiosities';
+
+const CURIOSITIES_DATA = [
+  {
+    id: 1,
+    title: "Volta mais rápida da história",
+    fact: "Lewis Hamilton registrou a volta mais rápida da F1 em Monza 2020, atingindo média de 264,362 km/h.",
+    category: "Recordes"
+  },
+  {
+    id: 2,
+    title: "Piloto mais jovem",
+    fact: "Max Verstappen é o piloto mais jovem a estrear na F1, com apenas 17 anos e 166 dias em 2015.",
+    category: "Recordes"
+  },
+  {
+    id: 3,
+    title: "Circuito mais longo",
+    fact: "Spa-Francorchamps na Bélgica é o circuito mais longo do calendário atual, com 7,004 km.",
+    category: "Circuitos"
+  },
+  {
+    id: 4,
+    title: "Maior número de vitórias",
+    fact: "Lewis Hamilton detém o recorde de vitórias na F1 com 103 triunfos (até 2024).",
+    category: "Recordes"
+  },
+  {
+    id: 5,
+    title: "Monaco é especial",
+    fact: "O GP de Mônaco é o único onde os pilotos correm em ruas públicas que são usadas normalmente fora do evento.",
+    category: "Circuitos"
+  },
+  {
+    id: 6,
+    title: "Força G nas curvas",
+    fact: "Os pilotos de F1 podem experimentar até 6G de força lateral nas curvas mais rápidas.",
+    category: "Física"
+  },
+  {
+    id: 7,
+    title: "Temperatura no cockpit",
+    fact: "A temperatura dentro do cockpit pode chegar a 50°C durante corridas em climas quentes.",
+    category: "Física"
+  },
+  {
+    id: 8,
+    title: "Perda de peso",
+    fact: "Um piloto pode perder entre 2 a 4 kg de peso durante uma única corrida devido ao calor e esforço físico.",
+    category: "Física"
+  },
+  {
+    id: 9,
+    title: "Ayrton Senna em Monaco",
+    fact: "Ayrton Senna venceu 6 vezes em Monaco, mais que qualquer outro piloto na história.",
+    category: "Lendas"
+  },
+  {
+    id: 10,
+    title: "Velocidade de pit stop",
+    fact: "O pit stop mais rápido da história foi da Red Bull em 2019: apenas 1,82 segundos!",
+    category: "Recordes"
+  },
+  {
+    id: 11,
+    title: "Freios incandescentes",
+    fact: "Os discos de freio podem atingir 1000°C durante uma frenagem, ficando vermelhos incandescentes.",
+    category: "Física"
+  },
+  {
+    id: 12,
+    title: "Schumacher e Ferrari",
+    fact: "Michael Schumacher venceu 5 títulos consecutivos com a Ferrari (2000-2004), um recorde histórico.",
+    category: "Lendas"
+  },
+  {
+    id: 13,
+    title: "DRS - Asa Móvel",
+    fact: "O DRS (Drag Reduction System) foi introduzido em 2011 para facilitar ultrapassagens.",
+    category: "Tecnologia"
+  },
+  {
+    id: 14,
+    title: "Halo salvou vidas",
+    fact: "O Halo, introduzido em 2018, já salvou várias vidas, incluindo a de Romain Grosjean em 2020.",
+    category: "Segurança"
+  },
+  {
+    id: 15,
+    title: "Gasolina especial",
+    fact: "Cada equipe desenvolve sua própria mistura de combustível, que pode custar até $500 mil por temporada.",
+    category: "Tecnologia"
+  },
+];
 
 export const CuriosityWidget = ({ theme }) => {
   const isLight = theme === 'light';

@@ -53,10 +53,10 @@ const ArticlesPage = ({ theme }) => {
         title={
           <>
             Textos
-            <span className="flex items-center gap-4 text-gray-300">
-              <span className="font-serif italic text-5xl md:text-7xl">&</span>
-              Manifestos
-            </span>
+            <span className={`flex items-center gap-4 ${isLight ? 'text-pink-600' : 'text-white'}`}>
+  <span className="font-serif italic text-5xl md:text-7xl">&</span>
+  <span>Manifestos</span>
+</span>
           </>
         }
         subtitle="Análises aprofundadas, opiniões radicais e tudo que precisa de mais espaço do que um simples tweet."

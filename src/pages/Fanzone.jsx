@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   MessageCircle, Users, Sparkles, ChevronLeft, Heart, 
-  RotateCcw, Star, Music, Crown 
+  RotateCcw, Star, Music, Crown, Zap, Flag 
 } from 'lucide-react';
-import {  KpopPhotocard } from '../components/widgets';
+import { KpopPhotocard } from '../components/widgets';
 import { DRIVERS_DATA } from '../data';
 import { BackButton } from '../components/ui';
+
+// ============================================================================
+// 📄 DADOS MOCKADOS (FANDOMS)
+// ============================================================================
+const FANDOMS = [
+  { id: 'teamlh', name: 'Team LH', icon: '💜', color: '#b100e8', members: '44M', slogan: 'Still We Rise', tag: 'Lewis Hamilton' },
+  { id: 'tifosi', name: 'Tifosi', icon: '🐎', color: '#ff0000', members: '16M', slogan: 'Essere Ferrari', tag: 'Ferrari' },
+  { id: 'papaya', name: 'Papaya Army', icon: '🧡', color: '#ff8700', members: '81M', slogan: 'Fearlessly Forward', tag: 'McLaren' },
+  { id: 'orange', name: 'Orange Army', icon: '🦁', color: '#ff5500', members: '33M', slogan: 'Simply Lovely', tag: 'Max Verstappen' },
+  { id: 'smooth', name: 'Smooth Operators', icon: '🌶️', color: '#005aff', members: '55M', slogan: 'Stop Inventing', tag: 'Carlos Sainz' },
+  { id: 'sunshine', name: 'Sunshine Cult', icon: '☀️', color: '#00D2BE', members: '63M', slogan: 'Forecast: Fast', tag: 'George Russell' },
+];
 
 // ============================================================================
 // 📄 PÁGINA FANZONE
@@ -39,10 +51,6 @@ const FanzonePage = ({ theme = 'light' }) => {
   const discordCardClass = isLight 
     ? 'bg-gradient-to-r from-[#5865F2] to-[#7289da] text-white shadow-[0_15px_30px_-5px_rgba(88,101,242,0.4)] border border-white/20 ring-4 ring-[#5865F2]/10' 
     : 'bg-[#0a0a10] border border-[#5865F2] text-[#5865F2] shadow-[0_0_30px_rgba(88,101,242,0.15)] hover:shadow-[0_0_50px_rgba(88,101,242,0.3)] hover:bg-[#5865F2]/5';
-
-  const constructionClass = isLight
-    ? 'border-pink-200 bg-white/60 text-gray-400 border-dashed'
-    : 'border-[#333] bg-[#1a1a20]/50 text-gray-500 border-dashed';
 
   const sectionTitleClass = isLight
     ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 drop-shadow-sm'
@@ -136,10 +144,12 @@ const FanzonePage = ({ theme = 'light' }) => {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-10">
-             {DRIVERS_DATA.map((driver) => (
+             {DRIVERS_DATA.slice(0, 22).map((driver) => (
                <div key={driver.id || driver.number} className="flex flex-col gap-4 group">
-                 <KpopPhotocard driver={driver} theme={theme} />
-                 {/* Botões de Ação do Card */}
+                 <KpopPhotocard 
+                   driver={driver} 
+                   theme={theme} 
+                 />
                  <div className="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <button className={`p-2 rounded-full ${isLight ? 'bg-white shadow-md text-pink-400 hover:bg-pink-50' : 'bg-[#1a1a20] text-gray-400 hover:text-cyan-400'}`}><Heart size={16} /></button>
                     <button className={`p-2 rounded-full ${isLight ? 'bg-white shadow-md text-purple-400 hover:bg-purple-50' : 'bg-[#1a1a20] text-gray-400 hover:text-fuchsia-400'}`}><Star size={16} /></button>
@@ -149,33 +159,82 @@ const FanzonePage = ({ theme = 'light' }) => {
           </div>
         </div>
 
-        {/* 3. ÁREA DE FANDOMS (CONSTRUÇÃO) */}
-        <div>
+        {/* 3. ESPAÇO DAS TORCIDAS (Novo e Bonito!) */}
+        <div className="mb-16">
           <div className="flex items-center gap-3 mb-8 px-2">
              <Music size={28} className={isLight ? 'text-purple-500' : 'text-cyan-400'} />
              <h3 className={`text-3xl font-black uppercase tracking-tighter ${isLight ? 'text-gray-800' : 'text-white'}`}>
-               Fandoms
+               Official Fan Clubs
              </h3>
           </div>
           
-          <div className={`p-16 rounded-[2.5rem] text-center border-2 flex flex-col items-center justify-center gap-6 relative overflow-hidden ${constructionClass}`}>
-             {/* Background Pattern */}
-             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-             
-             <div className={`w-24 h-24 rounded-full flex items-center justify-center relative z-10 ${isLight ? 'bg-white shadow-lg text-gray-300' : 'bg-[#0a0a10] border border-white/10 text-gray-600'}`}>
-                 <Users size={40} />
-             </div>
-             
-             <div className="relative z-10">
-                 <h4 className={`text-2xl font-black mb-2 ${isLight ? 'text-gray-700' : 'text-white'}`}>Espaço das Torcidas</h4>
-                 <div className={`inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] ${isLight ? 'bg-gray-200 text-gray-500' : 'bg-[#333] text-gray-400'}`}>
-                    Em Breve 🚧
-                 </div>
-             </div>
-             
-             <p className="max-w-md text-base font-medium opacity-60 leading-relaxed relative z-10">
-                 Estamos construindo áreas dedicadas para <strong>Team LH</strong>, <strong>Orange Army</strong>, <strong>Tifosi</strong> e muito mais. Prepare seu lightstick!
-             </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             {FANDOMS.map((fandom) => (
+                <div 
+                  key={fandom.id}
+                  className={`relative p-6 rounded-[2rem] overflow-hidden group cursor-pointer transition-all duration-300 hover:-translate-y-2 ${
+                    isLight 
+                      ? 'bg-white/70 border border-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] hover:shadow-lg' 
+                      : 'bg-[#121218]/80 border border-white/5 hover:border-[color:var(--fandom-color)] hover:shadow-[0_0_20px_var(--fandom-color)]'
+                  }`}
+                  style={{ '--fandom-color': fandom.color }}
+                >
+                   {/* Background Glow (Dark Mode) */}
+                   {!isLight && (
+                     <div className="absolute inset-0 bg-[var(--fandom-color)] opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-3xl" />
+                   )}
+
+                   <div className="relative z-10 flex flex-col h-full">
+                      {/* Header Card */}
+                      <div className="flex justify-between items-start mb-6">
+                         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-sm ${
+                           isLight ? 'bg-gray-50' : 'bg-[#1a1a20] border border-white/10'
+                         }`}>
+                            {fandom.icon}
+                         </div>
+                         <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1 ${
+                           isLight 
+                             ? 'bg-gray-100 text-gray-500' 
+                             : 'bg-black/40 text-gray-400 border border-white/10'
+                         }`}>
+                            <Users size={10} /> {fandom.members}
+                         </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="mt-auto">
+                         <span className={`text-[10px] font-bold uppercase tracking-wider mb-1 block ${
+                           isLight ? 'text-gray-400' : 'text-white/40'
+                         }`}>
+                           {fandom.tag}
+                         </span>
+                         <h4 
+                           className={`text-2xl font-black uppercase tracking-tight mb-2 ${
+                             isLight ? 'text-gray-800' : 'text-white group-hover:text-[var(--fandom-color)] transition-colors'
+                           }`}
+                           style={{ color: isLight ? fandom.color : undefined }}
+                         >
+                           {fandom.name}
+                         </h4>
+                         <p className={`text-sm font-medium italic opacity-70 ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>
+                           "{fandom.slogan}"
+                         </p>
+                      </div>
+
+                      {/* Join Button (Hidden until hover) */}
+                      <div className={`mt-6 pt-4 border-t flex items-center justify-between opacity-60 group-hover:opacity-100 transition-all ${
+                        isLight ? 'border-gray-100' : 'border-white/10'
+                      }`}>
+                         <span className="text-[10px] font-bold uppercase tracking-widest">Membership</span>
+                         <div className={`p-1.5 rounded-full ${
+                           isLight ? 'bg-gray-100 text-gray-600' : 'bg-white/10 text-white'
+                         }`}>
+                            <ChevronLeft size={12} className="rotate-180" />
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             ))}
           </div>
         </div>
 

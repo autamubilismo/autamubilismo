@@ -15,7 +15,7 @@ const DriversPage = ({ theme }) => {
       <PageHeader 
         theme={theme}
         badge="F1 Pro Grid"
-        title="Grid 2025"
+        title="Grid 2026"
         subtitle="Conheça os pilotos que vão fazer história nesta temporada"
       />
 

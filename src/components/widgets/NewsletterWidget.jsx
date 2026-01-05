@@ -20,10 +20,12 @@ export const NewsletterWidget = ({ theme }) => {
   };
   
   return (
-    <div className="h-full flex flex-col md:flex-row items-center justify-center p-8 md:p-10 gap-6 md:gap-8 relative z-10">
+    <div className="h-full flex flex-col items-center justify-center p-6 md:p-10 gap-6 relative z-10">
+      {/* Ícone decorativo de fundo */}
       <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-cyan-500'}`} />
       
-      <div className="flex items-center gap-4 md:gap-6 shrink-0 relative z-10">
+      {/* Header com ícone e texto - CENTRALIZADO */}
+      <div className="flex flex-col items-center text-center gap-4 relative z-10">
         <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-fuchsia-500/30 text-fuchsia-400"}`}>
           <Mail size={32} />
         </div>
@@ -37,25 +39,43 @@ export const NewsletterWidget = ({ theme }) => {
         </div>
       </div>
       
-      <form className="flex flex-1 gap-3 md:gap-4 w-full max-w-lg relative z-10" onSubmit={handleSubmit}>
+      {/* Form - CENTRALIZADO */}
+      <form className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full max-w-lg relative z-10" onSubmit={handleSubmit}>
         <div className="relative flex-1 group">
           <input 
             type="email" 
             placeholder="seu@email.com" 
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
-            className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all ${isLight ? "bg-white border-2 border-transparent focus:border-pink-300 text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-cyan-400 text-white placeholder-gray-600"}`} 
+            className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all text-center sm:text-left ${isLight ? "bg-white border-2 border-transparent focus:border-pink-300 text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-cyan-400 text-white placeholder-gray-600"}`} 
           />
         </div>
         <button 
           type="submit" 
           disabled={status === "loading" || status === "success"} 
-          className={`h-12 md:h-14 px-6 md:px-10 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all active:scale-95 whitespace-nowrap shadow-xl flex items-center gap-3 ${isLight ? "bg-gray-900 hover:bg-black text-white hover:shadow-2xl" : "bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-[0_0_20px_rgba(192,38,211,0.4)] hover:shadow-[0_0_30px_rgba(192,38,211,0.6)]"} ${status === "success" ? "bg-green-500 hover:bg-green-600" : ""}`}
+          className={`h-12 md:h-14 px-6 md:px-10 rounded-2xl font-black text-xs md:text-sm uppercase tracking-wider transition-all active:scale-95 whitespace-nowrap shadow-xl flex items-center justify-center gap-3 ${isLight ? "bg-gray-900 hover:bg-black text-white hover:shadow-2xl" : "bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-[0_0_20px_rgba(192,38,211,0.4)] hover:shadow-[0_0_30px_rgba(192,38,211,0.6)]"} ${status === "success" ? "bg-green-500 hover:bg-green-600" : ""}`}
         >
           {status === "loading" && <Loader2 size={18} className="animate-spin" />}
           {status === "success" ? "Enviado!" : "Assinar"}
         </button>
       </form>
+
+      {/* Mensagem de status */}
+      {status === "success" && (
+        <div className={`text-xs font-bold uppercase tracking-wider animate-in fade-in slide-in-from-bottom-2 ${
+          isLight ? 'text-green-600' : 'text-green-400'
+        }`}>
+          ✓ Você será notificado das novidades!
+        </div>
+      )}
+      
+      {status === "error" && (
+        <div className={`text-xs font-bold uppercase tracking-wider animate-in fade-in slide-in-from-bottom-2 ${
+          isLight ? 'text-red-600' : 'text-red-400'
+        }`}>
+          ✗ Ops! Algo deu errado. Tente novamente.
+        </div>
+      )}
     </div>
   );
 };
@@ -87,7 +107,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
           className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-pink-200 shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-fuchsia-500/50 shadow-[0_0_30px_rgba(232,121,249,0.3)]'} bg-gray-200 z-10`} 
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <img src={driver.image} alt={driver.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <img src={driver.photocardImage} alt={driver.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           <div className="absolute top-4 right-5 text-8xl font-black text-white opacity-20 pointer-events-none tracking-tighter mix-blend-overlay">
             {driver.number}
@@ -109,7 +129,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
         >
           <div className="flex flex-col items-center gap-3 mt-4">
             <div className={`w-24 h-24 rounded-full overflow-hidden border-4 shadow-lg ${isLight ? 'border-pink-300' : 'border-cyan-400'}`}>
-              <img src={driver.image} className="w-full h-full object-cover" alt="Avatar" />
+              <img src={driver.photocardImage} className="w-full h-full object-cover" alt="Avatar" />
             </div>
             <div>
               <h3 className={`font-black text-2xl leading-none ${isLight ? 'text-gray-800' : 'text-white'}`}>

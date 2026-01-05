@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // Usando imports compatíveis com o ambiente Canvas para evitar quebra
 import { Calendar, User, ArrowRight, Newspaper, ArrowLeft, Zap } from "lucide-react";
 import { createClient } from 'https://esm.sh/@sanity/client@6.21.1';
@@ -14,7 +15,8 @@ const client = createClient({
 // --- COMPONENTES UI (Estilizados para Vaporwave/Girlie) ---
 
 const BackButton = ({ to, theme }) => {
-  const handleBack = () => console.log(`Navegando para: ${to}`);
+  const navigate = useNavigate();
+  const handleBack = () => navigate(to);
   const isLight = theme === 'light';
   
   return (
@@ -66,8 +68,7 @@ const News = ({ theme }) => {
   const isLight = theme === "light";
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  
-  const navigate = (path) => console.log(`Navegando para: ${path}`);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNews = async () => {
