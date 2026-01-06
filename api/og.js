@@ -1,90 +1,71 @@
+// /api/og.js
 export default async function handler(req, res) {
   try {
     const { type, slug, url } = req.query;
 
-    if (!slug || !type) {
-      return res.status(400).send("Missing parameters");
+    if (!type || !slug) {
+      return res.status(400).send("Missing parameters: type, slug");
+    }
+
+    // Só aceito esses dois pra não virar injeção no GROQ
+    const sanityType =
+      type === "news" ? "news" :
+      type === "article" ? "article" :
+      null;
+
+    if (!sanityType) {
+      return res.status(400).send("Invalid type. Use type=news or type=article");
     }
 
     const projectId = "c7nvssn2";
     const dataset = "production";
     const apiVersion = "2023-10-24";
 
-    // Escapa texto pra não quebrar HTML (aspas, <, &, etc.)
     const esc = (s = "") =>
       String(s)
-        .split("&").join("&amp;")
-        .split("<").join("&lt;")
-        .split(">").join("&gt;")
-        .split('"').join("&quot;")
-        .split("'").join("&#039;");
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
-    // ✅ Mapeia type da URL -> possíveis _type do Sanity
-    const candidates =
-      type === "news"
-        ? ["news", "noticias", "noticia"]
-        : ["article", "articles", "artigos", "artigo"];
-
-    let post = null;
-
-    for (const t of candidates) {
-      const query = `
-        *[_type == "${t}" && slug.current == $slug][0]{
-          title,
-          excerpt,
-
-          // ✅ resolve imagem principal pra URL
-          "image": image.asset->url,
-
-          seo{
-            metaTitle,
-            metaDescription,
-            "ogImage": ogImage.asset->url
-          }
+    // ✅ Query correta: transforma image/ogImage em URL
+    const query = `
+      *[_type == "${sanityType}" && slug.current == $slug][0]{
+        title,
+        excerpt,
+        "imageUrl": image.asset->url,
+        seo{
+          metaTitle,
+          metaDescription,
+          "ogImageUrl": ogImage.asset->url
         }
-      `;
-
-      const sanityUrl =
-        `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}` +
-        `?query=${encodeURIComponent(query)}` +
-        `&$slug=${encodeURIComponent(slug)}`;
-
-      const sanityRes = await fetch(sanityUrl);
-      const sanityJson = await sanityRes.json();
-
-      if (sanityJson?.result) {
-        post = sanityJson.result;
-        break;
       }
-    }
+    `;
 
-    if (!post) {
-      // Em vez de 404 (que faz bot desistir), devolve um HTML fallback
-      // com redirecionamento — melhor pra crawlers.
-      res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.status(200).send(`<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <title>Autamubilismo</title>
-    <meta property="og:title" content="Autamubilismo" />
-    <meta property="og:description" content="Notícias e artigos sobre automobilismo." />
-    <meta property="og:image" content="https://www.autamubilismo.com/og-default.jpg" />
-    <meta property="og:url" content="${esc(url || "https://www.autamubilismo.com")}" />
-    <meta http-equiv="refresh" content="0;url=${esc(url || "https://www.autamubilismo.com")}" />
-  </head>
-  <body></body>
-</html>`);
-    }
+    const sanityUrl =
+      `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}` +
+      `?query=${encodeURIComponent(query)}` +
+      `&$slug=${encodeURIComponent(slug)}`;
 
-    const ogTitle = post.seo?.metaTitle || post.title || "Autamubilismo";
-    const ogDescription = post.seo?.metaDescription || post.excerpt || "";
+    const sanityRes = await fetch(sanityUrl);
+    const sanityJson = await sanityRes.json();
+    const post = sanityJson.result;
+
+    // Canonical final
+    const canonical =
+      url ||
+      `https://www.autamubilismo.com/${sanityType === "news" ? "news" : "articles"}/${slug}`;
+
+    // ⚠️ precisa existir de verdade em /public
+    const defaultImage = "https://www.autamubilismo.com/og-default.png";
+
+    // Se não achou, ainda devolve HTML 200 (melhor pra bots do que 404)
+    const ogTitle = post?.seo?.metaTitle || post?.title || "Autamubilismo";
+    const ogDescription =
+      post?.seo?.metaDescription || post?.excerpt || "Notícias e artigos sobre automobilismo.";
     const ogImage =
-      post.seo?.ogImage ||
-      post.image ||
-      "https://www.autamubilismo.com/og-default.jpg";
-
-    const canonical = url || `https://www.autamubilismo.com`;
+      post?.seo?.ogImageUrl || post?.imageUrl || defaultImage;
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
@@ -114,21 +95,6 @@ export default async function handler(req, res) {
 </html>`);
   } catch (err) {
     console.error(err);
-
-    // Fallback que não quebra preview (melhor que 500)
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    return res.status(200).send(`<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <title>Autamubilismo</title>
-    <meta property="og:title" content="Autamubilismo" />
-    <meta property="og:description" content="Notícias e artigos sobre automobilismo." />
-    <meta property="og:image" content="https://www.autamubilismo.com/og-default.jpg" />
-    <meta property="og:url" content="https://www.autamubilismo.com" />
-    <meta http-equiv="refresh" content="0;url=https://www.autamubilismo.com" />
-  </head>
-  <body></body>
-</html>`);
+    return res.status(500).send("OG function failed");
   }
 }

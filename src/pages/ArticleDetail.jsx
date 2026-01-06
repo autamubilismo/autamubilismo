@@ -270,7 +270,7 @@ const ArticleDetail = ({ theme = "light" }) => {
   // ✅ OG/SEO (fallback: seo -> title/excerpt/image)
   const ogTitle = post?.seo?.metaTitle || post.title || "Autamubilismo";
   const ogDesc = post?.seo?.metaDescription || post.excerpt || "";
-  const ogImage = post?.seo?.ogImage || post.image || "";
+  const ogImage = post?.seo?.ogImage || post.image || "https://www.autamubilismo.com/og-default.png";
 
   useSeoMeta({
     title: ogTitle,
