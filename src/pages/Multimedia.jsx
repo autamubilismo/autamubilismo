@@ -25,9 +25,9 @@ const BackButton = ({ to = "/", theme }) => {
 
 // --- DADOS MOCKADOS DE MULTIMÍDIA ---
 const YOUTUBE_VIDEOS = [
-  { id: '1', title: 'Top 10 Ultrapassagens 2024', channel: 'F1 Official', thumb: 'https://img.youtube.com/vi/u2J5Xg3j6XQ/maxresdefault.jpg', url: 'https://www.youtube.com/watch?v=u2J5Xg3j6XQ', duration: '12:45' },
-  { id: '2', title: 'A Evolução dos Carros', channel: 'Chain Bear', thumb: 'https://img.youtube.com/vi/_Wn1EFLa2C8/maxresdefault.jpg', url: 'https://www.youtube.com/watch?v=_Wn1EFLa2C8', duration: '08:30' },
-  { id: '3', title: 'Drive to Survive: Bastidores', channel: 'Netflix', thumb: 'https://img.youtube.com/vi/wtJPe1ksS6E/maxresdefault.jpg', url: 'https://www.youtube.com/watch?v=wtJPe1ksS6E', duration: '03:15' },
+  { id: '1', title: 'Top 10 Ultrapassagens 2024', channel: 'F1 Official', thumb: 'https://img.youtube.com/vi/u2J5Xg3j6XQ/maxresdefault.png', url: 'https://www.youtube.com/watch?v=u2J5Xg3j6XQ', duration: '12:45' },
+  { id: '2', title: 'A Evolução dos Carros', channel: 'Chain Bear', thumb: 'https://img.youtube.com/vi/_Wn1EFLa2C8/maxresdefault.png', url: 'https://www.youtube.com/watch?v=_Wn1EFLa2C8', duration: '08:30' },
+  { id: '3', title: 'Drive to Survive: Bastidores', channel: 'Netflix', thumb: 'https://img.youtube.com/vi/wtJPe1ksS6E/maxresdefault.png', url: 'https://www.youtube.com/watch?v=wtJPe1ksS6E', duration: '03:15' },
 ];
 
 const SPOTIFY_PODCASTS = [

@@ -32,7 +32,7 @@ const SEO = ({
   // Valores padrão
   const defaultTitle = 'Autamubilismo - F1 com Estilo';
   const defaultDescription = 'As últimas notícias de Fórmula 1 com aquela vibe única.';
-  const defaultImage = `${siteUrl}/og-default.jpg`;
+  const defaultImage = `${siteUrl}/og-default.png`;
   
   const seo = {
     title: title || defaultTitle,
