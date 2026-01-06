@@ -12,6 +12,7 @@ import {
   Heart,
   Zap
 } from "lucide-react";
+import { useSeoMeta } from "../lib/useSeoMeta";
 
 // --- CUSTOM PORTABLE TEXT RENDERER ---
 const SimplePortableText = ({ value, components }) => {
@@ -267,9 +268,17 @@ const ArticleDetail = ({ theme = "light" }) => {
   }
 
   // ✅ OG/SEO (fallback: seo -> title/excerpt/image)
-  const ogTitle = post?.seo?.metaTitle || post.title;
+  const ogTitle = post?.seo?.metaTitle || post.title || "Autamubilismo";
   const ogDesc = post?.seo?.metaDescription || post.excerpt || "";
   const ogImage = post?.seo?.ogImage || post.image || "";
+
+  useSeoMeta({
+    title: ogTitle,
+    description: ogDesc,
+    image: ogImage,
+    url: shareUrl,
+    type: "article",
+  });
 
   // ---------- DETECÇÃO DO TIPO DE CONTEÚDO ----------
   const isSanityPortable = Array.isArray(post.content);
@@ -457,56 +466,18 @@ const ArticleDetail = ({ theme = "light" }) => {
           )}
 
           {/* Conteúdo do Sanity (SimplePortableText) vs HTML */}
-          {isSanityPortable ? (
+          {Array.isArray(post.content) ? (
             <article className={proseClass(isLight)}>
-              <SimplePortableText
-                value={post.content}
-                components={proseComponents(isLight)}
-              />
+              <SimplePortableText value={post.content} components={proseComponents(isLight)} />
             </article>
-          ) : htmlContent ? (
+          ) : post.contentHtml ? (
             <article className={proseClass(isLight)}>
-              <div
-                className="article-html"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
+              <div className="article-html" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
             </article>
           ) : (
             <article className={proseClass(isLight)}>
               <p className="opacity-50 italic">Conteúdo completo não disponível na prévia.</p>
             </article>
-          )}
-
-          {/* --- CAMPO DE FONTE --- */}
-          {(post.source || post.sourceUrl) && (
-            <div
-              className={`mt-16 p-6 rounded-3xl flex flex-col sm:flex-row items-start sm:items-center gap-4 border transition-all ${
-                isLight ? "bg-purple-50/50 border-purple-100 text-purple-900" : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
-              }`}
-            >
-              <div className={`p-3 rounded-full ${isLight ? 'bg-white text-purple-500' : 'bg-black text-cyan-400'}`}>
-                 <ExternalLink size={20} />
-              </div>
-              <div className="flex-1">
-                 <span className="block text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">
-                   Fonte Original
-                 </span>
-                 {post.sourceUrl ? (
-                    <a
-                      href={post.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`hover:underline font-bold text-lg flex items-center gap-1 ${
-                        isLight ? "text-purple-700" : "text-cyan-300"
-                      }`}
-                    >
-                      {post.source || "Ler matéria completa"} <ExternalLink size={14} />
-                    </a>
-                  ) : (
-                    <span className="font-bold text-lg">{post.source || "Fonte não informada"}</span>
-                  )}
-              </div>
-            </div>
           )}
 
           <div

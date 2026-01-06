@@ -12,6 +12,7 @@ import {
   Heart,
   Zap
 } from "lucide-react";
+import { useSeoMeta } from "../lib/useSeoMeta";
 
 // --- CUSTOM PORTABLE TEXT RENDERER (Fixes crash issues) ---
 // This replaces the external library to ensure stability in this environment.
@@ -185,6 +186,11 @@ const NewsDetail = ({ theme = "light" }) => {
             author: "Tamu",
             publishedAt: new Date().toISOString(),
             image: "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/manual/Misc/2024manual/2024SingaporeGrandPrix/Sunday/GettyImages-2172776472",
+            seo: {
+              metaTitle: "Norris domina em Singapura | Autamubilismo",
+              metaDescription: "Norris voa em Marina Bay e esquenta a briga pelo título.",
+              ogImage: "https://media.formula1.com/image/upload/f_auto,c_limit,w_1440,q_auto/f_auto/q_auto/content/dam/fom-website/manual/Misc/2024manual/2024SingaporeGrandPrix/Sunday/GettyImages-2172776472"
+            },
             body: [
               {
                 _type: 'block',
@@ -248,6 +254,18 @@ const NewsDetail = ({ theme = "light" }) => {
         setLoading(false);
       });
   }, [slug]);
+
+  // ✅ SEO/OG no HEAD (browser)
+  const ogTitle = post?.seo?.metaTitle || post?.title || "Autamubilismo";
+  const ogDesc = post?.seo?.metaDescription || post?.excerpt || "";
+  const ogImage = post?.seo?.ogImage || post?.image || "";
+  useSeoMeta({
+    title: ogTitle,
+    description: ogDesc,
+    image: ogImage,
+    url: shareUrl,
+    type: "article",
+  });
 
   // LOADING
   if (loading) {
