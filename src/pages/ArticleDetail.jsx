@@ -12,7 +12,6 @@ import {
   Heart,
   Zap
 } from "lucide-react";
-import { Helmet } from "react-helmet";
 
 // --- CUSTOM PORTABLE TEXT RENDERER ---
 const SimplePortableText = ({ value, components }) => {
@@ -20,15 +19,6 @@ const SimplePortableText = ({ value, components }) => {
 
   return (
     <>
-    <Helmet>
-  <title>{post.title} | Autamubilismo</title>
-  <meta name="description" content={post.excerpt} />
-  <meta property="og:title" content={post.title} />
-  <meta property="og:description" content={post.excerpt} />
-  <meta property="og:image" content={post.image + '?w=1200&h=630'} />
-  <meta property="og:url" content={`https://autamubilismo.com/articles/${id}`} />
-  <meta name="twitter:card" content="summary_large_image" />
-</Helmet>
       {value.map((block, i) => {
         // Handle Images
         if (block._type === 'image' && components?.types?.image) {
