@@ -7,7 +7,6 @@ export default async function handler(req, res) {
       return res.status(400).send("Missing parameters: type, slug");
     }
 
-    // Só aceito esses dois pra não virar injeção no GROQ
     const sanityType =
       type === "news" ? "news" :
       type === "article" ? "article" :
@@ -22,16 +21,15 @@ export default async function handler(req, res) {
     const apiVersion = "2023-10-24";
 
     const esc = (s = "") =>
-      String(s)
+      String(s ?? "")
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
 
-    // ✅ Query correta: transforma image/ogImage em URL
     const query = `
-      *[_type == "${sanityType}" && slug.current == $slug][0]{
+      *[_type == $type && slug.current == $slug][0]{
         title,
         excerpt,
         "imageUrl": image.asset->url,
@@ -43,29 +41,30 @@ export default async function handler(req, res) {
       }
     `;
 
+    // ✅ jeito certo: params em JSON
     const sanityUrl =
       `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}` +
       `?query=${encodeURIComponent(query)}` +
-      `&$slug=${encodeURIComponent(slug)}`;
+      `&params=${encodeURIComponent(JSON.stringify({ type: sanityType, slug }))}`;
 
     const sanityRes = await fetch(sanityUrl);
     const sanityJson = await sanityRes.json();
-    const post = sanityJson.result;
+    const post = sanityJson?.result ?? null;
 
-    // Canonical final
     const canonical =
-      url ||
-      `https://www.autamubilismo.com/${sanityType === "news" ? "news" : "articles"}/${slug}`;
+      (typeof url === "string" && url.trim())
+        ? url
+        : `https://www.autamubilismo.com/${sanityType === "news" ? "news" : "articles"}/${slug}`;
 
-    // ⚠️ precisa existir de verdade em /public
     const defaultImage = "https://www.autamubilismo.com/og-default.png";
 
-    // Se não achou, ainda devolve HTML 200 (melhor pra bots do que 404)
     const ogTitle = post?.seo?.metaTitle || post?.title || "Autamubilismo";
     const ogDescription =
-      post?.seo?.metaDescription || post?.excerpt || "Notícias e artigos sobre automobilismo.";
-    const ogImage =
-      post?.seo?.ogImageUrl || post?.imageUrl || defaultImage;
+      post?.seo?.metaDescription ||
+      post?.excerpt ||
+      "Notícias e artigos sobre automobilismo.";
+
+    const ogImage = post?.seo?.ogImageUrl || post?.imageUrl || defaultImage;
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
@@ -82,6 +81,7 @@ export default async function handler(req, res) {
     <meta property="og:title" content="${esc(ogTitle)}" />
     <meta property="og:description" content="${esc(ogDescription)}" />
     <meta property="og:image" content="${esc(ogImage)}" />
+    <meta property="og:image:secure_url" content="${esc(ogImage)}" />
     <meta property="og:url" content="${esc(canonical)}" />
 
     <meta name="twitter:card" content="summary_large_image" />
