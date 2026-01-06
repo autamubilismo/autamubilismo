@@ -1,26 +1,31 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/og.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "rewrites": [
     {
       "source": "/news/:slug*",
-      "destination": "/api/og?type=news&slug=:slug&url=https://autamubilismo.com/news/:slug",
+      "destination": "/api/og?type=news&slug=:slug&url=https://www.autamubilismo.com/news/:slug",
       "has": [
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*(facebookexternalhit|facebot|whatsapp|twitterbot|telegrambot|discordbot|slackbot|linkedinbot|embedly|pinterest|preview|crawler|spider|bot).*"
+          "value": ".*(facebookexternalhit|facebot|WhatsApp|whatsapp|Twitterbot|twitterbot|TelegramBot|telegrambot|Discordbot|discordbot|Slackbot|slackbot|LinkedInBot|linkedinbot|embedly|pinterest|preview|crawler|spider|bot).*"
         }
       ]
     },
     {
       "source": "/articles/:slug*",
-      "destination": "/api/og?type=article&slug=:slug&url=https://autamubilismo.com/articles/:slug",
+      "destination": "/api/og?type=article&slug=:slug&url=https://www.autamubilismo.com/articles/:slug",
       "has": [
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*(facebookexternalhit|facebot|whatsapp|twitterbot|telegrambot|discordbot|slackbot|linkedinbot|embedly|pinterest|preview|crawler|spider|bot).*"
+          "value": ".*(facebookexternalhit|facebot|WhatsApp|whatsapp|Twitterbot|twitterbot|TelegramBot|telegrambot|Discordbot|discordbot|Slackbot|slackbot|LinkedInBot|linkedinbot|embedly|pinterest|preview|crawler|spider|bot).*"
         }
       ]
     },

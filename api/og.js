@@ -13,36 +13,33 @@ function esc(s = "") {
     .replaceAll("'", "&#039;");
 }
 
-async function sanityFetch(query, params = {}) {
+async function sanityFetch(query, slug) {
   const url = new URL(
     `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}`
   );
   url.searchParams.set("query", query);
-  for (const [k, v] of Object.entries(params)) {
-    url.searchParams.set(`$${k}`, v);
-  }
+  url.searchParams.set("$slug", JSON.stringify(slug));
 
   const res = await fetch(url.toString());
-  if (!res.ok) throw new Error(`Sanity fetch failed: ${res.status}`);
+  if (!res.ok) throw new Error("Sanity fetch failed");
   const json = await res.json();
   return json.result;
 }
 
 module.exports = async (req, res) => {
   try {
-    const { type, slug, url: canonicalUrl } = req.query;
+    const parsed = new URL(req.url, "https://www.autamubilismo.com");
+    const type = parsed.searchParams.get("type");
+    const slug = parsed.searchParams.get("slug");
+    const canonicalUrl =
+      parsed.searchParams.get("url") || "https://www.autamubilismo.com";
 
     if (!type || !slug) {
-      res.statusCode = 400;
-      res.setHeader("Content-Type", "text/plain; charset=utf-8");
-      res.end("Missing type or slug");
+      res.status(400).send("Missing params");
       return;
     }
 
-    const siteName = "Autamubilismo";
-    const fallbackUrl = canonicalUrl || "https://www.autamubilismo.com";
-
-    const q =
+    const query =
       type === "news"
         ? `*[_type=="news" && slug.current==$slug][0]{
             title, excerpt,
@@ -55,9 +52,10 @@ module.exports = async (req, res) => {
             seo{ metaTitle, metaDescription, "ogImage": ogImage.asset->url }
           }`;
 
-    const doc = await sanityFetch(q, { slug });
+    const doc = await sanityFetch(query, slug);
 
-    const title = doc?.seo?.metaTitle || doc?.title || siteName;
+    const title =
+      doc?.seo?.metaTitle || doc?.title || "Autamubilismo";
     const description =
       doc?.seo?.metaDescription ||
       doc?.excerpt ||
@@ -71,40 +69,28 @@ module.exports = async (req, res) => {
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}" />
 
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="${esc(siteName)}" />
+  <meta property="og:site_name" content="Autamubilismo" />
   <meta property="og:title" content="${esc(title)}" />
   <meta property="og:description" content="${esc(description)}" />
-  <meta property="og:url" content="${esc(fallbackUrl)}" />
+  <meta property="og:url" content="${esc(canonicalUrl)}" />
   <meta property="og:image" content="${esc(image)}" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${esc(title)}" />
-  <meta name="twitter:description" content="${esc(description)}" />
-  <meta name="twitter:image" content="${esc(image)}" />
 
-  <meta http-equiv="refresh" content="0;url=${esc(fallbackUrl)}" />
+  <meta http-equiv="refresh" content="0;url=${esc(canonicalUrl)}" />
 </head>
-<body>
-  <p>Redirecionando… <a href="${esc(fallbackUrl)}">abrir</a></p>
-</body>
+<body></body>
 </html>`;
 
-    res.statusCode = 200;
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=86400");
-    res.end(html);
-  } catch (e) {
-    const fallback = (req.query && req.query.url) || "https://www.autamubilismo.com";
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.end(`<!doctype html><meta http-equiv="refresh" content="0;url=${fallback}">`);
+    res.setHeader("Cache-Control", "public, s-maxage=300");
+    res.status(200).send(html);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("OG error");
   }
 };
