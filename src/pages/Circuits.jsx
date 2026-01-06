@@ -1,9 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   MapPin, Flag, Timer, ChevronLeft, Map, Activity, 
-  Trophy, Zap, Sparkles, Navigation 
+  Trophy, Zap, Sparkles, Navigation, X, ZoomIn 
 } from 'lucide-react';
+
+// --- COMPONENTE: Modal de Visualização ---
+const CircuitModal = ({ circuit, isOpen, onClose, theme }) => {
+  const isLight = theme === 'light';
+  
+  if (!isOpen || !circuit) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      {/* Overlay */}
+      <div className={`absolute inset-0 backdrop-blur-xl ${isLight ? 'bg-black/40' : 'bg-black/80'}`} />
+      
+      {/* Modal Content */}
+      <div 
+        className={`relative z-10 max-w-5xl w-full rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 ${
+          isLight 
+            ? 'bg-white border-2 border-pink-200' 
+            : 'bg-[#0a0a10] border-2 border-cyan-500/30 shadow-[0_0_50px_rgba(0,255,242,0.3)]'
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className={`flex items-center justify-between p-6 border-b ${isLight ? 'border-pink-100 bg-pink-50/50' : 'border-white/10 bg-white/5'}`}>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-2xl">{circuit.countryCode === 'BR' ? '🇧🇷' : circuit.countryCode === 'MC' ? '🇲🇨' : circuit.countryCode === 'GB' ? '🇬🇧' : circuit.countryCode === 'BE' ? '🇧🇪' : circuit.countryCode === 'US' ? '🇺🇸' : '🇯🇵'}</span>
+              <span className={`text-xs font-bold uppercase tracking-wider ${isLight ? 'text-gray-500' : 'text-cyan-400'}`}>
+                {circuit.location}
+              </span>
+            </div>
+            <h2 className={`text-2xl md:text-3xl font-black uppercase tracking-tight ${isLight ? 'text-gray-900' : 'text-white'}`}>
+              {circuit.name}
+            </h2>
+          </div>
+          
+          {/* Botão Fechar */}
+          <button
+            onClick={onClose}
+            className={`p-2 rounded-full transition-all hover:scale-110 active:scale-95 ${
+              isLight 
+                ? 'bg-white text-gray-600 hover:bg-gray-100 shadow-md' 
+                : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+            }`}
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* Image Container */}
+        <div className={`p-8 ${isLight ? 'bg-gradient-to-br from-pink-50 to-purple-50' : 'bg-gradient-to-br from-[#0a0a10] to-[#1a0a20]'}`}>
+          <div className={`rounded-2xl overflow-hidden ${isLight ? 'bg-white shadow-xl' : 'bg-black/40 shadow-2xl border border-white/10'}`}>
+            <img 
+              src={circuit.image} 
+              alt={`Layout completo ${circuit.name}`}
+              className={`w-full h-auto ${isLight ? '' : 'invert brightness-110 contrast-125'}`}
+            />
+          </div>
+        </div>
+
+        {/* Stats Footer */}
+        <div className={`p-6 border-t ${isLight ? 'border-pink-100' : 'border-white/10'}`}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                Extensão
+              </div>
+              <div className={`text-lg font-black ${isLight ? 'text-gray-900' : 'text-cyan-400'}`}>
+                {circuit.length}
+              </div>
+            </div>
+            
+            <div>
+              <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                Voltas
+              </div>
+              <div className={`text-lg font-black ${isLight ? 'text-gray-900' : 'text-cyan-400'}`}>
+                {circuit.laps || '--'}
+              </div>
+            </div>
+            
+            <div>
+              <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                Tipo
+              </div>
+              <div className={`text-sm font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>
+                {circuit.type}
+              </div>
+            </div>
+            
+            <div>
+              <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                Recorde
+              </div>
+              <div className={`text-xs font-bold ${isLight ? 'text-pink-600' : 'text-fuchsia-400'}`}>
+                {circuit.record}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // --- COMPONENTE INTERNO: BackButton ---
 const BackButton = ({ to = "/", theme }) => {
@@ -341,57 +447,78 @@ const CIRCUITS_DATA = [
 
 const CircuitsPage = ({ theme = 'light' }) => {
   const isLight = theme === 'light';
+  const [selectedCircuit, setSelectedCircuit] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = (circuit) => {
+    setSelectedCircuit(circuit);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden'; // Previne scroll do body
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedCircuit(null);
+    document.body.style.overflow = 'unset';
+  };
 
   // --- BACKGROUNDS ---
   const lightPattern = {
     backgroundColor: '#FFF5F8',
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(247, 184, 200, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(216, 196, 240, 0.4) 0px, transparent 50%),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb7b2' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+      radial-gradient(at 0% 0%, rgba(247, 184, 200, 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(216, 196, 240, 0.3) 0px, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb7b2' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
     `,
   };
 
   const darkPattern = {
     backgroundColor: '#050510',
     backgroundImage: `
-      linear-gradient(rgba(0, 255, 242, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(189, 0, 255, 0.05) 1px, transparent 1px),
-      radial-gradient(at 50% 0%, rgba(189, 0, 255, 0.2) 0px, transparent 70%)
+      linear-gradient(rgba(0, 255, 242, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(189, 0, 255, 0.03) 1px, transparent 1px),
+      radial-gradient(at 50% 0%, rgba(189, 0, 255, 0.15) 0px, transparent 70%)
     `,
     backgroundSize: '40px 40px, 40px 40px, 100% 100%'
   };
 
   // Cores e Estilos Dinâmicos
-  const textMain = isLight ? 'text-gray-900' : 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]';
-  const textSub = isLight ? 'text-gray-500' : 'text-cyan-100/70';
+  const textMain = isLight ? 'text-gray-900' : 'text-white';
+  const textSub = isLight ? 'text-gray-500' : 'text-cyan-100/60';
   
   const cardBg = isLight 
-    ? 'bg-white/70 backdrop-blur-xl border border-pink-100 shadow-[0_10px_30px_rgba(255,182,193,0.3)] hover:border-pink-300 hover:shadow-pink-200' 
-    : 'bg-[#121217]/80 backdrop-blur-xl border border-white/10 hover:border-cyan-500/50 shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(0,255,242,0.15)]';
+    ? 'bg-white/80 backdrop-blur-sm border border-pink-100 shadow-lg hover:shadow-xl hover:border-pink-200' 
+    : 'bg-[#121217]/70 backdrop-blur-sm border border-white/10 hover:border-cyan-500/30 shadow-lg hover:shadow-xl';
 
   const badgeStyle = isLight 
-    ? 'bg-pink-50 text-pink-600 border border-pink-100' 
-    : 'bg-cyan-900/20 text-cyan-300 border border-cyan-500/30 shadow-[0_0_10px_rgba(0,255,242,0.2)]';
+    ? 'bg-pink-50 text-pink-600 border border-pink-200' 
+    : 'bg-cyan-900/30 text-cyan-300 border border-cyan-500/40';
 
   return (
     <div 
-      className={`min-h-screen p-4 md:p-8 animate-in fade-in slide-in-from-bottom-4 duration-700 font-sans`} 
+      className={`min-h-screen p-4 md:p-8 font-sans`} 
       style={isLight ? lightPattern : darkPattern}
     >
       
+      {/* Modal de Visualização */}
+      <CircuitModal 
+        circuit={selectedCircuit}
+        isOpen={modalOpen}
+        onClose={closeModal}
+        theme={theme}
+      />
+
       {/* Elementos Decorativos de Fundo */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/20 animate-pulse'}`} />
-         <div className={`absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
-         {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+         <div className={`absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-10 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/10'}`} />
+         <div className={`absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-10 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/10'}`} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         <BackButton to="/" theme={theme} />
 
         {/* --- HEADER --- */}
-        <div className="mb-14 text-center md:text-left relative">
+        <div className="mb-12 text-center md:text-left relative">
            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
               <div className={`p-3 rounded-full ${isLight ? 'bg-white shadow-md text-pink-500' : 'bg-white/10 border border-white/20 text-cyan-400'}`}>
                  <Map size={24} />
@@ -401,86 +528,100 @@ const CircuitsPage = ({ theme = 'light' }) => {
               </span>
            </div>
            
-           <h1 className={`text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] mb-6 ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-fuchsia-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.4)]'}`} style={{ fontFamily: "'Russo One', sans-serif" }}>
+           <h1 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-5 ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-fuchsia-400'}`} style={{ fontFamily: "'Russo One', sans-serif" }}>
              Circuitos
            </h1>
            
-           <p className={`text-lg md:text-xl font-medium max-w-2xl mx-auto md:mx-0 ${textSub}`}>
-             O palco onde a mágica acontece. Detalhes técnicos e vibes de cada traçado.
+           <p className={`text-base md:text-lg font-medium max-w-2xl mx-auto md:mx-0 ${textSub}`}>
+             O palco onde a mágica acontece. Clique no mapa para visualizar em detalhe.
            </p>
         </div>
 
         {/* --- GRID DE CIRCUITOS --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
            {CIRCUITS_DATA.map((circuit) => (
              <div 
                key={circuit.id} 
-               className={`group relative rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 cursor-pointer flex flex-col h-full ${cardBg}`}
+               className={`group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col h-full ${cardBg}`}
              >
                 {/* Imagem do Circuito (Topo) */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-900">
                    <img 
                      src={circuit.photo} 
                      alt={circuit.name} 
-                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110"
+                     className="w-full h-full object-cover"
+                     loading="lazy"
                    />
                    
                    {/* Overlay Gradiente */}
-                   <div className={`absolute inset-0 bg-gradient-to-t ${isLight ? 'from-white via-transparent to-transparent' : 'from-[#121217] via-transparent to-transparent'}`} />
+                   <div className={`absolute inset-0 bg-gradient-to-t ${isLight ? 'from-white/60 via-transparent to-transparent' : 'from-[#121217]/60 via-transparent to-transparent'}`} />
                    
                    {/* Badge Vibe */}
-                   <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest backdrop-blur-md ${badgeStyle}`}>
+                   <div className={`absolute top-3 right-3 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider backdrop-blur-md ${badgeStyle}`}>
                       {circuit.vibe}
-                   </div>
-                   
-                   {/* Mapa do Circuito (Flutuante) */}
-                   <div className={`absolute bottom-4 right-4 w-16 h-16 rounded-xl p-2 backdrop-blur-md border ${isLight ? 'bg-white/80 border-white shadow-lg' : 'bg-black/60 border-white/20 shadow-[0_0_10px_black]'}`}>
-                      <img src={circuit.image} alt="Layout" className={`w-full h-full object-contain ${!isLight && 'invert brightness-200'}`} />
                    </div>
                 </div>
 
-                {/* Info do Circuito (Baixo) */}
-                <div className="p-8 pt-4 flex-1 flex flex-col">
-                   <div className="mb-6">
-                      <div className="flex items-center gap-2 mb-2">
-                         <span className="text-xl">{circuit.countryCode === 'BR' ? '🇧🇷' : circuit.countryCode === 'MC' ? '🇲🇨' : circuit.countryCode === 'GB' ? '🇬🇧' : circuit.countryCode === 'BE' ? '🇧🇪' : circuit.countryCode === 'US' ? '🇺🇸' : '🇯🇵'}</span>
-                         <span className={`text-[10px] font-bold uppercase tracking-widest ${textSub}`}>{circuit.location}</span>
+                {/* Mapa do Circuito - CLICÁVEL */}
+                <button
+                  onClick={() => openModal(circuit)}
+                  className={`relative -mt-10 mx-auto z-10 w-24 h-24 rounded-2xl p-3 backdrop-blur-md border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl group/map ${
+                    isLight 
+                      ? 'bg-white border-pink-200 hover:border-pink-400' 
+                      : 'bg-[#1a1a20] border-white/20 hover:border-cyan-400 hover:shadow-cyan-500/50'
+                  }`}
+                  title="Clique para visualizar em tamanho grande"
+                >
+                   <img 
+                     src={circuit.image} 
+                     alt={`Layout ${circuit.name}`} 
+                     className={`w-full h-full object-contain transition-all ${isLight ? 'opacity-90 group-hover/map:opacity-100' : 'invert brightness-110 contrast-125 group-hover/map:brightness-125'}`}
+                     loading="lazy"
+                   />
+                   
+                   {/* Ícone de Zoom no Hover */}
+                   <div className={`absolute inset-0 flex items-center justify-center opacity-0 group-hover/map:opacity-100 transition-opacity ${isLight ? 'bg-white/90' : 'bg-black/80'}`}>
+                     <ZoomIn className={`${isLight ? 'text-pink-500' : 'text-cyan-400'}`} size={32} />
+                   </div>
+                </button>
+
+                {/* Info do Circuito */}
+                <div className="p-6 pt-4 flex-1 flex flex-col">
+                   <div className="mb-4 text-center">
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                         <span className="text-lg">{circuit.countryCode === 'BR' ? '🇧🇷' : circuit.countryCode === 'MC' ? '🇲🇨' : circuit.countryCode === 'GB' ? '🇬🇧' : circuit.countryCode === 'BE' ? '🇧🇪' : circuit.countryCode === 'US' ? '🇺🇸' : '🇯🇵'}</span>
+                         <span className={`text-[9px] font-bold uppercase tracking-widest ${textSub}`}>{circuit.location}</span>
                       </div>
-                      <h3 className={`text-2xl font-black uppercase leading-none tracking-tight ${textMain}`}>
+                      <h3 className={`text-xl font-black uppercase leading-tight tracking-tight ${textMain}`}>
                         {circuit.name}
                       </h3>
                    </div>
 
                    {/* Grid de Estatísticas */}
-                   <div className={`grid grid-cols-2 gap-3 mt-auto p-4 rounded-2xl ${isLight ? 'bg-gray-50 border border-gray-100' : 'bg-white/5 border border-white/5'}`}>
+                   <div className={`grid grid-cols-2 gap-3 mt-auto p-4 rounded-2xl ${isLight ? 'bg-gray-50/80 border border-gray-200' : 'bg-white/5 border border-white/10'}`}>
                       
                       <div className="flex flex-col gap-1">
-                         <div className={`flex items-center gap-1.5 text-[10px] font-bold uppercase ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
-                            <Navigation size={12} /> Extensão
+                         <div className={`flex items-center gap-1.5 text-[9px] font-bold uppercase ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                            <Navigation size={11} /> Extensão
                          </div>
                          <span className={`text-sm font-black ${textMain}`}>{circuit.length}</span>
                       </div>
 
                       <div className="flex flex-col gap-1">
-                         <div className={`flex items-center gap-1.5 text-[10px] font-bold uppercase ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
-                            <Activity size={12} /> Voltas
+                         <div className={`flex items-center gap-1.5 text-[9px] font-bold uppercase ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                            <Activity size={11} /> Voltas
                          </div>
-                         <span className={`text-sm font-black ${textMain}`}>{circuit.laps}</span>
+                         <span className={`text-sm font-black ${textMain}`}>{circuit.laps || '--'}</span>
                       </div>
 
-                      <div className="col-span-2 pt-3 mt-1 border-t border-dashed border-gray-200 dark:border-white/10">
-                         <div className={`flex items-center gap-1.5 text-[10px] font-bold uppercase mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
-                            <Timer size={12} /> Recorde
+                      <div className="col-span-2 pt-2 mt-1 border-t border-dashed border-gray-300 dark:border-white/10">
+                         <div className={`flex items-center gap-1.5 text-[9px] font-bold uppercase mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+                            <Timer size={11} /> Recorde
                          </div>
-                         <span className={`text-sm font-black ${isLight ? 'text-pink-600' : 'text-cyan-400'}`}>{circuit.record}</span>
+                         <span className={`text-xs font-bold ${isLight ? 'text-pink-600' : 'text-cyan-400'}`}>{circuit.record}</span>
                       </div>
                    </div>
                 </div>
-
-                {/* Brilho no Hover (Dark Mode) */}
-                {!isLight && (
-                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-cyan-500/30 rounded-[2.5rem] pointer-events-none transition-all duration-500" />
-                )}
              </div>
            ))}
         </div>

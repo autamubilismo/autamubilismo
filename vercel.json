@@ -4,15 +4,40 @@
   "rewrites": [
     {
       "source": "/news/:slug",
-      "destination": "/api/news/:slug"
+      "destination": "/api/og?type=news&slug=:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(facebookexternalhit|twitterbot|whatsapp|linkedinbot|telegrambot|slackbot|pinterest)"
+        }
+      ]
     },
     {
       "source": "/articles/:slug",
-      "destination": "/api/articles/:slug"
+      "destination": "/api/og?type=article&slug=:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(facebookexternalhit|twitterbot|whatsapp|linkedinbot|telegrambot|slackbot|pinterest)"
+        }
+      ]
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=3600, stale-while-revalidate"
+        }
+      ]
     }
   ]
 }

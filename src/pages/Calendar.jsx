@@ -82,14 +82,28 @@ const PageHeader = ({ theme, badge, icon: Icon, title, subtitle }) => {
 const RaceCard = ({ race, isExpanded, onToggle, theme }) => {
   const isLight = theme === 'light';
   
-  // Função para formatar data
+  // Função para formatar data - CORRIGIDA (com timezone fix)
   const formatDate = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+    // Parse dates as local timezone to avoid day-off-by-one errors
+    const parseLocalDate = (dateStr) => {
+      const [year, month, day] = dateStr.split('-').map(Number);
+      return new Date(year, month - 1, day);
+    };
+    
+    const start = parseLocalDate(startDate);
+    const end = parseLocalDate(endDate);
     const startDay = start.getDate();
     const endDay = end.getDate();
-    const month = end.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '');
-    return `${startDay}-${endDay} ${month}`;
+    const startMonth = start.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '');
+    const endMonth = end.toLocaleDateString('pt-BR', { month: 'short' }).replace('.', '');
+    
+    // Se mesmo mês, mostra: "5-7 mar"
+    // Se meses diferentes, mostra: "28 fev-3 mar"
+    if (startMonth === endMonth) {
+      return `${startDay}-${endDay} ${endMonth}`;
+    } else {
+      return `${startDay} ${startMonth}-${endDay} ${endMonth}`;
+    }
   };
 
   // Função para obter emoji da bandeira pelo país

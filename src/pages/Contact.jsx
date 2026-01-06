@@ -5,7 +5,6 @@ import {
   Heart,
   Sparkles,
   Instagram,
-  Twitter,
   Mail,
   ChevronLeft,
   Loader2,
@@ -53,7 +52,6 @@ const ContactPage = ({ theme }) => {
     const { name, email, message } = formData;
 
     if (!name || !email || !message) {
-      // Idealmente usar um toast aqui, mas alert serve para o exemplo
       alert("Por favor, preencha todos os campos!");
       return;
     }
@@ -74,6 +72,13 @@ const ContactPage = ({ theme }) => {
   const TikTokIcon = ({ size = 20 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+    </svg>
+  );
+
+  // Ícone X (Twitter) SVG
+  const XIcon = ({ size = 20 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
     </svg>
   );
 
@@ -193,7 +198,7 @@ const ContactPage = ({ theme }) => {
               <div className="flex gap-3">
                 {[
                   { href: "https://instagram.com/autamubilismo", icon: Instagram },
-                  { href: "https://twitter.com/autamubilismo", icon: Twitter },
+                  { href: "https://twitter.com/autamubilismo", icon: XIcon }, // Substituído por XIcon
                   { href: "https://tiktok.com/@autamubilismo", icon: TikTokIcon },
                   { href: "mailto:autamubilismo@gmail.com", icon: Mail },
                 ].map((social, idx) => (

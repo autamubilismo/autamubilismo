@@ -36,7 +36,7 @@ import Calendar2026Page from './pages/Calendar2026Page';
 // ==============================================================================
 
 const AppContent = () => {
-  const { theme, toggleTheme } = useTheme(); // ✨ Usando hook global
+  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();

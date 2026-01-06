@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Calendar, 
@@ -13,8 +13,41 @@ import {
   Timer, 
   ArrowRight,
   ChevronLeft,
-  Medal
+  Medal,
+  RefreshCw,
+  AlertCircle
 } from 'lucide-react';
+
+// --- DADOS DE FALLBACK 2026 ---
+const FALLBACK_DRIVERS_2026 = [
+  { pos: 1, name: 'Max Verstappen', team: 'Red Bull Ford', points: 0, color: 'bg-blue-600' },
+  { pos: 2, name: 'Lando Norris', team: 'McLaren', points: 0, color: 'bg-orange-500' },
+  { pos: 3, name: 'Lewis Hamilton', team: 'Ferrari', points: 0, color: 'bg-red-600' },
+  { pos: 4, name: 'George Russell', team: 'Mercedes', points: 0, color: 'bg-cyan-500' },
+  { pos: 5, name: 'Charles Leclerc', team: 'Ferrari', points: 0, color: 'bg-red-600' },
+];
+
+const FALLBACK_CONSTRUCTORS_2026 = [
+  { pos: 1, name: 'Red Bull Ford', points: 0, color: 'bg-blue-600' },
+  { pos: 2, name: 'Ferrari', points: 0, color: 'bg-red-600' },
+  { pos: 3, name: 'McLaren', points: 0, color: 'bg-orange-500' },
+  { pos: 4, name: 'Mercedes', points: 0, color: 'bg-cyan-500' },
+  { pos: 5, name: 'Audi F1 Team', points: 0, color: 'bg-gray-500' }, 
+];
+
+// Mapeamento de cores por equipe
+const TEAM_COLORS_MAP = {
+  'Red Bull': 'bg-blue-600',
+  'Ferrari': 'bg-red-600',
+  'Mercedes': 'bg-cyan-500',
+  'McLaren': 'bg-orange-500',
+  'Aston Martin': 'bg-green-600',
+  'Alpine': 'bg-blue-500',
+  'Williams': 'bg-blue-400',
+  'RB': 'bg-indigo-600',
+  'Kick Sauber': 'bg-green-500',
+  'Haas F1 Team': 'bg-gray-500',
+};
 
 // --- Componentes Internos (Inlined) ---
 
@@ -60,20 +93,39 @@ const PageContainer = ({ theme, children }) => {
   );
 };
 
-const PageHeader = ({ theme, badge, icon: Icon, title, subtitle }) => {
+const PageHeader = ({ theme, badge, icon: Icon, title, subtitle, onRefresh, loading, usingFallback }) => {
   const isLight = theme === 'light';
   return (
     <div className="mb-8 relative z-20">
-      {badge && (
-        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 ${
-          isLight 
-            ? 'bg-indigo-100 text-indigo-600' 
-            : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30 shadow-[0_0_10px_rgba(255,0,255,0.2)]'
-        }`}>
-          {Icon && <Icon size={12} />}
-          {badge}
-        </div>
-      )}
+      <div className="flex items-center gap-3 mb-4">
+        {badge && (
+          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
+            isLight 
+              ? 'bg-indigo-100 text-indigo-600' 
+              : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30 shadow-[0_0_10px_rgba(255,0,255,0.2)]'
+          }`}>
+            {Icon && <Icon size={12} />}
+            {badge}
+          </div>
+        )}
+        
+        {/* Botão de Refresh */}
+        {onRefresh && (
+          <button
+            onClick={onRefresh}
+            disabled={loading}
+            className={`p-2 rounded-full transition-all hover:scale-110 active:scale-95 ${
+              isLight 
+                ? 'bg-white text-gray-600 hover:bg-gray-50 shadow-sm' 
+                : 'bg-white/10 text-gray-400 hover:bg-white/20'
+            } ${loading ? 'animate-spin' : ''}`}
+            title="Atualizar dados"
+          >
+            <RefreshCw size={14} />
+          </button>
+        )}
+      </div>
+      
       <h1 className={`text-4xl md:text-6xl font-black tracking-tighter mb-4 ${
         isLight 
           ? 'text-gray-900' 
@@ -84,32 +136,97 @@ const PageHeader = ({ theme, badge, icon: Icon, title, subtitle }) => {
       <p className={`text-lg md:text-xl max-w-2xl ${isLight ? 'text-gray-600' : 'text-cyan-200/70 font-medium'}`}>
         {subtitle}
       </p>
+      
+      {/* Indicador de Fallback */}
+      {usingFallback && (
+        <div className={`flex items-center gap-2 mt-4 px-4 py-2 rounded-full text-[10px] font-bold max-w-md ${
+          isLight ? 'bg-yellow-50 text-yellow-700' : 'bg-yellow-900/20 text-yellow-400'
+        }`}>
+          <AlertCircle size={12} />
+          <span>Exibindo projeção 2026 (temporada atual ainda não iniciada)</span>
+        </div>
+      )}
     </div>
   );
 };
 
-// --- Widget de Classificação Vaporwave ---
+// --- Widget de Classificação com API ---
 
 const StandingsWidget = ({ theme }) => {
-  const [activeTab, setActiveTab] = useState('drivers'); // 'drivers' or 'constructors'
+  const [activeTab, setActiveTab] = useState('drivers');
+  const [driversData, setDriversData] = useState(FALLBACK_DRIVERS_2026);
+  const [constructorsData, setConstructorsData] = useState(FALLBACK_CONSTRUCTORS_2026);
+  const [loading, setLoading] = useState(false);
+  const [usingFallback, setUsingFallback] = useState(true);
+  const [season, setSeason] = useState('2026');
   const isLight = theme === 'light';
 
-  // Dados Mockados para 2026 (Projeção)
-  const driversData = [
-    { pos: 1, name: 'Max Verstappen', team: 'Red Bull Ford', points: 86, color: 'bg-blue-600' },
-    { pos: 2, name: 'Lando Norris', team: 'McLaren', points: 78, color: 'bg-orange-500' },
-    { pos: 3, name: 'Lewis Hamilton', team: 'Ferrari', points: 65, color: 'bg-red-600' },
-    { pos: 4, name: 'George Russell', team: 'Mercedes', points: 52, color: 'bg-cyan-500' },
-    { pos: 5, name: 'Charles Leclerc', team: 'Ferrari', points: 48, color: 'bg-red-600' },
-  ];
+  // Buscar dados da API
+  const fetchStandingsData = async () => {
+    setLoading(true);
+    try {
+      const [driversRes, constructorsRes] = await Promise.all([
+        fetch('https://ergast.com/api/f1/current/driverStandings.json'),
+        fetch('https://ergast.com/api/f1/current/constructorStandings.json')
+      ]);
 
-  const constructorsData = [
-    { pos: 1, name: 'Red Bull Ford', points: 142, color: 'bg-blue-600' },
-    { pos: 2, name: 'Ferrari', points: 113, color: 'bg-red-600' },
-    { pos: 3, name: 'McLaren', points: 98, color: 'bg-orange-500' },
-    { pos: 4, name: 'Mercedes', points: 85, color: 'bg-cyan-500' },
-    { pos: 5, name: 'Audi F1 Team', points: 34, color: 'bg-gray-500' }, 
-  ];
+      if (!driversRes.ok || !constructorsRes.ok) {
+        throw new Error('API indisponível');
+      }
+
+      const driversJson = await driversRes.json();
+      const constructorsJson = await constructorsRes.json();
+
+      // Verificar se há dados
+      const apiDrivers = driversJson.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
+      const apiConstructors = constructorsJson.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings || [];
+
+      if (apiDrivers.length === 0 || apiConstructors.length === 0) {
+        throw new Error('Sem dados disponíveis');
+      }
+
+      // Processar pilotos
+      const formattedDrivers = apiDrivers.slice(0, 5).map(driver => {
+        const teamName = driver.Constructors[0]?.name || 'Unknown';
+        return {
+          pos: parseInt(driver.position),
+          name: `${driver.Driver.givenName} ${driver.Driver.familyName}`,
+          team: teamName,
+          points: parseInt(driver.points),
+          color: TEAM_COLORS_MAP[teamName] || 'bg-gray-500'
+        };
+      });
+
+      // Processar construtores
+      const formattedConstructors = apiConstructors.slice(0, 5).map(team => {
+        const teamName = team.Constructor.name;
+        return {
+          pos: parseInt(team.position),
+          name: teamName,
+          points: parseInt(team.points),
+          color: TEAM_COLORS_MAP[teamName] || 'bg-gray-500'
+        };
+      });
+
+      setDriversData(formattedDrivers);
+      setConstructorsData(formattedConstructors);
+      setUsingFallback(false);
+      setSeason(driversJson.MRData.StandingsTable.season || '2025');
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+      setDriversData(FALLBACK_DRIVERS_2026);
+      setConstructorsData(FALLBACK_CONSTRUCTORS_2026);
+      setUsingFallback(true);
+      setSeason('2026');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Buscar ao montar
+  useEffect(() => {
+    fetchStandingsData();
+  }, []);
 
   const data = activeTab === 'drivers' ? driversData : constructorsData;
 
@@ -124,34 +241,71 @@ const StandingsWidget = ({ theme }) => {
         <div className="flex items-center gap-2">
           <Trophy size={20} className={isLight ? 'text-yellow-500' : 'text-yellow-300 drop-shadow-[0_0_8px_rgba(253,224,71,0.6)]'} />
           <h3 className={`text-lg font-black uppercase tracking-wide ${isLight ? 'text-gray-900' : 'text-white'}`}>
-            Classificação 2026
+            Classificação {season}
           </h3>
+          {!usingFallback && (
+            <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+              isLight ? 'bg-green-100 text-green-600' : 'bg-green-900/30 text-green-400'
+            }`}>
+              Live
+            </span>
+          )}
         </div>
         
-        {/* Toggle de Abas */}
-        <div className={`flex p-1 rounded-xl ${isLight ? 'bg-gray-100' : 'bg-[#2a0e3d] border border-fuchsia-500/10'}`}>
+        <div className="flex items-center gap-3">
+          {/* Toggle de Abas */}
+          <div className={`flex p-1 rounded-xl ${isLight ? 'bg-gray-100' : 'bg-[#2a0e3d] border border-fuchsia-500/10'}`}>
+            <button
+              onClick={() => setActiveTab('drivers')}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                activeTab === 'drivers' 
+                  ? (isLight ? 'bg-white text-indigo-600 shadow-sm' : 'bg-fuchsia-600 text-white shadow-[0_0_15px_rgba(255,0,255,0.5)]')
+                  : (isLight ? 'text-gray-400 hover:text-gray-600' : 'text-fuchsia-300/50 hover:text-fuchsia-300')
+              }`}
+            >
+              Pilotos
+            </button>
+            <button
+              onClick={() => setActiveTab('constructors')}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                activeTab === 'constructors' 
+                  ? (isLight ? 'bg-white text-indigo-600 shadow-sm' : 'bg-cyan-600 text-white shadow-[0_0_15px_rgba(0,255,255,0.5)]')
+                  : (isLight ? 'text-gray-400 hover:text-gray-600' : 'text-cyan-300/50 hover:text-cyan-300')
+              }`}
+            >
+              Construtores
+            </button>
+          </div>
+          
+          {/* Botão Refresh */}
           <button
-            onClick={() => setActiveTab('drivers')}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === 'drivers' 
-                ? (isLight ? 'bg-white text-indigo-600 shadow-sm' : 'bg-fuchsia-600 text-white shadow-[0_0_15px_rgba(255,0,255,0.5)]')
-                : (isLight ? 'text-gray-400 hover:text-gray-600' : 'text-fuchsia-300/50 hover:text-fuchsia-300')
-            }`}
+            onClick={fetchStandingsData}
+            disabled={loading}
+            className={`p-2 rounded-full transition-all hover:scale-110 active:scale-95 ${
+              isLight 
+                ? 'bg-gray-100 text-gray-600 hover:bg-gray-200' 
+                : 'bg-white/10 text-gray-400 hover:bg-white/20'
+            } ${loading ? 'animate-spin' : ''}`}
+            title="Atualizar dados"
           >
-            Pilotos
-          </button>
-          <button
-            onClick={() => setActiveTab('constructors')}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
-              activeTab === 'constructors' 
-                ? (isLight ? 'bg-white text-indigo-600 shadow-sm' : 'bg-cyan-600 text-white shadow-[0_0_15px_rgba(0,255,255,0.5)]')
-                : (isLight ? 'text-gray-400 hover:text-gray-600' : 'text-cyan-300/50 hover:text-cyan-300')
-            }`}
-          >
-            Construtores
+            <RefreshCw size={14} />
           </button>
         </div>
       </div>
+
+      {/* Aviso de Projeção 2026 */}
+      {usingFallback && (
+        <div className={`mb-4 flex items-center gap-2 p-3 rounded-xl text-xs ${
+          isLight 
+            ? 'bg-yellow-50 text-yellow-700' 
+            : 'bg-yellow-900/20 text-yellow-400 border border-yellow-500/30'
+        }`}>
+          <AlertCircle size={14} />
+          <span className="font-medium">
+            Dados projetados para 2026. A temporada ainda não iniciou.
+          </span>
+        </div>
+      )}
 
       {/* Tabela Simplificada */}
       <div className="space-y-3">
@@ -196,9 +350,12 @@ const StandingsWidget = ({ theme }) => {
       
       {/* Link Ver Completo */}
       <div className={`mt-4 pt-4 border-t text-center ${isLight ? 'border-gray-100' : 'border-fuchsia-500/10'}`}>
-        <button className={`text-xs font-bold uppercase tracking-widest hover:underline ${isLight ? 'text-indigo-600' : 'text-fuchsia-400 hover:text-fuchsia-300 hover:drop-shadow-[0_0_5px_rgba(255,0,255,0.8)]'}`}>
+        <a 
+          href="/standings"
+          className={`text-xs font-bold uppercase tracking-widest hover:underline ${isLight ? 'text-indigo-600' : 'text-fuchsia-400 hover:text-fuchsia-300 hover:drop-shadow-[0_0_5px_rgba(255,0,255,0.8)]'}`}
+        >
           Ver Tabela Completa
-        </button>
+        </a>
       </div>
     </div>
   );
@@ -207,7 +364,6 @@ const StandingsWidget = ({ theme }) => {
 const FeatureCard = ({ icon: Icon, title, subtitle, badge, color, theme, onClick, className = "" }) => {
   const isLight = theme === 'light';
   
-  // Cores Vaporwave para Dark Mode
   const colorStyles = {
     purple: { 
       bg: isLight ? 'bg-purple-100' : 'bg-purple-500/10', 
@@ -308,6 +464,14 @@ const FeatureCard = ({ icon: Icon, title, subtitle, badge, color, theme, onClick
 const SeasonPage = ({ theme }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [usingFallback, setUsingFallback] = useState(true);
+
+  // Função para atualizar dados (passa para o header)
+  const handleRefresh = () => {
+    // Força re-render do StandingsWidget através do refresh
+    window.location.reload();
+  };
 
   const quickLinks = [
     { 
@@ -376,6 +540,9 @@ const SeasonPage = ({ theme }) => {
         icon={Zap}
         title="Temporada 2026"
         subtitle="O início de uma nova geração na Fórmula 1"
+        onRefresh={handleRefresh}
+        loading={loading}
+        usingFallback={usingFallback}
       />
 
       {/* Hero Widget 2026 */}
@@ -423,7 +590,7 @@ const SeasonPage = ({ theme }) => {
         }`}></div>
       </div>
 
-      {/* WIDGET DE CLASSIFICAÇÃO */}
+      {/* WIDGET DE CLASSIFICAÇÃO COM API */}
       <StandingsWidget theme={theme} />
 
       {/* Barra de Pesquisa */}

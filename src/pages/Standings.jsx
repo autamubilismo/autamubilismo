@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Trophy, Flag, ChevronLeft, Crown, Medal } from 'lucide-react';
+import { Trophy, Flag, ChevronLeft, Crown, Medal, RefreshCw, AlertCircle } from 'lucide-react';
 
-// --- DADOS 2026 ---
+// --- DADOS DE FALLBACK 2026 ---
+// Usados quando a API está offline ou durante pré-temporada
 
-const DRIVERS_STANDINGS = [
+const FALLBACK_DRIVERS = [
   { 
     position: 1, driverId: 'kimi', driverName: 'Kimi Antonelli', driverNumber: 12, 
     image: 'img/pilotos/antonelli/grid-antonelli.avif', 
@@ -102,7 +103,7 @@ const DRIVERS_STANDINGS = [
   },
 ];
 
-const CONSTRUCTORS_STANDINGS = [
+const FALLBACK_CONSTRUCTORS = [
   { position: 1, teamId: 'mercedes', teamName: 'Mercedes-AMG Petronas', teamShortName: 'Mercedes-AMG', image: 'img/equipes/mercedes/logo-mercedes.png', teamColor: '#00D2BE', points: 0, wins: 0 },
   { position: 2, teamId: 'ferrari', teamName: 'Scuderia Ferrari', teamShortName: 'Ferrari', image: 'img/equipes/ferrari/logo-ferrari.png', teamColor: '#FF0000', points: 0, wins: 0 },
   { position: 3, teamId: 'red-bull', teamName: 'Oracle Red Bull Racing', teamShortName: 'Red Bull', image: 'img/equipes/redbull/logo-redbull.png', teamColor: '#1E41FF', points: 0, wins: 0 },
@@ -113,8 +114,59 @@ const CONSTRUCTORS_STANDINGS = [
   { position: 8, teamId: 'vcarb', teamName: 'Visa Cash App RB F1 Team', teamShortName: 'VCARB', image: 'img/equipes/rb/logo-rb.png', teamColor: '#1633EF', points: 0, wins: 0 },
   { position: 9, teamId: 'haas', teamName: 'MoneyGram Haas F1 Team', teamShortName: 'Haas', image: 'img/equipes/haas/logo-haas.png', teamColor: '#B6BABD', points: 0, wins: 0 },
   { position: 10, teamId: 'audi', teamName: 'Audi F1 Team', teamShortName: 'Audi', image: 'img/equipes/audi/logo-audi.png', teamColor: '#000000', points: 0, wins: 0 },
-  { position: 11, teamId: 'cadillac', teamName: 'Cadillac F1 Team', teamShortName: 'Cadillac', image: 'img/equipes/cadillac/logo-cadillac.png', teamColor: '#A2AAAD', points: 0, wins: 0 },
 ];
+
+// Mapeamento de cores por equipe (personalize conforme necessário)
+const TEAM_COLORS = {
+  'Red Bull': '#1E41FF',
+  'Ferrari': '#FF0000',
+  'Mercedes': '#00D2BE',
+  'McLaren': '#FF8700',
+  'Aston Martin': '#006F62',
+  'Alpine': '#0090FF',
+  'Williams': '#005AFF',
+  'RB': '#1633EF',
+  'Kick Sauber': '#52E252',
+  'Sauber': '#52E252',
+  'Haas F1 Team': '#B6BABD',
+};
+
+// Mapeamento de nomes de piloto para suas imagens locais
+const DRIVER_IMAGE_MAP = {
+  'Max Verstappen': 'img/pilotos/verstappen/grid-verstappen.avif',
+  'Lando Norris': 'img/pilotos/norris/grid-norris.avif',
+  'Charles Leclerc': 'img/pilotos/leclerc/grid-leclerc.avif',
+  'Oscar Piastri': 'img/pilotos/piastri/grid-piastri.avif',
+  'Carlos Sainz': 'img/pilotos/sainz/grid-sainz.avif',
+  'George Russell': 'img/pilotos/russell/grid-russell.avif',
+  'Lewis Hamilton': 'img/pilotos/hamilton/grid-hamilton.avif',
+  'Sergio Pérez': 'img/pilotos/perez/grid-perez.avif',
+  'Fernando Alonso': 'img/pilotos/alonso/grid-alonso.avif',
+  'Lance Stroll': 'img/pilotos/stroll/grid-stroll.avif',
+  'Pierre Gasly': 'img/pilotos/gasly/grid-gasly.avif',
+  'Esteban Ocon': 'img/pilotos/ocon/grid-ocon.avif',
+  'Alexander Albon': 'img/pilotos/albon/grid-albon.avif',
+  'Yuki Tsunoda': 'img/pilotos/tsunoda/grid-tsunoda.avif',
+  'Nico Hulkenberg': 'img/pilotos/hulkenberg/grid-hulkenberg.avif',
+  'Valtteri Bottas': 'img/pilotos/bottas/grid-bottas.avif',
+  'Zhou Guanyu': 'img/pilotos/zhou/grid-zhou.avif',
+  'Kevin Magnussen': 'img/pilotos/magnussen/grid-magnussen.avif',
+};
+
+// Mapeamento de equipes para suas imagens locais
+const TEAM_IMAGE_MAP = {
+  'Red Bull': 'img/equipes/redbull/logo-redbull.png',
+  'Ferrari': 'img/equipes/ferrari/logo-ferrari.png',
+  'Mercedes': 'img/equipes/mercedes/logo-mercedes.png',
+  'McLaren': 'img/equipes/mclaren/logo-mclaren.png',
+  'Aston Martin': 'img/equipes/astonmartin/logo-astonmartin.png',
+  'Alpine': 'img/equipes/alpine/logo-alpine.png',
+  'Williams': 'img/equipes/williams/logo-williams.png',
+  'RB': 'img/equipes/rb/logo-rb.png',
+  'Kick Sauber': 'img/equipes/sauber/logo-sauber.png',
+  'Sauber': 'img/equipes/sauber/logo-sauber.png',
+  'Haas F1 Team': 'img/equipes/haas/logo-haas.png',
+};
 
 // --- COMPONENTES UI ---
 
@@ -144,7 +196,7 @@ const PageContainer = ({ theme, children }) => {
         : 'bg-[#090011] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2a004a] via-[#090011] to-[#05000a] text-cyan-50'
     }`}>
       {!isLight && (
-        <div className="fixed inset-0 pointer-events-none opacity-20 z-0" 
+        <div className="absolute inset-0 pointer-events-none opacity-20 fixed z-0" 
              style={{ 
                backgroundImage: 'linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)', 
                backgroundSize: '40px 40px',
@@ -159,19 +211,36 @@ const PageContainer = ({ theme, children }) => {
   );
 };
 
-const PageHeader = ({ theme, badge, title, subtitle }) => {
+const PageHeader = ({ theme, badge, title, subtitle, onRefresh, loading, usingFallback }) => {
   const isLight = theme === 'light';
   return (
     <div className="text-center mb-8">
-      {badge && (
-        <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-3 ${
-          isLight 
-            ? 'bg-white text-pink-400 shadow-sm' 
-            : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30 shadow-[0_0_10px_rgba(255,0,255,0.2)]'
-        }`}>
-          {badge}
-        </span>
-      )}
+      <div className="flex items-center justify-center gap-3 mb-3">
+        {badge && (
+          <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] ${
+            isLight 
+              ? 'bg-white text-pink-400 shadow-sm' 
+              : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30 shadow-[0_0_10px_rgba(255,0,255,0.2)]'
+          }`}>
+            {badge}
+          </span>
+        )}
+        
+        {/* Botão de Refresh */}
+        <button
+          onClick={onRefresh}
+          disabled={loading}
+          className={`p-2 rounded-full transition-all hover:scale-110 active:scale-95 ${
+            isLight 
+              ? 'bg-white text-gray-600 hover:bg-gray-50 shadow-sm' 
+              : 'bg-white/10 text-gray-400 hover:bg-white/20'
+          } ${loading ? 'animate-spin' : ''}`}
+          title="Atualizar dados"
+        >
+          <RefreshCw size={14} />
+        </button>
+      </div>
+      
       <h1 className={`text-4xl md:text-5xl font-black tracking-tighter mb-3 uppercase ${
         isLight 
           ? 'text-transparent bg-clip-text bg-gradient-to-br from-gray-800 to-gray-500' 
@@ -184,6 +253,16 @@ const PageHeader = ({ theme, badge, title, subtitle }) => {
       }`}>
         {subtitle}
       </p>
+      
+      {/* Indicador de Fallback */}
+      {usingFallback && (
+        <div className={`flex items-center justify-center gap-2 mt-4 px-4 py-2 rounded-full text-[10px] font-bold max-w-md mx-auto ${
+          isLight ? 'bg-yellow-50 text-yellow-700' : 'bg-yellow-900/20 text-yellow-400'
+        }`}>
+          <AlertCircle size={12} />
+          <span>Usando dados de backup (API offline)</span>
+        </div>
+      )}
     </div>
   );
 };
@@ -205,16 +284,14 @@ const PodiumStep = ({ data, place, type, theme }) => {
   const name = type === 'drivers' ? data.driverName : data.teamName;
   const shortName = type === 'drivers' ? (data.driverName || '').split(' ').pop() : data.teamShortName;
   
-  // Tratamento da imagem
   let imagePath = data.image || '';
   if (imagePath && !imagePath.startsWith('/') && !imagePath.startsWith('http')) {
     imagePath = `/${imagePath}`;
   }
 
-  // Estilo específico para Pilotos vs Equipes no Pódio
   const imgClass = type === 'drivers' 
-    ? "w-full h-full object-cover object-top" // Pilotos: Foco no rosto
-    : `w-full h-full object-contain p-3 ${!isLight ? 'brightness-0 invert drop-shadow-[0_0_2px_rgba(255,255,255,0.5)]' : ''}`; // Equipes: Contido
+    ? "w-full h-full object-cover object-top"
+    : `w-full h-full object-contain p-3 ${!isLight ? 'brightness-0 invert drop-shadow-[0_0_2px_rgba(255,255,255,0.5)]' : ''}`;
 
   return (
     <div className={`flex flex-col items-center ${scale} transition-all duration-500`}>
@@ -227,11 +304,8 @@ const PodiumStep = ({ data, place, type, theme }) => {
               alt={name} 
               className={imgClass}
               onError={(e) => {
-                // Fallback para silhueta se piloto, ou logo F1 se equipe
                 if (type === 'drivers') {
-                   e.target.src = 'https://media.formula1.com/d_driver_fallback_image.png/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/1col/image.png'; // Usando Max como fallback seguro ou uma silhueta genérica se tiver URL
-                   // Melhor fallback: silhueta genérica
-                   e.target.src = 'https://media.formula1.com/content/dam/fom-website/drivers/driver_fallback_image.png'; 
+                   e.target.src = 'https://media.formula1.com/content/dam/fom-website/drivers/driver_fallback_image.png';
                 } else {
                    e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg';
                    e.target.style.filter = !isLight ? 'brightness(0) invert(1)' : 'none';
@@ -271,10 +345,84 @@ const PodiumStep = ({ data, place, type, theme }) => {
 
 const Standings = ({ theme }) => {
   const isLight = theme === 'light';
-  const [activeTab, setActiveTab] = useState('drivers'); 
+  const [activeTab, setActiveTab] = useState('drivers');
+  const [driversData, setDriversData] = useState(FALLBACK_DRIVERS);
+  const [constructorsData, setConstructorsData] = useState(FALLBACK_CONSTRUCTORS);
+  const [loading, setLoading] = useState(false);
+  const [usingFallback, setUsingFallback] = useState(false);
 
-  const drivers = DRIVERS_STANDINGS || [];
-  const constructors = CONSTRUCTORS_STANDINGS || [];
+  // Função para buscar dados da API
+  const fetchAPIData = async () => {
+    setLoading(true);
+    try {
+      const [driversRes, constructorsRes] = await Promise.all([
+        fetch('https://ergast.com/api/f1/current/driverStandings.json'),
+        fetch('https://ergast.com/api/f1/current/constructorStandings.json')
+      ]);
+
+      if (!driversRes.ok || !constructorsRes.ok) {
+        throw new Error('API indisponível');
+      }
+
+      const driversJson = await driversRes.json();
+      const constructorsJson = await constructorsRes.json();
+
+      // Processar pilotos
+      const apiDrivers = driversJson.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
+      const formattedDrivers = apiDrivers.map(driver => {
+        const fullName = `${driver.Driver.givenName} ${driver.Driver.familyName}`;
+        const teamName = driver.Constructors[0]?.name || 'Unknown';
+        
+        return {
+          position: parseInt(driver.position),
+          driverId: driver.Driver.driverId,
+          driverName: fullName,
+          driverNumber: driver.Driver.permanentNumber || '?',
+          image: DRIVER_IMAGE_MAP[fullName] || 'img/pilotos/default/grid-default.avif',
+          team: teamName,
+          teamColor: TEAM_COLORS[teamName] || '#999999',
+          points: parseInt(driver.points),
+          wins: parseInt(driver.wins),
+          podiums: 0, // API não fornece, mas mantém estrutura
+        };
+      });
+
+      // Processar construtores
+      const apiConstructors = constructorsJson.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings || [];
+      const formattedConstructors = apiConstructors.map(team => {
+        const teamName = team.Constructor.name;
+        return {
+          position: parseInt(team.position),
+          teamId: team.Constructor.constructorId,
+          teamName: teamName,
+          teamShortName: teamName.split(' ')[0],
+          image: TEAM_IMAGE_MAP[teamName] || 'img/equipes/default/logo-default.png',
+          teamColor: TEAM_COLORS[teamName] || '#999999',
+          points: parseInt(team.points),
+          wins: parseInt(team.wins),
+        };
+      });
+
+      setDriversData(formattedDrivers);
+      setConstructorsData(formattedConstructors);
+      setUsingFallback(false);
+    } catch (error) {
+      console.error('Erro ao buscar dados da API:', error);
+      setDriversData(FALLBACK_DRIVERS);
+      setConstructorsData(FALLBACK_CONSTRUCTORS);
+      setUsingFallback(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Buscar dados ao montar
+  useEffect(() => {
+    fetchAPIData();
+  }, []);
+
+  const drivers = driversData || [];
+  const constructors = constructorsData || [];
   
   const currentData = activeTab === 'drivers' ? drivers : constructors;
   const top3 = [currentData[1], currentData[0], currentData[2]].filter(Boolean); 
@@ -289,6 +437,9 @@ const Standings = ({ theme }) => {
         badge="Live Standings"
         title="Classificação"
         subtitle="Acompanhe a batalha pelo campeonato em tempo real"
+        onRefresh={fetchAPIData}
+        loading={loading}
+        usingFallback={usingFallback}
       />
 
       {/* Tabs */}
@@ -356,13 +507,11 @@ const Standings = ({ theme }) => {
             const name = activeTab === 'drivers' ? item.driverName : item.teamName;
             const subName = activeTab === 'drivers' ? item.team : null;
             
-            // Tratamento de imagem
             let imageSrc = item.image || '';
             if (imageSrc && !imageSrc.startsWith('/') && !imageSrc.startsWith('http')) {
                 imageSrc = `/${imageSrc}`;
             }
 
-            // CSS de Imagem: Pilotos (Cover/Top) vs Equipes (Contain/Padded)
             const imgClasses = activeTab === 'drivers' 
                 ? 'w-full h-full object-cover object-top' 
                 : `w-full h-full object-contain p-1.5 ${!isLight ? 'brightness-0 invert' : ''}`;
@@ -447,7 +596,7 @@ const Standings = ({ theme }) => {
       <div className={`text-center mt-8 text-[10px] font-bold uppercase tracking-widest opacity-40 ${
         isLight ? 'text-gray-500' : 'text-cyan-100'
       }`}>
-        Fórmula 1 Season 2026
+        Fórmula 1 Season {usingFallback ? '2026' : '2025'} {usingFallback ? '' : '• Dados via Ergast API'}
       </div>
       
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');`}</style>

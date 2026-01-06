@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, Sun, Moon, Search, Heart, Sparkles, Instagram, Twitter, Youtube, Facebook } from 'lucide-react';
+import { Menu, Sun, Moon, Search, Heart, X } from 'lucide-react';
 import { client, urlFor } from '../sanityClient';
 import { lightPattern, darkPattern } from '../constants/theme';
 import { SOCIAL_LINKS } from '../data';
@@ -29,8 +29,6 @@ const MANIFESTO_POST_QUERY = `*[_type == "manifesto"][0]{
 }`;
 
 const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
-  // Se receber theme via props (vindo do App), usa ele
-  // Senão, usa hook local (para quando Home é acessada diretamente)
   const localThemeHook = useTheme();
   const theme = propTheme || localThemeHook.theme;
   const toggleTheme = propToggleTheme || localThemeHook.toggleTheme;
@@ -133,6 +131,18 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
     signature: "L4ndo" 
   };
 
+  // Função para renderizar o ícone correto de cada rede social
+  const getSocialIcon = (social) => {
+    // Se for Twitter/X, usa o ícone X do lucide-react
+    if (social.id === 'twitter' || 
+        (social.name && social.name.toLowerCase().includes('twitter')) || 
+        (social.name && social.name.toLowerCase().includes('x'))) {
+      return <X size={20} strokeWidth={2.5} />;
+    }
+    // Caso contrário, usa o ícone original
+    return <social.icon size={20} />;
+  };
+
   return (
     <div 
       className={`min-h-screen transition-colors duration-700 ease-in-out selection:bg-pink-300 selection:text-purple-900 flex flex-col`} 
@@ -141,45 +151,51 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
       <NavigationOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} theme={theme} />
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} theme={theme} />
 
-      {/* Header */}
-      <header className={`sticky top-0 z-40 w-full backdrop-blur-xl border-b transition-all duration-300 shadow-sm ${theme === 'light' ? 'border-pink-200/50 bg-white/70' : 'border-white/5 bg-[#050510]/80'}`}>
-        <div className="max-w-[1400px] mx-auto px-4 py-4 md:px-8 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button 
-              onClick={() => setIsMenuOpen(true)} 
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 text-gray-800 shadow-lg hover:text-pink-500 hover:shadow-pink-200' : 'bg-[#1a1a20]/80 text-white border border-[#333] hover:text-[#00fff2] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}
-            >
-              <Menu size={20} />
-              <span className="font-black text-xs tracking-widest uppercase">Menu</span>
-            </button>
-          </div>
+      {/* Header - VERSÃO COMPACTA */}
+      <header className={`sticky top-0 z-40 w-full backdrop-blur-xl border-b transition-all duration-300 ${theme === 'light' ? 'border-pink-200/50 bg-white/70' : 'border-white/5 bg-[#050510]/80'}`}>
+        <div className="max-w-[1400px] mx-auto px-4 py-2.5 md:px-8 flex items-center justify-between">
+          {/* Menu Button - Compacto */}
+          <button 
+            onClick={() => setIsMenuOpen(true)} 
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${theme === 'light' ? 'bg-white/80 text-gray-800 shadow-md hover:text-pink-500 hover:shadow-pink-200' : 'bg-[#1a1a20]/80 text-white border border-[#333] hover:text-[#00fff2] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}
+          >
+            <Menu size={16} />
+            <span className="hidden sm:inline font-black text-[10px] tracking-widest uppercase">Menu</span>
+          </button>
           
+          {/* Logo - Centralizado e Menor */}
           <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 transform hover:scale-105 transition-transform duration-500 cursor-pointer">
             <Link to="/">
-              <LogoHelmet theme={theme} size="large" />
+              <LogoHelmet theme={theme} size="medium" />
             </Link>
           </div>
           
-          <div className="flex items-center gap-2">
+          {/* Actions - Compactos */}
+          <div className="flex items-center gap-1.5">
+            {/* Search - Desktop */}
             <button 
               onClick={() => setIsSearchOpen(true)} 
-              className={`hidden md:flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all hover:scale-105 ${theme === 'light' ? 'bg-white hover:bg-gray-50 text-gray-400 shadow-md ring-1 ring-pink-100' : 'bg-white/5 hover:bg-white/10 text-gray-400 border border-white/5'}`}
+              className={`hidden md:flex items-center gap-1.5 px-3 py-2 rounded-full text-[10px] font-black uppercase tracking-wider transition-all hover:scale-105 ${theme === 'light' ? 'bg-white hover:bg-gray-50 text-gray-400 shadow-md ring-1 ring-pink-100' : 'bg-white/5 hover:bg-white/10 text-gray-400 border border-white/5'}`}
             >
-              <Search size={18} />
-              <span>Buscar</span>
+              <Search size={14} />
+              <span className="hidden lg:inline">Buscar</span>
             </button>
+            
+            {/* Search - Mobile */}
             <button 
               onClick={() => setIsSearchOpen(true)} 
-              className={`md:hidden p-2.5 rounded-full transition-all ${theme === 'light' ? 'bg-white/80 text-gray-400 shadow-md' : 'bg-white/5 text-gray-400 border border-white/5'}`}
+              className={`md:hidden p-2 rounded-full transition-all ${theme === 'light' ? 'bg-white/80 text-gray-400 shadow-md' : 'bg-white/5 text-gray-400 border border-white/5'}`}
             >
-              <Search size={20} />
+              <Search size={16} />
             </button>
+            
+            {/* Theme Toggle - Compacto */}
             <button 
               onClick={toggleTheme} 
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full transition-all active:scale-95 shadow-lg ${theme === 'light' ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200 hover:shadow-yellow-200 ring-2 ring-yellow-200' : 'bg-[#bd00ff]/20 text-[#bd00ff] border border-[#bd00ff]/30 hover:bg-[#bd00ff]/30 hover:shadow-[0_0_15px_rgba(189,0,255,0.3)]'}`}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full transition-all active:scale-95 ${theme === 'light' ? 'bg-yellow-100 text-yellow-600 hover:bg-yellow-200 shadow-md ring-2 ring-yellow-200' : 'bg-[#bd00ff]/20 text-[#bd00ff] border border-[#bd00ff]/30 hover:bg-[#bd00ff]/30 hover:shadow-[0_0_15px_rgba(189,0,255,0.3)]'}`}
             >
-              {theme === 'light' ? <Sun size={18} className="fill-current" /> : <Moon size={18} className="fill-current" />}
-              <span className="hidden sm:inline font-black text-xs tracking-widest uppercase">
+              {theme === 'light' ? <Sun size={14} className="fill-current" /> : <Moon size={14} className="fill-current" />}
+              <span className="hidden lg:inline font-black text-[10px] tracking-widest uppercase">
                 {theme === 'light' ? 'Light' : 'Dark'}
               </span>
             </button>
@@ -199,15 +215,6 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
 
       {/* Main Content */}
       <main className="flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full">
-        <div className="mb-8 md:mb-12 text-center md:text-left relative">
-          <h2 className={`text-3xl md:text-5xl font-black tracking-tighter mb-3 leading-[0.9] ${theme === 'light' ? 'text-gray-900 drop-shadow-sm' : 'text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'}`}>
-            Olá, <span className={`text-transparent bg-clip-text bg-gradient-to-r ${theme === 'light' ? 'from-pink-500 via-purple-400 to-pink-500' : 'from-[#ff00ff] via-[#bd00ff] to-[#00fff2]'}`}>F1 Lover!</span> 
-          </h2>
-          <p className={`text-sm md:text-lg font-medium max-w-2xl ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
-            Tudo o que você precisa saber sobre a F1, com aquele toque de caos e brilho que a gente ama.
-          </p>
-        </div>
-
         {/* Grid Bento */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)]">
           <div className="lg:col-span-2 lg:row-span-1">
@@ -230,6 +237,7 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
             </BentoCard>
           </div>
           
+          {/* SeasonWidget com API integrada */}
           <div className="lg:col-span-1 lg:row-span-2">
             <BentoCard theme={theme} className="h-full min-h-[440px]" noPadding>
               <SeasonWidget theme={theme} />
@@ -286,7 +294,7 @@ const Home = ({ theme: propTheme, toggleTheme: propToggleTheme }) => {
                 href={social.url} 
                 className={`p-3 rounded-full transition-all hover:-translate-y-1 ${theme === 'light' ? 'bg-white text-gray-400 hover:text-pink-500 shadow-md hover:shadow-pink-200' : 'bg-[#1a1a20] text-gray-500 hover:text-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'}`}
               >
-                <social.icon size={20} />
+                {getSocialIcon(social)}
               </a>
             ))}
           </div>
