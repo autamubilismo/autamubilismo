@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+/* =========================================
+   1. SEUS EFEITOS 3D (Do index.css antigo)
+   ========================================= */
+
+/* Define a profundidade do efeito 3D */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Garante que o elemento filho mantenha o 3D ao girar */
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Esconde a parte de trás do elemento quando ele gira */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* Para Safari */
+}
+
+/* A classe que efetivamente gira o card 180 graus */
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.article-html,
+.article-html * {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+}
+
+/* =========================================
+   2. ESTILOS DO APP (Do App.css antigo)
+   Adaptados para Next.js
+   ========================================= */
+
+/* Substitui o #root antigo */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Mantemos o alinhamento central se era o desejado, 
+     mas num layout moderno geralmente controlamos isso por componente */
+  text-align: left; 
+}
+
+/* Animação do logo (Mantida caso use no futuro) */
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo-spin {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Classes utilitárias do seu App antigo */
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* =========================================
+   3. O HEADER MOBILE (A parte da imagem!)
+   ========================================= */
+
+@media (max-width: 768px) {
+  /* No Next.js, coloque a imagem 'helmet.png' em: /public/img/web/helmet.png */
+  /* O caminho no CSS começa com '/' para acessar a pasta public */
+  
+  .header-selector {
+    background-image: url('/img/web/helmet.png') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Força altura para ver a imagem */
+    min-height: 220px !important; 
+    width: 100%;
+    display: block;
+    position: relative;
+  }
+
+  /* Ajuste para o botão de tema não ficar escondido */
+  .theme-toggle-btn {
+    position: absolute;
+    top: 20px; 
+    right: 20px;
+    z-index: 50;
+  }
+}
+
+/* Fix para Bento Cards em mobile */
+@media (max-width: 640px) {
+  .bento-card-content {
+    height: auto !important;
+    min-height: 200px;
+  }
+}

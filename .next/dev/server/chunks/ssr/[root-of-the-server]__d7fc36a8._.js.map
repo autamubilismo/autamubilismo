@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/tamar/autamubilismo-nextjs/app/drivers/%5Bid%5D/page.jsx"],"sourcesContent":["import DriverDetailClient from './DriverDetailClient';\n\nexport default function DriverDetailPage({ params }) {\n  return <DriverDetailClient id={params?.id} />;\n}\n"],"names":[],"mappings":";;;;;;;;;;;;AAEe,SAAS,iBAAiB,EAAE,MAAM,EAAE;IACjD,qBAAO,8OAAC;QAAmB,IAAI,QAAQ;;;;;;AACzC"}}]
+}
