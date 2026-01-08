@@ -1,5 +1,5 @@
 import NewsDetail from './NewsDetailClient';
-import { client } from '@/lib/sanity';
+import { sanityClient } from '@/lib/sanityClient';
 
 const siteUrl = 'https://autamubilismo.com';
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }) {
   let post = null;
   if (slugParam) {
     try {
-      post = await client.fetch(query, { slug: slugParam });
+      post = await sanityClient.fetch(query, { slug: slugParam });
     } catch (error) {
       console.error('Erro ao carregar metadata da noticia:', error);
     }
