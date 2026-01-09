@@ -1,6 +1,8 @@
 import { client } from "@/lib/sanity";
 import { HomeClient } from "@/components/home/HomeClient";
 
+export const revalidate = 60;
+
 async function getLatestContent() {
   const news = await client.fetch(`
     *[_type == "news"] | order(publishedAt desc)[0...4] {

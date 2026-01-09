@@ -1,8 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/ergast/route": "app/api/ergast/route.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/credits/page": "app/credits/page.js",
   "/page": "app/page.js"
 }
