@@ -25,7 +25,7 @@ export const SOCIAL_LINKS = [
   { id: 'insta', icon: Instagram, url: 'https://instagram.com/autamubilismo', label: 'Instagram' },
   { id: 'twitter', icon: Twitter, url: 'https://twitter.com/autamubilismo', label: 'Twitter' },
   { id: 'youtube', icon: Youtube, url: 'https://tiktok.com/@autamubilismo', label: 'Youtube' },
-  { id: 'mail', icon: Mail, url: 'mailto:contato@autamubilismo.com', label: 'Email' },
+  { id: 'mail', icon: Mail, url: 'mailto:autamubilismo@gmail.com', label: 'Email' },
 ];
 
 export const SITE_MAP = [

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
     publishedAt,
     author,
     category,
-    "image": image.asset->url,
+    "image": coalesce(image.asset->url, mainImage.asset->url),
     seo{
       metaTitle,
       metaDescription,

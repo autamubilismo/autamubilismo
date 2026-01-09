@@ -138,14 +138,14 @@ export const AppShell = ({ children }) => {
           </div>
         </div>
         <p className={`text-sm font-bold tracking-wide ${theme === 'light' ? 'text-gray-500' : 'text-gray-400'}`}>
-          Feito com <span className="text-red-400 animate-pulse">ƒT¾</span> e muita velocidade.
+          Feito com <span className="text-red-400 animate-pulse">♥</span> e muita velocidade.
         </p>
         <p
           className={`text-xs mt-3 opacity-50 uppercase tracking-widest ${
             theme === 'light' ? 'text-gray-400' : 'text-gray-600'
           }`}
         >
-          ¶¸ 2025 Autamubilismo. Nao afiliado a Formula 1.
+          2026 Autamubilismo. Nao afiliado a Formula 1.
         </p>
       </footer>
     </ThemeProvider>

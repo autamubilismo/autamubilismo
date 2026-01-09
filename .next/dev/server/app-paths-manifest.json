@@ -1,24 +1,5 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/ergast/route": "app/api/ergast/route.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js",
-  "/article/page": "app/article/page.js",
-  "/articles/page": "app/articles/page.js",
-  "/calendar/page": "app/calendar/page.js",
-  "/circuits/page": "app/circuits/page.js",
   "/contact/page": "app/contact/page.js",
-  "/curiosities/page": "app/curiosities/page.js",
-  "/drivers/[id]/page": "app/drivers/[id]/page.js",
-  "/drivers/page": "app/drivers/page.js",
-  "/fanzone/page": "app/fanzone/page.js",
-  "/glossary/page": "app/glossary/page.js",
-  "/media/page": "app/media/page.js",
-  "/news/[slug]/page": "app/news/[slug]/page.js",
-  "/news/page": "app/news/page.js",
-  "/page": "app/page.js",
-  "/regulations/page": "app/regulations/page.js",
-  "/season/page": "app/season/page.js",
-  "/standings/page": "app/standings/page.js",
-  "/teams/[id]/page": "app/teams/[id]/page.js",
-  "/teams/page": "app/teams/page.js"
+  "/page": "app/page.js"
 }

@@ -16,7 +16,7 @@ async function getLatestContent() {
   `);
 
   const articles = await client.fetch(`
-    *[_type == "articles"] | order(publishedAt desc)[0...4] {
+    *[_type in ["article", "articles"]] | order(publishedAt desc)[0...4] {
       _id,
       title,
       "slug": slug.current,
