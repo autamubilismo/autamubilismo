@@ -94,14 +94,14 @@ export const NextRaceWidget = ({ theme }) => {
   const countryFlag = getCountryFlag(nextRace.country);
 
   return (
-    <div className={`h-full flex flex-col p-6 md:p-8 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
+    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
       {/* Ícone de fundo decorativo */}
       <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}>
         <Flag size={240} />
       </div>
       
       {/* Header da corrida */}
-      <div className="flex justify-between items-start mb-6 z-10 relative">
+      <div className="flex justify-between items-start mb-2.5 z-10 relative">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <span className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] opacity-60 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}>
@@ -136,7 +136,7 @@ export const NextRaceWidget = ({ theme }) => {
       </div>
       
       {/* Lista de sessões */}
-      <div className="flex-1 flex flex-col justify-between gap-2.5 z-10">
+      <div className="flex-1 flex flex-col gap-1 z-10">
         {sessions.length > 0 ? sessions.map((session, i) => {
           const isRace = session.name.toLowerCase().includes('corrida');
           const isQuali = session.name.toLowerCase().includes('classificação');
@@ -147,7 +147,7 @@ export const NextRaceWidget = ({ theme }) => {
           return (
             <div 
               key={i} 
-              className={`flex items-center justify-between p-3 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] hover:px-4 ${isMain ? (isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]') : ''}`} 
+              className={`flex items-center justify-between px-3 py-1.5 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] ${isMain ? (isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]') : ''}`} 
               style={isMain 
                 ? { background: isLight ? `linear-gradient(90deg, #ec4899, #a855f7)` : `linear-gradient(90deg, ${C.neonRoxo}, ${C.neonPink})`, color: 'white' } 
                 : isHighlight 

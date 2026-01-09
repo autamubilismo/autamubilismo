@@ -1512,7 +1512,7 @@ const NextRaceWidget = ({ theme })=>{
     const circuitName = getCircuitShortName(nextRace.location, nextRace.country);
     const countryFlag = getCountryFlag(nextRace.country);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: `h-full flex flex-col p-6 md:p-8 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`,
+        className: `h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: `absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`,
@@ -1529,7 +1529,7 @@ const NextRaceWidget = ({ theme })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex justify-between items-start mb-6 z-10 relative",
+                className: "flex justify-between items-start mb-2.5 z-10 relative",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex-1",
@@ -1658,7 +1658,7 @@ const NextRaceWidget = ({ theme })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 flex flex-col justify-between gap-2.5 z-10",
+                className: "flex-1 flex flex-col gap-1 z-10",
                 children: sessions.length > 0 ? sessions.map((session, i)=>{
                     const isRace = session.name.toLowerCase().includes('corrida');
                     const isQuali = session.name.toLowerCase().includes('classificação');
@@ -1666,7 +1666,7 @@ const NextRaceWidget = ({ theme })=>{
                     const isMain = isRace;
                     const isHighlight = isQuali || isSprint;
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: `flex items-center justify-between p-3 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] hover:px-4 ${isMain ? isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]' : ''}`,
+                        className: `flex items-center justify-between px-3 py-1.5 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] ${isMain ? isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]' : ''}`,
                         style: isMain ? {
                             background: isLight ? `linear-gradient(90deg, #ec4899, #a855f7)` : `linear-gradient(90deg, ${C.neonRoxo}, ${C.neonPink})`,
                             color: 'white'
@@ -1802,7 +1802,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f
 const NewsWidget = ({ theme, posts, onNewsClick })=>{
     const isLight = theme === 'light';
     const loading = !posts || posts.length === 0;
-    const displayPosts = posts || [];
+    const displayPosts = (posts || []).slice(0, 3);
     const C = __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$constants$2f$theme$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VAPORWAVE_COLORS"];
     const getBadgeStyle = (type)=>type === 'article' ? isLight ? {
             background: `linear-gradient(90deg, #ec4899, #a855f7)`,
@@ -1822,10 +1822,10 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
             boxShadow: `0 0 5px ${C.neonCyan}`
         };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col h-full min-h-0 relative p-6 md:p-8",
+        className: "flex flex-col h-full min-h-0 relative p-5 md:p-6",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center justify-between mb-6 px-1 shrink-0",
+                className: "flex items-center justify-between mb-4 px-1 shrink-0",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex items-center gap-3",
                     children: [
@@ -1863,7 +1863,7 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 flex flex-col gap-4 overflow-y-auto pr-3 custom-scrollbar pb-2",
+                className: "flex-1 flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar pb-1",
                 children: [
                     loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex-1 flex flex-col items-center justify-center opacity-60 gap-3",
@@ -1959,6 +1959,14 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
                                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsWidget.jsx",
                                             lineNumber: 78,
                                             columnNumber: 15
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        item.excerpt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: `mt-2 text-xs leading-relaxed line-clamp-2 ${isLight ? "text-gray-500" : "text-gray-400"}`,
+                                            children: item.excerpt
+                                        }, void 0, false, {
+                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsWidget.jsx",
+                                            lineNumber: 82,
+                                            columnNumber: 17
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
@@ -1972,12 +1980,12 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsWidget.jsx",
-                                        lineNumber: 84,
+                                        lineNumber: 89,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsWidget.jsx",
-                                    lineNumber: 83,
+                                    lineNumber: 88,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
@@ -1993,10 +2001,10 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `absolute bottom-0 left-0 right-0 h-8 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`
+                className: `absolute bottom-0 left-0 right-0 h-6 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsWidget.jsx",
-                lineNumber: 90,
+                lineNumber: 95,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
@@ -4124,6 +4132,25 @@ const toFeedItem = (item, type)=>({
         type,
         dateObj: new Date(item.publishedAt || item._createdAt || Date.now())
     });
+const WidgetPlaceholder = ({ theme })=>{
+    const isLight = theme === 'light';
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "h-full flex items-center justify-center p-6 text-left",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            className: `text-2xl md:text-3xl font-black leading-tight ${isLight ? 'text-gray-900' : 'text-white'}`,
+            children: "SUGIRA UM WIDGET PRA COLOCAR AQUI"
+        }, void 0, false, {
+            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+            lineNumber: 39,
+            columnNumber: 7
+        }, ("TURBOPACK compile-time value", void 0))
+    }, void 0, false, {
+        fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+        lineNumber: 38,
+        columnNumber: 5
+    }, ("TURBOPACK compile-time value", void 0));
+};
+_c = WidgetPlaceholder;
 const HomeClient = ({ news = [], articles = [] })=>{
     _s();
     const { theme } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$layout$2f$ThemeContext$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"])();
@@ -4160,7 +4187,7 @@ const HomeClient = ({ news = [], articles = [] })=>{
                         className: "absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#bd00ff]/10 blur-[120px] rounded-full animate-pulse"
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                        lineNumber: 55,
+                        lineNumber: 67,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4170,62 +4197,127 @@ const HomeClient = ({ news = [], articles = [] })=>{
                         }
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                        lineNumber: 56,
+                        lineNumber: 68,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-600 rounded-full blur-[100px] opacity-10"
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                        lineNumber: 60,
+                        lineNumber: 72,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]"
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                        lineNumber: 61,
+                        lineNumber: 73,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                lineNumber: 54,
+                lineNumber: 66,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                 className: "flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)]",
+                    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:grid-rows-[200px_220px_220px]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-2 lg:row-span-1",
+                            className: "md:col-span-2 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-1",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "h-full min-h-[260px]",
+                                className: "h-full min-h-[200px] lg:min-h-0",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NextRaceWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NextRaceWidget"], {
                                     theme: theme
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 69,
+                                    lineNumber: 81,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                lineNumber: 68,
+                                lineNumber: 80,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 67,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-2 lg:row-span-2",
+                            className: "lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-1",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "h-full min-h-[460px]",
+                                className: "h-full",
+                                noPadding: true,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "h-full flex flex-col p-4 gap-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex items-center justify-between px-1",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: `text-xs font-black uppercase tracking-[0.2em] ${theme === 'light' ? 'text-purple-400' : 'text-gray-500'}`,
+                                                    children: "Driver of the Day"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                                    lineNumber: 89,
+                                                    columnNumber: 19
+                                                }, ("TURBOPACK compile-time value", void 0)),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
+                                                    size: 20,
+                                                    className: `${theme === 'light' ? 'text-red-400' : 'text-pink-500'} animate-pulse`
+                                                }, void 0, false, {
+                                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                                    lineNumber: 96,
+                                                    columnNumber: 19
+                                                }, ("TURBOPACK compile-time value", void 0))
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                            lineNumber: 88,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0)),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 flex items-start",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NewsletterWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["KpopPhotocard"], {
+                                                driver: DRIVER_OF_DAY,
+                                                theme: theme
+                                            }, void 0, false, {
+                                                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                                lineNumber: 102,
+                                                columnNumber: 19
+                                            }, ("TURBOPACK compile-time value", void 0))
+                                        }, void 0, false, {
+                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                            lineNumber: 101,
+                                            columnNumber: 17
+                                        }, ("TURBOPACK compile-time value", void 0))
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                    lineNumber: 87,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            }, void 0, false, {
+                                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                lineNumber: 86,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                            lineNumber: 85,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "md:col-span-2 lg:col-span-2 lg:row-span-1 lg:col-start-3 lg:row-start-1",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
+                                theme: theme,
+                                className: "h-full min-h-[320px] lg:min-h-0",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NewsWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NewsWidget"], {
                                     theme: theme,
@@ -4237,21 +4329,21 @@ const HomeClient = ({ news = [], articles = [] })=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 75,
+                                    lineNumber: 110,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                lineNumber: 74,
+                                lineNumber: 109,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 73,
+                            lineNumber: 108,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-1 lg:row-span-2",
+                            className: "lg:col-span-1 lg:row-span-2 lg:col-start-1 lg:row-start-2",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
                                 className: "h-full min-h-[440px]",
@@ -4260,70 +4352,21 @@ const HomeClient = ({ news = [], articles = [] })=>{
                                     theme: theme
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 89,
+                                    lineNumber: 124,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                lineNumber: 88,
+                                lineNumber: 123,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 87,
+                            lineNumber: 122,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-1 lg:row-span-2 flex flex-col gap-6",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex items-center justify-between px-3",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: `text-xs font-black uppercase tracking-[0.2em] ${theme === 'light' ? 'text-purple-400' : 'text-gray-500'}`,
-                                            children: "Driver of the Day"
-                                        }, void 0, false, {
-                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                            lineNumber: 95,
-                                            columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0)),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
-                                            size: 20,
-                                            className: `${theme === 'light' ? 'text-red-400' : 'text-pink-500'} animate-pulse`
-                                        }, void 0, false, {
-                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                            lineNumber: 102,
-                                            columnNumber: 15
-                                        }, ("TURBOPACK compile-time value", void 0))
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 94,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0)),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex-1",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NewsletterWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["KpopPhotocard"], {
-                                        driver: DRIVER_OF_DAY,
-                                        theme: theme
-                                    }, void 0, false, {
-                                        fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                        lineNumber: 108,
-                                        columnNumber: 15
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                }, void 0, false, {
-                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 107,
-                                    columnNumber: 13
-                                }, ("TURBOPACK compile-time value", void 0))
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 93,
-                            columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-1",
+                            className: "lg:col-span-1 lg:col-start-2 lg:row-start-2",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
                                 className: "h-full flex items-center justify-center min-h-[200px]",
@@ -4331,106 +4374,127 @@ const HomeClient = ({ news = [], articles = [] })=>{
                                     theme: theme
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 114,
+                                    lineNumber: 130,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                lineNumber: 113,
+                                lineNumber: 129,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 112,
+                            lineNumber: 128,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-1",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "grid grid-rows-2 gap-6 h-full min-h-[200px]",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
-                                        theme: theme,
-                                        className: "flex items-center justify-center",
-                                        noPadding: true,
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$CuriosityWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CuriosityWidget"], {
-                                            theme: theme
-                                        }, void 0, false, {
-                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                            lineNumber: 121,
-                                            columnNumber: 17
-                                        }, ("TURBOPACK compile-time value", void 0))
-                                    }, void 0, false, {
-                                        fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                        lineNumber: 120,
-                                        columnNumber: 15
-                                    }, ("TURBOPACK compile-time value", void 0)),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
-                                        theme: theme,
-                                        className: "flex items-center justify-center",
-                                        to: "/contact",
-                                        noPadding: true,
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$SimpleWidgets$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContactWidget"], {
-                                            theme: theme
-                                        }, void 0, false, {
-                                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                            lineNumber: 124,
-                                            columnNumber: 17
-                                        }, ("TURBOPACK compile-time value", void 0))
-                                    }, void 0, false, {
-                                        fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                        lineNumber: 123,
-                                        columnNumber: 15
-                                    }, ("TURBOPACK compile-time value", void 0))
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                lineNumber: 119,
-                                columnNumber: 13
-                            }, ("TURBOPACK compile-time value", void 0))
-                        }, void 0, false, {
-                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 118,
-                            columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0)),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "md:col-span-2 lg:col-span-4",
+                            className: "lg:col-span-1 lg:col-start-3 lg:row-start-2",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "min-h-[240px]",
+                                className: "h-full flex items-center justify-center min-h-[200px]",
+                                noPadding: true,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$CuriosityWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CuriosityWidget"], {
+                                    theme: theme
+                                }, void 0, false, {
+                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                    lineNumber: 136,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            }, void 0, false, {
+                                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                lineNumber: 135,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                            lineNumber: 134,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "lg:col-span-1 lg:col-start-4 lg:row-start-2",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
+                                theme: theme,
+                                className: "h-full min-h-[200px]",
+                                noPadding: true,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WidgetPlaceholder, {
+                                    theme: theme
+                                }, void 0, false, {
+                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                    lineNumber: 142,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            }, void 0, false, {
+                                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                lineNumber: 141,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                            lineNumber: 140,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "lg:col-span-1 lg:col-start-2 lg:row-start-3",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
+                                theme: theme,
+                                className: "h-full flex items-center justify-center min-h-[200px]",
+                                to: "/contact",
+                                noPadding: true,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$SimpleWidgets$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContactWidget"], {
+                                    theme: theme
+                                }, void 0, false, {
+                                    fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                    lineNumber: 148,
+                                    columnNumber: 15
+                                }, ("TURBOPACK compile-time value", void 0))
+                            }, void 0, false, {
+                                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                                lineNumber: 147,
+                                columnNumber: 13
+                            }, ("TURBOPACK compile-time value", void 0))
+                        }, void 0, false, {
+                            fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
+                            lineNumber: 146,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "md:col-span-2 lg:col-span-2 lg:col-start-3 lg:row-start-3",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
+                                theme: theme,
+                                className: "h-full min-h-[200px]",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NewsletterWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NewsletterWidget"], {
                                     theme: theme
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                    lineNumber: 131,
+                                    lineNumber: 154,
                                     columnNumber: 15
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                                lineNumber: 130,
+                                lineNumber: 153,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                            lineNumber: 129,
+                            lineNumber: 152,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                    lineNumber: 66,
+                    lineNumber: 78,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-                lineNumber: 65,
+                lineNumber: 77,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/home/HomeClient.jsx",
-        lineNumber: 49,
+        lineNumber: 61,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -4440,9 +4504,10 @@ _s(HomeClient, "iZ4pInAeY/IpVt1YP8DnPUMeOSQ=", false, function() {
         __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
 });
-_c = HomeClient;
-var _c;
-__turbopack_context__.k.register(_c, "HomeClient");
+_c1 = HomeClient;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "WidgetPlaceholder");
+__turbopack_context__.k.register(_c1, "HomeClient");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

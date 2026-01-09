@@ -7,7 +7,7 @@ import { VAPORWAVE_COLORS } from '../../constants/theme';
 export const NewsWidget = ({ theme, posts, onNewsClick }) => {
   const isLight = theme === 'light';
   const loading = !posts || posts.length === 0;
-  const displayPosts = posts || [];
+  const displayPosts = (posts || []).slice(0, 3);
   const C = VAPORWAVE_COLORS;
 
   const getBadgeStyle = (type) => (
@@ -21,8 +21,8 @@ export const NewsWidget = ({ theme, posts, onNewsClick }) => {
   );
 
   return (
-    <div className="flex flex-col h-full min-h-0 relative p-6 md:p-8">
-      <div className="flex items-center justify-between mb-6 px-1 shrink-0">
+    <div className="flex flex-col h-full min-h-0 relative p-5 md:p-6">
+      <div className="flex items-center justify-between mb-4 px-1 shrink-0">
         <div className="flex items-center gap-3">
           <div className={`p-2 rounded-xl ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-white/10 text-cyan-400 border border-cyan-500/30'}`}>
             <Newspaper size={22} />
@@ -33,7 +33,7 @@ export const NewsWidget = ({ theme, posts, onNewsClick }) => {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-3 custom-scrollbar pb-2">
+      <div className="flex-1 flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar pb-1">
         {loading && (
           <div className="flex-1 flex flex-col items-center justify-center opacity-60 gap-3">
             <Loader2 size={32} className={`animate-spin ${isLight ? 'text-pink-400' : 'text-cyan-400'}`} />
@@ -78,6 +78,11 @@ export const NewsWidget = ({ theme, posts, onNewsClick }) => {
               <h4 className={`text-sm md:text-[15px] font-bold leading-snug line-clamp-3 ${isLight ? "text-gray-800" : "text-gray-200 group-hover:text-white"} transition-colors`}>
                 {item.title}
               </h4>
+              {item.excerpt && (
+                <p className={`mt-2 text-xs leading-relaxed line-clamp-2 ${isLight ? "text-gray-500" : "text-gray-400"}`}>
+                  {item.excerpt}
+                </p>
+              )}
             </div>
 
             <div className={`absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 ${isLight ? 'text-pink-400' : 'text-cyan-400'}`}>
@@ -87,7 +92,7 @@ export const NewsWidget = ({ theme, posts, onNewsClick }) => {
         ))}
       </div>
       
-      <div className={`absolute bottom-0 left-0 right-0 h-8 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`} />
+      <div className={`absolute bottom-0 left-0 right-0 h-6 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`} />
     </div>
   );
 };

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../../../../../Users/tamar/Desktop/autamubilismo/app/articles/page.jsx"],"sourcesContent":["import { redirect } from 'next/navigation';\n\nexport default function ArticlesRedirect() {\n  redirect('/article');\n}\n"],"names":[],"mappings":"oUAAA,EAAA,CAAA,CAAA,OAAA,IAAA,EAAA,EAAA,CAAA,CAAA,OAEe,SAAS,IACtB,CAAA,EAAA,EAAA,QAAA,AAAQ,EAAC,WACX"}
