@@ -124,9 +124,9 @@ export const HomeClient = ({ news = [], articles = [] }) => {
       )}
 
       <main className="flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:grid-rows-[200px_220px_220px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:grid-rows-[320px_220px_220px]">
           <div className="md:col-span-2 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-1">
-            <BentoCard theme={theme} className="h-full min-h-[200px] lg:min-h-0" noPadding>
+            <BentoCard theme={theme} className="h-full min-h-[260px]" noPadding>
               <NextRaceWidget theme={theme} />
             </BentoCard>
           </div>
@@ -155,7 +155,7 @@ export const HomeClient = ({ news = [], articles = [] }) => {
           </div>
 
           <div className="md:col-span-2 lg:col-span-2 lg:row-span-1 lg:col-start-3 lg:row-start-1">
-            <BentoCard theme={theme} className="h-full min-h-[320px] lg:min-h-0" noPadding>
+            <BentoCard theme={theme} className="h-full min-h-[320px]" noPadding>
               <NewsWidget
                 theme={theme}
                 posts={feed}
