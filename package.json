@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postinstall": "npm --prefix studio install",
     "postbuild": "npm --prefix studio run build -- --output-path ../public/studio",
     "start": "next start",
     "lint": "eslint",
