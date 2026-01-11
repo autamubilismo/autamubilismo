@@ -94,7 +94,7 @@ export const NextRaceWidget = ({ theme }) => {
   const countryFlag = getCountryFlag(nextRace.country);
 
   return (
-    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
+    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-y-auto ${isLight ? 'text-gray-800' : 'text-white'}`}>
       {/* Ícone de fundo decorativo */}
       <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}>
         <Flag size={240} />

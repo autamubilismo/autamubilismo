@@ -6,9 +6,9 @@ export const BentoCard = ({ children, className, theme, title, subtitle, onClick
   const isLight = theme === 'light';
   
   const content = (
-    <div className={`relative z-10 h-full flex flex-col ${noPadding ? '' : 'p-6 md:p-8'}`}>
+    <div className={`relative z-10 h-full flex flex-col overflow-hidden ${noPadding ? '' : 'p-6 md:p-8'}`}>
       {(title || subtitle) && (
-        <div className="mb-5 relative">
+        <div className="mb-5 relative flex-shrink-0">
           {subtitle && (
             <span className={`text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 block opacity-80 ${isLight ? 'text-pink-400' : 'text-cyan-400'}`}>
               {subtitle}
@@ -22,7 +22,9 @@ export const BentoCard = ({ children, className, theme, title, subtitle, onClick
           {isLight && <Heart size={12} className="absolute -right-2 top-0 text-pink-300 opacity-50 rotate-12" />}
         </div>
       )}
-      {children}
+      <div className="flex-1 min-h-0">
+        {children}
+      </div>
     </div>
   );
   

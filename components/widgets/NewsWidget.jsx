@@ -33,7 +33,7 @@ export const NewsWidget = ({ theme, posts, onNewsClick }) => {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col gap-3 overflow-hidden pr-2 pb-1">
+      <div className="flex-1 flex flex-col gap-3 overflow-y-auto pr-2 pb-1">
         {loading && (
           <div className="flex-1 flex flex-col items-center justify-center opacity-60 gap-3">
             <Loader2 size={32} className={`animate-spin ${isLight ? 'text-pink-400' : 'text-cyan-400'}`} />

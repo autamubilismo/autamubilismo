@@ -147,7 +147,7 @@ export const SeasonWidget = ({ theme }) => {
       : `Round ${seasonStats.currentRound} de ${seasonStats.totalRaces}`;
   
   return (
-    <div className={`h-full flex flex-col justify-between p-6 md:p-8 relative overflow-hidden text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
+    <div className={`h-full flex flex-col justify-between p-6 md:p-8 relative overflow-y-auto text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
       {/* Efeito de fundo decorativo */}
       <div 
         className="absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-10 blur-3xl pointer-events-none" 

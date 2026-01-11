@@ -1287,10 +1287,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f
 const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, noPadding = false })=>{
     const isLight = theme === 'light';
     const content = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: `relative z-10 h-full flex flex-col ${noPadding ? '' : 'p-6 md:p-8'}`,
+        className: `relative z-10 h-full flex flex-col overflow-hidden ${noPadding ? '' : 'p-6 md:p-8'}`,
         children: [
             (title || subtitle) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "mb-5 relative",
+                className: "mb-5 relative flex-shrink-0",
                 children: [
                     subtitle && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         className: `text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 block opacity-80 ${isLight ? 'text-pink-400' : 'text-cyan-400'}`,
@@ -1322,7 +1322,14 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
                 lineNumber: 11,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
-            children
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex-1 min-h-0",
+                children: children
+            }, void 0, false, {
+                fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
+                lineNumber: 25,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
@@ -1337,7 +1344,7 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
                     className: `absolute top-0 left-0 right-0 h-32 bg-gradient-to-b ${isLight ? 'from-pink-100/40' : 'from-cyan-900/10'} to-transparent opacity-50 pointer-events-none`
                 }, void 0, false, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
-                    lineNumber: 37,
+                    lineNumber: 39,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1348,7 +1355,7 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
                     }
                 }, void 0, false, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
-                    lineNumber: 38,
+                    lineNumber: 40,
                     columnNumber: 7
                 }, ("TURBOPACK compile-time value", void 0)),
                 children
@@ -1362,12 +1369,12 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
                 children: content
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
-                lineNumber: 54,
+                lineNumber: 56,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
-            lineNumber: 53,
+            lineNumber: 55,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -1378,12 +1385,12 @@ const BentoCard = ({ children, className, theme, title, subtitle, onClick, to, n
             children: content
         }, void 0, false, {
             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
-            lineNumber: 61,
+            lineNumber: 63,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/ui/BentoCard.jsx",
-        lineNumber: 60,
+        lineNumber: 62,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -1512,7 +1519,7 @@ const NextRaceWidget = ({ theme })=>{
     const circuitName = getCircuitShortName(nextRace.location, nextRace.country);
     const countryFlag = getCountryFlag(nextRace.country);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: `h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`,
+        className: `h-full flex flex-col p-4 md:p-5 relative overflow-y-auto ${isLight ? 'text-gray-800' : 'text-white'}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: `absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`,
@@ -1863,7 +1870,7 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex-1 flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar pb-1",
+                className: "flex-1 flex flex-col gap-3 overflow-y-auto pr-2 pb-1",
                 children: [
                     loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex-1 flex flex-col items-center justify-center opacity-60 gap-3",
@@ -2001,7 +2008,7 @@ const NewsWidget = ({ theme, posts, onNewsClick })=>{
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: `absolute bottom-0 left-0 right-0 h-6 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`
+                className: `absolute bottom-0 left-0 right-0 h-4 pointer-events-none bg-gradient-to-t ${isLight ? 'from-white/80' : 'from-[#090912]/80'} to-transparent`
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsWidget.jsx",
                 lineNumber: 95,
@@ -2167,7 +2174,7 @@ const SeasonWidget = ({ theme })=>{
     // Status da temporada
     const seasonStatus = seasonStats.racesCompleted === 0 ? 'Pré-Temporada' : seasonStats.racesCompleted >= seasonStats.totalRaces ? 'Campeonato Encerrado' : `Round ${seasonStats.currentRound} de ${seasonStats.totalRaces}`;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: `h-full flex flex-col justify-between p-6 md:p-8 relative overflow-hidden text-left ${isLight ? 'text-gray-800' : 'text-white'}`,
+        className: `h-full flex flex-col justify-between p-6 md:p-8 relative overflow-y-auto text-left ${isLight ? 'text-gray-800' : 'text-white'}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-10 blur-3xl pointer-events-none",
@@ -4311,13 +4318,13 @@ const HomeClient = ({ news = [], articles = [] })=>{
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                 className: "flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:grid-rows-[200px_220px_220px]",
+                    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:auto-rows-auto",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "md:col-span-2 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-1",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "h-full min-h-[200px] lg:min-h-0",
+                                className: "h-full min-h-[480px] lg:min-h-[500px]",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NextRaceWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NextRaceWidget"], {
                                     theme: theme
@@ -4340,7 +4347,7 @@ const HomeClient = ({ news = [], articles = [] })=>{
                             className: "lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-1",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "h-full",
+                                className: "h-full min-h-[480px] lg:min-h-[500px]",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "h-full flex flex-col p-4 gap-3",
@@ -4405,7 +4412,7 @@ const HomeClient = ({ news = [], articles = [] })=>{
                             className: "md:col-span-2 lg:col-span-2 lg:row-span-1 lg:col-start-3 lg:row-start-1",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "h-full min-h-[320px] lg:min-h-0",
+                                className: "h-full min-h-[480px] lg:min-h-[500px]",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$NewsWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NewsWidget"], {
                                     theme: theme,
@@ -4434,7 +4441,7 @@ const HomeClient = ({ news = [], articles = [] })=>{
                             className: "lg:col-span-1 lg:row-span-2 lg:col-start-1 lg:row-start-2",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$ui$2f$BentoCard$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BentoCard"], {
                                 theme: theme,
-                                className: "h-full min-h-[440px]",
+                                className: "h-full min-h-[480px] lg:min-h-[500px]",
                                 noPadding: true,
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$components$2f$widgets$2f$SeasonWidget$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SeasonWidget"], {
                                     theme: theme
