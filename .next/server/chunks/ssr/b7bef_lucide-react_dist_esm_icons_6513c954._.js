@@ -1,3 +1,0 @@
-module.exports=[52816,a=>{"use strict";let b=(0,a.i(92576).default)("chevron-left",[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]]);a.s(["ChevronLeft",()=>b],52816)},80663,a=>{"use strict";let b=(0,a.i(92576).default)("timer",[["line",{x1:"10",x2:"14",y1:"2",y2:"2",key:"14vaq8"}],["line",{x1:"12",x2:"15",y1:"14",y2:"11",key:"17fdiu"}],["circle",{cx:"12",cy:"14",r:"8",key:"1e1u0o"}]]);a.s(["Timer",()=>b],80663)}];
-
-//# sourceMappingURL=b7bef_lucide-react_dist_esm_icons_6513c954._.js.map

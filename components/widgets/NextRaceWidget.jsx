@@ -7,23 +7,18 @@ import { F1_2026_CALENDAR } from '../../data/f1Calendar2026';
 export const NextRaceWidget = ({ theme }) => {
   const isLight = theme === 'light';
   const C = isLight ? GIRLIE_COLORS : VAPORWAVE_COLORS;
-  
-  // Encontrar a próxima corrida baseado na data atual
+
   const nextRace = useMemo(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
-    // Encontrar a primeira corrida que ainda não aconteceu
+
     const upcoming = F1_2026_CALENDAR.find(race => {
       const raceDate = new Date(race.endDate);
       return raceDate >= today;
     });
-    
-    // Se não encontrar nenhuma corrida futura, retornar a última corrida
+
     return upcoming || F1_2026_CALENDAR[F1_2026_CALENDAR.length - 1];
   }, []);
-
-  // Função para obter emoji da bandeira pelo país
   const getCountryFlag = (country) => {
     const flags = {
       'Austrália': '🇦🇺',
@@ -51,9 +46,7 @@ export const NextRaceWidget = ({ theme }) => {
     return flags[country] || '🏁';
   };
 
-  // Função para obter o nome curto do circuito
   const getCircuitShortName = (location, country) => {
-    // Alguns casos especiais
     if (location === 'Singapore') return 'Marina Bay';
     if (location === 'Monte Carlo') return 'Monaco';
     if (location === 'Sakhir') return 'Bahrain';
@@ -95,12 +88,9 @@ export const NextRaceWidget = ({ theme }) => {
 
   return (
     <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-y-auto ${isLight ? 'text-gray-800' : 'text-white'}`}>
-      {/* Ícone de fundo decorativo */}
       <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}>
         <Flag size={240} />
       </div>
-      
-      {/* Header da corrida */}
       <div className="flex justify-between items-start mb-2.5 z-10 relative">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
@@ -134,8 +124,7 @@ export const NextRaceWidget = ({ theme }) => {
           <Clock size={12} /> <span>{nextRace.timezoneLabel?.split(' ')[0] || 'BRT'}</span>
         </div>
       </div>
-      
-      {/* Lista de sessões */}
+
       <div className="flex-1 flex flex-col gap-1 z-10">
         {sessions.length > 0 ? sessions.map((session, i) => {
           const isRace = session.name.toLowerCase().includes('corrida');

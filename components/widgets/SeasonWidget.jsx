@@ -8,15 +8,12 @@ import { DRIVERS_STANDINGS, CONSTRUCTORS_STANDINGS, SEASON_STATS } from '../../d
 export const SeasonWidget = ({ theme }) => {
   const isLight = theme === 'light';
   const C = isLight ? GIRLIE_COLORS : VAPORWAVE_COLORS;
-  
-  // Estados para dados da API
+
   const [driversData, setDriversData] = useState(DRIVERS_STANDINGS);
   const [constructorsData, setConstructorsData] = useState(CONSTRUCTORS_STANDINGS);
   const [seasonStats, setSeasonStats] = useState(SEASON_STATS);
   const [loading, setLoading] = useState(false);
   const [usingAPI, setUsingAPI] = useState(false);
-
-  // Mapeamento de cores por equipe (você pode personalizar)
   const TEAM_COLORS = {
     'Red Bull': '#3671C6',
     'Ferrari': '#E8002D',
@@ -52,8 +49,6 @@ export const SeasonWidget = ({ theme }) => {
       const driversJson = await driversRes.json();
       const constructorsJson = await constructorsRes.json();
       const lastRaceJson = await lastRaceRes.json();
-
-      // Processar dados de pilotos
       const apiDrivers = driversJson.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
       const formattedDrivers = apiDrivers.map(driver => {
         const teamName = driver.Constructors[0]?.name || 'Unknown';
@@ -66,8 +61,6 @@ export const SeasonWidget = ({ theme }) => {
           wins: parseInt(driver.wins),
         };
       });
-
-      // Processar dados de construtores
       const apiConstructors = constructorsJson.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings || [];
       const formattedConstructors = apiConstructors.map(team => ({
         position: parseInt(team.position),
@@ -78,26 +71,21 @@ export const SeasonWidget = ({ theme }) => {
         wins: parseInt(team.wins),
       }));
 
-      // Processar stats da temporada
       const raceData = lastRaceJson.MRData.RaceTable;
       const currentRound = raceData.Races?.[0]?.round || 0;
       const season = raceData.season || '2025';
-      
+
       const updatedStats = {
         currentRound: parseInt(currentRound),
-        totalRaces: 24, // Você pode ajustar ou buscar de outra forma
+        totalRaces: 24,
         racesCompleted: parseInt(currentRound),
         season: season,
       };
-
-      // Atualizar estados
       setDriversData(formattedDrivers);
       setConstructorsData(formattedConstructors);
       setSeasonStats(updatedStats);
       setUsingAPI(true);
-
     } catch (error) {
-      // Em caso de erro, manter dados manuais
       setDriversData(DRIVERS_STANDINGS);
       setConstructorsData(CONSTRUCTORS_STANDINGS);
       setSeasonStats(SEASON_STATS);
@@ -107,12 +95,9 @@ export const SeasonWidget = ({ theme }) => {
     }
   };
 
-  // Buscar dados ao montar componente
   useEffect(() => {
     fetchAPIData();
   }, []);
-
-  // Top 5 pilotos do standings
   const topDrivers = driversData.slice(0, 5).map(driver => ({
     pos: driver.position,
     name: driver.driverName.split(' ').map((n, i, arr) => 
@@ -136,25 +121,20 @@ export const SeasonWidget = ({ theme }) => {
       percent: team.points === 0 ? '0%' : percent,
     };
   });
-  
+
   const boxClass = isLight ? 'bg-white border-pink-100 shadow-sm' : 'bg-[#0a0a10] border-white/5';
-  
-  // Status da temporada
-  const seasonStatus = seasonStats.racesCompleted === 0 
-    ? 'Pré-Temporada' 
-    : seasonStats.racesCompleted >= seasonStats.totalRaces 
+  const seasonStatus = seasonStats.racesCompleted === 0
+    ? 'Pré-Temporada'
+    : seasonStats.racesCompleted >= seasonStats.totalRaces
       ? 'Campeonato Encerrado'
       : `Round ${seasonStats.currentRound} de ${seasonStats.totalRaces}`;
-  
+
   return (
     <div className={`h-full flex flex-col justify-between p-6 md:p-8 relative overflow-y-auto text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
-      {/* Efeito de fundo decorativo */}
-      <div 
-        className="absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-10 blur-3xl pointer-events-none" 
-        style={{ background: isLight ? C.azul : C.neonCyan }} 
+      <div
+        className="absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-10 blur-3xl pointer-events-none"
+        style={{ background: isLight ? C.azul : C.neonCyan }}
       />
-      
-      {/* Header */}
       <div className="flex justify-between items-start mb-6 z-10 relative">
         <div className="flex items-center gap-3">
           <div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-purple-50 text-purple-400' : 'bg-white/10 text-fuchsia-400 border border-fuchsia-500/20'}`}>
@@ -176,7 +156,7 @@ export const SeasonWidget = ({ theme }) => {
             </p>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2">
           {seasonStats.racesCompleted === 0 && (
             <div className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider animate-pulse ${
@@ -185,8 +165,7 @@ export const SeasonWidget = ({ theme }) => {
               Em Breve
             </div>
           )}
-          
-          {/* Botão de Refresh */}
+
           <button
             onClick={fetchAPIData}
             disabled={loading}
@@ -201,9 +180,8 @@ export const SeasonWidget = ({ theme }) => {
           </button>
         </div>
       </div>
-      
+
       <div className="flex-1 grid grid-cols-1 gap-4 z-10">
-        {/* Top 5 Pilotos */}
         <div className={`rounded-3xl p-4 border flex flex-col justify-center ${boxClass}`}>
           <div className="flex items-center justify-between mb-3 px-1">
             <span className={`text-[9px] font-black uppercase tracking-[0.2em] opacity-50 ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>
@@ -252,8 +230,6 @@ export const SeasonWidget = ({ theme }) => {
             </div>
           )}
         </div>
-        
-        {/* Construtores */}
         <div className={`rounded-3xl p-4 border flex flex-col justify-center ${boxClass}`}>
           <div className="flex items-center gap-2 mb-3 px-1 opacity-50">
             <Wrench size={12} />
@@ -291,8 +267,7 @@ export const SeasonWidget = ({ theme }) => {
           )}
         </div>
       </div>
-      
-      {/* Footer com link para standings */}
+
       <div className={`mt-4 pt-4 border-t border-dashed flex justify-between items-center ${isLight ? 'border-pink-200' : 'border-white/10'}`}>
         <Link 
           href="/standings" 
@@ -304,8 +279,7 @@ export const SeasonWidget = ({ theme }) => {
         >
           Ver Classificação <ArrowRight size={10} />
         </Link>
-        
-        {/* Indicador de fonte de dados */}
+
         {usingAPI && (
           <span className={`text-[8px] font-medium tracking-wide ${isLight ? 'text-gray-400' : 'text-gray-600'}`}>
             API ativa

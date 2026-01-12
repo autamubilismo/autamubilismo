@@ -6,26 +6,23 @@ export const NewsletterWidget = ({ theme }) => {
   const isLight = theme === "light";
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null);
-  
-  const handleSubmit = async (e) => { 
-    e.preventDefault(); 
-    if (!email) return; 
-    try { 
-      setStatus("loading"); 
-      await new Promise(r => setTimeout(r, 1500)); 
-      setStatus("success"); 
-      setEmail(""); 
-    } catch (error) { 
-      setStatus("error"); 
-    } 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    try {
+      setStatus("loading");
+      await new Promise(r => setTimeout(r, 1500));
+      setStatus("success");
+      setEmail("");
+    } catch (error) {
+      setStatus("error");
+    }
   };
-  
+
   return (
     <div className="h-full flex flex-col items-center justify-center p-6 md:p-10 gap-6 relative z-10">
-      {/* Ícone decorativo de fundo */}
       <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-cyan-500'}`} />
-      
-      {/* Header com ícone e texto - CENTRALIZADO */}
       <div className="flex flex-col items-center text-center gap-4 relative z-10">
         <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-fuchsia-500/30 text-fuchsia-400"}`}>
           <Mail size={32} />
@@ -39,8 +36,7 @@ export const NewsletterWidget = ({ theme }) => {
           </p>
         </div>
       </div>
-      
-      {/* Form - CENTRALIZADO */}
+
       <form className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full max-w-lg relative z-10" onSubmit={handleSubmit}>
         <div className="relative flex-1 group">
           <input 
@@ -61,7 +57,6 @@ export const NewsletterWidget = ({ theme }) => {
         </button>
       </form>
 
-      {/* Mensagem de status */}
       {status === "success" && (
         <div className={`text-xs font-bold uppercase tracking-wider animate-in fade-in slide-in-from-bottom-2 ${
           isLight ? 'text-green-600' : 'text-green-400'
@@ -85,27 +80,26 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
   const isLight = theme === 'light';
   const [isFlipped, setIsFlipped] = useState(false);
   const surname = driver.name.split(' ').slice(-1)[0].toLowerCase();
-  
+
   return (
-    <div 
-      className="group relative w-full aspect-[3/4.2] cursor-pointer" 
-      style={{ perspective: '1200px' }} 
-      onClick={(e) => { 
-        e.stopPropagation(); 
-        setIsFlipped(!isFlipped); 
-        if (onClick) onClick(); 
+    <div
+      className="group relative w-full aspect-[3/4.2] cursor-pointer"
+      style={{ perspective: '1200px' }}
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsFlipped(!isFlipped);
+        if (onClick) onClick();
       }}
     >
-      <div 
-        className="relative w-full h-full transition-all duration-700 ease-out-back" 
-        style={{ 
-          transformStyle: 'preserve-3d', 
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' 
+      <div
+        className="relative w-full h-full transition-all duration-700 ease-out-back"
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
         }}
       >
-        {/* Frente */}
-        <div 
-          className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-pink-200 shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-fuchsia-500/50 shadow-[0_0_30px_rgba(232,121,249,0.3)]'} bg-gray-200 z-10`} 
+        <div
+          className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-pink-200 shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-fuchsia-500/50 shadow-[0_0_30px_rgba(232,121,249,0.3)]'} bg-gray-200 z-10`}
           style={{ backfaceVisibility: 'hidden' }}
         >
           <img src={driver.photocardImage} alt={driver.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -122,10 +116,9 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
             </div>
           </div>
         </div>
-        
-        {/* Verso */}
-        <div 
-          className={`absolute inset-0 rounded-[2.5rem] p-6 flex flex-col justify-between text-center ${isLight ? 'bg-gradient-to-br from-pink-50 via-white to-purple-50 border-[8px] border-white ring-4 ring-pink-200' : 'bg-[#09090c] border-[6px] border-[#1a1a20] ring-4 ring-cyan-500/50 shadow-[0_0_20px_rgba(0,255,242,0.3)]'}`} 
+
+        <div
+          className={`absolute inset-0 rounded-[2.5rem] p-6 flex flex-col justify-between text-center ${isLight ? 'bg-gradient-to-br from-pink-50 via-white to-purple-50 border-[8px] border-white ring-4 ring-pink-200' : 'bg-[#09090c] border-[6px] border-[#1a1a20] ring-4 ring-cyan-500/50 shadow-[0_0_20px_rgba(0,255,242,0.3)]'}`}
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
           <div className="flex flex-col items-center gap-3 mt-4">

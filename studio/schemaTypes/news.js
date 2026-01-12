@@ -1,4 +1,4 @@
-﻿const sharedBodyField = {
+const sharedBodyField = {
   name: 'body',
   title: 'Conteudo',
   type: 'array',

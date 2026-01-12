@@ -1,3 +1,0 @@
-module.exports=[30212,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(62651);a.n(d("[project]/Users/tamar/Desktop/autamubilismo/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},57311,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(62651);a.n(d("[project]/Users/tamar/Desktop/autamubilismo/node_modules/next/dist/client/components/builtin/global-error.js"))},73154,a=>{"use strict";a.i(30212);var b=a.i(57311);a.n(b)}];
-
-//# sourceMappingURL=b7bef_next_dist_client_components_builtin_global-error_6bda0ff4.js.map

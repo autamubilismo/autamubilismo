@@ -1,4 +1,4 @@
-﻿export const seo = {
+export const seo = {
   name: 'seo',
   title: 'SEO',
   type: 'object',

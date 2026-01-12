@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 24, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/tamar/autamubilismo-nextjs/app/teams/%5Bid%5D/page.jsx"],"sourcesContent":["import TeamDetailClient from './TeamDetailClient';\n\nexport default function TeamDetailPage({ params }) {\n  return <TeamDetailClient id={params?.id} />;\n}\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS,eAAe,EAAE,MAAM,EAAE;IAC/C,qBAAO,8OAAC,sJAAgB;QAAC,IAAI,QAAQ;;;;;;AACvC"}}]
-}

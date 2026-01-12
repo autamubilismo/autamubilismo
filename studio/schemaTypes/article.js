@@ -1,4 +1,4 @@
-﻿import { news } from './news';
+import { news } from './news';
 
 export const article = {
   ...news,

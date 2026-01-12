@@ -1416,19 +1416,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f
 const NextRaceWidget = ({ theme })=>{
     const isLight = theme === 'light';
     const C = isLight ? __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$constants$2f$theme$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["GIRLIE_COLORS"] : __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$constants$2f$theme$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["VAPORWAVE_COLORS"];
-    // Encontrar a próxima corrida baseado na data atual
     const nextRace = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        // Encontrar a primeira corrida que ainda não aconteceu
         const upcoming = __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$f1Calendar2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["F1_2026_CALENDAR"].find((race)=>{
             const raceDate = new Date(race.endDate);
             return raceDate >= today;
         });
-        // Se não encontrar nenhuma corrida futura, retornar a última corrida
         return upcoming || __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$f1Calendar2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["F1_2026_CALENDAR"][__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$f1Calendar2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["F1_2026_CALENDAR"].length - 1];
     }, []);
-    // Função para obter emoji da bandeira pelo país
     const getCountryFlag = (country)=>{
         const flags = {
             'Austrália': '🇦🇺',
@@ -1455,9 +1451,7 @@ const NextRaceWidget = ({ theme })=>{
         };
         return flags[country] || '🏁';
     };
-    // Função para obter o nome curto do circuito
     const getCircuitShortName = (location, country)=>{
-        // Alguns casos especiais
         if (location === 'Singapore') return 'Marina Bay';
         if (location === 'Monte Carlo') return 'Monaco';
         if (location === 'Sakhir') return 'Bahrain';
@@ -1491,12 +1485,12 @@ const NextRaceWidget = ({ theme })=>{
                 children: "Sem corridas programadas"
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                lineNumber: 87,
+                lineNumber: 80,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-            lineNumber: 86,
+            lineNumber: 79,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0));
     }
@@ -1512,12 +1506,12 @@ const NextRaceWidget = ({ theme })=>{
                     size: 240
                 }, void 0, false, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                    lineNumber: 100,
+                    lineNumber: 92,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                lineNumber: 99,
+                lineNumber: 91,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1536,7 +1530,7 @@ const NextRaceWidget = ({ theme })=>{
                                                 size: 11
                                             }, void 0, false, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                                lineNumber: 108,
+                                                lineNumber: 98,
                                                 columnNumber: 15
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             " ",
@@ -1546,7 +1540,7 @@ const NextRaceWidget = ({ theme })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                        lineNumber: 107,
+                                        lineNumber: 97,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     nextRace.isSprint && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1557,20 +1551,20 @@ const NextRaceWidget = ({ theme })=>{
                                                 className: "fill-current"
                                             }, void 0, false, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                                lineNumber: 116,
+                                                lineNumber: 106,
                                                 columnNumber: 17
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             " SPRINT"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                        lineNumber: 111,
+                                        lineNumber: 101,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 106,
+                                lineNumber: 96,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1581,7 +1575,7 @@ const NextRaceWidget = ({ theme })=>{
                                         children: countryFlag
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                        lineNumber: 121,
+                                        lineNumber: 111,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1592,13 +1586,13 @@ const NextRaceWidget = ({ theme })=>{
                                         children: nextRace.title.replace('GP d', '').replace('GP de ', '').replace('GP do', '').replace('GP da', '').toUpperCase()
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                        lineNumber: 122,
+                                        lineNumber: 112,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 120,
+                                lineNumber: 110,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1610,13 +1604,13 @@ const NextRaceWidget = ({ theme })=>{
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 129,
+                                lineNumber: 119,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                        lineNumber: 105,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1626,7 +1620,7 @@ const NextRaceWidget = ({ theme })=>{
                                 size: 12
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 134,
+                                lineNumber: 124,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             " ",
@@ -1634,19 +1628,19 @@ const NextRaceWidget = ({ theme })=>{
                                 children: nextRace.timezoneLabel?.split(' ')[0] || 'BRT'
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 134,
+                                lineNumber: 124,
                                 columnNumber: 31
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                        lineNumber: 133,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                lineNumber: 104,
+                lineNumber: 94,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1687,7 +1681,7 @@ const NextRaceWidget = ({ theme })=>{
                                                 children: session.day
                                             }, void 0, false, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                                lineNumber: 159,
+                                                lineNumber: 148,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1695,13 +1689,13 @@ const NextRaceWidget = ({ theme })=>{
                                                 children: session.date
                                             }, void 0, false, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                                lineNumber: 160,
+                                                lineNumber: 149,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                        lineNumber: 158,
+                                        lineNumber: 147,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1710,18 +1704,18 @@ const NextRaceWidget = ({ theme })=>{
                                             children: session.name
                                         }, void 0, false, {
                                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                            lineNumber: 163,
+                                            lineNumber: 152,
                                             columnNumber: 19
                                         }, ("TURBOPACK compile-time value", void 0))
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                        lineNumber: 162,
+                                        lineNumber: 151,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 157,
+                                lineNumber: 146,
                                 columnNumber: 15
                             }, ("TURBOPACK compile-time value", void 0)),
                             session.time && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1729,13 +1723,13 @@ const NextRaceWidget = ({ theme })=>{
                                 children: session.time
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                                lineNumber: 169,
+                                lineNumber: 158,
                                 columnNumber: 17
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, i, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                        lineNumber: 148,
+                        lineNumber: 137,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0));
                 }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1745,23 +1739,23 @@ const NextRaceWidget = ({ theme })=>{
                         children: "Horários a confirmar"
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                        lineNumber: 177,
+                        lineNumber: 166,
                         columnNumber: 13
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                    lineNumber: 176,
+                    lineNumber: 165,
                     columnNumber: 11
                 }, ("TURBOPACK compile-time value", void 0))
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-                lineNumber: 139,
+                lineNumber: 128,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NextRaceWidget.jsx",
-        lineNumber: 97,
+        lineNumber: 90,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2027,13 +2021,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f
 const SeasonWidget = ({ theme })=>{
     const isLight = theme === 'light';
     const C = isLight ? __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$constants$2f$theme$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["GIRLIE_COLORS"] : __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$constants$2f$theme$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["VAPORWAVE_COLORS"];
-    // Estados para dados da API
     const [driversData, setDriversData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$standings2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DRIVERS_STANDINGS"]);
     const [constructorsData, setConstructorsData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$standings2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CONSTRUCTORS_STANDINGS"]);
     const [seasonStats, setSeasonStats] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$standings2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SEASON_STATS"]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [usingAPI, setUsingAPI] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Mapeamento de cores por equipe (você pode personalizar)
     const TEAM_COLORS = {
         'Red Bull': '#3671C6',
         'Ferrari': '#E8002D',
@@ -2066,7 +2058,6 @@ const SeasonWidget = ({ theme })=>{
             const driversJson = await driversRes.json();
             const constructorsJson = await constructorsRes.json();
             const lastRaceJson = await lastRaceRes.json();
-            // Processar dados de pilotos
             const apiDrivers = driversJson.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
             const formattedDrivers = apiDrivers.map((driver)=>{
                 const teamName = driver.Constructors[0]?.name || 'Unknown';
@@ -2079,7 +2070,6 @@ const SeasonWidget = ({ theme })=>{
                     wins: parseInt(driver.wins)
                 };
             });
-            // Processar dados de construtores
             const apiConstructors = constructorsJson.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings || [];
             const formattedConstructors = apiConstructors.map((team)=>({
                     position: parseInt(team.position),
@@ -2089,7 +2079,6 @@ const SeasonWidget = ({ theme })=>{
                     points: parseInt(team.points),
                     wins: parseInt(team.wins)
                 }));
-            // Processar stats da temporada
             const raceData = lastRaceJson.MRData.RaceTable;
             const currentRound = raceData.Races?.[0]?.round || 0;
             const season = raceData.season || '2025';
@@ -2099,13 +2088,11 @@ const SeasonWidget = ({ theme })=>{
                 racesCompleted: parseInt(currentRound),
                 season: season
             };
-            // Atualizar estados
             setDriversData(formattedDrivers);
             setConstructorsData(formattedConstructors);
             setSeasonStats(updatedStats);
             setUsingAPI(true);
         } catch (error) {
-            // Em caso de erro, manter dados manuais
             setDriversData(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$standings2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DRIVERS_STANDINGS"]);
             setConstructorsData(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$standings2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CONSTRUCTORS_STANDINGS"]);
             setSeasonStats(__TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$data$2f$standings2026$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SEASON_STATS"]);
@@ -2114,11 +2101,9 @@ const SeasonWidget = ({ theme })=>{
             setLoading(false);
         }
     };
-    // Buscar dados ao montar componente
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         fetchAPIData();
     }, []);
-    // Top 5 pilotos do standings
     const topDrivers = driversData.slice(0, 5).map((driver)=>({
             pos: driver.position,
             name: driver.driverName.split(' ').map((n, i, arr)=>i === 0 ? n.charAt(0) + '.' : n).join(' '),
@@ -2139,7 +2124,6 @@ const SeasonWidget = ({ theme })=>{
         };
     });
     const boxClass = isLight ? 'bg-white border-pink-100 shadow-sm' : 'bg-[#0a0a10] border-white/5';
-    // Status da temporada
     const seasonStatus = seasonStats.racesCompleted === 0 ? 'Pré-Temporada' : seasonStats.racesCompleted >= seasonStats.totalRaces ? 'Campeonato Encerrado' : `Round ${seasonStats.currentRound} de ${seasonStats.totalRaces}`;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: `h-full flex flex-col justify-between p-6 md:p-8 relative overflow-y-auto text-left ${isLight ? 'text-gray-800' : 'text-white'}`,
@@ -2151,7 +2135,7 @@ const SeasonWidget = ({ theme })=>{
                 }
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                lineNumber: 152,
+                lineNumber: 134,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2166,12 +2150,12 @@ const SeasonWidget = ({ theme })=>{
                                     size: 20
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                    lineNumber: 161,
+                                    lineNumber: 141,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 160,
+                                lineNumber: 140,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2187,7 +2171,7 @@ const SeasonWidget = ({ theme })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 164,
+                                        lineNumber: 144,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2195,19 +2179,19 @@ const SeasonWidget = ({ theme })=>{
                                         children: seasonStatus
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 170,
+                                        lineNumber: 150,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 163,
+                                lineNumber: 143,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                        lineNumber: 159,
+                        lineNumber: 139,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2218,7 +2202,7 @@ const SeasonWidget = ({ theme })=>{
                                 children: "Em Breve"
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 182,
+                                lineNumber: 162,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2230,24 +2214,24 @@ const SeasonWidget = ({ theme })=>{
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                    lineNumber: 200,
+                                    lineNumber: 179,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 190,
+                                lineNumber: 169,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                        lineNumber: 180,
+                        lineNumber: 160,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                lineNumber: 158,
+                lineNumber: 138,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2264,7 +2248,7 @@ const SeasonWidget = ({ theme })=>{
                                         children: "Top 5 Pilotos"
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 209,
+                                        lineNumber: 187,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2272,13 +2256,13 @@ const SeasonWidget = ({ theme })=>{
                                         children: "PTS"
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 212,
+                                        lineNumber: 190,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 208,
+                                lineNumber: 186,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             seasonStats.racesCompleted === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2289,7 +2273,7 @@ const SeasonWidget = ({ theme })=>{
                                         size: 32
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 217,
+                                        lineNumber: 195,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2297,13 +2281,13 @@ const SeasonWidget = ({ theme })=>{
                                         children: "Aguardando primeira corrida"
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 218,
+                                        lineNumber: 196,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 216,
+                                lineNumber: 194,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-2",
@@ -2318,7 +2302,7 @@ const SeasonWidget = ({ theme })=>{
                                                         children: d.pos
                                                     }, void 0, false, {
                                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                        lineNumber: 227,
+                                                        lineNumber: 205,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2329,7 +2313,7 @@ const SeasonWidget = ({ theme })=>{
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                        lineNumber: 234,
+                                                        lineNumber: 212,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2337,7 +2321,7 @@ const SeasonWidget = ({ theme })=>{
                                                         children: d.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                        lineNumber: 238,
+                                                        lineNumber: 216,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     d.wins > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2345,13 +2329,13 @@ const SeasonWidget = ({ theme })=>{
                                                         children: d.wins === 1 ? '🏆' : `🏆×${d.wins}`
                                                     }, void 0, false, {
                                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                        lineNumber: 242,
+                                                        lineNumber: 220,
                                                         columnNumber: 23
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                lineNumber: 226,
+                                                lineNumber: 204,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2359,24 +2343,24 @@ const SeasonWidget = ({ theme })=>{
                                                 children: d.pts
                                             }, void 0, false, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                lineNumber: 247,
+                                                lineNumber: 225,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, d.pos, true, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 225,
+                                        lineNumber: 203,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 223,
+                                lineNumber: 201,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                        lineNumber: 207,
+                        lineNumber: 185,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2389,7 +2373,7 @@ const SeasonWidget = ({ theme })=>{
                                         size: 12
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 259,
+                                        lineNumber: 235,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2397,13 +2381,13 @@ const SeasonWidget = ({ theme })=>{
                                         children: "Construtores"
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 260,
+                                        lineNumber: 236,
                                         columnNumber: 13
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 258,
+                                lineNumber: 234,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             seasonStats.racesCompleted === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2414,7 +2398,7 @@ const SeasonWidget = ({ theme })=>{
                                         size: 32
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 265,
+                                        lineNumber: 241,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0)),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2422,13 +2406,13 @@ const SeasonWidget = ({ theme })=>{
                                         children: "Aguardando primeira corrida"
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 266,
+                                        lineNumber: 242,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 264,
+                                lineNumber: 240,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "space-y-3",
@@ -2444,7 +2428,7 @@ const SeasonWidget = ({ theme })=>{
                                                         children: t.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                        lineNumber: 275,
+                                                        lineNumber: 251,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2452,13 +2436,13 @@ const SeasonWidget = ({ theme })=>{
                                                         children: t.pts
                                                     }, void 0, false, {
                                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 252,
                                                         columnNumber: 21
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                lineNumber: 274,
+                                                lineNumber: 250,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0)),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2472,35 +2456,35 @@ const SeasonWidget = ({ theme })=>{
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                    lineNumber: 279,
+                                                    lineNumber: 255,
                                                     columnNumber: 21
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             }, void 0, false, {
                                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                                lineNumber: 278,
+                                                lineNumber: 254,
                                                 columnNumber: 19
                                             }, ("TURBOPACK compile-time value", void 0))
                                         ]
                                     }, i, true, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                        lineNumber: 273,
+                                        lineNumber: 249,
                                         columnNumber: 17
                                     }, ("TURBOPACK compile-time value", void 0)))
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 271,
+                                lineNumber: 247,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                        lineNumber: 257,
+                        lineNumber: 233,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                lineNumber: 205,
+                lineNumber: 184,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2515,13 +2499,13 @@ const SeasonWidget = ({ theme })=>{
                                 size: 10
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                                lineNumber: 305,
+                                lineNumber: 280,
                                 columnNumber: 29
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                        lineNumber: 297,
+                        lineNumber: 272,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     usingAPI && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2529,19 +2513,19 @@ const SeasonWidget = ({ theme })=>{
                         children: "API ativa"
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                        lineNumber: 310,
+                        lineNumber: 284,
                         columnNumber: 11
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-                lineNumber: 296,
+                lineNumber: 271,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0))
         ]
     }, void 0, true, {
         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/SeasonWidget.jsx",
-        lineNumber: 150,
+        lineNumber: 133,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
@@ -2870,7 +2854,7 @@ const NewsletterWidget = ({ theme })=>{
                 className: `absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-cyan-500'}`
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                lineNumber: 26,
+                lineNumber: 25,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2882,12 +2866,12 @@ const NewsletterWidget = ({ theme })=>{
                             size: 32
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 31,
+                            lineNumber: 28,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                        lineNumber: 30,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2897,7 +2881,7 @@ const NewsletterWidget = ({ theme })=>{
                                 children: "Newsletter"
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                lineNumber: 34,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0)),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2905,19 +2889,19 @@ const NewsletterWidget = ({ theme })=>{
                                 children: "Fofocas quentinhas na sua caixa de entrada."
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                lineNumber: 37,
+                                lineNumber: 34,
                                 columnNumber: 11
                             }, ("TURBOPACK compile-time value", void 0))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                        lineNumber: 33,
+                        lineNumber: 30,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                lineNumber: 29,
+                lineNumber: 26,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -2934,12 +2918,12 @@ const NewsletterWidget = ({ theme })=>{
                             className: `w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all text-center sm:text-left ${isLight ? "bg-white border-2 border-transparent focus:border-pink-300 text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-cyan-400 text-white placeholder-gray-600"}`
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 46,
+                            lineNumber: 42,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     }, void 0, false, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                        lineNumber: 45,
+                        lineNumber: 41,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0)),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2952,20 +2936,20 @@ const NewsletterWidget = ({ theme })=>{
                                 className: "animate-spin"
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                lineNumber: 59,
+                                lineNumber: 55,
                                 columnNumber: 36
                             }, ("TURBOPACK compile-time value", void 0)),
                             status === "success" ? "Enviado!" : "Assinar"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                        lineNumber: 54,
+                        lineNumber: 50,
                         columnNumber: 9
                     }, ("TURBOPACK compile-time value", void 0))
                 ]
             }, void 0, true, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                lineNumber: 44,
+                lineNumber: 40,
                 columnNumber: 7
             }, ("TURBOPACK compile-time value", void 0)),
             status === "success" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2973,7 +2957,7 @@ const NewsletterWidget = ({ theme })=>{
                 children: "✓ Você será notificado das novidades!"
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                lineNumber: 66,
+                lineNumber: 61,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0)),
             status === "error" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2981,7 +2965,7 @@ const NewsletterWidget = ({ theme })=>{
                 children: "✗ Ops! Algo deu errado. Tente novamente."
             }, void 0, false, {
                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                lineNumber: 74,
+                lineNumber: 69,
                 columnNumber: 9
             }, ("TURBOPACK compile-time value", void 0))
         ]
@@ -3024,14 +3008,14 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                             className: "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 111,
+                            lineNumber: 105,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 112,
+                            lineNumber: 106,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3039,7 +3023,7 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                             children: driver.number
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 113,
+                            lineNumber: 107,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3050,7 +3034,7 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                     children: surname
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 117,
+                                    lineNumber: 111,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3060,26 +3044,26 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                             size: 12
                                         }, void 0, false, {
                                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                            lineNumber: 121,
+                                            lineNumber: 115,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         " Virar"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 120,
+                                    lineNumber: 114,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 116,
+                            lineNumber: 110,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                    lineNumber: 107,
+                    lineNumber: 101,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3100,12 +3084,12 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                         alt: "Avatar"
                                     }, void 0, false, {
                                         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                        lineNumber: 133,
+                                        lineNumber: 126,
                                         columnNumber: 15
                                     }, ("TURBOPACK compile-time value", void 0))
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 132,
+                                    lineNumber: 125,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3115,7 +3099,7 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                             children: driver.name
                                         }, void 0, false, {
                                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                            lineNumber: 136,
+                                            lineNumber: 129,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3123,19 +3107,19 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                             children: driver.team
                                         }, void 0, false, {
                                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                            lineNumber: 139,
+                                            lineNumber: 132,
                                             columnNumber: 15
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 135,
+                                    lineNumber: 128,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 131,
+                            lineNumber: 124,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3145,14 +3129,14 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                     children: driver.zodiac
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 145,
+                                    lineNumber: 138,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "•"
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 146,
+                                    lineNumber: 139,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3162,13 +3146,13 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 147,
+                                    lineNumber: 140,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 144,
+                            lineNumber: 137,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3179,7 +3163,7 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                     children: '"'
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 150,
+                                    lineNumber: 143,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 driver.secretFact,
@@ -3188,13 +3172,13 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                     children: '"'
                                 }, void 0, false, {
                                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                    lineNumber: 152,
+                                    lineNumber: 145,
                                     columnNumber: 13
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 149,
+                            lineNumber: 142,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3207,29 +3191,29 @@ const KpopPhotocard = ({ driver, theme, onClick })=>{
                                 children: driver.signature
                             }, void 0, false, {
                                 fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                                lineNumber: 155,
+                                lineNumber: 148,
                                 columnNumber: 13
                             }, ("TURBOPACK compile-time value", void 0))
                         }, void 0, false, {
                             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                            lineNumber: 154,
+                            lineNumber: 147,
                             columnNumber: 11
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-                    lineNumber: 127,
+                    lineNumber: 120,
                     columnNumber: 9
                 }, ("TURBOPACK compile-time value", void 0))
             ]
         }, void 0, true, {
             fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-            lineNumber: 99,
+            lineNumber: 94,
             columnNumber: 7
         }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/Users/tamar/Desktop/autamubilismo/components/widgets/NewsletterWidget.jsx",
-        lineNumber: 90,
+        lineNumber: 85,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

@@ -1,4 +1,3 @@
-// src/services/newsService.js
 import { sanityClient } from '../lib/sanityClient.js';
 
 export async function fetchNews() {

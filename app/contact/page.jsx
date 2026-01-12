@@ -3,19 +3,14 @@
 import { useState } from "react";
 import {
   Send,
-  Wrench,
-  Heart,
   Sparkles,
   Instagram,
   Mail,
   ChevronLeft,
-  Loader2,
-  Quote
+  Loader2
 } from "lucide-react";
 import Link from 'next/link';
 import { useTheme } from '@/components/layout/ThemeContext';
-
-// --- COMPONENTES DE UI ---
 
 const BackButton = ({ to, theme }) => {
   const isLight = theme === 'light';
@@ -63,33 +58,43 @@ const ContactPage = () => {
 
     try {
       setStatus("loading");
-      await new Promise(r => setTimeout(r, 2000)); // Simula envio
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao enviar mensagem');
+      }
+
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
       setTimeout(() => setStatus("idle"), 5000);
     } catch (err) {
-      console.error(err);
+      console.error('Erro:', err);
       setStatus("error");
+      alert(err.message || 'Erro ao enviar mensagem. Tente novamente.');
+      setTimeout(() => setStatus("idle"), 3000);
     }
   };
 
-  // Ícone TikTok SVG
   const TikTokIcon = ({ size = 20 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
     </svg>
   );
 
-  // Ícone X (Twitter) SVG
   const XIcon = ({ size = 20 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
     </svg>
   );
-
-  // --- CLASSES VISUAIS ---
-  
-  // Card Container Style
   const cardClass = isLight
     ? 'bg-white/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_20px_40px_-12px_rgba(255,182,193,0.3)] border border-white hover:shadow-[0_25px_50px_-12px_rgba(255,182,193,0.5)]'
     : 'bg-[#0f0518]/80 backdrop-blur-xl rounded-[2.5rem] border border-fuchsia-500/20 hover:border-cyan-400/40 shadow-[0_0_30px_rgba(189,0,255,0.1)] hover:shadow-[0_0_40px_rgba(0,255,242,0.15)] ring-1 ring-white/5 transition-all duration-500';
@@ -107,18 +112,15 @@ const ContactPage = () => {
           : 'bg-[#050510]'
       }`}
     >
-      {/* Background Decorativo Dark Mode (Grid Vaporwave) */}
       {!isLight && (
-        <div className="absolute inset-0 pointer-events-none opacity-20 fixed" 
-             style={{ 
-               backgroundImage: 'linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)', 
+        <div className="absolute inset-0 pointer-events-none opacity-20 fixed"
+             style={{
+               backgroundImage: 'linear-gradient(rgba(255, 0, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)',
                backgroundSize: '40px 40px',
                maskImage: 'linear-gradient(to bottom, black 20%, transparent 100%)'
-             }} 
+             }}
         />
       )}
-
-      {/* Luzes de Fundo */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
          <div className={`absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-40 ${isLight ? 'bg-pink-200' : 'bg-fuchsia-900/40 animate-pulse'}`} />
          <div className={`absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-40 ${isLight ? 'bg-purple-200' : 'bg-cyan-900/40 animate-pulse'}`} />
@@ -150,13 +152,9 @@ const ContactPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* --- BIO CARD (Texto Longo) --- */}
           <div className={`lg:col-span-7 p-8 md:p-12 relative overflow-hidden flex flex-col group ${cardClass}`}>
-            
-            {/* Header Bio */}
             <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-10 pb-8 border-b border-gray-100 dark:border-white/5">
                 <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border-4 ${isLight ? 'border-white shadow-lg' : 'border-cyan-500/30 shadow-[0_0_20px_rgba(0,255,242,0.2)]'}`}>
-                   {/* Placeholder para foto de perfil */}
                    <div className={`w-full h-full flex items-center justify-center text-4xl ${isLight ? 'bg-pink-50' : 'bg-black'}`}>👩‍💻</div>
                 </div>
                 <div>
@@ -170,7 +168,6 @@ const ContactPage = () => {
                 </div>
             </div>
 
-            {/* Texto da Bio */}
             <div className={`space-y-6 text-base md:text-lg leading-relaxed font-light relative z-10 text-justify ${isLight ? "text-gray-600" : "text-gray-300"}`}>
                 <p>
                   <strong className={isLight ? "text-gray-900" : "text-cyan-300"}>O automobilismo entrou na minha vida não como um hobby, mas como linguagem.</strong> Minhas ideias nascem no ponto exato onde velocidade encontra comportamento humano. Onde dados, emoção, pressão e silêncio convivem no mesmo segundo. A Fórmula 1 nunca foi, pra mim, apenas sobre carros. É sobre decisões sob risco, performance mental, relações de poder, estética, narrativa e humanidade exposta em alta rotação.
@@ -195,7 +192,6 @@ const ContactPage = () => {
                 </p>
             </div>
 
-            {/* Redes Sociais */}
             <div className={`mt-12 pt-8 border-t ${isLight ? "border-gray-100" : "border-white/10"} flex flex-col md:flex-row items-center justify-between gap-6`}>
               <span className={`text-[10px] font-bold uppercase tracking-[0.25em] ${isLight ? "text-gray-400" : "text-cyan-600"}`}>
                 Conecte-se
@@ -203,7 +199,7 @@ const ContactPage = () => {
               <div className="flex gap-3">
                 {[
                   { href: "https://instagram.com/autamubilismo", icon: Instagram },
-                  { href: "https://twitter.com/autamubilismo", icon: XIcon }, // Substituído por XIcon
+                  { href: "https://twitter.com/autamubilismo", icon: XIcon },
                   { href: "https://tiktok.com/@autamubilismo", icon: TikTokIcon },
                   { href: "mailto:autamubilismo@gmail.com", icon: Mail },
                 ].map((social, idx) => (
@@ -225,7 +221,6 @@ const ContactPage = () => {
             </div>
           </div>
 
-          {/* --- CONTACT FORM (Lateral Fixa) --- */}
           <div className="lg:col-span-5 sticky top-8">
              <div className={`p-8 md:p-10 relative overflow-hidden flex flex-col justify-center ${cardClass}`}>
                 <div className="relative z-10">
@@ -293,6 +288,12 @@ const ContactPage = () => {
                     {status === "success" && (
                       <div className="p-4 rounded-xl bg-green-50 text-green-700 text-center text-xs font-bold uppercase tracking-wide border border-green-200 animate-in fade-in slide-in-from-top-2">
                         Mensagem enviada! 💌
+                      </div>
+                    )}
+
+                    {status === "error" && (
+                      <div className="p-4 rounded-xl bg-red-50 text-red-700 text-center text-xs font-bold uppercase tracking-wide border border-red-200 animate-in fade-in slide-in-from-top-2">
+                        Erro ao enviar. Tente novamente! ❌
                       </div>
                     )}
                   </form>

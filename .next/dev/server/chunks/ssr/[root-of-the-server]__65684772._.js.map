@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 24, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/tamar/autamubilismo-nextjs/lib/sanity.js"],"sourcesContent":["import { createClient } from '@sanity/client';\r\nimport imageUrlBuilder from '@sanity/image-url';\r\n\r\nexport const client = createClient({\r\n  projectId: \"c7nvssn2\",   // pegue no sanity.json\r\n  dataset: \"production\",\r\n  apiVersion: \"2023-01-01\",\r\n  useCdn: true,\r\n});\r\n\r\nconst builder = imageUrlBuilder(client);\r\nexport const urlFor = (source) => builder.image(source);\r\n"],"names":[],"mappings":";;;;;;AAAA;AACA;;;AAEO,MAAM,SAAS,IAAA,8LAAY,EAAC;IACjC,WAAW;IACX,SAAS;IACT,YAAY;IACZ,QAAQ;AACV;AAEA,MAAM,UAAU,IAAA,mLAAe,EAAC;AACzB,MAAM,SAAS,CAAC,SAAW,QAAQ,KAAK,CAAC"}},
-    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/tamar/autamubilismo-nextjs/app/news/page.jsx"],"sourcesContent":["import { client } from \"@/lib/sanity\";\nimport { NewsClient } from \"./NewsClient\";\n\nexport default async function NewsPage() {\n  const news = await client.fetch(\n    `*[_type == \"news\"] | order(publishedAt desc){\n      _id,\n      title,\n      \"slug\": slug.current,\n      \"imageUrl\": image.asset->url,\n      excerpt,\n      publishedAt,\n      category,\n      author\n    }`\n  );\n\n  return <NewsClient news={news} />;\n}\n"],"names":[],"mappings":";;;;;AAAA;;;;;;;;;AAGe,eAAe;IAC5B,MAAM,OAAO,MAAM,uHAAM,CAAC,KAAK,CAC7B,CAAC;;;;;;;;;KASA,CAAC;IAGJ,qBAAO,8OAAC;QAAW,MAAM;;;;;;AAC3B"}}]
-}
