@@ -224,16 +224,23 @@ const NewsDetail = ({ slug: slugProp }) => {
           _id,
           title,
           "slug": slug.current,
-          "image": image.asset->url,
+          "image": coalesce(mainImage.asset->url, image.asset->url),
+          "mainImage": mainImage{
+            ...,
+            asset->
+          },
           excerpt,
           category,
           author,
           publishedAt,
           "source": sourceLabel,
           sourceUrl,
+          tags,
           seo{
             metaTitle,
             metaDescription,
+            ogTitle,
+            ogDescription,
             "ogImage": ogImage.asset->url
           },
           body[] {
