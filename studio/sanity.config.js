@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemaTypes';
 
 export default defineConfig({
@@ -7,7 +8,11 @@ export default defineConfig({
   title: 'Autamubilismo',
   projectId: 'c7nvssn2',
   dataset: 'production',
-  plugins: [deskTool()],
+  basePath: '/studio',
+  plugins: [
+    structureTool(),
+    visionTool()
+  ],
   schema: {
     types: schemaTypes,
   },
