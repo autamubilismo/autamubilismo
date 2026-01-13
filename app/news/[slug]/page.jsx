@@ -20,6 +20,8 @@ export async function generateMetadata({ params }) {
     seo{
       metaTitle,
       metaDescription,
+      ogTitle,
+      ogDescription,
       "ogImage": ogImage.asset->url
     }
   }`;
@@ -35,6 +37,8 @@ export async function generateMetadata({ params }) {
 
   const title = post?.seo?.metaTitle || post?.title || 'Autamubilismo';
   const description = post?.seo?.metaDescription || post?.excerpt || 'As ultimas noticias de automobilismo.';
+  const ogTitle = post?.seo?.ogTitle || title;
+  const ogDescription = post?.seo?.ogDescription || description;
   const image = post?.seo?.ogImage || post?.image || `${siteUrl}/og-default.png`;
   const slug = post?.slug || slugParam;
   const url = `${siteUrl}/news/${encodeURIComponent(slug || '')}`;
@@ -48,8 +52,8 @@ export async function generateMetadata({ params }) {
     },
     openGraph: {
       type: 'article',
-      title,
-      description,
+      title: ogTitle,
+      description: ogDescription,
       url,
       siteName: 'Autamubilismo',
       locale: 'pt_BR',
@@ -65,8 +69,8 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: ogTitle,
+      description: ogDescription,
       images: [image],
     },
   };

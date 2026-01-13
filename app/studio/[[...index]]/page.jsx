@@ -96,12 +96,32 @@ const news = {
         list: [
           { title: 'Formula 1', value: 'f1' },
           { title: 'Formula E', value: 'fe' },
+          { title: 'Formula 2', value: 'f2' },
+          { title: 'Formula 3', value: 'f3' },
           { title: 'Stock Car', value: 'stockcar' },
           { title: 'Endurance', value: 'endurance' },
+          { title: 'WEC', value: 'wec' },
+          { title: 'Le Mans', value: 'lemans' },
           { title: 'Rally', value: 'rally' },
+          { title: 'WRC', value: 'wrc' },
+          { title: 'IndyCar', value: 'indycar' },
+          { title: 'NASCAR', value: 'nascar' },
+          { title: 'MotoGP', value: 'motogp' },
+          { title: 'F-Trucks', value: 'ftrucks' },
+          { title: 'Kart', value: 'kart' },
           { title: 'Outros', value: 'outros' }
         ]
       }
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      },
+      description: 'Tags para facilitar a busca (ex: verstappen, ferrari, brasileiro)'
     },
     {
       name: 'mainImage',
@@ -211,12 +231,32 @@ const article = {
         list: [
           { title: 'Formula 1', value: 'f1' },
           { title: 'Formula E', value: 'fe' },
+          { title: 'Formula 2', value: 'f2' },
+          { title: 'Formula 3', value: 'f3' },
           { title: 'Stock Car', value: 'stockcar' },
           { title: 'Endurance', value: 'endurance' },
+          { title: 'WEC', value: 'wec' },
+          { title: 'Le Mans', value: 'lemans' },
           { title: 'Rally', value: 'rally' },
+          { title: 'WRC', value: 'wrc' },
+          { title: 'IndyCar', value: 'indycar' },
+          { title: 'NASCAR', value: 'nascar' },
+          { title: 'MotoGP', value: 'motogp' },
+          { title: 'F-Trucks', value: 'ftrucks' },
+          { title: 'Kart', value: 'kart' },
           { title: 'Outros', value: 'outros' }
         ]
       }
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'tags'
+      },
+      description: 'Tags para facilitar a busca (ex: verstappen, ferrari, brasileiro)'
     },
     {
       name: 'mainImage',
