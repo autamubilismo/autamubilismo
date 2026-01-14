@@ -10,13 +10,31 @@ export const NewsletterWidget = ({ theme }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
+
     try {
       setStatus("loading");
-      await new Promise(r => setTimeout(r, 1500));
+
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao inscrever na newsletter');
+      }
+
       setStatus("success");
       setEmail("");
+      setTimeout(() => setStatus(null), 5000);
     } catch (error) {
+      console.error('Erro:', error);
       setStatus("error");
+      setTimeout(() => setStatus(null), 3000);
     }
   };
 

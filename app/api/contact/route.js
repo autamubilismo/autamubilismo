@@ -23,8 +23,8 @@ export async function POST(request) {
     }
 
     const data = await resend.emails.send({
-      from: 'Contato autamubilismo <onboarding@resend.dev>',
-      to: [process.env.CONTACT_EMAIL || 'autamubilismo@gmail.com'],
+      from: 'Autamubilismo <contato@autamubilismo.com>',
+      to: ['autamubilismo@gmail.com'],
       replyTo: email,
       subject: `Nova mensagem de contato: ${name}`,
       html: `
