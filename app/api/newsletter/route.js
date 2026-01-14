@@ -22,6 +22,20 @@ export async function POST(request) {
       );
     }
 
+    // Adicionar contato ao Resend Audiences (opcional: você precisa criar uma audience primeiro no painel)
+    // Descomente as linhas abaixo quando criar sua audience no Resend
+    
+    try {
+      await resend.contacts.create({
+        email: email,
+        audienceId: process.env.RESEND_AUDIENCE_ID,
+      });
+    } catch (audienceError) {
+      console.log('Aviso: Não foi possível adicionar à audience:', audienceError);
+      // Continua mesmo se falhar - o e-mail ainda será enviado
+    }
+    
+
     // Enviar e-mail de confirmação para o usuário
     await resend.emails.send({
       from: 'Autamubilismo <newsletter@autamubilismo.com>',
