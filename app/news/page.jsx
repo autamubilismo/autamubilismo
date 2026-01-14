@@ -7,7 +7,7 @@ export default async function NewsPage() {
       _id,
       title,
       "slug": slug.current,
-      "imageUrl": image.asset->url,
+      "image": coalesce(mainImage.asset->url, image.asset->url),
       excerpt,
       publishedAt,
       category,

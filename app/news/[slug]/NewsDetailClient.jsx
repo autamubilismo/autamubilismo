@@ -40,10 +40,17 @@ const BackButton = ({ to = "/", theme }) => {
 
 // --- CLIENTE SANITY INLINED (Para evitar erros de importação neste ambiente) ---
 // --- ESTILOS DE PROSE (Tipografia Rica) ---
-const proseClass = (isLight) => `prose prose-lg max-w-none 
-  ${isLight 
-    ? 'prose-headings:text-gray-900 prose-p:text-gray-600 prose-strong:text-pink-600 prose-a:text-purple-600 hover:prose-a:text-purple-500 prose-blockquote:border-pink-300 prose-blockquote:bg-pink-50/50 prose-li:marker:text-pink-400' 
-    : 'prose-headings:text-white prose-p:text-gray-300 prose-strong:text-cyan-400 prose-a:text-fuchsia-400 hover:prose-a:text-fuchsia-300 prose-blockquote:border-cyan-500 prose-blockquote:bg-white/5 prose-li:marker:text-cyan-500'
+const proseClass = (isLight) => `prose prose-lg max-w-none
+  prose-p:mb-4 prose-p:leading-relaxed
+  prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-10 prose-h2:mb-6
+  prose-h3:text-2xl prose-h3:font-bold prose-h3:mt-8 prose-h3:mb-4
+  prose-h4:text-xl prose-h4:font-bold prose-h4:mt-6 prose-h4:mb-3
+  prose-ul:my-6 prose-ul:pl-6 prose-li:mb-2
+  prose-ol:my-6 prose-ol:pl-6
+  prose-blockquote:my-8 prose-blockquote:pl-6 prose-blockquote:border-l-4 prose-blockquote:italic
+  ${isLight
+    ? 'prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-pink-600 prose-a:text-purple-600 hover:prose-a:text-purple-500 prose-blockquote:border-pink-300 prose-blockquote:bg-pink-50/50 prose-li:marker:text-pink-400 prose-li:text-gray-700'
+    : 'prose-headings:text-white prose-p:text-gray-300 prose-strong:text-cyan-400 prose-a:text-fuchsia-400 hover:prose-a:text-fuchsia-300 prose-blockquote:border-cyan-500 prose-blockquote:bg-white/5 prose-li:marker:text-cyan-500 prose-li:text-gray-300'
   }`;
 
 const proseComponents = (isLight) => ({
@@ -89,14 +96,14 @@ const portableTextComponents = (isLight) => ({
     },
   },
   block: {
-    h1: ({ children }) => <h1 className="text-3xl md:text-4xl font-black mt-8 mb-4">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-bold mt-8 mb-4">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl md:text-2xl font-bold mt-6 mb-3">{children}</h3>,
-    h4: ({ children }) => <h4 className="text-lg font-bold mt-4 mb-2">{children}</h4>,
+    h1: ({ children }) => <h1 className="text-3xl md:text-4xl font-black mt-10 mb-6 leading-tight">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-bold mt-10 mb-6 leading-tight">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl md:text-2xl font-bold mt-8 mb-4 leading-tight">{children}</h3>,
+    h4: ({ children }) => <h4 className="text-lg md:text-xl font-bold mt-6 mb-3 leading-tight">{children}</h4>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 pl-4 italic my-6 opacity-80">{children}</blockquote>
+      <blockquote className="border-l-4 pl-6 italic my-8 opacity-80 text-lg">{children}</blockquote>
     ),
-    normal: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
+    normal: ({ children }) => <p className="mb-6 leading-relaxed text-[17px]">{children}</p>,
   },
   list: {
     bullet: ({ children }) => <ul className="my-4 pl-6 list-disc">{children}</ul>,
