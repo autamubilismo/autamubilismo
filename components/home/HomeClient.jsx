@@ -29,7 +29,7 @@ const DRIVER_OF_DAY = {
 const toFeedItem = (item, type) => ({
   ...item,
   type,
-  dateObj: new Date(item.publishedAt || item._createdAt || Date.now()),
+  dateObj: new Date(item.publishedAt || item._createdAt || 0),
 });
 
 const CountdownWidget = ({ theme }) => {
@@ -38,7 +38,7 @@ const CountdownWidget = ({ theme }) => {
     const firstRace = F1_2026_CALENDAR[0];
     return new Date(`${firstRace?.startDate || '2026-03-06'}T00:00:00`);
   }, []);
-  const [timeLeft, setTimeLeft] = useState(() => seasonStartDate.getTime() - Date.now());
+  const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {
     const tick = () => {

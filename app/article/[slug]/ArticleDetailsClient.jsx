@@ -18,46 +18,8 @@ import {
 import { useSeoMeta } from "@/lib/useSeoMeta";
 import { client, urlFor } from "@/lib/sanity";
 import { useTheme } from "@/components/layout/ThemeContext";
+import { PortableText } from "@portabletext/react";
 
-// --- CUSTOM PORTABLE TEXT RENDERER ---
-const SimplePortableText = ({ value, components }) => {
-  if (!value || !Array.isArray(value)) return null;
-
-  return (
-    <>
-      {value.map((block, i) => {
-        // Handle Images
-        if (block._type === 'image' && components?.types?.image) {
-           return <React.Fragment key={block._key || i}>{components.types.image({ value: block })}</React.Fragment>;
-        }
-        
-        // Handle Text Blocks
-        if (block._type !== 'block' || !block.children) return null;
-
-        const children = block.children.map((span, idx) => {
-           let el = <span key={idx}>{span.text}</span>;
-           
-           // Apply basic styling marks (Bold, Italic)
-           if (span.marks && span.marks.length > 0) {
-              if (span.marks.includes('strong')) el = <strong key={idx} className="font-black">{el}</strong>;
-              if (span.marks.includes('em')) el = <em key={idx}>{el}</em>;
-           }
-           return el;
-        });
-
-        const style = block.style || 'normal';
-        switch (style) {
-          case 'h1': return <h1 key={i} className="text-3xl md:text-4xl font-black mt-8 mb-4">{children}</h1>;
-          case 'h2': return <h2 key={i} className="text-2xl md:text-3xl font-bold mt-8 mb-4">{children}</h2>;
-          case 'h3': return <h3 key={i} className="text-xl md:text-2xl font-bold mt-6 mb-3">{children}</h3>;
-          case 'h4': return <h4 key={i} className="text-lg font-bold mt-4 mb-2">{children}</h4>;
-          case 'blockquote': return <blockquote key={i} className="border-l-4 pl-4 italic my-6 opacity-80">{children}</blockquote>;
-          default: return <p key={i} className="mb-4 leading-relaxed">{children}</p>;
-        }
-      })}
-    </>
-  );
-};
 
 // --- COMPONENTE INTERNO: BackButton ---
 const BackButton = ({ to = "/", theme }) => {
@@ -78,10 +40,17 @@ const BackButton = ({ to = "/", theme }) => {
 };
 
 // --- ESTILOS DE PROSE (Tipografia Rica) ---
-const proseClass = (isLight) => `prose prose-lg max-w-none 
-  ${isLight 
-    ? 'prose-headings:text-gray-900 prose-p:text-gray-600 prose-strong:text-pink-600 prose-a:text-purple-600 hover:prose-a:text-purple-500 prose-blockquote:border-pink-300 prose-blockquote:bg-pink-50/50 prose-li:marker:text-pink-400' 
-    : 'prose-headings:text-white prose-p:text-gray-300 prose-strong:text-cyan-400 prose-a:text-fuchsia-400 hover:prose-a:text-fuchsia-300 prose-blockquote:border-cyan-500 prose-blockquote:bg-white/5 prose-li:marker:text-cyan-500'
+const proseClass = (isLight) => `prose prose-lg max-w-none
+  prose-p:mb-4 prose-p:leading-relaxed
+  prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-10 prose-h2:mb-6
+  prose-h3:text-2xl prose-h3:font-bold prose-h3:mt-8 prose-h3:mb-4
+  prose-h4:text-xl prose-h4:font-bold prose-h4:mt-6 prose-h4:mb-3
+  prose-ul:my-6 prose-ul:pl-6 prose-li:mb-2
+  prose-ol:my-6 prose-ol:pl-6
+  prose-blockquote:my-8 prose-blockquote:pl-6 prose-blockquote:border-l-4 prose-blockquote:italic
+  ${isLight
+    ? 'prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-pink-600 prose-a:text-purple-600 hover:prose-a:text-purple-500 prose-blockquote:border-pink-300 prose-blockquote:bg-pink-50/50 prose-li:marker:text-pink-400 prose-li:text-gray-700'
+    : 'prose-headings:text-white prose-p:text-gray-300 prose-strong:text-cyan-400 prose-a:text-fuchsia-400 hover:prose-a:text-fuchsia-300 prose-blockquote:border-cyan-500 prose-blockquote:bg-white/5 prose-li:marker:text-cyan-500 prose-li:text-gray-300'
   }`;
 
 const proseComponents = (isLight) => ({
@@ -103,6 +72,140 @@ const proseComponents = (isLight) => ({
         </figure>
       );
     },
+  },
+});
+
+const portableTextComponents = (isLight) => ({
+  types: {
+    image: proseComponents(isLight).types.image,
+  },
+  marks: {
+    link: ({ value, children }) => {
+      const href = value?.href || "#";
+      const blank = value?.blank;
+      return (
+        <a
+          href={href}
+          target={blank ? "_blank" : undefined}
+          rel={blank ? "noopener noreferrer" : undefined}
+          className={`underline underline-offset-2 font-medium transition-colors ${
+            isLight ? 'text-purple-600 hover:text-purple-700' : 'text-fuchsia-400 hover:text-fuchsia-300'
+          }`}
+        >
+          {children}
+        </a>
+      );
+    },
+    strong: ({ children }) => (
+      <strong className={isLight ? 'text-pink-600 font-bold' : 'text-cyan-400 font-bold'}>
+        {children}
+      </strong>
+    ),
+    em: ({ children }) => (
+      <em className="italic">{children}</em>
+    ),
+    code: ({ children }) => (
+      <code className={`px-1.5 py-0.5 rounded text-sm font-mono ${
+        isLight ? 'bg-pink-100 text-pink-700' : 'bg-cyan-900/30 text-cyan-300'
+      }`}>
+        {children}
+      </code>
+    ),
+    underline: ({ children }) => (
+      <span className="underline underline-offset-2">{children}</span>
+    ),
+    'strike-through': ({ children }) => (
+      <span className="line-through opacity-70">{children}</span>
+    ),
+  },
+  block: {
+    h1: ({ children }) => (
+      <h1 className={`text-3xl md:text-4xl font-black mt-12 mb-6 leading-tight ${
+        isLight ? 'text-gray-900' : 'text-white'
+      }`}>
+        {children}
+      </h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className={`text-2xl md:text-3xl font-bold mt-12 mb-6 leading-tight relative pb-3 ${
+        isLight
+          ? 'text-gray-900 border-b-2 border-pink-100'
+          : 'text-white border-b-2 border-cyan-500/30'
+      }`}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className={`text-xl md:text-2xl font-bold mt-10 mb-4 leading-tight ${
+        isLight ? 'text-gray-800' : 'text-gray-100'
+      }`}>
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className={`text-lg md:text-xl font-bold mt-8 mb-3 leading-tight ${
+        isLight ? 'text-gray-700' : 'text-gray-200'
+      }`}>
+        {children}
+      </h4>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className={`relative border-l-4 pl-6 pr-6 py-4 my-10 italic text-lg leading-relaxed rounded-r-2xl ${
+        isLight
+          ? 'bg-pink-50/70 border-pink-400 text-gray-700'
+          : 'bg-white/5 border-cyan-500 text-gray-300'
+      }`}>
+        <span className={`absolute -left-2 top-2 text-6xl opacity-20 ${
+          isLight ? 'text-pink-400' : 'text-cyan-500'
+        }`}>"</span>
+        {children}
+      </blockquote>
+    ),
+    normal: ({ children }) => {
+      // Evita renderizar parágrafos vazios
+      if (!children || (Array.isArray(children) && children.every((c) => c === '' || c === '\n'))) {
+        return null;
+      }
+      return (
+        <p className={`mb-6 leading-[1.9] text-[17px] md:text-[18px] tracking-[0.01em] ${
+          isLight ? 'text-gray-700' : 'text-gray-300'
+        }`}>
+          {children}
+        </p>
+      );
+    },
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul className={`my-6 pl-8 space-y-3 list-disc ${
+        isLight ? 'text-gray-700' : 'text-gray-300'
+      }`}>
+        {children}
+      </ul>
+    ),
+    number: ({ children }) => (
+      <ol className={`my-6 pl-8 space-y-3 list-decimal ${
+        isLight ? 'text-gray-700' : 'text-gray-300'
+      }`}>
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className={`leading-relaxed ${
+        isLight ? 'marker:text-pink-400' : 'marker:text-cyan-400'
+      }`}>
+        {children}
+      </li>
+    ),
+    number: ({ children }) => (
+      <li className={`leading-relaxed ${
+        isLight ? 'marker:text-pink-400 marker:font-bold' : 'marker:text-cyan-400 marker:font-bold'
+      }`}>
+        {children}
+      </li>
+    ),
   },
 });
 
@@ -133,11 +236,16 @@ const ArticleDetail = ({ slug: slugProp }) => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
 
   const isLight = resolvedTheme === "light";
 
-  // URL para compartilhamento
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  // URL para compartilhamento (evita mismatch entre SSR e cliente)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setShareUrl(window.location.href);
+    }
+  }, []);
 
   // CORES E ESTILOS
   const textPrimary = isLight ? "text-gray-900" : "text-white";
@@ -161,8 +269,11 @@ const ArticleDetail = ({ slug: slugProp }) => {
     : "bg-[#121217]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]";
     
   const badgeBg = isLight
-    ? "bg-gradient-to-r from-pink-200 to-purple-200 text-purple-900 shadow-sm"
+    ? "bg-gradient-to-r from-pink-100 to-purple-200 text-purple-900 shadow-sm"
     : "bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 text-cyan-300 border border-cyan-500/30";
+  const tagBadge = isLight
+    ? "bg-white/80 text-pink-600 border border-pink-100"
+    : "bg-black/40 text-cyan-300 border border-cyan-500/40";
 
   // FUNÇÃO DE COPIAR LINK
   const handleCopyLink = () => {
@@ -203,6 +314,13 @@ const ArticleDetail = ({ slug: slugProp }) => {
               ogTitle,
               ogDescription,
               "ogImage": ogImage.asset->url
+            },
+            body[] {
+              ...,
+              _type == "image" => {
+                ...,
+                "url": asset->url
+              }
             },
             content[] {
               ...,
@@ -257,6 +375,13 @@ const ArticleDetail = ({ slug: slugProp }) => {
     type: "article",
   });
 
+  const contentBlocks =
+    Array.isArray(post?.body) && post.body.length
+      ? post.body
+      : Array.isArray(post?.content) && post.content.length
+      ? post.content
+      : null;
+
   // LOADING
   if (loading) {
     return (
@@ -284,14 +409,14 @@ const ArticleDetail = ({ slug: slugProp }) => {
     );
   }
 
-  // ✅ OG/SEO (fallback: seo -> title/excerpt/image)
-  // ---------- DETECÇÃO DO TIPO DE CONTEÚDO ----------
-  const isSanityPortable = Array.isArray(post.content);
+  // OG/SEO (fallback: seo -> title/excerpt/image)
   const htmlContent =
     post.contentHtml ||
-    (!isSanityPortable && typeof post.content === "string"
-      ? post.content
-      : null);
+    (!contentBlocks && typeof post.content === "string" ? post.content : null);
+
+
+
+
   // --------------------------------------------------
 
   return (
@@ -299,7 +424,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
       
       {/* Luz de Fundo Decorativa */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
+         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-pink-50/70' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
          <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
          {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
       </div>
@@ -319,7 +444,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
               {post.publishedAt && (
                 <span className="flex items-center gap-1.5">
                   <Calendar size={14} className={accentColor} />
-                  {new Date(post.publishedAt).toLocaleDateString("pt-BR", { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {new Date(post.publishedAt).toLocaleDateString("pt-BR", { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}
                 </span>
               )}
               <span className="flex items-center gap-1.5">
@@ -339,7 +464,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
           </h1>
 
           {/* BARRA DE INFO E COMPARTILHAMENTO */}
-          <div className={`flex flex-col sm:flex-row sm:items-center justify-between border-y py-6 gap-6 ${isLight ? 'border-pink-200/50' : 'border-white/10'}`}>
+          <div className={`flex flex-col sm:flex-row sm:items-center justify-between border-y py-6 gap-6 ${isLight ? 'border-pink-100/50' : 'border-white/10'}`}>
             {/* Autor */}
             <div className="flex items-center gap-4">
               <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm ${isLight ? "bg-white border border-pink-100 text-pink-500" : "bg-[#1a1a20] border border-white/10 text-cyan-400"}`}>
@@ -470,18 +595,31 @@ const ArticleDetail = ({ slug: slugProp }) => {
             </div>
           )}
 
-          {/* Conteúdo do Sanity (SimplePortableText) vs HTML */}
-          {Array.isArray(post.content) ? (
+          {Array.isArray(post.tags) && post.tags.length > 0 && (
+            <div className="mb-10 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${tagBadge}`}
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Conteudo do Sanity */}
+          {contentBlocks ? (
             <article className={proseClass(isLight)}>
-              <SimplePortableText value={post.content} components={proseComponents(isLight)} />
+              <PortableText value={contentBlocks} components={portableTextComponents(isLight)} />
             </article>
-          ) : post.contentHtml ? (
+          ) : htmlContent ? (
             <article className={proseClass(isLight)}>
-              <div className="article-html" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+              <div className="article-html" dangerouslySetInnerHTML={{ __html: htmlContent }} />
             </article>
           ) : (
             <article className={proseClass(isLight)}>
-              <p className="opacity-50 italic">Conteúdo completo não disponível na prévia.</p>
+              <p className="opacity-50 italic">Conteudo completo nao disponivel na previa.</p>
             </article>
           )}
 
@@ -517,7 +655,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
           )}
 
           <div
-            className={`mt-20 pt-10 border-t border-dashed text-center ${isLight ? "border-pink-200" : "border-white/10"}`}
+            className={`mt-20 pt-10 border-t border-dashed text-center ${isLight ? "border-pink-100" : "border-white/10"}`}
           >
             <p className={`text-sm font-medium uppercase tracking-widest opacity-50 flex items-center justify-center gap-2 ${textSecondary}`}>
               <Sparkles size={14} /> Fim da transmissão

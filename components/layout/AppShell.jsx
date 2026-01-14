@@ -111,7 +111,7 @@ export const AppShell = ({ children }) => {
       {children}
 
       <footer
-        className={`py-16 md:py-24 text-center border-t relative z-20 mt-10 ${
+        className={`py-16 md:py-24 text-center border-t relative z-20 ${
           theme === 'light'
             ? 'border-pink-200 bg-white/60 backdrop-blur-lg'
             : 'border-white/5 bg-black/60 backdrop-blur-lg'

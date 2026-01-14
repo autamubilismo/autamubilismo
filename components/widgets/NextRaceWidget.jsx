@@ -87,7 +87,7 @@ export const NextRaceWidget = ({ theme }) => {
   const countryFlag = getCountryFlag(nextRace.country);
 
   return (
-    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-y-auto ${isLight ? 'text-gray-800' : 'text-white'}`}>
+    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
       <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}>
         <Flag size={240} />
       </div>
@@ -125,7 +125,7 @@ export const NextRaceWidget = ({ theme }) => {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col gap-1 z-10">
+      <div className="flex-1 min-h-0 flex flex-col gap-1 z-10 overflow-hidden">
         {sessions.length > 0 ? sessions.map((session, i) => {
           const isRace = session.name.toLowerCase().includes('corrida');
           const isQuali = session.name.toLowerCase().includes('classificação');

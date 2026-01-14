@@ -71,7 +71,7 @@ export const NewsWidget = ({ theme, posts, onNewsClick }) => {
                   {item.category?.title || item.category || 'Geral'}
                 </span>
                 <span className={`text-[10px] font-bold opacity-50 ${isLight ? "text-gray-500" : "text-gray-400"}`}>
-                  {item.dateObj ? item.dateObj.toLocaleDateString('pt-BR', {day: '2-digit', month: 'short'}) : ''}
+                  {item.dateObj ? item.dateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', timeZone: 'UTC' }) : ''}
                 </span>
               </div>
 

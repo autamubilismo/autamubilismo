@@ -129,7 +129,7 @@ const portableTextComponents = (isLight) => ({
     h2: ({ children }) => (
       <h2 className={`text-2xl md:text-3xl font-bold mt-12 mb-6 leading-tight relative pb-3 ${
         isLight
-          ? 'text-gray-900 border-b-2 border-pink-200'
+          ? 'text-gray-900 border-b-2 border-pink-100'
           : 'text-white border-b-2 border-cyan-500/30'
       }`}>
         {children}
@@ -163,11 +163,11 @@ const portableTextComponents = (isLight) => ({
     ),
     normal: ({ children }) => {
       // Evita renderizar parágrafos vazios
-      if (!children || (Array.isArray(children) && children.every(c => c === '' || c === '\n'))) {
+      if (!children || (Array.isArray(children) && children.every((c) => c === '' || c === '\n'))) {
         return null;
       }
       return (
-        <p className={`mb-6 leading-[1.8] text-[17px] ${
+        <p className={`mb-6 leading-[1.9] text-[17px] md:text-[18px] tracking-[0.01em] ${
           isLight ? 'text-gray-700' : 'text-gray-300'
         }`}>
           {children}
@@ -177,14 +177,14 @@ const portableTextComponents = (isLight) => ({
   },
   list: {
     bullet: ({ children }) => (
-      <ul className={`my-6 pl-8 space-y-3 ${
+      <ul className={`my-6 pl-8 space-y-3 list-disc ${
         isLight ? 'text-gray-700' : 'text-gray-300'
       }`}>
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className={`my-6 pl-8 space-y-3 ${
+      <ol className={`my-6 pl-8 space-y-3 list-decimal ${
         isLight ? 'text-gray-700' : 'text-gray-300'
       }`}>
         {children}
@@ -231,11 +231,16 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
   const [post, setPost] = useState(initialPost || null);
   const [loading, setLoading] = useState(!initialPost);
   const [copied, setCopied] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
 
   const isLight = resolvedTheme === "light";
 
-  // URL para compartilhamento
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  // URL para compartilhamento (evita mismatch entre SSR e cliente)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setShareUrl(window.location.href);
+    }
+  }, []);
 
   // CORES E ESTILOS
   const textPrimary = isLight ? "text-gray-900" : "text-white";
@@ -259,10 +264,10 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
     : "bg-[#121217]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]";
     
   const badgeBg = isLight
-    ? "bg-gradient-to-r from-pink-200 to-purple-200 text-purple-900 shadow-sm"
+    ? "bg-gradient-to-r from-pink-100 to-purple-200 text-purple-900 shadow-sm"
     : "bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 text-cyan-300 border border-cyan-500/30";
   const tagBadge = isLight
-    ? "bg-white/80 text-pink-600 border border-pink-200"
+    ? "bg-white/80 text-pink-600 border border-pink-100"
     : "bg-black/40 text-cyan-300 border border-cyan-500/40";
 
   // FUNÇÃO DE COPIAR LINK
@@ -429,7 +434,7 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
       
       {/* Luz de Fundo Decorativa */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
+         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-pink-50/70' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
          <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
          {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
       </div>
@@ -449,7 +454,7 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
               {post.publishedAt && (
                 <span className="flex items-center gap-1.5">
                   <Calendar size={14} className={accentColor} />
-                  {new Date(post.publishedAt).toLocaleDateString("pt-BR", { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {new Date(post.publishedAt).toLocaleDateString("pt-BR", { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}
                 </span>
               )}
               <span className="flex items-center gap-1.5">
@@ -469,7 +474,7 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
           </h1>
 
           {/* BARRA DE INFO E COMPARTILHAMENTO */}
-          <div className={`flex flex-col sm:flex-row sm:items-center justify-between border-y py-6 gap-6 ${isLight ? 'border-pink-200/50' : 'border-white/10'}`}>
+          <div className={`flex flex-col sm:flex-row sm:items-center justify-between border-y py-6 gap-6 ${isLight ? 'border-pink-100/50' : 'border-white/10'}`}>
             {/* Autor */}
             <div className="flex items-center gap-4">
               <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm ${isLight ? "bg-white border border-pink-100 text-pink-500" : "bg-[#1a1a20] border border-white/10 text-cyan-400"}`}>
@@ -655,7 +660,7 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
           )}
 
           <div
-            className={`mt-20 pt-10 border-t border-dashed text-center ${isLight ? "border-pink-200" : "border-white/10"}`}
+            className={`mt-20 pt-10 border-t border-dashed text-center ${isLight ? "border-pink-100" : "border-white/10"}`}
           >
             <p className={`text-sm font-medium uppercase tracking-widest opacity-50 flex items-center justify-center gap-2 ${textSecondary}`}>
               <Sparkles size={14} /> Fim da transmissão
@@ -672,3 +677,4 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
 };
 
 export default NewsDetail;
+

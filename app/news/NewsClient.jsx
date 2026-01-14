@@ -50,7 +50,7 @@ const formatDate = (dateString) => {
   if (!dateString) return "";
   const date = new Date(dateString);
   return date
-    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })
+    .toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" })
     .replace(".", "") 
     .toUpperCase();
 };
@@ -145,7 +145,9 @@ export const NewsClient = ({ news }) => {
           </div>
         ) : (
           <div className="grid gap-8 md:grid-cols-2">
-            {items.map((item, index) => (
+            {items.map((item, index) => {
+              const imageSrc = item.image || item.imageUrl;
+              return (
               <BentoCard
                 key={item._id}
                 theme={resolvedTheme}
@@ -155,19 +157,19 @@ export const NewsClient = ({ news }) => {
                 }`}
               >
                 <div className={`flex flex-col ${index === 0 ? "lg:flex-row" : "flex-col"} gap-8 h-full relative z-10`}>
-                  {item.imageUrl && (
+                  {imageSrc && (
                     <div className={`relative overflow-hidden rounded-[2rem] bg-zinc-900 shrink-0 shadow-2xl transition-all duration-700 ${
                       index === 0 ? "w-full lg:w-3/5 h-[350px] lg:h-full" : "w-full h-64"
                     } ${!isLight && "border border-white/10"}`}>
                       <img
-                        src={item.imageUrl}
+                        src={imageSrc}
                         alt={item.title}
                         className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms] ease-out ${
                           !isLight && "opacity-80 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100"
                         }`}
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t transition-opacity duration-700 ${
-                        isLight 
+                        isLight
                           ? "from-black/50 to-transparent opacity-40 group-hover:opacity-20"
                           : "from-fuchsia-900/50 via-transparent to-transparent opacity-60 mix-blend-overlay"
                       }`} />
@@ -244,7 +246,8 @@ export const NewsClient = ({ news }) => {
                   </div>
                 </div>
               </BentoCard>
-            ))}
+            );
+            })}
           </div>
         )}
       </div>

@@ -130,7 +130,7 @@ export const SeasonWidget = ({ theme }) => {
       : `Round ${seasonStats.currentRound} de ${seasonStats.totalRaces}`;
 
   return (
-    <div className={`h-full flex flex-col justify-between p-6 md:p-8 relative overflow-y-auto text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
+    <div className={`h-full flex flex-col justify-between p-6 md:p-8 relative overflow-hidden text-left ${isLight ? 'text-gray-800' : 'text-white'}`}>
       <div
         className="absolute -right-10 -top-10 w-48 h-48 rounded-full opacity-10 blur-3xl pointer-events-none"
         style={{ background: isLight ? C.azul : C.neonCyan }}
@@ -181,7 +181,7 @@ export const SeasonWidget = ({ theme }) => {
         </div>
       </div>
 
-      <div className="flex-1 grid grid-cols-1 gap-4 z-10">
+      <div className="flex-1 min-h-0 grid grid-cols-1 gap-4 z-10 overflow-hidden">
         <div className={`rounded-3xl p-4 border flex flex-col justify-center ${boxClass}`}>
           <div className="flex items-center justify-between mb-3 px-1">
             <span className={`text-[9px] font-black uppercase tracking-[0.2em] opacity-50 ${isLight ? 'text-gray-600' : 'text-gray-400'}`}>

@@ -101,16 +101,18 @@ const CURIOSITIES_DATA = [
 export const CuriosityWidget = ({ theme }) => {
   const isLight = theme === 'light';
   const [isOpen, setIsOpen] = useState(false);
-  const [currentCuriosity, setCurrentCuriosity] = useState(null);
+  const [currentCuriosity, setCurrentCuriosity] = useState(CURIOSITIES_DATA[0] || null);
 
   // Selecionar uma curiosidade aleatória ao montar o componente ou atualizar a página
   useEffect(() => {
+    if (CURIOSITIES_DATA.length === 0) return;
     const randomCuriosity = CURIOSITIES_DATA[Math.floor(Math.random() * CURIOSITIES_DATA.length)];
     setCurrentCuriosity(randomCuriosity);
   }, []);
 
   // Função para pegar uma nova curiosidade aleatória
   const getNewCuriosity = () => {
+    if (CURIOSITIES_DATA.length === 0) return;
     const randomCuriosity = CURIOSITIES_DATA[Math.floor(Math.random() * CURIOSITIES_DATA.length)];
     setCurrentCuriosity(randomCuriosity);
   };
