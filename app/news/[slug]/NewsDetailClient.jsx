@@ -18,48 +18,7 @@ import {
 import { useSeoMeta } from "@/lib/useSeoMeta";
 import { client, urlFor } from "@/lib/sanity";
 import { useTheme } from "@/components/layout/ThemeContext";
-
-// --- CUSTOM PORTABLE TEXT RENDERER (Fixes crash issues) ---
-// This replaces the external library to ensure stability in this environment.
-const SimplePortableText = ({ value, components }) => {
-  if (!value || !Array.isArray(value)) return null;
-
-  return (
-    <>
-      {value.map((block, i) => {
-        // Handle Images
-        if (block._type === 'image' && components?.types?.image) {
-           return <React.Fragment key={block._key || i}>{components.types.image({ value: block })}</React.Fragment>;
-        }
-        
-        // Handle Text Blocks
-        if (block._type !== 'block' || !block.children) return null;
-
-        const children = block.children.map((span, idx) => {
-           let el = <span key={idx}>{span.text}</span>;
-           
-           // Apply basic styling marks (Bold, Italic)
-           if (span.marks && span.marks.length > 0) {
-              if (span.marks.includes('strong')) el = <strong key={idx} className="font-black">{el}</strong>;
-              if (span.marks.includes('em')) el = <em key={idx}>{el}</em>;
-              // Links would be handled here by looking up markDefs, simplified for stability
-           }
-           return el;
-        });
-
-        const style = block.style || 'normal';
-        switch (style) {
-          case 'h1': return <h1 key={i} className="text-3xl md:text-4xl font-black mt-8 mb-4">{children}</h1>;
-          case 'h2': return <h2 key={i} className="text-2xl md:text-3xl font-bold mt-8 mb-4">{children}</h2>;
-          case 'h3': return <h3 key={i} className="text-xl md:text-2xl font-bold mt-6 mb-3">{children}</h3>;
-          case 'h4': return <h4 key={i} className="text-lg font-bold mt-4 mb-2">{children}</h4>;
-          case 'blockquote': return <blockquote key={i} className="border-l-4 pl-4 italic my-6 opacity-80">{children}</blockquote>;
-          default: return <p key={i} className="mb-4 leading-relaxed">{children}</p>;
-        }
-      })}
-    </>
-  );
-};
+import { PortableText } from "@portabletext/react";
 
 // --- COMPONENTE INTERNO: BackButton ---
 const BackButton = ({ to = "/", theme }) => {
@@ -109,6 +68,46 @@ const proseComponents = (isLight) => ({
   },
 });
 
+const portableTextComponents = (isLight) => ({
+  types: {
+    image: proseComponents(isLight).types.image,
+  },
+  marks: {
+    link: ({ value, children }) => {
+      const href = value?.href || "#";
+      const blank = value?.blank;
+      return (
+        <a
+          href={href}
+          target={blank ? "_blank" : undefined}
+          rel={blank ? "noopener noreferrer" : undefined}
+          className="underline underline-offset-2"
+        >
+          {children}
+        </a>
+      );
+    },
+  },
+  block: {
+    h1: ({ children }) => <h1 className="text-3xl md:text-4xl font-black mt-8 mb-4">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-bold mt-8 mb-4">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-xl md:text-2xl font-bold mt-6 mb-3">{children}</h3>,
+    h4: ({ children }) => <h4 className="text-lg font-bold mt-4 mb-2">{children}</h4>,
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 pl-4 italic my-6 opacity-80">{children}</blockquote>
+    ),
+    normal: ({ children }) => <p className="mb-4 leading-relaxed">{children}</p>,
+  },
+  list: {
+    bullet: ({ children }) => <ul className="my-4 pl-6 list-disc">{children}</ul>,
+    number: ({ children }) => <ol className="my-4 pl-6 list-decimal">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="mb-2">{children}</li>,
+    number: ({ children }) => <li className="mb-2">{children}</li>,
+  },
+});
+
 // Ícone customizado do X (Twitter)
 const XIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -123,13 +122,13 @@ const FacebookIcon = ({ size = 18 }) => (
   </svg>
 );
 
-const NewsDetail = ({ slug: slugProp }) => {
+const NewsDetail = ({ slug: slugProp, initialPost }) => {
   const { theme } = useTheme();
   const resolvedTheme = theme || "light";
   const params = useParams();
   const slug = slugProp || params?.slug;
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [post, setPost] = useState(initialPost || null);
+  const [loading, setLoading] = useState(!initialPost);
   const [copied, setCopied] = useState(false);
 
   const isLight = resolvedTheme === "light";
@@ -161,6 +160,9 @@ const NewsDetail = ({ slug: slugProp }) => {
   const badgeBg = isLight
     ? "bg-gradient-to-r from-pink-200 to-purple-200 text-purple-900 shadow-sm"
     : "bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 text-cyan-300 border border-cyan-500/30";
+  const tagBadge = isLight
+    ? "bg-white/80 text-pink-600 border border-pink-200"
+    : "bg-black/40 text-cyan-300 border border-cyan-500/40";
 
   // FUNÇÃO DE COPIAR LINK
   const handleCopyLink = () => {
@@ -172,6 +174,11 @@ const NewsDetail = ({ slug: slugProp }) => {
 
   // FETCH NO SANITY
   useEffect(() => {
+    // Se já temos dados iniciais do servidor, não precisa fazer fetch
+    if (initialPost) {
+      return;
+    }
+
     // Simulação se não houver slug (para preview no Canvas)
     if (!slug) {
         setPost({
@@ -249,6 +256,13 @@ const NewsDetail = ({ slug: slugProp }) => {
               ...,
               "url": asset->url
             }
+          },
+          content[] {
+            ...,
+            _type == "image" => {
+              ...,
+              "url": asset->url
+            }
           }
         }`,
         { slug: normalizedSlug }
@@ -261,7 +275,7 @@ const NewsDetail = ({ slug: slugProp }) => {
         console.error("Erro ao carregar notícia:", err);
         setLoading(false);
       });
-  }, [slug]);
+  }, [slug, initialPost]);
 
   // ✅ SEO/OG no HEAD (browser)
   const ogTitle = post?.seo?.metaTitle || post?.title || "Autamubilismo";
@@ -274,6 +288,13 @@ const NewsDetail = ({ slug: slugProp }) => {
     url: shareUrl,
     type: "article",
   });
+
+  const contentBlocks =
+    Array.isArray(post?.body) && post.body.length
+      ? post.body
+      : Array.isArray(post?.content) && post.content.length
+      ? post.content
+      : null;
 
   // LOADING
   if (loading) {
@@ -478,12 +499,25 @@ const NewsDetail = ({ slug: slugProp }) => {
             </div>
           )}
 
+          {Array.isArray(post.tags) && post.tags.length > 0 && (
+            <div className="mb-10 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${tagBadge}`}
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+
           {/* Conteúdo do Sanity (SimplePortableText) */}
           <article className={proseClass(isLight)}>
-            {post.body ? (
-              <SimplePortableText value={post.body} components={proseComponents(isLight)} />
+            {contentBlocks ? (
+              <PortableText value={contentBlocks} components={portableTextComponents(isLight)} />
             ) : (
-              <p className="opacity-50 italic">Conteúdo completo não disponível na prévia.</p>
+              <p className="opacity-50 italic">Conteudo completo nao disponivel na previa.</p>
             )}
           </article>
 

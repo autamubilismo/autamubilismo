@@ -3,33 +3,62 @@ import { sanityClient } from '@/lib/sanityClient';
 
 const siteUrl = 'https://autamubilismo.com';
 
-export async function generateMetadata({ params }) {
-  const slugParam = params?.slug ? decodeURIComponent(params.slug) : '';
-  const query = `*[_type == "news" && (
+// Query reutilizável para buscar a notícia
+const getNewsQuery = (slug) => {
+  return sanityClient.fetch(
+    `*[_type == "news" && (
       slug.current == $slug ||
       _id == $slug ||
       string::lower(slug.current) == string::lower($slug)
     )][0]{
-    title,
-    "slug": slug.current,
-    excerpt,
-    publishedAt,
-    author,
-    category,
-    "image": coalesce(image.asset->url, mainImage.asset->url),
-    seo{
-      metaTitle,
-      metaDescription,
-      ogTitle,
-      ogDescription,
-      "ogImage": ogImage.asset->url
-    }
-  }`;
+      _id,
+      title,
+      "slug": slug.current,
+      "image": coalesce(mainImage.asset->url, image.asset->url),
+      "mainImage": mainImage{
+        ...,
+        asset->
+      },
+      excerpt,
+      category,
+      author,
+      publishedAt,
+      "source": sourceLabel,
+      sourceUrl,
+      tags,
+      seo{
+        metaTitle,
+        metaDescription,
+        ogTitle,
+        ogDescription,
+        "ogImage": ogImage.asset->url
+      },
+      body[] {
+        ...,
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
+      },
+      content[] {
+        ...,
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
+      }
+    }`,
+    { slug: decodeURIComponent(slug) }
+  );
+};
+
+export async function generateMetadata({ params }) {
+  const slugParam = params?.slug ? decodeURIComponent(params.slug) : '';
 
   let post = null;
   if (slugParam) {
     try {
-      post = await sanityClient.fetch(query, { slug: slugParam });
+      post = await getNewsQuery(slugParam);
     } catch (error) {
       console.error('Erro ao carregar metadata da noticia:', error);
     }
@@ -39,7 +68,16 @@ export async function generateMetadata({ params }) {
   const description = post?.seo?.metaDescription || post?.excerpt || 'As ultimas noticias de automobilismo.';
   const ogTitle = post?.seo?.ogTitle || title;
   const ogDescription = post?.seo?.ogDescription || description;
-  const image = post?.seo?.ogImage || post?.image || `${siteUrl}/og-default.png`;
+
+  // Garante URL absoluta da imagem
+  let image = post?.seo?.ogImage || post?.image;
+  if (image && !image.startsWith('http')) {
+    image = `${siteUrl}${image}`;
+  }
+  if (!image) {
+    image = `${siteUrl}/og-default.png`;
+  }
+
   const slug = post?.slug || slugParam;
   const url = `${siteUrl}/news/${encodeURIComponent(slug || '')}`;
 
@@ -60,6 +98,8 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: image,
+          width: 1200,
+          height: 630,
           alt: title,
         },
       ],
@@ -72,10 +112,24 @@ export async function generateMetadata({ params }) {
       title: ogTitle,
       description: ogDescription,
       images: [image],
+      site: '@autamubilismo',
+      creator: '@autamubilismo',
     },
   };
 }
 
-export default function NewsItemPage({ params }) {
-  return <NewsDetail slug={params?.slug} />;
+// Fetch dos dados no servidor
+export default async function NewsItemPage({ params }) {
+  const slugParam = params?.slug ? decodeURIComponent(params.slug) : '';
+
+  let initialPost = null;
+  if (slugParam) {
+    try {
+      initialPost = await getNewsQuery(slugParam);
+    } catch (error) {
+      console.error('Erro ao carregar noticia:', error);
+    }
+  }
+
+  return <NewsDetail slug={params?.slug} initialPost={initialPost} />;
 }
