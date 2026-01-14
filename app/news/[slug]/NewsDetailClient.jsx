@@ -88,30 +88,108 @@ const portableTextComponents = (isLight) => ({
           href={href}
           target={blank ? "_blank" : undefined}
           rel={blank ? "noopener noreferrer" : undefined}
-          className="underline underline-offset-2"
+          className={`underline underline-offset-2 font-medium transition-colors ${
+            isLight ? 'text-purple-600 hover:text-purple-700' : 'text-fuchsia-400 hover:text-fuchsia-300'
+          }`}
         >
           {children}
         </a>
       );
     },
+    strong: ({ children }) => (
+      <strong className={isLight ? 'text-pink-600 font-bold' : 'text-cyan-400 font-bold'}>
+        {children}
+      </strong>
+    ),
   },
   block: {
-    h1: ({ children }) => <h1 className="text-3xl md:text-4xl font-black mt-10 mb-6 leading-tight">{children}</h1>,
-    h2: ({ children }) => <h2 className="text-2xl md:text-3xl font-bold mt-10 mb-6 leading-tight">{children}</h2>,
-    h3: ({ children }) => <h3 className="text-xl md:text-2xl font-bold mt-8 mb-4 leading-tight">{children}</h3>,
-    h4: ({ children }) => <h4 className="text-lg md:text-xl font-bold mt-6 mb-3 leading-tight">{children}</h4>,
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-4 pl-6 italic my-8 opacity-80 text-lg">{children}</blockquote>
+    h1: ({ children }) => (
+      <h1 className={`text-3xl md:text-4xl font-black mt-12 mb-6 leading-tight ${
+        isLight ? 'text-gray-900' : 'text-white'
+      }`}>
+        {children}
+      </h1>
     ),
-    normal: ({ children }) => <p className="mb-6 leading-relaxed text-[17px]">{children}</p>,
+    h2: ({ children }) => (
+      <h2 className={`text-2xl md:text-3xl font-bold mt-12 mb-6 leading-tight relative pb-3 ${
+        isLight
+          ? 'text-gray-900 border-b-2 border-pink-200'
+          : 'text-white border-b-2 border-cyan-500/30'
+      }`}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className={`text-xl md:text-2xl font-bold mt-10 mb-4 leading-tight ${
+        isLight ? 'text-gray-800' : 'text-gray-100'
+      }`}>
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className={`text-lg md:text-xl font-bold mt-8 mb-3 leading-tight ${
+        isLight ? 'text-gray-700' : 'text-gray-200'
+      }`}>
+        {children}
+      </h4>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className={`relative border-l-4 pl-6 pr-6 py-4 my-10 italic text-lg leading-relaxed rounded-r-2xl ${
+        isLight
+          ? 'bg-pink-50/70 border-pink-400 text-gray-700'
+          : 'bg-white/5 border-cyan-500 text-gray-300'
+      }`}>
+        <span className={`absolute -left-2 top-2 text-6xl opacity-20 ${
+          isLight ? 'text-pink-400' : 'text-cyan-500'
+        }`}>"</span>
+        {children}
+      </blockquote>
+    ),
+    normal: ({ children }) => {
+      // Evita renderizar parágrafos vazios
+      if (!children || (Array.isArray(children) && children.every(c => c === '' || c === '\n'))) {
+        return null;
+      }
+      return (
+        <p className={`mb-6 leading-[1.8] text-[17px] ${
+          isLight ? 'text-gray-700' : 'text-gray-300'
+        }`}>
+          {children}
+        </p>
+      );
+    },
   },
   list: {
-    bullet: ({ children }) => <ul className="my-4 pl-6 list-disc">{children}</ul>,
-    number: ({ children }) => <ol className="my-4 pl-6 list-decimal">{children}</ol>,
+    bullet: ({ children }) => (
+      <ul className={`my-6 pl-8 space-y-3 ${
+        isLight ? 'text-gray-700' : 'text-gray-300'
+      }`}>
+        {children}
+      </ul>
+    ),
+    number: ({ children }) => (
+      <ol className={`my-6 pl-8 space-y-3 ${
+        isLight ? 'text-gray-700' : 'text-gray-300'
+      }`}>
+        {children}
+      </ol>
+    ),
   },
   listItem: {
-    bullet: ({ children }) => <li className="mb-2">{children}</li>,
-    number: ({ children }) => <li className="mb-2">{children}</li>,
+    bullet: ({ children }) => (
+      <li className={`leading-relaxed ${
+        isLight ? 'marker:text-pink-400' : 'marker:text-cyan-400'
+      }`}>
+        {children}
+      </li>
+    ),
+    number: ({ children }) => (
+      <li className={`leading-relaxed ${
+        isLight ? 'marker:text-pink-400 marker:font-bold' : 'marker:text-cyan-400 marker:font-bold'
+      }`}>
+        {children}
+      </li>
+    ),
   },
 });
 
