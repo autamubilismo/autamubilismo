@@ -94,6 +94,13 @@ const sharedFields = [
     fields: [{ name: 'alt', title: 'Texto alternativo', type: 'string' }],
   },
   sharedBodyField,
+  {
+    name: 'content',
+    title: 'Conteudo (Legacy - nao usar)',
+    type: 'array',
+    hidden: true,
+    of: [{ type: 'block' }],
+  },
   { name: 'sourceLabel', title: 'Nome da fonte', type: 'string' },
   {
     name: 'sourceUrl',

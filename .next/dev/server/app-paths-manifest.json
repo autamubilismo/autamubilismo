@@ -1,5 +1,0 @@
-{
-  "/api/ergast/route": "app/api/ergast/route.js",
-  "/page": "app/page.js",
-  "/studio/[[...index]]/page": "app/studio/[[...index]]/page.js"
-}

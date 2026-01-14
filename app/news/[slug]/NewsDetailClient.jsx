@@ -101,6 +101,22 @@ const portableTextComponents = (isLight) => ({
         {children}
       </strong>
     ),
+    em: ({ children }) => (
+      <em className="italic">{children}</em>
+    ),
+    code: ({ children }) => (
+      <code className={`px-1.5 py-0.5 rounded text-sm font-mono ${
+        isLight ? 'bg-pink-100 text-pink-700' : 'bg-cyan-900/30 text-cyan-300'
+      }`}>
+        {children}
+      </code>
+    ),
+    underline: ({ children }) => (
+      <span className="underline underline-offset-2">{children}</span>
+    ),
+    'strike-through': ({ children }) => (
+      <span className="line-through opacity-70">{children}</span>
+    ),
   },
   block: {
     h1: ({ children }) => (

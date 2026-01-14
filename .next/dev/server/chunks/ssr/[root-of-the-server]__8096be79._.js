@@ -100,7 +100,7 @@ async function getLatestContent() {
       title,
       "slug": slug.current,
       excerpt,
-      "image": image.asset->url,
+      "image": coalesce(mainImage.asset->url, image.asset->url),
       "category": coalesce(category->title, category, "Geral"),
       publishedAt,
       _createdAt
@@ -112,7 +112,7 @@ async function getLatestContent() {
       title,
       "slug": slug.current,
       excerpt,
-      "image": coalesce(image.asset->url, mainImage.asset->url),
+      "image": coalesce(mainImage.asset->url, image.asset->url),
       "category": coalesce(category->title, category, "Opiniao"),
       publishedAt,
       _createdAt
