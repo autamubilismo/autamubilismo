@@ -53,7 +53,9 @@ const getNewsQuery = (slug) => {
 };
 
 export async function generateMetadata({ params }) {
-  const slugParam = params?.slug ? decodeURIComponent(params.slug) : '';
+  // Em Next.js 15+, params é uma Promise
+  const resolvedParams = await params;
+  const slugParam = resolvedParams?.slug ? decodeURIComponent(resolvedParams.slug) : '';
 
   let post = null;
   if (slugParam) {
@@ -120,7 +122,9 @@ export async function generateMetadata({ params }) {
 
 // Fetch dos dados no servidor
 export default async function NewsItemPage({ params }) {
-  const slugParam = params?.slug ? decodeURIComponent(params.slug) : '';
+  // Em Next.js 15+, params é uma Promise
+  const resolvedParams = await params;
+  const slugParam = resolvedParams?.slug ? decodeURIComponent(resolvedParams.slug) : '';
 
   let initialPost = null;
   if (slugParam) {
@@ -131,5 +135,5 @@ export default async function NewsItemPage({ params }) {
     }
   }
 
-  return <NewsDetail slug={params?.slug} initialPost={initialPost} />;
+  return <NewsDetail slug={resolvedParams?.slug} initialPost={initialPost} />;
 }
