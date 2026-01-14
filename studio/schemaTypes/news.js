@@ -3,7 +3,59 @@ const sharedBodyField = {
   title: 'Conteudo',
   type: 'array',
   of: [
-    { type: 'block' },
+    {
+      type: 'block',
+      // Estilos de bloco (aplica ao bloco inteiro - parágrafo)
+      styles: [
+        { title: 'Normal', value: 'normal' },
+        { title: 'H1', value: 'h1' },
+        { title: 'H2', value: 'h2' },
+        { title: 'H3', value: 'h3' },
+        { title: 'H4', value: 'h4' },
+        { title: 'Quote', value: 'blockquote' },
+      ],
+      // Listas
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' },
+      ],
+      // Marcações inline (aplica só ao texto selecionado)
+      marks: {
+        // Decoradores (simples)
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          { title: 'Code', value: 'code' },
+          { title: 'Underline', value: 'underline' },
+          { title: 'Strike', value: 'strike-through' },
+        ],
+        // Anotações (com dados)
+        annotations: [
+          {
+            name: 'link',
+            type: 'object',
+            title: 'Link',
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                title: 'URL',
+                validation: Rule => Rule.uri({
+                  allowRelative: true,
+                  scheme: ['http', 'https', 'mailto', 'tel']
+                })
+              },
+              {
+                name: 'blank',
+                type: 'boolean',
+                title: 'Abrir em nova aba',
+                initialValue: true
+              }
+            ]
+          }
+        ]
+      }
+    },
     {
       type: 'image',
       options: { hotspot: true },
