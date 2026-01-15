@@ -171,37 +171,37 @@ export const HomeClient = ({ news = [], articles = [] }) => {
             </BentoCard>
           </div>
 
-          <div className="lg:col-span-1 lg:row-span-2 lg:col-start-1 lg:row-start-2">
+          <div className="order-4 lg:col-span-1 lg:row-span-2 lg:col-start-1 lg:row-start-2">
             <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
               <SeasonWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="lg:col-span-1 lg:col-start-2 lg:row-start-2">
+          <div className="order-5 lg:col-span-1 lg:col-start-2 lg:row-start-2">
             <BentoCard theme={theme} className="h-full flex items-center justify-center min-h-[200px]">
               <FanzoneWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="lg:col-span-1 lg:col-start-3 lg:row-start-2">
+          <div className="order-6 lg:col-span-1 lg:col-start-3 lg:row-start-2">
             <BentoCard theme={theme} className="h-full flex items-center justify-center min-h-[200px]" noPadding>
               <CuriosityWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="lg:col-span-1 lg:col-start-4 lg:row-start-2">
+          <div className="order-7 lg:col-span-1 lg:col-start-4 lg:row-start-2">
             <BentoCard theme={theme} className="h-full min-h-[200px]" noPadding>
               <CountdownWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="lg:col-span-1 lg:col-start-2 lg:row-start-3">
+          <div className="order-8 lg:col-span-1 lg:col-start-2 lg:row-start-3">
             <BentoCard theme={theme} className="h-full flex items-center justify-center min-h-[200px]" to="/contact" noPadding>
               <ContactWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="md:col-span-2 lg:col-span-2 lg:col-start-3 lg:row-start-3">
+          <div className="order-9 md:col-span-2 lg:col-span-2 lg:col-start-3 lg:row-start-3">
             <BentoCard theme={theme} className="h-full min-h-[200px]" noPadding>
               <NewsletterWidget theme={theme} />
             </BentoCard>
