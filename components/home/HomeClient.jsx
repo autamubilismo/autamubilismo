@@ -147,8 +147,8 @@ export const HomeClient = ({ news = [], articles = [] }) => {
             </BentoCard>
           </div>
 
-          {/* Driver of the Day - Ordem 3 no mobile */}
-          <div className="order-3 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-1">
+          {/* Driver of the Day - Ordem 5 no mobile (abaixo do SeasonWidget) */}
+          <div className="order-5 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-1">
             <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
               <div className="h-full flex flex-col p-4 gap-3">
                 <div className="flex items-center justify-between px-1">
@@ -171,13 +171,13 @@ export const HomeClient = ({ news = [], articles = [] }) => {
             </BentoCard>
           </div>
 
-          <div className="order-4 lg:col-span-1 lg:row-span-2 lg:col-start-1 lg:row-start-2">
+          <div className="order-3 lg:col-span-1 lg:row-span-2 lg:col-start-1 lg:row-start-2">
             <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
               <SeasonWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="order-5 lg:col-span-1 lg:col-start-2 lg:row-start-2">
+          <div className="order-4 lg:col-span-1 lg:col-start-2 lg:row-start-2">
             <BentoCard theme={theme} className="h-full flex items-center justify-center min-h-[200px]">
               <FanzoneWidget theme={theme} />
             </BentoCard>
