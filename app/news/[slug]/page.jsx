@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
     image = `${siteUrl}${image}`;
   }
   if (!image) {
-    image = `${siteUrl}/og-default.png`;
+    image = `${siteUrl}/og-default-v2.png`;
   }
 
   const slug = post?.slug || slugParam;

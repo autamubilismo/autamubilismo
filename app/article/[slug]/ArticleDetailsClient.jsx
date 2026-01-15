@@ -365,7 +365,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
 
   const ogTitle = post?.seo?.metaTitle || post?.title || "Autamubilismo";
   const ogDesc = post?.seo?.metaDescription || post?.excerpt || "";
-  const ogImage = post?.seo?.ogImage || post?.image || "https://www.autamubilismo.com/og-default.png";
+  const ogImage = post?.seo?.ogImage || post?.image || "https://www.autamubilismo.com/og-default-v2.png";
 
   useSeoMeta({
     title: ogTitle,

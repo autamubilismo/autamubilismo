@@ -39,7 +39,7 @@ export async function generateMetadata({ params }) {
   const description = post?.seo?.metaDescription || post?.excerpt || 'Artigos e analises de automobilismo.';
   const ogTitle = post?.seo?.ogTitle || title;
   const ogDescription = post?.seo?.ogDescription || description;
-  const image = post?.seo?.ogImage || post?.image || `${siteUrl}/og-default.png`;
+  const image = post?.seo?.ogImage || post?.image || `${siteUrl}/og-default-v2.png`;
   const slug = post?.slug || slugParam;
   const url = `${siteUrl}/article/${encodeURIComponent(slug || '')}`;
 

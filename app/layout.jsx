@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: "Autamubilismo — Fórmula 1, automobilismo e cultura do paddock",
     description: "Autamubilismo é um espaço independente de Fórmula 1 e automobilismo, criado para informar, contextualizar e acolher. Mais do que notícias: história, dados, fandoms e paixão.",
-    images: ["/og-default.png"],
+    images: ["/og-default-v2.png"],
   },
 };
 
