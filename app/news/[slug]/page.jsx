@@ -66,7 +66,7 @@ export async function generateMetadata({ params }) {
     }
   }
 
-  const title = post?.seo?.metaTitle || post?.title || 'Autamubilismo';
+  const title = post?.seo?.metaTitle || post?.title || 'Autamubilismo — Fórmula 1, automobilismo e cultura do paddock';
   const description = post?.seo?.metaDescription || post?.excerpt || 'As ultimas noticias de automobilismo.';
   const ogTitle = post?.seo?.ogTitle || title;
   const ogDescription = post?.seo?.ogDescription || description;

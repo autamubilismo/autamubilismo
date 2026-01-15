@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "autamubilismo - Noticias e Artigos",
-  description: "As ultimas noticias e artigos sobre automobilismo",
+  title: "Autamubilismo — Fórmula 1, automobilismo e cultura do paddock",
+  description: "Autamubilismo é um espaço independente de Fórmula 1 e automobilismo, criado para informar, contextualizar e acolher. Mais do que notícias: história, dados, fandoms e paixão.",
   openGraph: {
-    title: "autamubilismo",
-    description: "As ultimas noticias e artigos sobre automobilismo",
+    title: "Autamubilismo — Fórmula 1, automobilismo e cultura do paddock",
+    description: "Autamubilismo é um espaço independente de Fórmula 1 e automobilismo, criado para informar, contextualizar e acolher. Mais do que notícias: história, dados, fandoms e paixão.",
     images: ["/og-default.png"],
   },
 };
