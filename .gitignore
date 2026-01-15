@@ -42,3 +42,11 @@ dist
 # Next.js
 .next/
 out/
+
+.vercel
+.env*.local
+
+# Temporary files
+tmpclaude-*
+nul
+MOBILE_OPTIMIZATIONS.md

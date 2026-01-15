@@ -123,8 +123,8 @@ export const HomeClient = ({ news = [], articles = [] }) => {
         </div>
       )}
 
-      <main className="flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:auto-rows-auto">
+      <main className="flex-1 max-w-[1400px] mx-auto px-4 py-6 md:p-8 relative z-10 w-full safe-padding">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 auto-rows-[minmax(200px,auto)] lg:auto-rows-auto">
           {/* NewsWidget - Ordem 1 no mobile */}
           <div className="order-1 md:col-span-2 lg:col-span-2 lg:row-span-1 lg:col-start-3 lg:row-start-1">
             <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
