@@ -25,6 +25,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
+      <head>
+        <meta charSet="UTF-8" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AppShellWrapper>{children}</AppShellWrapper>
       </body>

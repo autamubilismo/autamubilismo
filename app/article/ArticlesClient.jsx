@@ -37,7 +37,7 @@ export const ArticlesClient = ({ posts }) => {
             </span>
           </>
         }
-        subtitle="AnÇ­lises aprofundadas, opiniÇæes radicais e tudo que precisa de mais espaÇõo do que um simples tweet."
+        subtitle="Análises aprofundadas, opiniões radicais e tudo que precisa de mais espaço do que um simples tweet."
       />
 
       {items.length === 0 ? (

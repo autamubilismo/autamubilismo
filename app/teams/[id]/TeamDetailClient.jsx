@@ -71,15 +71,15 @@ const TeamDetailClient = ({ id }) => {
     );
   }
 
-  // LÇügica da Imagem
+  // Lógica da Imagem
   const teamFolder = normalizeSlug(team.id || team.name || '');
-  const carImage = `/img/equipes/${teamFolder}/carro-${teamFolder}.avif`; 
+  const carImage = `/img/equipes/${teamFolder}/carro-${teamFolder}.avif`;
 
-  // Estilos DinÇ½micos Baseados no Tema
+  // Estilos Dinâmicos Baseados no Tema
   const textColor = isLight ? 'text-gray-900' : 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]';
   const subText = isLight ? 'text-gray-500' : 'text-cyan-200/60';
-  
-  // Estilo dos CartÇæes (Vidro/Neon)
+
+  // Estilo dos Cartões (Vidro/Neon)
   const cardClass = isLight
     ? 'bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-[0_4px_20px_rgba(236,72,153,0.1)] border border-white hover:shadow-[0_8px_30px_rgba(236,72,153,0.2)]'
     : 'bg-[#121217]/60 backdrop-blur-xl rounded-[2rem] border border-white/5 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(0,255,255,0.1)]';
@@ -187,7 +187,7 @@ const TeamDetailClient = ({ id }) => {
           </div>
         </div>
 
-        {/* --- GRID DE INFORMAÇÎÇES --- */}
+        {/* --- GRID DE INFORMAÇÕES --- */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
             {/* 1. PILOTOS */}
@@ -227,7 +227,7 @@ const TeamDetailClient = ({ id }) => {
               </div>
             </div>
 
-            {/* 2. ESTATÇ?STICAS TÇ%CNICAS */}
+            {/* 2. ESTATÍSTICAS TÉCNICAS */}
             <div className={`lg:col-span-1 p-8 md:p-10 ${cardClass} flex flex-col justify-center`}>
               <h3 className={`text-lg font-black uppercase tracking-wide mb-8 flex items-center gap-2 opacity-70 ${textColor}`}>
                   <Settings size={18} /> Tech Specs
@@ -267,7 +267,7 @@ const TeamDetailClient = ({ id }) => {
               </div>
               <h3 className={`text-3xl font-black mb-4 uppercase tracking-tighter ${textColor}`}>A Garagem</h3>
               <p className={`text-lg md:text-xl leading-relaxed max-w-4xl font-medium ${subText}`}>
-                  {team.bio || `A equipe ${team.name} Ç¸ uma das forÇõas mais icÇïnicas do grid atual. Com sede em ${team.base || 'diversos locais'}, eles buscam dominar a temporada combinando inovaÇõÇœo aerodinÇ½mica e a potÇ¦ncia do motor ${team.engine}.`}
+                  {team.bio || `A equipe ${team.name} é uma das forças mais icônicas do grid atual. Com sede em ${team.base || 'diversos locais'}, eles buscam dominar a temporada combinando inovação aerodinâmica e a potência do motor ${team.engine}.`}
               </p>
             </div>
         </div>

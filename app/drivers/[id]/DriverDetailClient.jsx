@@ -43,24 +43,24 @@ const DriverDetailClient = ({ id }) => {
     return driverId === normalizedId || driverSlug === normalizedId;
   });
 
-  // Fallback caso nÇœo encontre o piloto
+  // Fallback caso não encontre o piloto
   if (!driver) {
     return (
       <div className={`min-h-screen flex flex-col items-center justify-center text-center p-6 ${isLight ? 'bg-[#FFF5F8]' : 'bg-[#050510]'}`}>
          <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-6 ${isLight ? 'bg-pink-100' : 'bg-white/10'}`}>
             <Zap size={40} className={isLight ? 'text-pink-500' : 'text-cyan-400'} />
          </div>
-         <h2 className={`text-4xl font-black uppercase tracking-tighter ${isLight ? 'text-gray-800' : 'text-white'}`}>Piloto nÇœo encontrado</h2>
+         <h2 className={`text-4xl font-black uppercase tracking-tighter ${isLight ? 'text-gray-800' : 'text-white'}`}>Piloto não encontrado</h2>
          <Link href="/drivers" className={`mt-6 px-8 py-3 rounded-full font-bold transition-all shadow-lg ${isLight ? 'bg-pink-500 text-white hover:bg-pink-600 shadow-pink-200' : 'bg-cyan-500 text-black hover:bg-cyan-400 shadow-cyan-500/50'}`}>Voltar ao Grid</Link>
       </div>
     );
   }
 
-  // LÇügica de imagem e nome (Preservada da sua configuraÇõÇœo)
+  // Lógica de imagem e nome (Preservada da sua configuração)
   const surname = driver.name.split(" ").slice(-1)[0].toLowerCase();
   const fullBodyUrl = `/img/pilotos/${surname}/corpo-${surname}.avif`;
 
-  // --- CONFIGURAÇÎÇŸO DE ESTILO (GIRLIE vs VAPORWAVE) ---
+  // --- CONFIGURAÇÃO DE ESTILO (GIRLIE vs VAPORWAVE) ---
   
   // Backgrounds
   const bgStyle = isLight 
@@ -119,10 +119,10 @@ const DriverDetailClient = ({ id }) => {
                className={`relative rounded-[3.5rem] overflow-hidden h-[550px] lg:h-[820px] w-full sticky top-8 transition-all duration-700 group ${isLight ? 'shadow-2xl shadow-pink-200/50 ring-4 ring-white/50' : 'shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/5 ring-1 ring-white/10'}`}
                style={{ backgroundColor: driver.color }}
              >
-                {/* Overlay EstÇ¸tico */}
+                {/* Overlay Estético */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-black/20 mix-blend-overlay" />
-                
-                {/* NÇ§mero Gigante Ghost */}
+
+                {/* Número Gigante Ghost */}
                 <span className={`absolute -bottom-10 -right-10 text-[18rem] font-black select-none leading-none transform rotate-12 group-hover:rotate-0 transition-transform duration-1000 ${isLight ? 'text-white/20' : 'text-white/10'}`}>
                   {driver.number}
                 </span>
@@ -148,7 +148,7 @@ const DriverDetailClient = ({ id }) => {
              </div>
           </div>
 
-          {/* --- DADOS E CONTEÇsDO --- */}
+          {/* --- DADOS E CONTEÚDO --- */}
           <div className="lg:col-span-7 xl:col-span-8 order-1 lg:order-2 flex flex-col gap-8">
               
               {/* Header Section (Desktop) */}
@@ -172,22 +172,22 @@ const DriverDetailClient = ({ id }) => {
 
               {/* Stats Grid - Aesthetic Style */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                 {/* Card PÇüdios */}
+                 {/* Card Pódios */}
                  <div className={`p-6 rounded-[2rem] ${cardBg} group hover:-translate-y-1 transition-all duration-300`}>
                     <div className={`w-10 h-10 rounded-2xl flex items-center justify-center mb-6 ${isLight ? 'bg-yellow-50' : 'bg-yellow-400/10'}`}>
                        <Trophy size={20} className={isLight ? 'text-yellow-500' : 'text-yellow-400'} />
                     </div>
                     <span className={`block text-3xl font-black tracking-tighter ${textColor}`}>{driver.stats?.podiums || '0'}</span>
-                    <span className={`text-[9px] uppercase tracking-[0.2em] ${textSub}`}>PÇüdios</span>
+                    <span className={`text-[9px] uppercase tracking-[0.2em] ${textSub}`}>Pódios</span>
                  </div>
 
-                 {/* Card ExperiÇ¦ncia */}
+                 {/* Card Experiência */}
                  <div className={`p-6 rounded-[2rem] ${cardBg} group hover:-translate-y-1 transition-all duration-300`}>
                     <div className={`w-10 h-10 rounded-2xl flex items-center justify-center mb-6 ${isLight ? 'bg-blue-50' : 'bg-blue-400/10'}`}>
                        <Flag size={20} className={isLight ? 'text-blue-500' : 'text-[#00fff2]'} />
                     </div>
                     <span className={`block text-3xl font-black tracking-tighter ${textColor}`}>{driver.stats?.xp || 'Rookie'}</span>
-                    <span className={`text-[9px] uppercase tracking-[0.2em] ${textSub}`}>ExperiÇ¦ncia</span>
+                    <span className={`text-[9px] uppercase tracking-[0.2em] ${textSub}`}>Experiência</span>
                  </div>
 
                  {/* Card Melhor Resultado */}
@@ -199,7 +199,7 @@ const DriverDetailClient = ({ id }) => {
                     <span className={`text-[9px] uppercase tracking-[0.2em] ${textSub}`}>Melhor Res.</span>
                  </div>
 
-                 {/* Card NÇ§mero (Colorido) */}
+                 {/* Card Número (Colorido) */}
                  <div className="p-6 rounded-[2rem] shadow-xl group hover:-translate-y-1 transition-all duration-300 relative overflow-hidden flex flex-col justify-between" style={{ backgroundColor: driver.color }}>
                     <div className="absolute -top-4 -right-4 text-8xl font-black text-white/20">#</div>
                     <div className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-6">
@@ -207,7 +207,7 @@ const DriverDetailClient = ({ id }) => {
                     </div>
                     <div>
                      <span className="block text-3xl font-black tracking-tighter text-white">{driver.number}</span>
-                     <span className="text-[9px] uppercase tracking-[0.2em] text-white/80">NÇ§mero</span>
+                     <span className="text-[9px] uppercase tracking-[0.2em] text-white/80">Número</span>
                     </div>
                  </div>
               </div>
@@ -222,7 +222,7 @@ const DriverDetailClient = ({ id }) => {
                  </h3>
                  
                  <p className={`text-xl leading-relaxed font-medium ${isLight ? 'text-gray-600' : 'text-gray-300'}`}>
-                   {driver.bio || "A histÇüria deste piloto na pista estÇ­ sendo escrita. Conhecido por sua determinaÇõÇœo e estilo Ç§nico de pilotagem."}
+                   {driver.bio || "A história deste piloto na pista está sendo escrita. Conhecido por sua determinação e estilo único de pilotagem."}
                  </p>
                  
                  <div className="mt-12 pt-8 border-t border-white/10 flex justify-end">
@@ -250,7 +250,7 @@ const DriverDetailClient = ({ id }) => {
                            )
                        })}
                        {(!driver.vibes || driver.vibes.length === 0) && (
-                         <span className="text-xs opacity-50 italic">Vibes nÇœo definidas.</span>
+                         <span className="text-xs opacity-50 italic">Vibes não definidas.</span>
                        )}
                     </div>
                  </div>
@@ -260,7 +260,7 @@ const DriverDetailClient = ({ id }) => {
                     <Zap className={`absolute -top-4 -right-4 w-32 h-32 opacity-10 rotate-12 transition-transform group-hover:scale-110 duration-700 ${isLight ? 'text-white' : 'text-fuchsia-500'}`} />
                     <h4 className={`text-[10px] font-black uppercase tracking-[0.4em] mb-4 opacity-50 ${!isLight && 'text-fuchsia-300'}`}>Curiosidade</h4>
                     <p className={`text-2xl font-black leading-tight tracking-tighter uppercase italic relative z-10 ${!isLight && 'text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400'}`}>
-                      "{driver.secretFact || "Um segredo guardado nas curvas mais rÇ­pidas do mundo..."}"
+                      "{driver.secretFact || "Um segredo guardado nas curvas mais rápidas do mundo..."}"
                     </p>
                  </div>
               </div>
