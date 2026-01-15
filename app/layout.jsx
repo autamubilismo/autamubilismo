@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: "autamubilismo",
     description: "As ultimas noticias e artigos sobre automobilismo",
-    images: ["/og-default.jpg"],
+    images: ["/og-default.png"],
   },
 };
 
