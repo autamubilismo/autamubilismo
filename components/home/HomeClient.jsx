@@ -125,13 +125,30 @@ export const HomeClient = ({ news = [], articles = [] }) => {
 
       <main className="flex-1 max-w-[1400px] mx-auto p-4 md:p-8 relative z-10 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[minmax(200px,auto)] lg:auto-rows-auto">
-          <div className="md:col-span-2 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-1">
+          {/* NewsWidget - Ordem 1 no mobile */}
+          <div className="order-1 md:col-span-2 lg:col-span-2 lg:row-span-1 lg:col-start-3 lg:row-start-1">
+            <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
+              <NewsWidget
+                theme={theme}
+                posts={feed}
+                onNewsClick={(post) => {
+                  const route = post.type === 'article' ? '/article' : '/news';
+                  const slugFinal = post.slug?.current || post.slug;
+                  if (slugFinal) router.push(`${route}/${slugFinal}`);
+                }}
+              />
+            </BentoCard>
+          </div>
+
+          {/* NextRaceWidget - Ordem 2 no mobile */}
+          <div className="order-2 md:col-span-2 lg:col-span-1 lg:row-span-1 lg:col-start-1 lg:row-start-1">
             <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
               <NextRaceWidget theme={theme} />
             </BentoCard>
           </div>
 
-          <div className="lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-1">
+          {/* Driver of the Day - Ordem 3 no mobile */}
+          <div className="order-3 lg:col-span-1 lg:row-span-1 lg:col-start-2 lg:row-start-1">
             <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
               <div className="h-full flex flex-col p-4 gap-3">
                 <div className="flex items-center justify-between px-1">
@@ -151,20 +168,6 @@ export const HomeClient = ({ news = [], articles = [] }) => {
                   <KpopPhotocard driver={DRIVER_OF_DAY} theme={theme} />
                 </div>
               </div>
-            </BentoCard>
-          </div>
-
-          <div className="md:col-span-2 lg:col-span-2 lg:row-span-1 lg:col-start-3 lg:row-start-1">
-            <BentoCard theme={theme} className="h-full min-h-[480px] lg:min-h-[500px]" noPadding>
-              <NewsWidget
-                theme={theme}
-                posts={feed}
-                onNewsClick={(post) => {
-                  const route = post.type === 'article' ? '/article' : '/news';
-                  const slugFinal = post.slug?.current || post.slug;
-                  if (slugFinal) router.push(`${route}/${slugFinal}`);
-                }}
-              />
             </BentoCard>
           </div>
 
