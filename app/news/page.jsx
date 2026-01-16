@@ -10,8 +10,9 @@ export default async function NewsPage() {
       "image": coalesce(mainImage.asset->url, image.asset->url),
       excerpt,
       publishedAt,
-      category,
-      author
+      "category": coalesce(category->title, category, "Geral"),
+      author,
+      _createdAt
     }`
   );
 
