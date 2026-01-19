@@ -19,6 +19,7 @@ import { useSeoMeta } from "@/lib/useSeoMeta";
 import { client, urlFor } from "@/lib/sanity";
 import { useTheme } from "@/components/layout/ThemeContext";
 import { PortableText } from "@portabletext/react";
+import Comments from "@/components/ui/Comments";
 
 // --- COMPONENTE INTERNO: BackButton ---
 const BackButton = ({ to = "/", theme }) => {
@@ -667,6 +668,11 @@ const NewsDetail = ({ slug: slugProp, initialPost }) => {
             </p>
           </div>
         </div>
+
+        {/* Seção de Comentários */}
+        {post._id && (
+          <Comments postId={post._id} postType="news" theme={resolvedTheme} />
+        )}
       </div>
 
       <style>
