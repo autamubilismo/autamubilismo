@@ -66,11 +66,11 @@ export const F1_2026_CALENDAR = [
     timezoneLabel: "AEDT (UTC+11)",
     isSprint: false,
     sessions: [
-      { day: "SEX", date: "06", name: "Treino Livre 1", time: "03:30" },
-      { day: "SEX", date: "06", name: "Treino Livre 2", time: "07:00" },
-      { day: "SÁB", date: "07", name: "Treino Livre 3", time: "03:30" },
-      { day: "SÁB", date: "07", name: "Classificação", time: "07:00" },
-      { day: "DOM", date: "08", name: "Corrida", time: "06:00" },
+      { day: "QUI", date: "05", name: "Treino Livre 1", time: "22:30" },
+      { day: "SEX", date: "06", name: "Treino Livre 2", time: "02:00" },
+      { day: "SEX", date: "06", name: "Treino Livre 3", time: "22:30" },
+      { day: "SÁB", date: "07", name: "Classificação", time: "02:00" },
+      { day: "DOM", date: "08", name: "Corrida", time: "01:00" },
     ],
   },
   {

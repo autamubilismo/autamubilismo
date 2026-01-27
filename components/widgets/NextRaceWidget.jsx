@@ -113,7 +113,7 @@ export const NextRaceWidget = ({ theme }) => {
               className="text-3xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text" 
               style={{ backgroundImage: isLight ? `linear-gradient(to right, #ec4899, #a855f7)` : `linear-gradient(to right, ${C.neonCyan}, ${C.neonPink})` }}
             >
-              {nextRace.title.replace('GP d', '').replace('GP de ', '').replace('GP do', '').replace('GP da', '').toUpperCase()}
+              {nextRace.title.replace('GP dos ', '').replace('GP da ', '').replace('GP de ', '').replace('GP do ', '').toUpperCase()}
             </h3>
           </div>
           <div className={`text-[10px] font-bold uppercase tracking-wider mt-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -121,7 +121,7 @@ export const NextRaceWidget = ({ theme }) => {
           </div>
         </div>
         <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center gap-1.5 border shadow-sm ${isLight ? 'bg-white border-pink-100 text-pink-500' : 'bg-black/40 border-cyan-500/30 text-cyan-400'}`}>
-          <Clock size={12} /> <span>{nextRace.timezoneLabel?.split(' ')[0] || 'BRT'}</span>
+          <Clock size={12} /> <span>BRT</span>
         </div>
       </div>
 
