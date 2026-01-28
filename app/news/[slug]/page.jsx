@@ -23,8 +23,11 @@ const getNewsQuery = (slug) => {
       category,
       author,
       publishedAt,
-      "source": sourceLabel,
-      sourceUrl,
+      "sources": select(
+        defined(sources) => sources,
+        defined(sourceLabel) || defined(sourceUrl) => [{"label": sourceLabel, "url": sourceUrl}],
+        []
+      ),
       tags,
       seo{
         metaTitle,

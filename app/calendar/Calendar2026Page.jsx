@@ -11,7 +11,7 @@ const BackButton = ({ to, theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-sm font-bold transition-all hover:pl-2 ${
         isLight
-          ? 'text-gray-400 hover:text-purple-600'
+          ? 'text-gray-400 hover:text-cottage-rosy'
           : 'text-gray-500 hover:text-[#00fff2]'
       }`}
     >
@@ -57,10 +57,10 @@ const Calendar2026Page = () => {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 pb-12">
       <BackButton to="/season" theme={resolvedTheme} />
 
-      <div className={`p-8 rounded-[2.5rem] border ${isLight ? 'bg-[#FFF5F8] border-[#F7B8C8]' : 'bg-[#121217] border-[#bd00ff] shadow-[0_0_30px_rgba(189,0,255,0.15)]'}`}>
+      <div className={`p-8 rounded-[2.5rem] border ${isLight ? 'bg-[#F7F4D5] border-[#D3968C]' : 'bg-[#121217] border-[#bd00ff] shadow-[0_0_30px_rgba(189,0,255,0.15)]'}`}>
          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
             <div className="flex items-center gap-4">
-               <div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-white text-pink-500' : 'bg-[#bd00ff] text-white'}`}>
+               <div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-white text-cottage-rosy' : 'bg-[#bd00ff] text-white'}`}>
                   <Globe size={32} />
                </div>
                <div>
@@ -71,19 +71,19 @@ const Calendar2026Page = () => {
             <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
                <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></span> Sprint</div>
                <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span> Estreia</div>
-               <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]"></span> Noite</div>
+               <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-cottage-rosy shadow-[0_0_8px_rgba(168,85,247,0.6)]"></span> Noite</div>
             </div>
          </div>
 
          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {CALENDAR_2026.map((race) => (
-              <div key={race.round} className={`relative p-5 rounded-3xl flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${isLight ? 'bg-white shadow-sm border border-white hover:border-pink-200' : 'bg-white/5 border border-white/5 hover:border-[#bd00ff]/50'}`}>
+              <div key={race.round} className={`relative p-5 rounded-3xl flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${isLight ? 'bg-white shadow-sm border border-white hover:border-cottage-rosy' : 'bg-white/5 border border-white/5 hover:border-[#bd00ff]/50'}`}>
                  <div className="flex justify-between items-start mb-3">
                     <span className={`text-[10px] font-black uppercase tracking-widest opacity-40 ${isLight ? 'text-gray-500' : 'text-white'}`}>R{race.round}</span>
                     <div className="flex gap-1.5">
                        {race.sprint && <span className="w-2 h-2 rounded-full bg-orange-500" title="Sprint"></span>}
                        {race.new && <span className="text-[8px] bg-green-500 text-white px-1.5 py-0.5 rounded-md font-bold shadow-sm">NEW</span>}
-                       {race.night && <span className="w-2 h-2 rounded-full bg-purple-500" title="Corrida Noturna"></span>}
+                       {race.night && <span className="w-2 h-2 rounded-full bg-cottage-rosy" title="Corrida Noturna"></span>}
                     </div>
                  </div>
                  

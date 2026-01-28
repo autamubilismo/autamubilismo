@@ -11,7 +11,7 @@ const BackButton = ({ to = '/', theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:-translate-x-1 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-gray-500 hover:text-pink-500 bg-white/50 border border-white hover:border-pink-200 shadow-sm'
+          ? 'text-gray-500 hover:text-cottage-rosy bg-white/50 border border-white hover:border-cottage-rosy shadow-sm'
           : 'text-cyan-400/80 hover:text-cyan-300 bg-black/20 border border-cyan-500/20 hover:border-cyan-500/60 shadow-[0_0_10px_rgba(0,255,242,0.1)] hover:shadow-[0_0_20px_rgba(0,255,242,0.3)]'
       }`}
     >
@@ -27,10 +27,10 @@ const CreditsPage = () => {
   const isLight = resolvedTheme === 'light';
 
   const lightPattern = {
-    backgroundColor: '#FFF0F5',
+    backgroundColor: '#F7F4D5',
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(221, 160, 221, 0.4) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.35) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(211, 150, 140, 0.25) 0px, transparent 50%),
       url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff69b4' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")
     `,
   };
@@ -110,12 +110,12 @@ const CreditsPage = () => {
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
         <div
           className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-20 ${
-            isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/30 animate-pulse'
+            isLight ? 'bg-cottage-rosy' : 'bg-[#bd00ff]/30 animate-pulse'
           }`}
         />
         <div
           className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${
-            isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'
+            isLight ? 'bg-cottage-rosy' : 'bg-[#00fff2]/20 animate-pulse'
           }`}
         />
       </div>
@@ -128,7 +128,7 @@ const CreditsPage = () => {
             <div
               className={`absolute top-0 left-0 w-full h-1.5 ${
                 isLight
-                  ? 'bg-gradient-to-r from-pink-200 via-purple-200 to-pink-200'
+                  ? 'bg-gradient-to-r from-cottage-rosy via-cottage-rosy to-cottage-rosy'
                   : 'bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-cyan-500'
               }`}
             />
@@ -137,7 +137,7 @@ const CreditsPage = () => {
               <div className="flex items-center gap-4">
                 <div
                   className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${
-                    isLight ? 'bg-pink-100 text-pink-600' : 'bg-white/10 text-cyan-200'
+                    isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-white/10 text-cyan-200'
                   }`}
                 >
                   ⚡
@@ -161,7 +161,7 @@ const CreditsPage = () => {
                   <div
                     key={item.label}
                     className={`rounded-2xl p-5 text-center ${
-                      isLight ? 'bg-white/70 border border-pink-100' : 'bg-black/30 border border-white/10'
+                      isLight ? 'bg-white/70 border border-cottage-rosy' : 'bg-black/30 border border-white/10'
                     }`}
                   >
                     <div className={`text-2xl font-black ${isLight ? 'text-gray-900' : 'text-white'}`}>{item.value}</div>
@@ -185,8 +185,8 @@ const CreditsPage = () => {
                     A Fórmula 1 é sobre velocidade, estratégia e paixão. Este blog é sobre contar essas histórias com a seriedade que elas merecem.
                   </p>
                 </div>
-                <div className={`rounded-3xl p-5 ${isLight ? 'bg-pink-50/70 border border-pink-100' : 'bg-white/5 border border-white/10'}`}>
-                  <h3 className={`text-sm font-black uppercase tracking-wider mb-4 ${isLight ? 'text-pink-600' : 'text-cyan-200'}`}>
+                <div className={`rounded-3xl p-5 ${isLight ? 'bg-cottage-beige/70 border border-cottage-rosy' : 'bg-white/5 border border-white/10'}`}>
+                  <h3 className={`text-sm font-black uppercase tracking-wider mb-4 ${isLight ? 'text-cottage-rosy' : 'text-cyan-200'}`}>
                     A Jornada
                   </h3>
                   <div className="space-y-4">
@@ -211,11 +211,11 @@ const CreditsPage = () => {
                     <div
                       key={item.title}
                       className={`rounded-2xl p-5 ${
-                        isLight ? 'bg-white/70 border border-pink-100' : 'bg-black/30 border border-white/10'
+                        isLight ? 'bg-white/70 border border-cottage-rosy' : 'bg-black/30 border border-white/10'
                       }`}
                     >
                       <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${isLight ? 'bg-pink-100' : 'bg-white/10'}`}>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${isLight ? 'bg-cottage-rosy' : 'bg-white/10'}`}>
                           {item.icon}
                         </div>
                         <h3 className={`text-sm font-black ${isLight ? 'text-gray-900' : 'text-white'}`}>{item.title}</h3>
@@ -228,7 +228,7 @@ const CreditsPage = () => {
 
               <div>
                 <h2 className={`text-xl font-black mb-4 ${isLight ? 'text-gray-900' : 'text-white'}`}>O Que Você Encontra Aqui</h2>
-                <div className={`rounded-3xl p-5 ${isLight ? 'bg-pink-50/70 border border-pink-100' : 'bg-white/5 border border-white/10'}`}>
+                <div className={`rounded-3xl p-5 ${isLight ? 'bg-cottage-beige/70 border border-cottage-rosy' : 'bg-white/5 border border-white/10'}`}>
                   <ul className={`space-y-3 text-sm ${isLight ? 'text-gray-700' : 'text-cyan-100/80'}`}>
                     {features.map((item) => (
                       <li key={item}>{item}</li>
@@ -237,7 +237,7 @@ const CreditsPage = () => {
                 </div>
               </div>
 
-              <div className={`rounded-3xl p-6 text-center ${isLight ? 'bg-white/80 border border-pink-100' : 'bg-black/30 border border-white/10'}`}>
+              <div className={`rounded-3xl p-6 text-center ${isLight ? 'bg-white/80 border border-cottage-rosy' : 'bg-black/30 border border-white/10'}`}>
                 <p className={`text-lg md:text-xl font-black ${isLight ? 'text-gray-900' : 'text-white'}`}>
                   Vamos Juntos Nessa Jornada? 🏁
                 </p>
@@ -247,7 +247,7 @@ const CreditsPage = () => {
               </div>
             </div>
 
-            <div className={`border-t pt-8 mt-10 flex flex-col md:flex-row items-center justify-center gap-4 ${isLight ? 'border-pink-100' : 'border-white/5'}`}>
+            <div className={`border-t pt-8 mt-10 flex flex-col md:flex-row items-center justify-center gap-4 ${isLight ? 'border-cottage-rosy' : 'border-white/5'}`}>
               <p className={`text-xs font-bold uppercase tracking-[0.2em] opacity-50 ${isLight ? 'text-gray-400' : 'text-cyan-100'}`}>
                 © 2025 Autamubilismo
               </p>

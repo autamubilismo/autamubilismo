@@ -59,7 +59,7 @@ const CountdownWidget = ({ theme }) => {
     <div className="h-full flex flex-col items-center justify-center gap-4 p-6 text-center">
       <div
         className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${
-          isLight ? 'bg-pink-100 text-pink-600' : 'bg-white/10 text-cyan-200'
+          isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-white/10 text-cyan-200'
         }`}
       >
         Temporada F1 2026
@@ -73,7 +73,7 @@ const CountdownWidget = ({ theme }) => {
           <div
             key={item.label}
             className={`min-w-[72px] rounded-2xl px-3 py-2 text-center shadow-sm ${
-              isLight ? 'bg-white/80 border border-pink-100' : 'bg-black/30 border border-white/10'
+              isLight ? 'bg-white/80 border border-cottage-rosy' : 'bg-black/30 border border-white/10'
             }`}
           >
             <div className={`text-xl font-black leading-none ${isLight ? 'text-gray-900' : 'text-white'}`}>
@@ -108,7 +108,7 @@ export const HomeClient = ({ news = [], articles = [] }) => {
 
   return (
     <div
-      className="min-h-screen transition-colors duration-700 ease-in-out selection:bg-pink-300 selection:text-purple-900 flex flex-col"
+      className="min-h-screen transition-colors duration-700 ease-in-out selection:bg-cottage-rosy selection:text-cottage-dark-green flex flex-col"
       style={theme === 'light' ? lightPattern : darkPattern}
     >
       {theme === 'dark' && (
@@ -118,7 +118,7 @@ export const HomeClient = ({ news = [], articles = [] }) => {
             className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#00fff2]/10 blur-[120px] rounded-full animate-pulse"
             style={{ animationDelay: '1s' }}
           />
-          <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-yellow-400 via-pink-500 to-purple-600 rounded-full blur-[100px] opacity-10" />
+          <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-gradient-to-b from-yellow-400 via-cottage-rosy to-cottage-rosy rounded-full blur-[100px] opacity-10" />
           <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />
         </div>
       )}
@@ -154,14 +154,14 @@ export const HomeClient = ({ news = [], articles = [] }) => {
                 <div className="flex items-center justify-between px-1">
                   <span
                     className={`text-xs font-black uppercase tracking-[0.2em] ${
-                      theme === 'light' ? 'text-purple-400' : 'text-gray-500'
+                      theme === 'light' ? 'text-cottage-rosy' : 'text-gray-500'
                     }`}
                   >
                     Driver of the Day
                   </span>
                   <Heart
                     size={20}
-                    className={`${theme === 'light' ? 'text-red-400' : 'text-pink-500'} animate-pulse`}
+                    className={`${theme === 'light' ? 'text-red-400' : 'text-cottage-rosy'} animate-pulse`}
                   />
                 </div>
                 <div className="flex-1 flex items-start">

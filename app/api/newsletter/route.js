@@ -44,7 +44,7 @@ export async function POST(request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
           <div style="background: white; border-radius: 20px; padding: 40px; text-align: center;">
-            <h1 style="color: #ec4899; font-size: 32px; margin-bottom: 20px;">🏁 Bem-vindo!</h1>
+            <h1 style="color: #D3968C; font-size: 32px; margin-bottom: 20px;">🏁 Bem-vindo!</h1>
             <p style="color: #374151; font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
               Você acaba de se inscrever na newsletter mais veloz da F1!
             </p>
@@ -78,7 +78,7 @@ export async function POST(request) {
       subject: `🎉 Nova inscrição na newsletter!`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #ec4899; margin-bottom: 20px;">Nova inscrição na newsletter!</h2>
+          <h2 style="color: #D3968C; margin-bottom: 20px;">Nova inscrição na newsletter!</h2>
           <div style="background: #f9fafb; border-left: 4px solid #10b981; padding: 20px; margin: 20px 0; border-radius: 8px;">
             <p style="margin: 0 0 10px 0;"><strong>E-mail:</strong> ${email}</p>
             <p style="margin: 0; color: #6b7280; font-size: 14px;">Data: ${new Date().toLocaleString('pt-BR')}</p>

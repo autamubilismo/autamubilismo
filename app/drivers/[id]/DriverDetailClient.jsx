@@ -46,12 +46,12 @@ const DriverDetailClient = ({ id }) => {
   // Fallback caso não encontre o piloto
   if (!driver) {
     return (
-      <div className={`min-h-screen flex flex-col items-center justify-center text-center p-6 ${isLight ? 'bg-[#FFF5F8]' : 'bg-[#050510]'}`}>
-         <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-6 ${isLight ? 'bg-pink-100' : 'bg-white/10'}`}>
-            <Zap size={40} className={isLight ? 'text-pink-500' : 'text-cyan-400'} />
+      <div className={`min-h-screen flex flex-col items-center justify-center text-center p-6 ${isLight ? 'bg-[#F7F4D5]' : 'bg-[#050510]'}`}>
+         <div className={`w-24 h-24 rounded-full flex items-center justify-center mb-6 ${isLight ? 'bg-cottage-rosy' : 'bg-white/10'}`}>
+            <Zap size={40} className={isLight ? 'text-cottage-rosy' : 'text-cyan-400'} />
          </div>
          <h2 className={`text-4xl font-black uppercase tracking-tighter ${isLight ? 'text-gray-800' : 'text-white'}`}>Piloto não encontrado</h2>
-         <Link href="/drivers" className={`mt-6 px-8 py-3 rounded-full font-bold transition-all shadow-lg ${isLight ? 'bg-pink-500 text-white hover:bg-pink-600 shadow-pink-200' : 'bg-cyan-500 text-black hover:bg-cyan-400 shadow-cyan-500/50'}`}>Voltar ao Grid</Link>
+         <Link href="/drivers" className={`mt-6 px-8 py-3 rounded-full font-bold transition-all shadow-lg ${isLight ? 'bg-cottage-rosy text-white hover:bg-cottage-rosy shadow-cottage-rosy' : 'bg-cyan-500 text-black hover:bg-cyan-400 shadow-cyan-500/50'}`}>Voltar ao Grid</Link>
       </div>
     );
   }
@@ -65,10 +65,10 @@ const DriverDetailClient = ({ id }) => {
   // Backgrounds
   const bgStyle = isLight 
     ? {
-        backgroundColor: '#FFF5F8',
+        backgroundColor: '#F7F4D5',
         backgroundImage: `
-          radial-gradient(at 0% 0%, rgba(247, 184, 200, 0.4) 0px, transparent 50%),
-          radial-gradient(at 100% 0%, rgba(216, 196, 240, 0.4) 0px, transparent 50%),
+          radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.35) 0px, transparent 50%),
+          radial-gradient(at 100% 0%, rgba(211, 150, 140, 0.25) 0px, transparent 50%),
           conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.8) 0deg, transparent 60deg, rgba(255, 255, 255, 0.5) 120deg)
         `,
         backgroundSize: '100% 100%'
@@ -85,7 +85,7 @@ const DriverDetailClient = ({ id }) => {
 
   // Cores de Texto e Cards
   const textColor = isLight ? 'text-gray-900' : 'text-white';
-  const textSub = isLight ? 'text-pink-500/80 font-bold' : 'text-cyan-300/80 font-bold';
+  const textSub = isLight ? 'text-cottage-rosy/80 font-bold' : 'text-cyan-300/80 font-bold';
   
   const cardBg = isLight 
     ? 'bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_-10px_rgba(255,182,193,0.4)]' 
@@ -97,14 +97,14 @@ const DriverDetailClient = ({ id }) => {
 
   return (
     <div 
-      className={`min-h-screen animate-in fade-in slide-in-from-bottom-8 duration-700 pb-24 font-sans ${isLight ? 'selection:bg-pink-300 selection:text-white' : 'selection:bg-cyan-500 selection:text-black'}`}
+      className={`min-h-screen animate-in fade-in slide-in-from-bottom-8 duration-700 pb-24 font-sans ${isLight ? 'selection:bg-cottage-rosy selection:text-white' : 'selection:bg-cyan-500 selection:text-black'}`}
       style={bgStyle}
     >
       
       {/* Luzes decorativas flutuantes (Ambiente) */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/20 animate-pulse'}`} />
-         <div className={`absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
+         <div className={`absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-cottage-rosy' : 'bg-[#bd00ff]/20 animate-pulse'}`} />
+         <div className={`absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-cottage-rosy' : 'bg-[#00fff2]/20 animate-pulse'}`} />
          {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
       </div>
 
@@ -116,7 +116,7 @@ const DriverDetailClient = ({ id }) => {
           {/* --- FOTO CORPO INTEIRO (CONTAINER PREMIUM) --- */}
           <div className="lg:col-span-5 xl:col-span-4 order-2 lg:order-1">
              <div 
-               className={`relative rounded-[3.5rem] overflow-hidden h-[550px] lg:h-[820px] w-full sticky top-8 transition-all duration-700 group ${isLight ? 'shadow-2xl shadow-pink-200/50 ring-4 ring-white/50' : 'shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/5 ring-1 ring-white/10'}`}
+               className={`relative rounded-[3.5rem] overflow-hidden h-[550px] lg:h-[820px] w-full sticky top-8 transition-all duration-700 group ${isLight ? 'shadow-2xl shadow-cottage-rosy/50 ring-4 ring-white/50' : 'shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/5 ring-1 ring-white/10'}`}
                style={{ backgroundColor: driver.color }}
              >
                 {/* Overlay Estético */}
@@ -157,8 +157,8 @@ const DriverDetailClient = ({ id }) => {
                     <span className="px-5 py-2 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-lg transform hover:scale-105 transition-transform" style={{ backgroundColor: driver.color }}>
                       {driver.team}
                     </span>
-                    <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full border ${isLight ? 'bg-white/50 border-pink-100' : 'bg-white/5 border-white/10'}`}>
-                       <MapPin size={12} className={isLight ? 'text-pink-400' : 'text-cyan-400'} />
+                    <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full border ${isLight ? 'bg-white/50 border-cottage-rosy' : 'bg-white/5 border-white/10'}`}>
+                       <MapPin size={12} className={isLight ? 'text-cottage-rosy' : 'text-cyan-400'} />
                        <span className={`text-[10px] font-black uppercase tracking-widest ${textColor}`}>{driver.country || "Mundo"}</span>
                     </div>
                  </div>
@@ -192,8 +192,8 @@ const DriverDetailClient = ({ id }) => {
 
                  {/* Card Melhor Resultado */}
                  <div className={`p-6 rounded-[2rem] ${cardBg} group hover:-translate-y-1 transition-all duration-300`}>
-                    <div className={`w-10 h-10 rounded-2xl flex items-center justify-center mb-6 ${isLight ? 'bg-purple-50' : 'bg-purple-400/10'}`}>
-                       <Star size={20} className={isLight ? 'text-purple-500' : 'text-fuchsia-400'} />
+                    <div className={`w-10 h-10 rounded-2xl flex items-center justify-center mb-6 ${isLight ? 'bg-cottage-rosy' : 'bg-cottage-rosy/10'}`}>
+                       <Star size={20} className={isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'} />
                     </div>
                     <span className={`block text-3xl font-black tracking-tighter ${textColor}`}>{driver.stats?.bestResult || 'N/A'}</span>
                     <span className={`text-[9px] uppercase tracking-[0.2em] ${textSub}`}>Melhor Res.</span>
@@ -217,7 +217,7 @@ const DriverDetailClient = ({ id }) => {
                  <div className={`absolute top-0 left-0 w-2 h-full`} style={{ backgroundColor: driver.color }} />
                  
                  <h3 className={`text-xl font-black uppercase tracking-widest mb-6 flex items-center gap-3 ${textColor}`}>
-                    <LayoutGrid size={22} className={isLight ? 'text-pink-400' : 'text-cyan-400'} /> 
+                    <LayoutGrid size={22} className={isLight ? 'text-cottage-rosy' : 'text-cyan-400'} /> 
                     Bio do Piloto
                  </h3>
                  
@@ -242,9 +242,9 @@ const DriverDetailClient = ({ id }) => {
                            const Icon = vibe.icon || Sparkles; 
                            return (
                              <div key={i} className={`flex items-center gap-3 px-5 py-2.5 rounded-2xl border transition-all hover:scale-105 ${
-                               isLight ? 'bg-pink-50/50 border-pink-100 text-gray-700' : 'bg-white/5 border-white/10 text-gray-200 hover:border-cyan-500/50'
+                               isLight ? 'bg-cottage-beige/50 border-cottage-rosy text-gray-700' : 'bg-white/5 border-white/10 text-gray-200 hover:border-cyan-500/50'
                              }`}>
-                               <Icon size={18} className={isLight ? 'text-pink-400' : 'text-cyan-400'} />
+                               <Icon size={18} className={isLight ? 'text-cottage-rosy' : 'text-cyan-400'} />
                                <span className="text-xs font-black uppercase tracking-tight">{vibe.label}</span>
                              </div>
                            )

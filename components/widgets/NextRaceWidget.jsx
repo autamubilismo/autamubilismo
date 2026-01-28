@@ -70,13 +70,13 @@ export const NextRaceWidget = ({ theme }) => {
     if (location === 'Madrid') return 'Madrid';
     if (location === 'Baku') return 'Baku';
     if (location === 'Jeddah') return 'Jeddah';
-    
+
     return location;
   };
 
   if (!nextRace) {
     return (
-      <div className={`h-full flex items-center justify-center p-6 ${isLight ? 'text-gray-400' : 'text-gray-600'}`}>
+      <div className={`h-full flex items-center justify-center p-6 ${isLight ? 'text-[#105666]/60' : 'text-gray-600'}`}>
         <p className="text-sm font-bold uppercase tracking-wider">Sem corridas programadas</p>
       </div>
     );
@@ -87,20 +87,20 @@ export const NextRaceWidget = ({ theme }) => {
   const countryFlag = getCountryFlag(nextRace.country);
 
   return (
-    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-gray-800' : 'text-white'}`}>
-      <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-pink-900' : 'text-cyan-400'}`}>
+    <div className={`h-full flex flex-col p-4 md:p-5 relative overflow-hidden ${isLight ? 'text-[#0A3323]' : 'text-white'}`}>
+      <div className={`absolute -right-8 -bottom-16 opacity-[0.07] pointer-events-none rotate-12 transition-transform duration-1000 group-hover:rotate-0 ${isLight ? 'text-[#0A3323]' : 'text-cyan-400'}`}>
         <Flag size={240} />
       </div>
       <div className="flex justify-between items-start mb-2.5 z-10 relative">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <span className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] opacity-60 ${isLight ? 'text-gray-500' : 'text-cyan-200'}`}>
+            <span className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.25em] opacity-60 ${isLight ? 'text-[#105666]' : 'text-cyan-200'}`}>
               <MapPin size={11} /> {circuitName}, {nextRace.country}
             </span>
             {nextRace.isSprint && (
               <span className={`px-2 py-0.5 rounded-md text-[9px] font-black uppercase flex items-center gap-1 ${
-                isLight 
-                  ? 'bg-yellow-300 text-orange-900' 
+                isLight
+                  ? 'bg-[#D3968C]/30 text-[#0A3323]'
                   : 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black'
               }`}>
                 <Zap size={9} className="fill-current" /> SPRINT
@@ -109,18 +109,18 @@ export const NextRaceWidget = ({ theme }) => {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-2xl">{countryFlag}</span>
-            <h3 
-              className="text-3xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text" 
-              style={{ backgroundImage: isLight ? `linear-gradient(to right, #ec4899, #a855f7)` : `linear-gradient(to right, ${C.neonCyan}, ${C.neonPink})` }}
+            <h3
+              className="text-3xl font-black leading-none italic tracking-tighter text-transparent bg-clip-text"
+              style={{ backgroundImage: isLight ? `linear-gradient(to right, #0A3323, #D3968C)` : `linear-gradient(to right, ${C.neonCyan}, ${C.neonPink})` }}
             >
               {nextRace.title.replace('GP dos ', '').replace('GP da ', '').replace('GP de ', '').replace('GP do ', '').toUpperCase()}
             </h3>
           </div>
-          <div className={`text-[10px] font-bold uppercase tracking-wider mt-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
+          <div className={`text-[10px] font-bold uppercase tracking-wider mt-1 ${isLight ? 'text-[#105666]/60' : 'text-gray-500'}`}>
             Round {nextRace.round} • 2026
           </div>
         </div>
-        <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center gap-1.5 border shadow-sm ${isLight ? 'bg-white border-pink-100 text-pink-500' : 'bg-black/40 border-cyan-500/30 text-cyan-400'}`}>
+        <div className={`px-3 py-1.5 rounded-xl text-[10px] font-bold flex items-center gap-1.5 border shadow-sm ${isLight ? 'bg-white border-[#D3968C]/30 text-[#D3968C]' : 'bg-black/40 border-cyan-500/30 text-cyan-400'}`}>
           <Clock size={12} /> <span>BRT</span>
         </div>
       </div>
@@ -134,17 +134,17 @@ export const NextRaceWidget = ({ theme }) => {
           const isHighlight = isQuali || isSprint;
 
           return (
-            <div 
-              key={i} 
-              className={`flex items-center justify-between px-3 py-1.5 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] ${isMain ? (isLight ? 'shadow-lg shadow-pink-200' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]') : ''}`} 
-              style={isMain 
-                ? { background: isLight ? `linear-gradient(90deg, #ec4899, #a855f7)` : `linear-gradient(90deg, ${C.neonRoxo}, ${C.neonPink})`, color: 'white' } 
-                : isHighlight 
-                  ? { background: isLight ? 'white' : 'rgba(0, 255, 242, 0.05)', borderColor: isLight ? '#fbcfe8' : C.neonCyan, borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#333' : 'white' } 
-                  : { background: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.02)', borderColor: isLight ? '#fce7f3' : 'transparent', borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#9ca3af' : '#6b7280' }}
+            <div
+              key={i}
+              className={`flex items-center justify-between px-3 py-1.5 rounded-2xl transition-all duration-300 group/item hover:scale-[1.02] ${isMain ? (isLight ? 'shadow-lg shadow-[#D3968C]/30' : 'shadow-[0_0_15px_rgba(189,0,255,0.4)]') : ''}`}
+              style={isMain
+                ? { background: isLight ? `linear-gradient(90deg, #D3968C, #0A3323)` : `linear-gradient(90deg, ${C.neonRoxo}, ${C.neonPink})`, color: 'white' }
+                : isHighlight
+                  ? { background: isLight ? 'white' : 'rgba(0, 255, 242, 0.05)', borderColor: isLight ? '#D3968C' : C.neonCyan, borderWidth: '1px', borderStyle: 'solid', color: isLight ? '#0A3323' : 'white' }
+                  : { background: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.02)', borderColor: isLight ? '#D3968C' : 'transparent', borderWidth: '1px', borderStyle: 'solid', borderOpacity: 0.2, color: isLight ? '#105666' : '#6b7280' }}
             >
               <div className="flex items-center gap-4">
-                <div className={`flex flex-col items-center justify-center w-10 h-10 rounded-xl font-bold leading-none ${isMain ? 'bg-white/20 text-white backdrop-blur-sm' : (isLight ? 'bg-pink-50 text-pink-400' : 'bg-white/5 text-gray-500')}`}>
+                <div className={`flex flex-col items-center justify-center w-10 h-10 rounded-xl font-bold leading-none ${isMain ? 'bg-white/20 text-white backdrop-blur-sm' : (isLight ? 'bg-[#D3968C]/10 text-[#D3968C]' : 'bg-white/5 text-gray-500')}`}>
                   <span className="text-[8px] uppercase opacity-70 tracking-wider mb-0.5">{session.day}</span>
                   <span className="text-sm">{session.date}</span>
                 </div>
@@ -162,7 +162,7 @@ export const NextRaceWidget = ({ theme }) => {
             </div>
           );
         }) : (
-          <div className={`text-center py-8 ${isLight ? 'text-gray-400' : 'text-gray-600'}`}>
+          <div className={`text-center py-8 ${isLight ? 'text-[#105666]/60' : 'text-gray-600'}`}>
             <p className="text-xs font-bold uppercase tracking-wider">Horários a confirmar</p>
           </div>
         )}

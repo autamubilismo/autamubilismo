@@ -7,7 +7,7 @@ export const ContactWidget = ({ theme }) => {
   
   return (
     <div className="h-full flex flex-col items-center justify-center text-center p-4 relative z-10 group">
-      <div className={`p-4 rounded-full mb-3 transition-transform duration-300 group-hover:rotate-12 ${isLight ? 'bg-pink-50 text-pink-400' : 'bg-black/40 text-cyan-400 border border-cyan-500/20'}`}>
+      <div className={`p-4 rounded-full mb-3 transition-transform duration-300 group-hover:rotate-12 ${isLight ? 'bg-cottage-beige text-cottage-rosy' : 'bg-black/40 text-cyan-400 border border-cyan-500/20'}`}>
         <MessageSquare size={28} />
       </div>
       <h3 className={`font-black text-lg ${isLight ? 'text-gray-800' : 'text-white'}`}>Contato</h3>

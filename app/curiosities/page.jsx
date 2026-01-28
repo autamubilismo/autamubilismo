@@ -12,7 +12,7 @@ const BackButton = ({ to = "/", theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:pl-2 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-pink-500 hover:text-pink-600 hover:bg-pink-50 hover:shadow-sm bg-white/60 backdrop-blur-sm border border-pink-100' 
+          ? 'text-cottage-rosy hover:text-cottage-rosy hover:bg-cottage-beige hover:shadow-sm bg-white/60 backdrop-blur-sm border border-cottage-rosy' 
           : 'text-cyan-400 hover:text-white hover:bg-cyan-900/20 border border-cyan-500/30 bg-black/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,255,242,0.15)] hover:shadow-[0_0_25px_cyan] hover:border-cyan-400'
       }`}
     >
@@ -61,7 +61,7 @@ const CURIOSITIES_DATA = [
     title: "Força G Extrema",
     text: "Em curvas de alta velocidade, como a curva 8 na Turquia, os pilotos podem enfrentar até 5G ou mais de força lateral.",
     icon: Settings,
-    colorLight: "text-purple-500 bg-purple-50 ring-purple-100",
+    colorLight: "text-cottage-beige bg-cottage-rosy ring-cottage-rosy",
     colorDark: "text-fuchsia-400 bg-fuchsia-900/20 border-fuchsia-500/30 shadow-fuchsia-500/20"
   },
   {
@@ -81,10 +81,10 @@ const CuriositiesPage = () => {
 
   // --- BACKGROUNDS ---
   const lightPattern = {
-    backgroundColor: '#FFF0F5', // Lavender Blush
+    backgroundColor: '#F7F4D5',
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(221, 160, 221, 0.4) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.35) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(211, 150, 140, 0.25) 0px, transparent 50%),
       url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff69b4' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")
     `,
   };
@@ -110,8 +110,8 @@ const CuriositiesPage = () => {
       
       {/* Luz de Fundo Decorativa */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-20 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
-         <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
+         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-20 ${isLight ? 'bg-cottage-rosy' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
+         <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-cottage-rosy' : 'bg-[#00fff2]/20 animate-pulse'}`} />
          {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
       </div>
 
@@ -120,10 +120,10 @@ const CuriositiesPage = () => {
 
         <div className="mb-12 text-center md:text-left relative">
           <div className="flex items-center gap-3 justify-center md:justify-start mb-2">
-             <div className={`p-2 rounded-full ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-fuchsia-900/30 text-fuchsia-400'}`}>
+             <div className={`p-2 rounded-full ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-fuchsia-900/30 text-fuchsia-400'}`}>
                 <Lightbulb size={28} />
              </div>
-             <h2 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 drop-shadow-sm' : 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]'}`} style={{ fontFamily: isLight ? 'sans-serif' : "'Russo One', sans-serif" }}>
+             <h2 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-cottage-rosy to-cottage-rosy drop-shadow-sm' : 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]'}`} style={{ fontFamily: isLight ? 'sans-serif' : "'Russo One', sans-serif" }}>
                Você Sabia?
              </h2>
           </div>
@@ -138,19 +138,19 @@ const CuriositiesPage = () => {
               key={item.id} 
               className={`group p-8 md:p-10 rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 flex flex-col gap-6 relative overflow-hidden ${
                 isLight 
-                  ? 'bg-white/70 backdrop-blur-md border border-pink-100 hover:border-pink-300 shadow-[0_10px_30px_rgba(255,182,193,0.3)] hover:shadow-[0_15px_40px_rgba(255,105,180,0.3)]' 
+                  ? 'bg-white/70 backdrop-blur-md border border-cottage-rosy hover:border-cottage-rosy shadow-[0_10px_30px_rgba(255,182,193,0.3)] hover:shadow-[0_15px_40px_rgba(255,105,180,0.3)]' 
                   : 'bg-[#121217]/80 backdrop-blur-xl border border-white/10 hover:border-cyan-500/50 shadow-[0_0_20px_rgba(0,255,242,0.1)] hover:shadow-[0_0_30px_rgba(0,255,242,0.2)]'
               }`}
             >
                {/* Elemento Decorativo no Card */}
-               <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-current to-transparent opacity-5 rounded-bl-full pointer-events-none transition-opacity group-hover:opacity-10 ${isLight ? 'text-pink-500' : 'text-cyan-400'}`} />
+               <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-current to-transparent opacity-5 rounded-bl-full pointer-events-none transition-opacity group-hover:opacity-10 ${isLight ? 'text-cottage-rosy' : 'text-cyan-400'}`} />
 
                <div className={`p-4 rounded-2xl w-fit transition-transform duration-300 group-hover:scale-110 shadow-sm ring-1 ${isLight ? item.colorLight : `${item.colorDark} ring-0 border`}`}>
                   <item.icon size={32} strokeWidth={1.5} />
                </div>
                
                <div>
-                  <h3 className={`text-xl md:text-2xl font-black mb-3 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${isLight ? 'group-hover:from-pink-500 group-hover:to-purple-600 text-gray-900' : 'group-hover:from-cyan-400 group-hover:to-fuchsia-500 text-white'} transition-all`}>
+                  <h3 className={`text-xl md:text-2xl font-black mb-3 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r ${isLight ? 'group-hover:from-cottage-rosy group-hover:to-cottage-rosy text-gray-900' : 'group-hover:from-cyan-400 group-hover:to-fuchsia-500 text-white'} transition-all`}>
                      {item.title}
                   </h3>
                   <p className={`leading-relaxed text-sm md:text-base font-medium ${textSub}`}>

@@ -26,13 +26,13 @@ const CircuitModal = ({ circuit, isOpen, onClose, theme }) => {
       <div 
         className={`relative z-10 max-w-5xl w-full rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 ${
           isLight 
-            ? 'bg-white border-2 border-pink-200' 
+            ? 'bg-white border-2 border-cottage-rosy' 
             : 'bg-[#0a0a10] border-2 border-cyan-500/30 shadow-[0_0_50px_rgba(0,255,242,0.3)]'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className={`flex items-center justify-between p-6 border-b ${isLight ? 'border-pink-100 bg-pink-50/50' : 'border-white/10 bg-white/5'}`}>
+        <div className={`flex items-center justify-between p-6 border-b ${isLight ? 'border-cottage-rosy bg-cottage-beige/50' : 'border-white/10 bg-white/5'}`}>
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-2xl">{circuit.countryCode === 'BR' ? '🇧🇷' : circuit.countryCode === 'MC' ? '🇲🇨' : circuit.countryCode === 'GB' ? '🇬🇧' : circuit.countryCode === 'BE' ? '🇧🇪' : circuit.countryCode === 'US' ? '🇺🇸' : '🇯🇵'}</span>
@@ -59,7 +59,7 @@ const CircuitModal = ({ circuit, isOpen, onClose, theme }) => {
         </div>
 
         {/* Image Container */}
-        <div className={`p-8 ${isLight ? 'bg-gradient-to-br from-pink-50 to-purple-50' : 'bg-gradient-to-br from-[#0a0a10] to-[#1a0a20]'}`}>
+        <div className={`p-8 ${isLight ? 'bg-gradient-to-br from-cottage-beige to-cottage-rosy' : 'bg-gradient-to-br from-[#0a0a10] to-[#1a0a20]'}`}>
           <div className={`rounded-2xl overflow-hidden ${isLight ? 'bg-white shadow-xl' : 'bg-black/40 shadow-2xl border border-white/10'}`}>
             <img 
               src={circuit.image} 
@@ -70,7 +70,7 @@ const CircuitModal = ({ circuit, isOpen, onClose, theme }) => {
         </div>
 
         {/* Stats Footer */}
-        <div className={`p-6 border-t ${isLight ? 'border-pink-100' : 'border-white/10'}`}>
+        <div className={`p-6 border-t ${isLight ? 'border-cottage-rosy' : 'border-white/10'}`}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -103,7 +103,7 @@ const CircuitModal = ({ circuit, isOpen, onClose, theme }) => {
               <div className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
                 Recorde
               </div>
-              <div className={`text-xs font-bold ${isLight ? 'text-pink-600' : 'text-fuchsia-400'}`}>
+              <div className={`text-xs font-bold ${isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'}`}>
                 {circuit.record}
               </div>
             </div>
@@ -122,7 +122,7 @@ const BackButton = ({ to = "/", theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:pl-2 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-pink-500 hover:text-pink-600 hover:bg-pink-50 hover:shadow-sm bg-white/60 backdrop-blur-sm border border-pink-100' 
+          ? 'text-cottage-rosy hover:text-cottage-rosy hover:bg-cottage-beige hover:shadow-sm bg-white/60 backdrop-blur-sm border border-cottage-rosy' 
           : 'text-cyan-400 hover:text-white hover:bg-cyan-900/20 border border-cyan-500/30 bg-black/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,255,242,0.15)] hover:shadow-[0_0_25px_cyan] hover:border-cyan-400'
       }`}
     >
@@ -469,10 +469,10 @@ const CircuitsPage = () => {
 
   // --- BACKGROUNDS ---
   const lightPattern = {
-    backgroundColor: '#FFF5F8',
+    backgroundColor: '#F7F4D5',
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(247, 184, 200, 0.3) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(216, 196, 240, 0.3) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.25) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(211, 150, 140, 0.18) 0px, transparent 50%),
       url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffb7b2' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
     `,
   };
@@ -492,11 +492,11 @@ const CircuitsPage = () => {
   const textSub = isLight ? 'text-gray-500' : 'text-cyan-100/60';
   
   const cardBg = isLight 
-    ? 'bg-white/80 backdrop-blur-sm border border-pink-100 shadow-lg hover:shadow-xl hover:border-pink-200' 
+    ? 'bg-white/80 backdrop-blur-sm border border-cottage-rosy shadow-lg hover:shadow-xl hover:border-cottage-rosy' 
     : 'bg-[#121217]/70 backdrop-blur-sm border border-white/10 hover:border-cyan-500/30 shadow-lg hover:shadow-xl';
 
   const badgeStyle = isLight 
-    ? 'bg-pink-50 text-pink-600 border border-pink-200' 
+    ? 'bg-cottage-beige text-cottage-rosy border border-cottage-rosy' 
     : 'bg-cyan-900/30 text-cyan-300 border border-cyan-500/40';
 
   return (
@@ -515,8 +515,8 @@ const CircuitsPage = () => {
 
       {/* Elementos Decorativos de Fundo */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-         <div className={`absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-10 ${isLight ? 'bg-pink-200' : 'bg-[#bd00ff]/10'}`} />
-         <div className={`absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-10 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/10'}`} />
+         <div className={`absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-10 ${isLight ? 'bg-cottage-rosy' : 'bg-[#bd00ff]/10'}`} />
+         <div className={`absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-10 ${isLight ? 'bg-cottage-rosy' : 'bg-[#00fff2]/10'}`} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
@@ -525,10 +525,10 @@ const CircuitsPage = () => {
         {/* --- HEADER --- */}
         <div className="mb-12 text-center md:text-left relative">
            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-              <div className={`p-3 rounded-full ${isLight ? 'bg-white shadow-md text-pink-500' : 'bg-white/10 border border-white/20 text-cyan-400'}`}>
+              <div className={`p-3 rounded-full ${isLight ? 'bg-white shadow-md text-cottage-rosy' : 'bg-white/10 border border-white/20 text-cyan-400'}`}>
                  <Map size={24} />
               </div>
-              <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${isLight ? 'text-pink-600' : 'text-fuchsia-400'}`}>
+              <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'}`}>
                  Track Guide
               </span>
            </div>
@@ -572,7 +572,7 @@ const CircuitsPage = () => {
                   onClick={() => openModal(circuit)}
                   className={`relative -mt-10 mx-auto z-10 w-24 h-24 rounded-2xl p-3 backdrop-blur-md border-2 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl group/map ${
                     isLight 
-                      ? 'bg-white border-pink-200 hover:border-pink-400' 
+                      ? 'bg-white border-cottage-rosy hover:border-cottage-rosy' 
                       : 'bg-[#1a1a20] border-white/20 hover:border-cyan-400 hover:shadow-cyan-500/50'
                   }`}
                   title="Clique para visualizar em tamanho grande"
@@ -586,7 +586,7 @@ const CircuitsPage = () => {
                    
                    {/* Ícone de Zoom no Hover */}
                    <div className={`absolute inset-0 flex items-center justify-center opacity-0 group-hover/map:opacity-100 transition-opacity ${isLight ? 'bg-white/90' : 'bg-black/80'}`}>
-                     <ZoomIn className={`${isLight ? 'text-pink-500' : 'text-cyan-400'}`} size={32} />
+                     <ZoomIn className={`${isLight ? 'text-cottage-rosy' : 'text-cyan-400'}`} size={32} />
                    </div>
                 </button>
 
@@ -623,7 +623,7 @@ const CircuitsPage = () => {
                          <div className={`flex items-center gap-1.5 text-[9px] font-bold uppercase mb-1 ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
                             <Timer size={11} /> Recorde
                          </div>
-                         <span className={`text-xs font-bold ${isLight ? 'text-pink-600' : 'text-cyan-400'}`}>{circuit.record}</span>
+                         <span className={`text-xs font-bold ${isLight ? 'text-cottage-rosy' : 'text-cyan-400'}`}>{circuit.record}</span>
                       </div>
                    </div>
                 </div>

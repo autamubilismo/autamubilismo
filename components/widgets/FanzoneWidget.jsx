@@ -76,14 +76,14 @@ export const FanzoneWidget = ({ theme }) => {
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
             background: isLight 
-              ? 'radial-gradient(circle at center, rgba(236, 72, 153, 0.1) 0%, transparent 70%)'
+              ? 'radial-gradient(circle at center, rgba(211, 150, 140, 0.14) 0%, transparent 70%)'
               : 'radial-gradient(circle at center, rgba(168, 85, 247, 0.2) 0%, transparent 70%)'
           }}
         />
 
         <div className={`p-5 rounded-full mb-4 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 shadow-lg ${
           isLight 
-            ? 'bg-pink-50 text-pink-400 ring-4 ring-pink-100' 
+            ? 'bg-cottage-beige text-cottage-rosy ring-4 ring-cottage-rosy' 
             : 'bg-black/40 text-fuchsia-400 ring-2 ring-fuchsia-500/50 shadow-[0_0_15px_rgba(232,121,249,0.4)]'
         }`}>
           <Sparkles size={32} />
@@ -94,7 +94,7 @@ export const FanzoneWidget = ({ theme }) => {
         </h3>
         
         <p className={`text-xs uppercase font-bold tracking-widest mb-3 ${
-          isLight ? 'text-pink-500' : 'text-fuchsia-400'
+          isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'
         }`}>
           Driver of The Day
         </p>
@@ -103,7 +103,7 @@ export const FanzoneWidget = ({ theme }) => {
           <div className="mt-2">
             <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-wider ${
               isLight 
-                ? 'bg-gradient-to-r from-pink-100 to-purple-100 text-pink-600'
+                ? 'bg-gradient-to-r from-cottage-rosy to-cottage-rosy text-cottage-beige'
                 : 'bg-gradient-to-r from-fuchsia-900/30 to-cyan-900/30 text-fuchsia-300 border border-fuchsia-500/30'
             }`}>
               <Trophy size={12} className="text-yellow-500" />
@@ -128,7 +128,7 @@ export const FanzoneWidget = ({ theme }) => {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={`p-2 rounded-xl ${
-            isLight ? 'bg-pink-100 text-pink-500' : 'bg-fuchsia-900/30 text-fuchsia-400'
+            isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-fuchsia-900/30 text-fuchsia-400'
           }`}>
             <Sparkles size={20} />
           </div>
@@ -158,7 +158,7 @@ export const FanzoneWidget = ({ theme }) => {
       </div>
 
       {/* Lista de pilotos */}
-      <div className="flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-pink-300 dark:scrollbar-thumb-fuchsia-500/30 scrollbar-track-transparent">
+      <div className="flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-cottage-rosy dark:scrollbar-thumb-fuchsia-500/30 scrollbar-track-transparent">
         {driversWithVotes.map((driver) => {
           const isSelected = selectedDriver === driver.id;
           const isTopVoted = driver.voteCount > 0 && driver.voteCount === driversWithVotes[0].voteCount;
@@ -175,10 +175,10 @@ export const FanzoneWidget = ({ theme }) => {
               } ${
                 isSelected
                   ? isLight
-                    ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-cottage-rosy to-cottage-rosy text-white shadow-lg'
                     : 'bg-gradient-to-r from-fuchsia-600 to-cyan-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.5)]'
                   : isLight
-                    ? 'bg-white hover:bg-pink-50 border border-pink-100'
+                    ? 'bg-white hover:bg-cottage-beige border border-cottage-rosy'
                     : 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-fuchsia-500/30'
               }`}
             >
@@ -213,7 +213,7 @@ export const FanzoneWidget = ({ theme }) => {
                       </span>
                       {driver.voteCount > 0 && (
                         <span className={`text-[9px] font-mono font-bold ${
-                          isSelected ? 'text-white/60' : (isLight ? 'text-pink-500' : 'text-fuchsia-400')
+                          isSelected ? 'text-white/60' : (isLight ? 'text-cottage-rosy' : 'text-fuchsia-400')
                         }`}>
                           {driver.percentage}%
                         </span>
@@ -228,7 +228,7 @@ export const FanzoneWidget = ({ theme }) => {
                     isSelected
                       ? 'bg-white/20 text-white'
                       : isLight
-                        ? 'bg-pink-100 text-pink-600'
+                        ? 'bg-cottage-rosy text-cottage-beige'
                         : 'bg-fuchsia-900/30 text-fuchsia-300'
                   }`}>
                     {driver.voteCount}
@@ -243,7 +243,7 @@ export const FanzoneWidget = ({ theme }) => {
       {/* Footer */}
       {hasVoted && (
         <div className={`mt-4 pt-4 border-t text-center ${
-          isLight ? 'border-pink-100' : 'border-white/10'
+          isLight ? 'border-cottage-rosy' : 'border-white/10'
         }`}>
           <p className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${
             isLight ? 'text-gray-500' : 'text-gray-400'

@@ -22,7 +22,7 @@ const NewsletterSuccess = () => {
       <div className={`max-w-md w-full p-8 md:p-12 rounded-[3rem] text-center relative overflow-hidden ${cardBg}`}>
         
         {/* Confete/Brilho de fundo */}
-        <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent ${isLight ? 'via-[#F7B8C8]' : 'via-[#bd00ff]'} to-transparent opacity-50`}></div>
+        <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent ${isLight ? 'via-[#D3968C]' : 'via-[#bd00ff]'} to-transparent opacity-50`}></div>
 
         <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ${iconBg}`}>
            <CheckCircle size={40} />

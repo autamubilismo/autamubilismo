@@ -5,7 +5,7 @@ export const GLOSSARY_SETS = [
     id: 'general',
     title: "Dicionário Geral A-Z",
     description: "Termos essenciais para entender o que os narradores dizem.",
-    color: "#caa5d8",
+    color: "#D3968C",
     icon: Book,
     items: [
       { id: 'aero', term: "Aerodinâmica", definition: "Estudo do fluxo de ar e da interação entre o ar e o carro em movimento. Fundamental para desempenho e velocidade." },
@@ -35,7 +35,7 @@ export const GLOSSARY_SETS = [
     id: 'tech-2026',
     title: "Nova Era 2026",
     description: "Tudo sobre o novo regulamento, X-Mode, Z-Mode e motores.",
-    color: "#FF69B4",
+    color: "#839958",
     icon: Zap,
     items: [
       { id: 'active-aero', term: "Aerodinâmica Ativa", definition: "Sistema que substitui o DRS. Os carros alternam entre X-Mode (reta) e Z-Mode (curva)." },

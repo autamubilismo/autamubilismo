@@ -33,11 +33,11 @@ const FanzonePage = () => {
 
   // --- BACKGROUNDS ---
   const lightPattern = {
-    backgroundColor: '#FFF0F5', // Lavender Blush
+    backgroundColor: '#F7F4D5',
     backgroundImage: `
-      radial-gradient(at 10% 10%, rgba(255, 182, 193, 0.4) 0px, transparent 50%),
-      radial-gradient(at 90% 90%, rgba(221, 160, 221, 0.4) 0px, transparent 50%),
-      url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff69b4' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")
+      radial-gradient(at 10% 10%, rgba(211, 150, 140, 0.35) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(211, 150, 140, 0.25) 0px, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D3968C' fill-opacity='0.06' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")
     `,
   };
 
@@ -57,7 +57,7 @@ const FanzonePage = () => {
     : 'bg-[#0a0a10] border border-[#5865F2] text-[#5865F2] shadow-[0_0_30px_rgba(88,101,242,0.15)] hover:shadow-[0_0_50px_rgba(88,101,242,0.3)] hover:bg-[#5865F2]/5';
 
   const sectionTitleClass = isLight
-    ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 drop-shadow-sm'
+    ? 'text-[#D3968C] drop-shadow-sm'
     : 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]';
 
   return (
@@ -70,8 +70,8 @@ const FanzonePage = () => {
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
          {isLight ? (
            <>
-             <div className="absolute top-20 right-10 text-pink-200 opacity-40 animate-pulse"><Heart size={120} fill="currentColor" /></div>
-             <div className="absolute bottom-40 left-10 text-purple-200 opacity-30 animate-bounce-slow"><Star size={80} fill="currentColor" /></div>
+             <div className="absolute top-20 right-10 text-cottage-rosy opacity-40 animate-pulse"><Heart size={120} fill="currentColor" /></div>
+             <div className="absolute bottom-40 left-10 text-cottage-rosy opacity-30 animate-bounce-slow"><Star size={80} fill="currentColor" /></div>
            </>
          ) : (
            <>
@@ -87,7 +87,7 @@ const FanzonePage = () => {
         {/* Header da Página */}
         <div className="mb-12 text-center md:text-left relative">
           <div className="flex items-center gap-3 justify-center md:justify-start mb-2">
-             <div className={`p-2 rounded-full ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-fuchsia-900/30 text-fuchsia-400'}`}>
+             <div className={`p-2 rounded-full ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-fuchsia-900/30 text-fuchsia-400'}`}>
                 <Sparkles size={28} />
              </div>
              <h2 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter ${sectionTitleClass}`} style={{ fontFamily: isLight ? 'sans-serif' : "'Russo One', sans-serif" }}>
@@ -139,10 +139,10 @@ const FanzonePage = () => {
                   <h3 className={`text-3xl font-black uppercase tracking-tighter leading-none ${isLight ? 'text-gray-800' : 'text-white'}`}>
                     Sua Coleção
                   </h3>
-                  <span className={`text-xs font-bold uppercase tracking-[0.2em] ${isLight ? 'text-pink-400' : 'text-fuchsia-400'}`}>Grid 2025 • Wave 1</span>
+                  <span className={`text-xs font-bold uppercase tracking-[0.2em] ${isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'}`}>Grid 2025 • Wave 1</span>
                 </div>
              </div>
-             <button className={`px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all ${isLight ? 'bg-white text-gray-500 shadow-md hover:text-pink-500' : 'bg-[#1a1a20] text-gray-400 border border-white/10 hover:border-cyan-400 hover:text-cyan-400'}`}>
+             <button className={`px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all ${isLight ? 'bg-white text-gray-500 shadow-md hover:text-cottage-rosy' : 'bg-[#1a1a20] text-gray-400 border border-white/10 hover:border-cyan-400 hover:text-cyan-400'}`}>
                 Ver Tudo
              </button>
           </div>
@@ -155,8 +155,8 @@ const FanzonePage = () => {
                    theme={resolvedTheme} 
                  />
                  <div className="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className={`p-2 rounded-full ${isLight ? 'bg-white shadow-md text-pink-400 hover:bg-pink-50' : 'bg-[#1a1a20] text-gray-400 hover:text-cyan-400'}`}><Heart size={16} /></button>
-                    <button className={`p-2 rounded-full ${isLight ? 'bg-white shadow-md text-purple-400 hover:bg-purple-50' : 'bg-[#1a1a20] text-gray-400 hover:text-fuchsia-400'}`}><Star size={16} /></button>
+                    <button className={`p-2 rounded-full ${isLight ? 'bg-white shadow-md text-cottage-rosy hover:bg-cottage-beige' : 'bg-[#1a1a20] text-gray-400 hover:text-cyan-400'}`}><Heart size={16} /></button>
+                    <button className={`p-2 rounded-full ${isLight ? 'bg-white shadow-md text-cottage-rosy hover:bg-cottage-rosy hover:text-cottage-beige' : 'bg-[#1a1a20] text-gray-400 hover:text-fuchsia-400'}`}><Star size={16} /></button>
                  </div>
                </div>
              ))}
@@ -166,7 +166,7 @@ const FanzonePage = () => {
         {/* 3. ESPAÇO DAS TORCIDAS (Novo e Bonito!) */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-8 px-2">
-             <Music size={28} className={isLight ? 'text-purple-500' : 'text-cyan-400'} />
+             <Music size={28} className={isLight ? 'text-cottage-rosy' : 'text-cyan-400'} />
              <h3 className={`text-3xl font-black uppercase tracking-tighter ${isLight ? 'text-gray-800' : 'text-white'}`}>
                Official Fan Clubs
              </h3>

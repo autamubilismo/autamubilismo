@@ -31,7 +31,7 @@ export const ArticlesClient = ({ posts }) => {
         title={
           <>
             Textos
-            <span className={`flex items-center gap-4 ${isLight ? 'text-pink-600' : 'text-white'}`}>
+            <span className={`flex items-center gap-4 ${isLight ? 'text-cottage-rosy' : 'text-white'}`}>
               <span className="font-serif italic text-5xl md:text-7xl">&</span>
               <span>Manifestos</span>
             </span>
@@ -42,7 +42,7 @@ export const ArticlesClient = ({ posts }) => {
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-32 opacity-70">
-          <Layout className={`mb-4 ${isLight ? 'text-pink-300' : 'text-cyan-600'}`} size={48} />
+          <Layout className={`mb-4 ${isLight ? 'text-cottage-rosy' : 'text-cyan-600'}`} size={48} />
           <p className={`text-sm font-bold ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
             Nenhum artigo encontrado
           </p>
@@ -62,7 +62,7 @@ export const ArticlesClient = ({ posts }) => {
               >
                 <div className={`relative overflow-hidden w-full ${
                   isFeatured ? "h-72 md:h-[32rem]" : "h-60"
-                } ${isLight ? "bg-pink-50" : "bg-black"}`}>
+                } ${isLight ? "bg-cottage-beige" : "bg-black"}`}>
                   {post.imageUrl ? (
                     <img
                       src={post.imageUrl}
@@ -73,7 +73,7 @@ export const ArticlesClient = ({ posts }) => {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center opacity-20">
-                      <Layout size={48} className={isLight ? "text-pink-300" : "text-fuchsia-500"} />
+                      <Layout size={48} className={isLight ? "text-cottage-rosy" : "text-fuchsia-500"} />
                     </div>
                   )}
                   
@@ -86,7 +86,7 @@ export const ArticlesClient = ({ posts }) => {
                   <div className="absolute top-6 left-6">
                     <span className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-md border shadow-lg ${
                       isLight 
-                        ? "bg-white/90 border-pink-100 text-pink-600 shadow-pink-100" 
+                        ? "bg-white/90 border-cottage-rosy text-cottage-rosy shadow-cottage-rosy" 
                         : "bg-black/60 border-cyan-500/30 text-cyan-300 shadow-[0_0_10px_rgba(0,255,255,0.2)]"
                     }`}>
                       {post.category || "Artigo"}
@@ -96,7 +96,7 @@ export const ArticlesClient = ({ posts }) => {
                   <div className="absolute top-6 right-6 opacity-0 -translate-y-4 rotate-45 group-hover:rotate-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                     <div className={`p-4 rounded-full shadow-xl ${
                       isLight 
-                        ? "bg-white text-pink-500 shadow-pink-200" 
+                        ? "bg-white text-cottage-rosy shadow-cottage-rosy" 
                         : "bg-fuchsia-600 text-white shadow-[0_0_20px_rgba(255,0,255,0.6)]"
                     }`}>
                       <ArrowUpRight size={24} />
@@ -108,7 +108,7 @@ export const ArticlesClient = ({ posts }) => {
                   {!isLight && <div className="absolute top-0 left-8 w-20 h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />}
 
                   <div className={`flex items-center gap-4 mb-4 text-xs font-bold uppercase tracking-wider ${
-                    isLight ? "text-pink-400" : "text-fuchsia-400"
+                    isLight ? "text-cottage-rosy" : "text-fuchsia-400"
                   }`}>
                     {post.publishedAt && (
                       <div className="flex items-center gap-1.5">
@@ -133,7 +133,7 @@ export const ArticlesClient = ({ posts }) => {
                     isFeatured ? "text-3xl md:text-5xl" : "text-xl md:text-2xl"
                   } ${
                     isLight 
-                      ? "text-gray-900 group-hover:text-pink-500" 
+                      ? "text-gray-900 group-hover:text-cottage-rosy" 
                       : "text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-fuchsia-400 group-hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
                   }`}>
                     {post.title}
@@ -148,15 +148,15 @@ export const ArticlesClient = ({ posts }) => {
                   )}
 
                   <div className={`mt-auto pt-6 border-t border-dashed flex items-center justify-between ${
-                    isLight ? "border-pink-200" : "border-white/10"
+                    isLight ? "border-cottage-rosy" : "border-white/10"
                   }`}>
                     <span className={`text-[10px] font-black uppercase tracking-[0.25em] ${
-                      isLight ? "text-pink-400" : "text-cyan-600 group-hover:text-cyan-400"
+                      isLight ? "text-cottage-rosy" : "text-cyan-600 group-hover:text-cyan-400"
                     }`}>
                       Ler Completo
                     </span>
                     <div className={`w-8 h-[2px] transition-all duration-500 group-hover:w-24 ${
-                      isLight ? "bg-pink-300" : "bg-gradient-to-r from-cyan-500 to-fuchsia-500 shadow-[0_0_10px_cyan]"
+                      isLight ? "bg-cottage-rosy" : "bg-gradient-to-r from-cyan-500 to-fuchsia-500 shadow-[0_0_10px_cyan]"
                     }`} />
                   </div>
                 </div>

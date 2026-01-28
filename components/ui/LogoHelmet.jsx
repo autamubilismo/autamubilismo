@@ -13,7 +13,7 @@ export const LogoHelmet = ({ theme, size = 'normal' }) => {
   if (!imgError) {
     return (
       <div className={`relative flex items-center justify-center ${size === 'large' ? 'p-2 md:p-4' : ''}`}>
-        <div className={`absolute inset-0 blur-2xl opacity-40 rounded-full ${isLight ? 'bg-pink-300' : 'bg-cyan-500'} animate-pulse`} />
+        <div className={`absolute inset-0 blur-2xl opacity-40 rounded-full ${isLight ? 'bg-cottage-rosy' : 'bg-cyan-500'} animate-pulse`} />
         
         <img 
           src={HELMET_ICON} 
@@ -34,8 +34,8 @@ export const LogoHelmet = ({ theme, size = 'normal' }) => {
   
   return (
     <div className="flex flex-col justify-center items-center md:items-start leading-none select-none relative z-10">
-      <h1 className={`font-black tracking-tighter italic ${size === 'large' ? 'text-3xl md:text-6xl lg:text-7xl' : 'text-xl md:text-2xl'} ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-pink-500' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-cyan-400'}`}>
-        AUTA<span className={isLight ? 'text-pink-400' : 'text-fuchsia-400'}>MU</span>BILISMO
+      <h1 className={`font-black tracking-tighter italic ${size === 'large' ? 'text-3xl md:text-6xl lg:text-7xl' : 'text-xl md:text-2xl'} ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-cottage-rosy via-cottage-rosy to-cottage-rosy' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-cyan-400'}`}>
+        AUTA<span className={isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'}>MU</span>BILISMO
       </h1>
     </div>
   );

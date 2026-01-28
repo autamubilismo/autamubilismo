@@ -38,8 +38,8 @@ const AdminComments = () => {
   // Estilos
   const pageBgStyle = isLight
     ? {
-        backgroundColor: "#FFF0F5",
-        backgroundImage: `radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(216, 196, 240, 0.4) 0px, transparent 50%)`,
+        backgroundColor: "#F7F4D5",
+        backgroundImage: `radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.35) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(211, 150, 140, 0.25) 0px, transparent 50%)`,
       }
     : {
         backgroundColor: "#050510",
@@ -48,16 +48,16 @@ const AdminComments = () => {
       };
 
   const cardBg = isLight
-    ? "bg-white/70 backdrop-blur-xl border border-pink-100"
+    ? "bg-white/70 backdrop-blur-xl border border-cottage-rosy"
     : "bg-[#121217]/80 backdrop-blur-xl border border-white/10";
 
   const inputStyles = isLight
-    ? "bg-white/80 border-pink-200 text-gray-900 placeholder-gray-400 focus:border-pink-400 focus:ring-pink-400/20"
+    ? "bg-white/80 border-cottage-rosy text-gray-900 placeholder-gray-400 focus:border-cottage-rosy focus:ring-cottage-rosy/20"
     : "bg-black/40 border-white/10 text-white placeholder-gray-500 focus:border-cyan-500 focus:ring-cyan-500/20";
 
   const textPrimary = isLight ? "text-gray-900" : "text-white";
   const textSecondary = isLight ? "text-gray-600" : "text-gray-400";
-  const accentColor = isLight ? "text-pink-500" : "text-cyan-400";
+  const accentColor = isLight ? "text-cottage-rosy" : "text-cyan-400";
 
   // Verificar autenticação ao carregar
   useEffect(() => {
@@ -219,7 +219,7 @@ const AdminComments = () => {
           <div className="text-center mb-8">
             <div
               className={`w-20 h-20 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
-                isLight ? "bg-pink-100 text-pink-600" : "bg-cyan-500/10 text-cyan-400"
+                isLight ? "bg-cottage-rosy text-cottage-beige" : "bg-cyan-500/10 text-cyan-400"
               }`}
             >
               <Lock size={40} />
@@ -267,7 +267,7 @@ const AdminComments = () => {
               disabled={loginLoading}
               className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 ${
                 isLight
-                  ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white"
+                  ? "bg-gradient-to-r from-cottage-rosy to-cottage-rosy text-white"
                   : "bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white"
               }`}
             >
@@ -304,7 +304,7 @@ const AdminComments = () => {
               href="/"
               className={`inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-full transition-all ${
                 isLight
-                  ? "text-pink-500 hover:bg-pink-50 bg-white/60 border border-pink-100"
+                  ? "text-cottage-rosy hover:bg-cottage-beige bg-white/60 border border-cottage-rosy"
                   : "text-cyan-400 hover:bg-cyan-900/20 bg-black/40 border border-cyan-500/30"
               }`}
             >
@@ -329,7 +329,7 @@ const AdminComments = () => {
             <div className="flex items-center gap-4">
               <div
                 className={`p-4 rounded-2xl ${
-                  isLight ? "bg-pink-100 text-pink-600" : "bg-cyan-500/10 text-cyan-400"
+                  isLight ? "bg-cottage-rosy text-cottage-beige" : "bg-cyan-500/10 text-cyan-400"
                 }`}
               >
                 <MessageCircle size={32} />
@@ -376,7 +376,7 @@ const AdminComments = () => {
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                   filter === f.value
                     ? isLight
-                      ? "bg-pink-500 text-white"
+                      ? "bg-cottage-rosy text-white"
                       : "bg-cyan-500 text-black"
                     : isLight
                     ? "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200"

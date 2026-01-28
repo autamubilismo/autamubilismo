@@ -77,7 +77,7 @@ const PageContainer = ({ theme, children }) => {
   return (
     <div className={`min-h-screen w-full px-6 py-8 transition-colors duration-500 ${
       isLight 
-        ? 'bg-[#FFF5F8]' 
+        ? 'bg-[#F7F4D5]' 
         : 'bg-[#090011] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2a004a] via-[#090011] to-[#05000a] text-cyan-50'
     }`}>
       <div className="max-w-7xl mx-auto relative z-10">
@@ -370,10 +370,10 @@ const FeatureCard = ({ icon: Icon, title, subtitle, badge, color, theme, onClick
   
   const colorStyles = {
     purple: { 
-      bg: isLight ? 'bg-purple-100' : 'bg-purple-500/10', 
-      text: isLight ? 'text-purple-600' : 'text-purple-300', 
-      decoration: 'bg-purple-500',
-      border: 'border-purple-500/30'
+      bg: isLight ? 'bg-cottage-rosy' : 'bg-cottage-rosy/10', 
+      text: isLight ? 'text-cottage-rosy' : 'text-cottage-rosy', 
+      decoration: 'bg-cottage-rosy',
+      border: 'border-cottage-rosy/30'
     },
     green: { 
       bg: isLight ? 'bg-green-100' : 'bg-green-500/10', 
@@ -554,7 +554,7 @@ const SeasonPage = () => {
       {/* Hero Widget 2026 */}
       <div className={`relative w-full rounded-[2.5rem] p-8 mb-8 overflow-hidden z-20 transition-all duration-500 ${
         isLight 
-          ? 'bg-gradient-to-br from-indigo-600 to-purple-700 text-white' 
+          ? 'bg-gradient-to-br from-indigo-600 to-cottage-rosy text-white' 
           : 'bg-gradient-to-br from-[#2a0e3d] via-[#1a052b] to-[#0b0014] border border-fuchsia-500/30 shadow-[0_0_30px_rgba(255,0,255,0.15)]'
       }`}>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -592,7 +592,7 @@ const SeasonPage = () => {
           isLight ? 'bg-white/5' : 'bg-fuchsia-600/20'
         }`}></div>
         <div className={`absolute bottom-0 left-0 w-48 h-48 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none ${
-          isLight ? 'bg-purple-500/20' : 'bg-cyan-500/20'
+          isLight ? 'bg-cottage-rosy/20' : 'bg-cyan-500/20'
         }`}></div>
       </div>
 

@@ -7,10 +7,10 @@ export const LOGO_DARK_URL = "/img/web/DARK-MODE-HEADER.png";
 export const LOGO_LIGHT_URL = "/img/web/LIGHT-MODE-HEADER.png";
 
 export const PASTEL = { 
-  pink: '#fac4dc',   // Seu Rosa exato
-  purple: '#caa5d8', // Seu Roxo exato
-  blue: '#bbd3f2',   // Seu Azul exato
-  bg: '#FFFDFE' 
+  pink: '#D3968C',   // Rosy brown (novo pink)
+  purple: '#D3968C', // Rosy brown (antigo purple)
+  blue: '#105666',   // Midnight teal (texto secundario)
+  bg: '#F7F4D5'      // Beige claro (background)
 };
 
 export const NEON = { 

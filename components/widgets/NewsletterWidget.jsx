@@ -40,9 +40,9 @@ export const NewsletterWidget = ({ theme }) => {
 
   return (
     <div className="h-full flex flex-col items-center justify-center p-6 md:p-10 gap-6 relative z-10">
-      <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-purple-600' : 'text-cyan-500'}`} />
+      <Mail className={`absolute -right-4 -top-4 w-40 h-40 opacity-5 pointer-events-none rotate-12 ${isLight ? 'text-cottage-rosy' : 'text-cyan-500'}`} />
       <div className="flex flex-col items-center text-center gap-4 relative z-10">
-        <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-purple-400" : "bg-[#1a1a20] border border-fuchsia-500/30 text-fuchsia-400"}`}>
+        <div className={`p-5 md:p-6 rounded-3xl shadow-md ${isLight ? "bg-white text-cottage-rosy" : "bg-[#1a1a20] border border-fuchsia-500/30 text-fuchsia-400"}`}>
           <Mail size={32} />
         </div>
         <div>
@@ -62,7 +62,7 @@ export const NewsletterWidget = ({ theme }) => {
             placeholder="seu@email.com" 
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
-            className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all text-center sm:text-left ${isLight ? "bg-white border-2 border-transparent focus:border-pink-300 text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-cyan-400 text-white placeholder-gray-600"}`} 
+            className={`w-full h-12 md:h-14 px-5 md:px-6 rounded-2xl text-sm md:text-base font-bold outline-none transition-all text-center sm:text-left ${isLight ? "bg-white border-2 border-transparent focus:border-cottage-rosy text-gray-800 placeholder-gray-300 shadow-md" : "bg-[#0a0a12] border border-[#333] focus:border-cyan-400 text-white placeholder-gray-600"}`} 
           />
         </div>
         <button 
@@ -117,7 +117,7 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
         }}
       >
         <div
-          className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-pink-200 shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-fuchsia-500/50 shadow-[0_0_30px_rgba(232,121,249,0.3)]'} bg-gray-200 z-10`}
+          className={`absolute inset-0 rounded-[2.5rem] overflow-hidden ${isLight ? 'border-[8px] border-white ring-4 ring-cottage-rosy shadow-2xl' : 'border-[6px] border-[#1a1a20] ring-4 ring-fuchsia-500/50 shadow-[0_0_30px_rgba(232,121,249,0.3)]'} bg-gray-200 z-10`}
           style={{ backfaceVisibility: 'hidden' }}
         >
           <img src={driver.photocardImage} alt={driver.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -136,18 +136,18 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
         </div>
 
         <div
-          className={`absolute inset-0 rounded-[2.5rem] p-6 flex flex-col justify-between text-center ${isLight ? 'bg-gradient-to-br from-pink-50 via-white to-purple-50 border-[8px] border-white ring-4 ring-pink-200' : 'bg-[#09090c] border-[6px] border-[#1a1a20] ring-4 ring-cyan-500/50 shadow-[0_0_20px_rgba(0,255,242,0.3)]'}`}
+          className={`absolute inset-0 rounded-[2.5rem] p-6 flex flex-col justify-between text-center ${isLight ? 'bg-gradient-to-br from-cottage-beige via-white to-cottage-rosy border-[8px] border-white ring-4 ring-cottage-rosy' : 'bg-[#09090c] border-[6px] border-[#1a1a20] ring-4 ring-cyan-500/50 shadow-[0_0_20px_rgba(0,255,242,0.3)]'}`}
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
           <div className="flex flex-col items-center gap-3 mt-4">
-            <div className={`w-24 h-24 rounded-full overflow-hidden border-4 shadow-lg ${isLight ? 'border-pink-300' : 'border-cyan-400'}`}>
+            <div className={`w-24 h-24 rounded-full overflow-hidden border-4 shadow-lg ${isLight ? 'border-cottage-rosy' : 'border-cyan-400'}`}>
               <img src={driver.photocardImage} className="w-full h-full object-cover" alt="Avatar" />
             </div>
             <div>
               <h3 className={`font-black text-2xl leading-none ${isLight ? 'text-gray-800' : 'text-white'}`}>
                 {driver.name}
               </h3>
-              <span className={`inline-block mt-2 px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600' : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30'}`}>
+              <span className={`inline-block mt-2 px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30'}`}>
                 {driver.team}
               </span>
             </div>
@@ -157,13 +157,13 @@ export const KpopPhotocard = ({ driver, theme, onClick }) => {
             <span>•</span>
             <span>#{driver.number}</span>
           </div>
-          <div className={`p-5 rounded-2xl text-sm italic font-medium relative mx-2 ${isLight ? 'bg-white/80 text-gray-600 shadow-inner ring-1 ring-pink-100' : 'bg-[#1a1a20] text-cyan-200 border border-cyan-500/20'}`}>
+          <div className={`p-5 rounded-2xl text-sm italic font-medium relative mx-2 ${isLight ? 'bg-white/80 text-gray-600 shadow-inner ring-1 ring-cottage-rosy' : 'bg-[#1a1a20] text-cyan-200 border border-cyan-500/20'}`}>
             <span className="absolute -top-3 -left-2 text-4xl opacity-20 font-serif">"</span>
             {driver.secretFact}
             <span className="absolute -bottom-5 -right-2 text-4xl opacity-20 font-serif">"</span>
           </div>
           <div className="mt-2 transform -rotate-6 opacity-60 pb-4">
-            <p className={`font-handwriting text-3xl ${isLight ? 'text-pink-400' : 'text-fuchsia-400'}`} style={{ fontFamily: 'cursive' }}>
+            <p className={`font-handwriting text-3xl ${isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'}`} style={{ fontFamily: 'cursive' }}>
               {driver.signature}
             </p>
           </div>

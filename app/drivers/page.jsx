@@ -50,7 +50,7 @@ const DriversPage = () => {
                 flex flex-col justify-end
                 ${!isLight 
                   ? 'border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_50px_rgba(var(--driver-glow),0.4)]' 
-                  : 'shadow-[0_20px_50px_-15px_rgba(255,182,193,0.6)] hover:shadow-pink-200'
+                  : 'shadow-[0_20px_50px_-15px_rgba(255,182,193,0.6)] hover:shadow-cottage-rosy'
                 }
               `}
             >
@@ -74,7 +74,7 @@ const DriversPage = () => {
               {/* Overlay de Gradiente */}
               <div className={`absolute inset-0 z-10 bg-gradient-to-t transition-all duration-500 ${
                 isLight 
-                  ? 'from-white via-white/10 to-transparent group-hover:from-pink-50/90' 
+                  ? 'from-white via-white/10 to-transparent group-hover:from-cottage-beige/90' 
                   : 'from-[#050510] via-transparent to-transparent group-hover:from-[#050510]/80'
               }`} />
 

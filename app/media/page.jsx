@@ -16,7 +16,7 @@ const BackButton = ({ to = "/", theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:pl-2 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-pink-500 hover:text-pink-600 hover:bg-pink-50 hover:shadow-sm bg-white/60 backdrop-blur-sm border border-pink-100' 
+          ? 'text-cottage-rosy hover:text-cottage-rosy hover:bg-cottage-beige hover:shadow-sm bg-white/60 backdrop-blur-sm border border-cottage-rosy' 
           : 'text-cyan-400 hover:text-white hover:bg-cyan-900/20 border border-cyan-500/30 bg-black/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,255,242,0.15)] hover:shadow-[0_0_25px_cyan] hover:border-cyan-400'
       }`}
     >
@@ -42,7 +42,7 @@ const SPOTIFY_PODCASTS = [
 const PLAYLISTS = [
   { id: 'pl1', title: 'Race Day Hype', mood: 'Energia', color: 'bg-red-500', url: '#' },
   { id: 'pl2', title: 'Garage Focus', mood: 'Concentração', color: 'bg-blue-500', url: '#' },
-  { id: 'pl3', title: 'Paddock Chill', mood: 'Relax', color: 'bg-purple-500', url: '#' },
+  { id: 'pl3', title: 'Paddock Chill', mood: 'Relax', color: 'bg-cottage-rosy', url: '#' },
 ];
 
 const MultimediaPage = () => {
@@ -52,10 +52,10 @@ const MultimediaPage = () => {
 
   // --- BACKGROUNDS ---
   const lightPattern = {
-    backgroundColor: '#FFF0F5',
+    backgroundColor: '#F7F4D5',
     backgroundImage: `
-      radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(216, 196, 240, 0.4) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.35) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(211, 150, 140, 0.25) 0px, transparent 50%),
       url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff69b4' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E")
     `,
   };
@@ -74,7 +74,7 @@ const MultimediaPage = () => {
   const textMain = isLight ? 'text-gray-900' : 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]';
   const textSub = isLight ? 'text-gray-500' : 'text-cyan-100/70';
   const cardBg = isLight 
-    ? 'bg-white/70 backdrop-blur-xl border border-pink-100 shadow-[0_10px_30px_rgba(255,182,193,0.3)]' 
+    ? 'bg-white/70 backdrop-blur-xl border border-cottage-rosy shadow-[0_10px_30px_rgba(255,182,193,0.3)]' 
     : 'bg-[#121217]/80 backdrop-blur-xl border border-white/10 hover:border-cyan-500/30 shadow-[0_0_20px_rgba(0,0,0,0.5)]';
 
   const sectionTitleStyle = `text-2xl font-black uppercase tracking-tight mb-6 flex items-center gap-3 ${isLight ? 'text-gray-800' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500'}`;
@@ -87,8 +87,8 @@ const MultimediaPage = () => {
       
       {/* Luz de Fundo Decorativa */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
-         <div className={`absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-pink-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
+         <div className={`absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-cottage-rosy' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
+         <div className={`absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-cottage-rosy' : 'bg-[#00fff2]/20 animate-pulse'}`} />
          {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
       </div>
 
@@ -98,10 +98,10 @@ const MultimediaPage = () => {
         {/* HEADER */}
         <div className="mb-16 text-center relative">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border bg-white/10 backdrop-blur-sm border-white/20 shadow-lg">
-             <Tv size={16} className={isLight ? 'text-pink-500' : 'text-cyan-400'} />
-             <span className={`text-[10px] font-black uppercase tracking-[0.25em] ${isLight ? 'text-pink-600' : 'text-cyan-300'}`}>Hub de Conteúdo</span>
+             <Tv size={16} className={isLight ? 'text-cottage-rosy' : 'text-cyan-400'} />
+             <span className={`text-[10px] font-black uppercase tracking-[0.25em] ${isLight ? 'text-cottage-rosy' : 'text-cyan-300'}`}>Hub de Conteúdo</span>
           </div>
-          <h1 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 drop-shadow-sm' : 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]'}`} style={{ fontFamily: "'Russo One', sans-serif" }}>
+          <h1 className={`text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 ${isLight ? 'text-transparent bg-clip-text bg-gradient-to-r from-cottage-rosy to-cottage-rosy drop-shadow-sm' : 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]'}`} style={{ fontFamily: "'Russo One', sans-serif" }}>
             Multimídia
           </h1>
           <p className={`text-lg font-medium max-w-xl mx-auto ${textSub}`}>
@@ -185,7 +185,7 @@ const MultimediaPage = () => {
         {/* --- SEÇÃO DE PLAYLISTS (VIBES) --- */}
         <div>
            <h2 className={sectionTitleStyle}>
-              <div className={`p-2 rounded-xl ${isLight ? 'bg-purple-100 text-purple-600' : 'bg-purple-900/30 text-purple-400'}`}><Music size={24} /></div>
+              <div className={`p-2 rounded-xl ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-cottage-rosy/30 text-cottage-beige'}`}><Music size={24} /></div>
               Vibes de Corrida
            </h2>
 

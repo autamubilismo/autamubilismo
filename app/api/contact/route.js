@@ -29,8 +29,8 @@ export async function POST(request) {
       subject: `Nova mensagem de contato: ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #ec4899; margin-bottom: 20px;">Nova mensagem de contato</h2>
-          <div style="background: #f9fafb; border-left: 4px solid #ec4899; padding: 20px; margin: 20px 0;">
+          <h2 style="color: #D3968C; margin-bottom: 20px;">Nova mensagem de contato</h2>
+          <div style="background: #f9fafb; border-left: 4px solid #D3968C; padding: 20px; margin: 20px 0;">
             <p style="margin: 0 0 10px 0;"><strong>Nome:</strong> ${name}</p>
             <p style="margin: 0 0 10px 0;"><strong>E-mail:</strong> ${email}</p>
           </div>

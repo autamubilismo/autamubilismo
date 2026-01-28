@@ -36,7 +36,7 @@ const client = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tama
     projectId: "c7nvssn2",
     dataset: "production",
     apiVersion: "2023-01-01",
-    useCdn: true
+    useCdn: false
 });
 const builder = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Users$2f$tamar$2f$Desktop$2f$autamubilismo$2f$node_modules$2f40$sanity$2f$image$2d$url$2f$lib$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(client);
 const urlFor = (source)=>builder.image(source);

@@ -13,6 +13,16 @@ module.exports = {
         sans: ['var(--font-inter)'],
         russo: ['var(--font-russo)'],
       },
+      colors: {
+        // Cottagecore / Nature palette (Light Mode)
+        'cottage': {
+          'dark-green': '#0A3323',
+          'moss': '#839958',
+          'beige': '#F7F4D5',
+          'rosy': '#D3968C',
+          'midnight': '#105666',
+        },
+      },
     },
   },
   plugins: [

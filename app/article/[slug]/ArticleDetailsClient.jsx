@@ -30,7 +30,7 @@ const BackButton = ({ to = "/", theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:pl-2 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-pink-500 hover:text-pink-600 hover:bg-pink-50 hover:shadow-sm bg-white/60 backdrop-blur-sm border border-pink-100' 
+          ? 'text-cottage-rosy hover:text-cottage-rosy hover:bg-cottage-beige hover:shadow-sm bg-white/60 backdrop-blur-sm border border-cottage-rosy' 
           : 'text-cyan-400 hover:text-white hover:bg-cyan-900/20 border border-cyan-500/30 bg-black/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,255,242,0.15)] hover:shadow-[0_0_25px_cyan] hover:border-cyan-400'
       }`}
     >
@@ -50,7 +50,7 @@ const proseClass = (isLight) => `prose prose-lg max-w-none
   prose-ol:my-6 prose-ol:pl-6
   prose-blockquote:my-8 prose-blockquote:pl-6 prose-blockquote:border-l-4 prose-blockquote:italic
   ${isLight
-    ? 'prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-pink-600 prose-a:text-purple-600 hover:prose-a:text-purple-500 prose-blockquote:border-pink-300 prose-blockquote:bg-pink-50/50 prose-li:marker:text-pink-400 prose-li:text-gray-700'
+    ? 'prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-cottage-rosy prose-a:text-cottage-rosy hover:prose-a:text-cottage-rosy prose-blockquote:border-cottage-rosy prose-blockquote:bg-cottage-beige/50 prose-li:marker:text-cottage-rosy prose-li:text-gray-700'
     : 'prose-headings:text-white prose-p:text-gray-300 prose-strong:text-cyan-400 prose-a:text-fuchsia-400 hover:prose-a:text-fuchsia-300 prose-blockquote:border-cyan-500 prose-blockquote:bg-white/5 prose-li:marker:text-cyan-500 prose-li:text-gray-300'
   }`;
 
@@ -63,7 +63,7 @@ const proseComponents = (isLight) => ({
           <img
             src={urlFor(value).width(800).url()}
             alt={value.alt || 'Imagem do artigo'}
-            className={`w-full rounded-[2rem] ${isLight ? 'shadow-xl shadow-pink-100' : 'shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10'}`}
+            className={`w-full rounded-[2rem] ${isLight ? 'shadow-xl shadow-cottage-rosy' : 'shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10'}`}
           />
           {value.caption && (
             <figcaption className={`text-center text-xs mt-3 font-bold uppercase tracking-wider ${isLight ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -90,7 +90,7 @@ const portableTextComponents = (isLight) => ({
           target={blank ? "_blank" : undefined}
           rel={blank ? "noopener noreferrer" : undefined}
           className={`underline underline-offset-2 font-medium transition-colors ${
-            isLight ? 'text-purple-600 hover:text-purple-700' : 'text-fuchsia-400 hover:text-fuchsia-300'
+            isLight ? 'text-cottage-rosy hover:text-cottage-rosy' : 'text-fuchsia-400 hover:text-fuchsia-300'
           }`}
         >
           {children}
@@ -98,7 +98,7 @@ const portableTextComponents = (isLight) => ({
       );
     },
     strong: ({ children }) => (
-      <strong className={isLight ? 'text-pink-600 font-bold' : 'text-cyan-400 font-bold'}>
+      <strong className={isLight ? 'text-cottage-rosy font-bold' : 'text-cyan-400 font-bold'}>
         {children}
       </strong>
     ),
@@ -107,7 +107,7 @@ const portableTextComponents = (isLight) => ({
     ),
     code: ({ children }) => (
       <code className={`px-1.5 py-0.5 rounded text-sm font-mono ${
-        isLight ? 'bg-pink-100 text-pink-700' : 'bg-cyan-900/30 text-cyan-300'
+        isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-cyan-900/30 text-cyan-300'
       }`}>
         {children}
       </code>
@@ -130,7 +130,7 @@ const portableTextComponents = (isLight) => ({
     h2: ({ children }) => (
       <h2 className={`text-2xl md:text-3xl font-bold mt-12 mb-6 leading-tight relative pb-3 ${
         isLight
-          ? 'text-gray-900 border-b-2 border-pink-100'
+          ? 'text-gray-900 border-b-2 border-cottage-rosy'
           : 'text-white border-b-2 border-cyan-500/30'
       }`}>
         {children}
@@ -153,11 +153,11 @@ const portableTextComponents = (isLight) => ({
     blockquote: ({ children }) => (
       <blockquote className={`relative border-l-4 pl-6 pr-6 py-4 my-10 italic text-lg leading-relaxed rounded-r-2xl ${
         isLight
-          ? 'bg-pink-50/70 border-pink-400 text-gray-700'
+          ? 'bg-cottage-beige/70 border-cottage-rosy text-gray-700'
           : 'bg-white/5 border-cyan-500 text-gray-300'
       }`}>
         <span className={`absolute -left-2 top-2 text-6xl opacity-20 ${
-          isLight ? 'text-pink-400' : 'text-cyan-500'
+          isLight ? 'text-cottage-rosy' : 'text-cyan-500'
         }`}>"</span>
         {children}
       </blockquote>
@@ -195,14 +195,14 @@ const portableTextComponents = (isLight) => ({
   listItem: {
     bullet: ({ children }) => (
       <li className={`leading-relaxed ${
-        isLight ? 'marker:text-pink-400' : 'marker:text-cyan-400'
+        isLight ? 'marker:text-cottage-rosy' : 'marker:text-cyan-400'
       }`}>
         {children}
       </li>
     ),
     number: ({ children }) => (
       <li className={`leading-relaxed ${
-        isLight ? 'marker:text-pink-400 marker:font-bold' : 'marker:text-cyan-400 marker:font-bold'
+        isLight ? 'marker:text-cottage-rosy marker:font-bold' : 'marker:text-cyan-400 marker:font-bold'
       }`}>
         {children}
       </li>
@@ -251,13 +251,13 @@ const ArticleDetail = ({ slug: slugProp }) => {
   // CORES E ESTILOS
   const textPrimary = isLight ? "text-gray-900" : "text-white";
   const textSecondary = isLight ? "text-gray-500" : "text-gray-400";
-  const accentColor = isLight ? "text-pink-500" : "text-cyan-400";
+  const accentColor = isLight ? "text-cottage-rosy" : "text-cyan-400";
   
   // Backgrounds e Sombras
   const pageBgStyle = isLight 
     ? {
-        backgroundColor: '#FFF0F5',
-        backgroundImage: `radial-gradient(at 0% 0%, rgba(255, 182, 193, 0.4) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(216, 196, 240, 0.4) 0px, transparent 50%)`
+        backgroundColor: '#F7F4D5',
+        backgroundImage: `radial-gradient(at 0% 0%, rgba(211, 150, 140, 0.35) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(211, 150, 140, 0.25) 0px, transparent 50%)`
       }
     : {
         backgroundColor: '#050510',
@@ -270,10 +270,10 @@ const ArticleDetail = ({ slug: slugProp }) => {
     : "bg-[#121217]/80 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]";
     
   const badgeBg = isLight
-    ? "bg-gradient-to-r from-pink-100 to-purple-200 text-purple-900 shadow-sm"
+    ? "bg-gradient-to-r from-cottage-rosy to-cottage-rosy text-cottage-beige shadow-sm"
     : "bg-gradient-to-r from-cyan-500/20 to-fuchsia-500/20 text-cyan-300 border border-cyan-500/30";
   const tagBadge = isLight
-    ? "bg-white/80 text-pink-600 border border-pink-100"
+    ? "bg-white/80 text-cottage-rosy border border-cottage-rosy"
     : "bg-black/40 text-cyan-300 border border-cyan-500/40";
 
   // FUNÇÃO DE COPIAR LINK
@@ -306,8 +306,11 @@ const ArticleDetail = ({ slug: slugProp }) => {
             category,
             author,
             publishedAt,
-            "source": sourceLabel,
-            sourceUrl,
+            "sources": select(
+              defined(sources) => sources,
+              defined(sourceLabel) || defined(sourceUrl) => [{"label": sourceLabel, "url": sourceUrl}],
+              []
+            ),
             tags,
             seo{
               metaTitle,
@@ -387,7 +390,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
   if (loading) {
     return (
       <div className={`min-h-screen flex flex-col items-center justify-center`} style={pageBgStyle}>
-        <div className={`animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 ${isLight ? "border-pink-400" : "border-cyan-500"}`}></div>
+        <div className={`animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 ${isLight ? "border-cottage-rosy" : "border-cyan-500"}`}></div>
         <p className={`mt-6 font-black uppercase tracking-widest text-sm ${textSecondary} animate-pulse`}>
           Carregando artigo...
         </p>
@@ -425,8 +428,8 @@ const ArticleDetail = ({ slug: slugProp }) => {
       
       {/* Luz de Fundo Decorativa */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-pink-50/70' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
-         <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-purple-200' : 'bg-[#00fff2]/20 animate-pulse'}`} />
+         <div className={`absolute top-[-20%] left-[-10%] w-[800px] h-[800px] rounded-full blur-[120px] opacity-30 ${isLight ? 'bg-cottage-beige/70' : 'bg-[#bd00ff]/30 animate-pulse'}`} />
+         <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-20 ${isLight ? 'bg-cottage-rosy' : 'bg-[#00fff2]/20 animate-pulse'}`} />
          {!isLight && <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent shadow-[0_0_20px_cyan]" />}
       </div>
 
@@ -465,17 +468,17 @@ const ArticleDetail = ({ slug: slugProp }) => {
           </h1>
 
           {/* BARRA DE INFO E COMPARTILHAMENTO */}
-          <div className={`flex flex-col sm:flex-row sm:items-center justify-between border-y py-6 gap-6 ${isLight ? 'border-pink-100/50' : 'border-white/10'}`}>
+          <div className={`flex flex-col sm:flex-row sm:items-center justify-between border-y py-6 gap-6 ${isLight ? 'border-cottage-rosy/50' : 'border-white/10'}`}>
             {/* Autor */}
             <div className="flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm ${isLight ? "bg-white border border-pink-100 text-pink-500" : "bg-[#1a1a20] border border-white/10 text-cyan-400"}`}>
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm ${isLight ? "bg-white border border-cottage-rosy text-cottage-rosy" : "bg-[#1a1a20] border border-white/10 text-cyan-400"}`}>
                 <User size={24} />
               </div>
               <div>
                 <p className={`text-sm font-black uppercase tracking-wide ${textPrimary}`}>
                   {post.author || "Redação Autamubilismo"}
                 </p>
-                <p className={`text-xs font-medium ${isLight ? 'text-pink-400' : 'text-fuchsia-400'}`}>Colunista Oficial</p>
+                <p className={`text-xs font-medium ${isLight ? 'text-cottage-rosy' : 'text-fuchsia-400'}`}>Colunista Oficial</p>
               </div>
             </div>
 
@@ -535,7 +538,7 @@ const ArticleDetail = ({ slug: slugProp }) => {
                 onClick={handleCopyLink}
                 className={`p-3 rounded-full transition-all hover:scale-110 hover:-translate-y-1 relative ${
                   isLight
-                    ? "bg-white text-pink-500 hover:bg-pink-50 shadow-sm border border-gray-100"
+                    ? "bg-white text-cottage-rosy hover:bg-cottage-beige shadow-sm border border-gray-100"
                     : "bg-[#1a1a20] text-fuchsia-400 border border-white/10 hover:border-fuchsia-500/50 hover:shadow-[0_0_15px_rgba(232,121,249,0.3)]"
                 }`}
                 title="Copiar Link"
@@ -566,12 +569,12 @@ const ArticleDetail = ({ slug: slugProp }) => {
               className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out group-hover:scale-105"
             />
             {/* Gradiente Overlay */}
-            <div className={`absolute inset-0 bg-gradient-to-t pointer-events-none opacity-60 ${isLight ? 'from-pink-900/20 to-transparent' : 'from-[#050510] via-transparent to-transparent'}`} />
+            <div className={`absolute inset-0 bg-gradient-to-t pointer-events-none opacity-60 ${isLight ? 'from-cottage-rosy/20 to-transparent' : 'from-[#050510] via-transparent to-transparent'}`} />
             
             {/* Tag Flutuante na Imagem */}
             <div className={`absolute bottom-6 left-6 md:bottom-10 md:left-10 px-5 py-2.5 rounded-2xl backdrop-blur-md border ${isLight ? 'bg-white/80 border-white text-gray-900' : 'bg-black/60 border-white/10 text-white'}`}>
                <span className="text-xs font-black uppercase tracking-widest flex items-center gap-2">
-                  <Heart size={14} className={isLight ? 'text-red-500 fill-current' : 'text-pink-500 fill-current'} /> 
+                  <Heart size={14} className={isLight ? 'text-red-500 fill-current' : 'text-cottage-rosy fill-current'} /> 
                   Destaque da Semana
                </span>
             </div>
@@ -582,16 +585,16 @@ const ArticleDetail = ({ slug: slugProp }) => {
         <div className={`max-w-4xl mx-auto ${cardBg} p-8 md:p-14 rounded-[3rem] relative overflow-hidden`}>
           
           {/* Elemento Decorativo Interno */}
-          <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl to-transparent opacity-10 rounded-bl-full pointer-events-none ${isLight ? 'from-pink-400' : 'from-cyan-400'}`} />
+          <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl to-transparent opacity-10 rounded-bl-full pointer-events-none ${isLight ? 'from-cottage-rosy' : 'from-cyan-400'}`} />
 
           {/* Excerpt (Resumo) */}
           {post.excerpt && (
             <div
               className={`text-xl md:text-2xl font-medium leading-relaxed mb-12 pl-8 border-l-[6px] italic relative ${
-                isLight ? "text-gray-700 border-pink-300" : "text-gray-200 border-cyan-500"
+                isLight ? "text-gray-700 border-cottage-rosy" : "text-gray-200 border-cyan-500"
               }`}
             >
-              <span className={`absolute -top-4 -left-4 text-6xl opacity-20 font-serif ${isLight ? 'text-pink-300' : 'text-cyan-500'}`}>"</span>
+              <span className={`absolute -top-4 -left-4 text-6xl opacity-20 font-serif ${isLight ? 'text-cottage-rosy' : 'text-cyan-500'}`}>"</span>
               {post.excerpt}
             </div>
           )}
@@ -624,39 +627,50 @@ const ArticleDetail = ({ slug: slugProp }) => {
             </article>
           )}
 
-          {(post.source || post.sourceUrl) && (
+          {((post.sources && post.sources.length > 0) || post.source || post.sourceUrl) && (
             <div
               className={`mt-16 p-6 rounded-3xl flex flex-col sm:flex-row items-start sm:items-center gap-4 border transition-all ${
-                isLight ? "bg-purple-50/50 border-purple-100 text-purple-900" : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
+                isLight ? "bg-cottage-rosy/50 border-cottage-rosy text-cottage-dark-green" : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10"
               }`}
             >
-              <div className={`p-3 rounded-full ${isLight ? 'bg-white text-purple-500' : 'bg-black text-cyan-400'}`}>
+              <div className={`p-3 rounded-full ${isLight ? 'bg-white text-cottage-rosy' : 'bg-black text-cyan-400'}`}>
                  <ExternalLink size={20} />
               </div>
               <div className="flex-1">
-                 <span className="block text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">
-                   Fonte Original
+                 <span className="block text-[10px] font-black uppercase tracking-widest opacity-60 mb-3">
+                   Fontes
                  </span>
-                 {post.sourceUrl ? (
-                    <a
-                      href={post.sourceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`hover:underline font-bold text-lg flex items-center gap-1 ${
-                        isLight ? "text-purple-700" : "text-cyan-300"
-                      }`}
-                    >
-                      {post.source || "Ler matéria completa"} <ExternalLink size={14} />
-                    </a>
-                  ) : (
-                    <span className="font-bold text-lg">{post.source || "Fonte não informada"}</span>
-                  )}
+                 <div className="flex flex-wrap gap-3">
+                   {(post.sources?.length ? post.sources : [{ label: post.source, url: post.sourceUrl }])
+                     .filter((item) => item?.label || item?.url)
+                     .map((item, idx) => (
+                       <div
+                         key={`${item?.label || "fonte"}-${idx}`}
+                         className={`px-4 py-2 rounded-full border font-bold text-sm flex items-center gap-2 ${
+                           isLight ? "bg-white/80 border-cottage-rosy text-cottage-rosy" : "bg-white/5 border-white/10 text-cyan-300"
+                         }`}
+                       >
+                         {item?.url ? (
+                           <a
+                             href={item.url}
+                             target="_blank"
+                             rel="noopener noreferrer"
+                             className="flex items-center gap-2 hover:underline"
+                           >
+                             {item.label || "Ler matéria completa"} <ExternalLink size={12} />
+                           </a>
+                         ) : (
+                           <span>{item.label || "Fonte não informada"}</span>
+                         )}
+                       </div>
+                     ))}
+                 </div>
               </div>
             </div>
           )}
 
           <div
-            className={`mt-20 pt-10 border-t border-dashed text-center ${isLight ? "border-pink-100" : "border-white/10"}`}
+            className={`mt-20 pt-10 border-t border-dashed text-center ${isLight ? "border-cottage-rosy" : "border-white/10"}`}
           >
             <p className={`text-sm font-medium uppercase tracking-widest opacity-50 flex items-center justify-center gap-2 ${textSecondary}`}>
               <Sparkles size={14} /> Fim da transmissão

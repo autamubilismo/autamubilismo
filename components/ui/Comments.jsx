@@ -81,22 +81,22 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
     if (error) setError("");
   };
 
-  // Estilos baseados no tema
+  // Estilos baseados no tema - Cottagecore
   const cardBg = isLight
-    ? "bg-white/70 backdrop-blur-xl border border-pink-100"
+    ? "bg-white/70 backdrop-blur-xl border border-[#D3968C]/20"
     : "bg-[#121217]/80 backdrop-blur-xl border border-white/10";
 
   const inputStyles = isLight
-    ? "bg-white/80 border-pink-200 text-gray-900 placeholder-gray-400 focus:border-pink-400 focus:ring-pink-400/20"
+    ? "bg-white/80 border-[#D3968C]/30 text-[#0A3323] placeholder-[#105666]/50 focus:border-[#D3968C] focus:ring-[#D3968C]/20"
     : "bg-black/40 border-white/10 text-white placeholder-gray-500 focus:border-cyan-500 focus:ring-cyan-500/20";
 
   const buttonStyles = isLight
-    ? "bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white shadow-lg shadow-pink-500/25"
+    ? "bg-gradient-to-r from-[#D3968C] to-[#0A3323] hover:from-[#c5857b] hover:to-[#0A3323] text-white shadow-lg shadow-[#D3968C]/25"
     : "bg-gradient-to-r from-cyan-500 to-fuchsia-500 hover:from-cyan-400 hover:to-fuchsia-400 text-white shadow-lg shadow-cyan-500/25";
 
-  const accentColor = isLight ? "text-pink-500" : "text-cyan-400";
-  const textPrimary = isLight ? "text-gray-900" : "text-white";
-  const textSecondary = isLight ? "text-gray-600" : "text-gray-400";
+  const accentColor = isLight ? "text-[#D3968C]" : "text-cyan-400";
+  const textPrimary = isLight ? "text-[#0A3323]" : "text-white";
+  const textSecondary = isLight ? "text-[#105666]/70" : "text-gray-400";
 
   // Formatar data
   const formatDate = (dateString) => {
@@ -113,7 +113,7 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
     <div className={`mt-16 ${cardBg} p-8 md:p-10 rounded-[2rem]`}>
       {/* Header */}
       <div className="flex items-center gap-3 mb-8">
-        <div className={`p-3 rounded-2xl ${isLight ? "bg-pink-100 text-pink-600" : "bg-cyan-500/10 text-cyan-400"}`}>
+        <div className={`p-3 rounded-2xl ${isLight ? "bg-[#D3968C]/15 text-[#0A3323]" : "bg-cyan-500/10 text-cyan-400"}`}>
           <MessageCircle size={24} />
         </div>
         <div>
@@ -196,7 +196,7 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
 
         {success && (
           <div className={`flex items-center gap-2 p-4 rounded-xl mb-4 ${
-            isLight ? "bg-green-50 text-green-600 border border-green-200" : "bg-green-500/10 text-green-400 border border-green-500/20"
+            isLight ? "bg-[#D3968C]/10 text-[#0A3323] border border-[#D3968C]/30" : "bg-green-500/10 text-green-400 border border-green-500/20"
           }`}>
             <CheckCircle size={18} />
             <span className="text-sm font-medium">
@@ -225,7 +225,7 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
       </form>
 
       {/* Divisor */}
-      <div className={`border-t ${isLight ? "border-pink-100" : "border-white/10"} mb-8`} />
+      <div className={`border-t ${isLight ? "border-[#D3968C]/20" : "border-white/10"} mb-8`} />
 
       {/* Lista de Comentários */}
       {loading ? (
@@ -239,7 +239,7 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
               key={comment._id}
               className={`p-6 rounded-2xl transition-all ${
                 isLight
-                  ? "bg-gradient-to-br from-pink-50/50 to-purple-50/50 border border-pink-100/50"
+                  ? "bg-gradient-to-br from-[#D3968C]/10 to-[#D3968C]/10 border border-[#D3968C]/20"
                   : "bg-white/5 border border-white/5 hover:border-white/10"
               }`}
             >
@@ -247,7 +247,7 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
                 {/* Avatar */}
                 <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${
                   isLight
-                    ? "bg-gradient-to-br from-pink-400 to-purple-400 text-white"
+                    ? "bg-gradient-to-br from-[#D3968C] to-[#0A3323] text-white"
                     : "bg-gradient-to-br from-cyan-500 to-fuchsia-500 text-white"
                 }`}>
                   <span className="text-lg font-bold uppercase">
@@ -266,7 +266,7 @@ const Comments = ({ postId, postType = "news", theme = "dark" }) => {
                       {formatDate(comment.createdAt)}
                     </span>
                   </div>
-                  <p className={`text-sm leading-relaxed ${isLight ? "text-gray-700" : "text-gray-300"}`}>
+                  <p className={`text-sm leading-relaxed ${isLight ? "text-[#105666]/80" : "text-gray-300"}`}>
                     {comment.comment}
                   </p>
                 </div>

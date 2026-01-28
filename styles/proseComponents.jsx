@@ -34,7 +34,7 @@ export const proseComponents = (isLight) => ({
 
     // 🔹 H3 – subtítulo (mais leve, apoio visual)
     h3: ({ children }) => (
-      <h3 className="text-lg md:text-xl font-medium mt-8 mb-3 tracking-tight uppercase text-[#D8C4F0]">
+      <h3 className="text-lg md:text-xl font-medium mt-8 mb-3 tracking-tight uppercase text-[#D3968C]">
         {children}
       </h3>
     ),
@@ -52,7 +52,7 @@ export const proseComponents = (isLight) => ({
         className={
           isLight
             ? // LIGHT: editorial, suave
-              "border-l-4 border-[#F7B8C8] bg-[#FFF5F8]/90 rounded-2xl py-4 pl-6 pr-4 my-10 italic text-lg md:text-xl text-[#4B5563]"
+              "border-l-4 border-[#D3968C] bg-[#F7F4D5]/90 rounded-2xl py-4 pl-6 pr-4 my-10 italic text-lg md:text-xl text-[#4B5563]"
             : // DARK: neon contido
               "border-l-4 border-[#caa5d8]/70 bg-[#1e1e24] rounded-2xl py-4 pl-6 pr-4 my-10 italic text-lg md:text-xl text-gray-100 shadow-[0_0_30px_rgba(189,0,255,0.25)]"
         }
@@ -112,7 +112,7 @@ export const proseComponents = (isLight) => ({
         rel={value?.blank ? "noreferrer noopener" : undefined}
         className={
           isLight
-            ? "font-medium underline decoration-[#F7B8C8] decoration-2 underline-offset-4 hover:text-[#BE185D]"
+            ? "font-medium underline decoration-[#D3968C] decoration-2 underline-offset-4 hover:text-[#0A3323]"
             : "font-medium text-[#caa5d8] underline decoration-[#caa5d8]/60 decoration-2 underline-offset-4 hover:text-white"
         }
       >

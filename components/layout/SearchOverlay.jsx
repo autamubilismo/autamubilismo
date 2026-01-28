@@ -149,11 +149,11 @@ export const SearchOverlay = ({ isOpen, onClose, theme }) => {
   }, [results]);
   
   return (
-    <div className={`fixed inset-0 z-50 flex flex-col animate-in fade-in slide-in-from-top-8 duration-300 backdrop-blur-3xl ${isLight ? 'bg-pink-50/90' : 'bg-[#050510]/90'}`}>
+    <div className={`fixed inset-0 z-50 flex flex-col animate-in fade-in slide-in-from-top-8 duration-300 backdrop-blur-3xl ${isLight ? 'bg-cottage-beige/90' : 'bg-[#050510]/90'}`}>
       <div className="p-8 flex items-center gap-6 max-w-5xl mx-auto w-full mt-20">
         <Search 
           size={32} 
-          className={isLight ? 'text-pink-500' : 'text-cyan-400 drop-shadow-[0_0_5px_cyan]'} 
+          className={isLight ? 'text-cottage-rosy' : 'text-cyan-400 drop-shadow-[0_0_5px_cyan]'} 
         />
         <input 
           type="text" 
@@ -161,11 +161,11 @@ export const SearchOverlay = ({ isOpen, onClose, theme }) => {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Busque por pilotos, equipes..." 
-          className={`flex-1 bg-transparent text-4xl md:text-5xl font-black outline-none placeholder:opacity-30 ${isLight ? 'text-gray-900 placeholder-pink-400' : 'text-white placeholder-cyan-700'}`} 
+          className={`flex-1 bg-transparent text-4xl md:text-5xl font-black outline-none placeholder:opacity-30 ${isLight ? 'text-gray-900 placeholder-cottage-rosy' : 'text-white placeholder-cyan-700'}`} 
         />
         <button 
           onClick={onClose}
-          className={`p-4 rounded-full transition-colors ${isLight ? 'hover:bg-pink-100 text-gray-400 hover:text-pink-500' : 'hover:bg-white/10 text-gray-500 hover:text-white'}`}
+          className={`p-4 rounded-full transition-colors ${isLight ? 'hover:bg-cottage-rosy text-gray-400 hover:text-cottage-beige' : 'hover:bg-white/10 text-gray-500 hover:text-white'}`}
         >
           <X size={32} />
         </button>
@@ -185,7 +185,7 @@ export const SearchOverlay = ({ isOpen, onClose, theme }) => {
         )}
 
         {query.length >= 2 && !isSearching && searchError && (
-          <p className={`text-sm font-semibold ${isLight ? 'text-rose-500' : 'text-rose-300'}`}>
+          <p className={`text-sm font-semibold ${isLight ? 'text-cottage-rosy' : 'text-cottage-rosy'}`}>
             {searchError}
           </p>
         )}
@@ -200,7 +200,7 @@ export const SearchOverlay = ({ isOpen, onClose, theme }) => {
           <div className="mt-6 flex flex-col gap-6 max-h-[55vh] overflow-y-auto pr-2 custom-scrollbar">
             {Object.entries(groupedResults).map(([group, items]) => (
               <div key={group}>
-                <p className={`text-xs font-black uppercase tracking-[0.3em] mb-3 ${isLight ? 'text-pink-400' : 'text-cyan-400'}`}>
+                <p className={`text-xs font-black uppercase tracking-[0.3em] mb-3 ${isLight ? 'text-cottage-rosy' : 'text-cyan-400'}`}>
                   {group}
                 </p>
                 <div className="flex flex-col gap-3">
@@ -213,7 +213,7 @@ export const SearchOverlay = ({ isOpen, onClose, theme }) => {
                       }}
                       className={`group flex items-center justify-between gap-4 p-4 rounded-2xl text-left border transition-all duration-300 ${
                         isLight
-                          ? 'bg-white/80 border-pink-100 hover:border-pink-300 hover:shadow-lg hover:shadow-pink-100'
+                          ? 'bg-white/80 border-cottage-rosy hover:border-cottage-rosy hover:shadow-lg hover:shadow-cottage-rosy'
                           : 'bg-[#0d0d16]/80 border-white/10 hover:border-cyan-500/60 hover:shadow-[0_0_20px_rgba(0,255,242,0.2)]'
                       }`}
                     >
@@ -225,7 +225,7 @@ export const SearchOverlay = ({ isOpen, onClose, theme }) => {
                           </p>
                         )}
                       </div>
-                      <span className={`text-xs font-black uppercase tracking-widest ${isLight ? 'text-pink-400' : 'text-cyan-400'}`}>
+                      <span className={`text-xs font-black uppercase tracking-widest ${isLight ? 'text-cottage-rosy' : 'text-cyan-400'}`}>
                         Ver
                       </span>
                     </button>

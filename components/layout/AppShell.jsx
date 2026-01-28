@@ -47,7 +47,7 @@ export const AppShell = ({ children }) => {
 
       <header
         className={`sticky top-0 z-40 w-full backdrop-blur-xl border-b transition-all duration-300 ${
-          theme === 'light' ? 'border-pink-200/50 bg-white/70' : 'border-white/5 bg-[#050510]/80'
+          theme === 'light' ? 'border-cottage-rosy/50 bg-white/70' : 'border-white/5 bg-[#050510]/80'
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 py-2.5 md:px-8 flex items-center justify-between">
@@ -55,7 +55,7 @@ export const AppShell = ({ children }) => {
             onClick={() => setIsMenuOpen(true)}
             className={`flex items-center gap-1.5 px-3 py-2 rounded-full transition-all duration-300 hover:scale-105 active:scale-95 ${
               theme === 'light'
-                ? 'bg-white/80 text-gray-800 shadow-md hover:text-pink-500 hover:shadow-pink-200'
+                ? 'bg-white/80 text-gray-800 shadow-md hover:text-cottage-rosy hover:shadow-cottage-rosy'
                 : 'bg-[#1a1a20]/80 text-white border border-[#333] hover:text-[#00fff2] hover:border-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'
             }`}
           >
@@ -74,7 +74,7 @@ export const AppShell = ({ children }) => {
               onClick={() => setIsSearchOpen(true)}
               className={`hidden md:flex items-center gap-1.5 px-3 py-2 rounded-full text-[10px] font-black uppercase tracking-wider transition-all hover:scale-105 ${
                 theme === 'light'
-                  ? 'bg-white hover:bg-gray-50 text-gray-400 shadow-md ring-1 ring-pink-100'
+                  ? 'bg-white hover:bg-gray-50 text-gray-400 shadow-md ring-1 ring-cottage-rosy'
                   : 'bg-white/5 hover:bg-white/10 text-gray-400 border border-white/5'
               }`}
             >
@@ -113,7 +113,7 @@ export const AppShell = ({ children }) => {
       <footer
         className={`py-16 md:py-24 text-center border-t relative z-20 ${
           theme === 'light'
-            ? 'border-pink-200 bg-white/60 backdrop-blur-lg'
+            ? 'border-cottage-rosy bg-white/60 backdrop-blur-lg'
             : 'border-white/5 bg-black/60 backdrop-blur-lg'
         }`}
       >
@@ -128,7 +128,7 @@ export const AppShell = ({ children }) => {
                 href={social.url}
                 className={`p-3 rounded-full transition-all hover:-translate-y-1 ${
                   theme === 'light'
-                    ? 'bg-white text-gray-400 hover:text-pink-500 shadow-md hover:shadow-pink-200'
+                    ? 'bg-white text-gray-400 hover:text-cottage-rosy shadow-md hover:shadow-cottage-rosy'
                     : 'bg-[#1a1a20] text-gray-500 hover:text-[#00fff2] hover:shadow-[0_0_15px_rgba(0,255,242,0.3)]'
                 }`}
               >

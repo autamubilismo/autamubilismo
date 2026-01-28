@@ -18,7 +18,7 @@ export const MainLayout = ({ children, theme, toggleTheme, menuOpen, setMenuOpen
         onSearchClick={() => setSearchOpen(true)} 
       />
 
-      <div className={`flex-1 relative z-10 flex flex-col ${theme === 'light' ? 'bg-[#FFF0F5]' : 'bg-[#141416]'}`}>
+      <div className={`flex-1 relative z-10 flex flex-col ${theme === 'light' ? 'bg-[#F7F4D5]' : 'bg-[#141416]'}`}>
         <div className="max-w-7xl mx-auto p-4 md:p-8 relative z-10 w-full flex-1">
           <main className="min-h-[60vh]">
             {children}

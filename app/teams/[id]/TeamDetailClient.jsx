@@ -27,7 +27,7 @@ const BackButton = ({ to = "/", theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:-translate-x-1 duration-200 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-gray-500 hover:text-pink-500 bg-white/50 hover:bg-white border border-transparent hover:border-pink-100 shadow-sm'
+          ? 'text-gray-500 hover:text-cottage-rosy bg-white/50 hover:bg-white border border-transparent hover:border-cottage-rosy shadow-sm'
           : 'text-cyan-400/70 hover:text-cyan-300 bg-black/20 hover:bg-black/40 border border-cyan-500/10 hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(0,255,255,0.2)]'
       }`}
     >
@@ -62,9 +62,9 @@ const TeamDetailClient = ({ id }) => {
 
   if (!team) {
     return (
-      <div className={`min-h-screen flex flex-col items-center justify-center text-center font-sans ${isLight ? 'bg-[#FFF0F5] text-gray-800' : 'bg-[#090011] text-cyan-50'}`}>
+      <div className={`min-h-screen flex flex-col items-center justify-center text-center font-sans ${isLight ? 'bg-[#F7F4D5] text-gray-800' : 'bg-[#090011] text-cyan-50'}`}>
          <h2 className="text-4xl font-black mb-4 uppercase tracking-tighter">Equipe nao encontrada</h2>
-         <Link href="/teams" className={`px-6 py-3 rounded-full font-bold text-sm uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600 hover:bg-pink-200' : 'bg-white/10 hover:bg-white/20 text-cyan-400'}`}>
+         <Link href="/teams" className={`px-6 py-3 rounded-full font-bold text-sm uppercase tracking-widest ${isLight ? 'bg-cottage-rosy text-cottage-beige hover:bg-cottage-rosy' : 'bg-white/10 hover:bg-white/20 text-cyan-400'}`}>
            Voltar aos Construtores
          </Link>
       </div>
@@ -88,7 +88,7 @@ const TeamDetailClient = ({ id }) => {
     <div 
       className={`min-h-screen w-full px-6 py-8 transition-colors duration-500 font-sans ${
         isLight 
-          ? 'bg-[#FFF0F5] bg-[radial-gradient(#E0F2FE_1px,transparent_1px)] [background-size:20px_20px]' 
+          ? 'bg-[#F7F4D5] bg-[radial-gradient(#D3968C_1px,transparent_1px)] [background-size:20px_20px]' 
           : 'bg-[#090011] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2a004a] via-[#090011] to-[#05000a] text-cyan-50'
       }`}
     >
@@ -165,7 +165,7 @@ const TeamDetailClient = ({ id }) => {
                       <div className={`flex items-center gap-2 backdrop-blur-md px-5 py-2.5 rounded-2xl border shadow-sm ${
                         isLight ? 'bg-white/60 border-white text-gray-800' : 'bg-black/30 border-white/10 text-white'
                       }`}>
-                          <MapPin className={isLight ? "text-pink-500" : "text-fuchsia-400"} size={20} />
+                          <MapPin className={isLight ? "text-cottage-rosy" : "text-fuchsia-400"} size={20} />
                           <span className="font-bold text-sm tracking-wide">{team.base}</span>
                       </div>
                   </div>
@@ -193,7 +193,7 @@ const TeamDetailClient = ({ id }) => {
             {/* 1. PILOTOS */}
             <div className={`lg:col-span-2 p-8 md:p-10 ${cardClass} relative overflow-hidden`}>
               <div className="flex items-center gap-3 mb-8">
-                  <div className={`p-2.5 rounded-xl ${isLight ? 'bg-pink-100 text-pink-500' : 'bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30'}`}>
+                  <div className={`p-2.5 rounded-xl ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30'}`}>
                     <Users size={24} />
                   </div>
                   <h3 className={`text-2xl font-black uppercase tracking-wide ${textColor}`}>Line-up 2026</h3>
@@ -203,7 +203,7 @@ const TeamDetailClient = ({ id }) => {
                   {team.drivers && team.drivers.map((driverName, idx) => (
                       <div key={idx} className={`group/driver relative p-5 rounded-[2rem] flex items-center justify-between transition-all duration-300 hover:scale-[1.02] cursor-pointer ${
                         isLight 
-                          ? 'bg-gray-50 border border-transparent hover:bg-white hover:border-pink-200 hover:shadow-lg' 
+                          ? 'bg-gray-50 border border-transparent hover:bg-white hover:border-cottage-rosy hover:shadow-lg' 
                           : 'bg-white/5 border border-white/5 hover:border-cyan-500/50 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(0,255,255,0.1)]'
                       }`}>
                           <div className="flex items-center gap-5">
@@ -218,7 +218,7 @@ const TeamDetailClient = ({ id }) => {
                               </div>
                           </div>
                           <div className={`p-2 rounded-full transition-all transform translate-x-2 opacity-0 group-hover/driver:opacity-100 group-hover/driver:translate-x-0 ${
-                            isLight ? 'bg-pink-100 text-pink-500' : 'bg-cyan-500/20 text-cyan-400'
+                            isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-cyan-500/20 text-cyan-400'
                           }`}>
                               <ArrowRight size={16} />
                           </div>
@@ -244,7 +244,7 @@ const TeamDetailClient = ({ id }) => {
 
                   <li className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-lg ${isLight ? 'bg-purple-50 text-purple-500' : 'bg-purple-500/10 text-purple-400'}`}><Briefcase size={18} /></div>
+                          <div className={`p-2 rounded-lg ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-cottage-rosy/10 text-cottage-beige'}`}><Briefcase size={18} /></div>
                           <span className={`font-bold text-xs uppercase tracking-widest ${subText}`}>Chefe</span>
                       </div>
                       <span className={`font-bold text-base text-right ${textColor}`}>{team.principal || "N/A"}</span>

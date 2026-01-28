@@ -131,16 +131,39 @@ const news = {
       ]
     },
     {
+      name: 'sources',
+      title: 'Fontes',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'label',
+              title: 'Nome da Fonte',
+              type: 'string'
+            },
+            {
+              name: 'url',
+              title: 'Link da Fonte',
+              type: 'url',
+              description: 'Link para a materia original'
+            }
+          ]
+        }
+      ]
+    },
+    {
       name: 'sourceLabel',
-      title: 'Nome da Fonte',
+      title: 'Nome da Fonte (legacy)',
       type: 'string',
-      description: 'Ex: Motorsport.com, Globo Esporte, etc.'
+      hidden: true
     },
     {
       name: 'sourceUrl',
-      title: 'Link da Fonte',
+      title: 'Link da Fonte (legacy)',
       type: 'url',
-      description: 'Link para a materia original'
+      hidden: true
     },
     {
       name: 'seo',

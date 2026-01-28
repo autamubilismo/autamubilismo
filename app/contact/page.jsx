@@ -19,7 +19,7 @@ const BackButton = ({ to, theme }) => {
       href={to}
       className={`group mb-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold transition-all hover:-translate-x-1 px-5 py-2.5 rounded-full ${
         isLight
-          ? 'text-gray-500 hover:text-pink-500 bg-white/50 border border-white hover:border-pink-200 shadow-sm' 
+          ? 'text-gray-500 hover:text-cottage-rosy bg-white/50 border border-white hover:border-cottage-rosy shadow-sm' 
           : 'text-cyan-400/80 hover:text-cyan-300 bg-black/20 border border-cyan-500/20 hover:border-cyan-500/60 shadow-[0_0_10px_rgba(0,255,242,0.1)] hover:shadow-[0_0_20px_rgba(0,255,242,0.3)]'
       }`}
     >
@@ -101,14 +101,14 @@ const ContactPage = () => {
 
   // Input Style
   const inputClass = isLight
-    ? "bg-white border-pink-100 focus:border-pink-300 focus:ring-4 focus:ring-pink-50 text-gray-800 placeholder-gray-400 shadow-sm transition-all duration-300"
+    ? "bg-white border-cottage-rosy focus:border-cottage-rosy focus:ring-4 focus:ring-cottage-beige text-gray-800 placeholder-gray-400 shadow-sm transition-all duration-300"
     : "bg-[#1a1025] border-white/5 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-400/30 text-white placeholder-white/20 transition-all duration-300 shadow-inner hover:bg-[#201430]";
 
   return (
     <div 
       className={`min-h-screen p-4 md:p-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 font-sans ${
         isLight 
-          ? 'bg-[#FFF0F5] bg-[radial-gradient(#ffe4e6_1px,transparent_1px)] [background-size:32px_32px]' 
+          ? 'bg-[#F7F4D5] bg-[radial-gradient(#D3968C_1px,transparent_1px)] [background-size:32px_32px]' 
           : 'bg-[#050510]'
       }`}
     >
@@ -122,8 +122,8 @@ const ContactPage = () => {
         />
       )}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden mix-blend-screen">
-         <div className={`absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-40 ${isLight ? 'bg-pink-200' : 'bg-fuchsia-900/40 animate-pulse'}`} />
-         <div className={`absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-40 ${isLight ? 'bg-purple-200' : 'bg-cyan-900/40 animate-pulse'}`} />
+         <div className={`absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-40 ${isLight ? 'bg-cottage-rosy' : 'bg-fuchsia-900/40 animate-pulse'}`} />
+         <div className={`absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-40 ${isLight ? 'bg-cottage-rosy' : 'bg-cyan-900/40 animate-pulse'}`} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
@@ -131,7 +131,7 @@ const ContactPage = () => {
 
         <div className="mb-12 md:mb-20 text-center relative px-4">
           <div className={`inline-flex items-center justify-center p-3 mb-6 rounded-2xl rotate-3 transition-transform hover:rotate-0 duration-500 ${
-            isLight ? 'bg-white shadow-xl text-pink-500' : 'bg-black/40 border border-cyan-500/50 text-cyan-400 shadow-[0_0_20px_cyan]'
+            isLight ? 'bg-white shadow-xl text-cottage-rosy' : 'bg-black/40 border border-cyan-500/50 text-cyan-400 shadow-[0_0_20px_cyan]'
           }`}>
              <Sparkles size={32} />
           </div>
@@ -155,15 +155,15 @@ const ContactPage = () => {
           <div className={`lg:col-span-7 p-8 md:p-12 relative overflow-hidden flex flex-col group ${cardClass}`}>
             <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-10 pb-8 border-b border-gray-100 dark:border-white/5">
                 <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shrink-0 border-4 ${isLight ? 'border-white shadow-lg' : 'border-cyan-500/30 shadow-[0_0_20px_rgba(0,255,242,0.2)]'}`}>
-                   <div className={`w-full h-full flex items-center justify-center text-4xl ${isLight ? 'bg-pink-50' : 'bg-black'}`}>👩‍💻</div>
+                   <div className={`w-full h-full flex items-center justify-center text-4xl ${isLight ? 'bg-cottage-beige' : 'bg-black'}`}>👩‍💻</div>
                 </div>
                 <div>
                    <h3 className={`text-3xl md:text-4xl font-black leading-none mb-2 tracking-tight ${isLight ? "text-gray-900" : "text-white"}`}>
                      Oi, sou a Tamu!
                    </h3>
                    <div className="flex flex-wrap items-center gap-3">
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${isLight ? 'bg-pink-100 text-pink-600' : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30'}`}>Founder</span>
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${isLight ? 'bg-purple-100 text-purple-600' : 'bg-cyan-900/30 text-cyan-300 border border-cyan-500/30'}`}>Editora</span>
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30'}`}>Founder</span>
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-cyan-900/30 text-cyan-300 border border-cyan-500/30'}`}>Editora</span>
                    </div>
                 </div>
             </div>
@@ -173,16 +173,16 @@ const ContactPage = () => {
                   <strong className={isLight ? "text-gray-900" : "text-cyan-300"}>O automobilismo entrou na minha vida não como um hobby, mas como linguagem.</strong> Minhas ideias nascem no ponto exato onde velocidade encontra comportamento humano. Onde dados, emoção, pressão e silêncio convivem no mesmo segundo. A Fórmula 1 nunca foi, pra mim, apenas sobre carros. É sobre decisões sob risco, performance mental, relações de poder, estética, narrativa e humanidade exposta em alta rotação.
                 </p>
                 <p>
-                  Sou <span className={isLight ? "text-pink-500 font-medium" : "text-fuchsia-400"}>biomédica por formação</span>, estudante de veterinária por vocação científica, e criadora por natureza. Meu olhar sobre o esporte vem de quem observa o paddock como um organismo vivo: equipes como sistemas, pilotos como indivíduos complexos, e a pista como um palco onde técnica e emoção disputam espaço a cada volta.
+                  Sou <span className={isLight ? "text-cottage-rosy font-medium" : "text-fuchsia-400"}>biomédica por formação</span>, estudante de veterinária por vocação científica, e criadora por natureza. Meu olhar sobre o esporte vem de quem observa o paddock como um organismo vivo: equipes como sistemas, pilotos como indivíduos complexos, e a pista como um palco onde técnica e emoção disputam espaço a cada volta.
                 </p>
-                <div className={`pl-6 border-l-4 ${isLight ? 'border-pink-200 bg-pink-50/50' : 'border-cyan-500/50 bg-cyan-900/10'} p-4 rounded-r-xl my-8 italic font-serif text-xl md:text-2xl opacity-90`}>
+                <div className={`pl-6 border-l-4 ${isLight ? 'border-cottage-rosy bg-cottage-beige/50' : 'border-cyan-500/50 bg-cyan-900/10'} p-4 rounded-r-xl my-8 italic font-serif text-xl md:text-2xl opacity-90`}>
                   "Minhas ideias surgem da curiosidade indisciplinada. De perguntas que não cabem em planilhas."
                 </div>
                 <p>
                   Do interesse em entender como pessoas performam quando tudo está em jogo, e como isso pode ser contado de forma honesta, estética e relevante. Não falo de automobilismo como espectadora, mas como alguém que traduz bastidores, tensão psicológica e cultura do esporte em linguagem acessível, sensível e contemporânea.
                 </p>
                 <p>
-                  Este também é um <strong className={isLight ? "text-purple-600" : "text-purple-400"}>espaço seguro para garotas</strong> e para quem se sente deslocada dentro do automobilismo. Para quem ama o esporte, mas nunca se sentiu totalmente pertencente a ele. Aqui, conhecimento e sensibilidade caminham juntos. Não há exigência de performance social, nem gatekeeping disfarçado de paixão. Existe escuta, troca e respeito.
+                  Este também é um <strong className={isLight ? "text-cottage-rosy" : "text-cottage-rosy"}>espaço seguro para garotas</strong> e para quem se sente deslocada dentro do automobilismo. Para quem ama o esporte, mas nunca se sentiu totalmente pertencente a ele. Aqui, conhecimento e sensibilidade caminham juntos. Não há exigência de performance social, nem gatekeeping disfarçado de paixão. Existe escuta, troca e respeito.
                 </p>
                 <p>
                   Trabalho com conteúdo, narrativa e estratégia criativa conectando esporte, ciência, comportamento e lifestyle. Minha relação com marcas nasce do mesmo princípio: autenticidade, inteligência e construção de valor a longo prazo. Não acredito em presença vazia, nem em storytelling sem verdade.
@@ -210,7 +210,7 @@ const ContactPage = () => {
                     rel="noopener noreferrer"
                     className={`p-3 rounded-xl transition-all duration-300 hover:-translate-y-1 ${
                       isLight
-                        ? "bg-gray-50 text-gray-400 hover:bg-pink-500 hover:text-white hover:shadow-lg hover:shadow-pink-200"
+                        ? "bg-gray-50 text-gray-400 hover:bg-cottage-rosy hover:text-white hover:shadow-lg hover:shadow-cottage-rosy"
                         : "bg-white/5 text-gray-400 hover:bg-cyan-500 hover:text-black hover:shadow-[0_0_15px_cyan]"
                     }`}
                   >
@@ -225,7 +225,7 @@ const ContactPage = () => {
              <div className={`p-8 md:p-10 relative overflow-hidden flex flex-col justify-center ${cardClass}`}>
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-6">
-                     <span className={`w-8 h-1 rounded-full ${isLight ? 'bg-pink-400' : 'bg-fuchsia-500 shadow-[0_0_10px_magenta]'}`}></span>
+                     <span className={`w-8 h-1 rounded-full ${isLight ? 'bg-cottage-rosy' : 'bg-fuchsia-500 shadow-[0_0_10px_magenta]'}`}></span>
                      <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${isLight ? 'text-gray-400' : 'text-fuchsia-300'}`}>Contato</span>
                   </div>
                   
@@ -278,7 +278,7 @@ const ContactPage = () => {
                       disabled={status === "loading"}
                       className={`w-full py-4 rounded-xl font-black text-xs uppercase tracking-[0.25em] flex items-center justify-center gap-3 mt-4 transition-all duration-300 active:scale-[0.98] ${
                         isLight
-                          ? "bg-gray-900 text-white hover:bg-pink-500 hover:shadow-xl hover:shadow-pink-200"
+                          ? "bg-gray-900 text-white hover:bg-cottage-rosy hover:shadow-xl hover:shadow-cottage-rosy"
                           : "bg-gradient-to-r from-cyan-600 to-cyan-500 text-white hover:to-cyan-400 hover:shadow-[0_0_25px_rgba(0,255,242,0.4)] border border-cyan-400/20"
                       }`}
                     >

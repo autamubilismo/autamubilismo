@@ -180,7 +180,7 @@ const BackButton = ({ to, theme }) => {
       href={to} 
       className={`inline-flex items-center gap-1.5 mb-8 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all hover:-translate-x-1 duration-200 ${
         isLight 
-          ? 'bg-white text-gray-400 hover:text-pink-500 hover:shadow-sm border border-transparent hover:border-pink-100' 
+          ? 'bg-white text-gray-400 hover:text-cottage-rosy hover:shadow-sm border border-transparent hover:border-cottage-rosy' 
           : 'bg-white/5 text-cyan-400/60 hover:text-cyan-300 hover:bg-white/10 border border-white/5 hover:border-cyan-500/30'
       }`}
     >
@@ -195,7 +195,7 @@ const PageContainer = ({ theme, children }) => {
   return (
     <div className={`min-h-screen w-full px-4 py-8 transition-colors duration-500 font-sans ${
       isLight 
-        ? 'bg-[#FFF0F5] bg-[radial-gradient(#E0F2FE_1px,transparent_1px)] [background-size:20px_20px]' 
+        ? 'bg-[#F7F4D5] bg-[radial-gradient(#D3968C_1px,transparent_1px)] [background-size:20px_20px]' 
         : 'bg-[#090011] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2a004a] via-[#090011] to-[#05000a] text-cyan-50'
     }`}>
       {!isLight && (
@@ -222,7 +222,7 @@ const PageHeader = ({ theme, badge, title, subtitle, onRefresh, loading, usingFa
         {badge && (
           <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] ${
             isLight 
-              ? 'bg-white text-pink-400 shadow-sm' 
+              ? 'bg-white text-cottage-rosy shadow-sm' 
               : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30 shadow-[0_0_10px_rgba(255,0,255,0.2)]'
           }`}>
             {badge}
@@ -457,7 +457,7 @@ const Standings = () => {
            activeTab === 'drivers' ? 'left-1.5' : 'left-[calc(50%+3px)]'
         } ${
            isLight 
-             ? 'bg-gradient-to-r from-pink-400 to-pink-500 shadow-md' 
+            ? 'bg-gradient-to-r from-cottage-rosy to-cottage-rosy shadow-md' 
              : 'bg-cyan-600 shadow-[0_0_15px_rgba(8,145,178,0.4)]'
         }`} />
 
@@ -491,13 +491,13 @@ const Standings = () => {
       {/* LISTA RESTANTE */}
       <div className={`rounded-[2.5rem] overflow-hidden ${
         isLight 
-          ? 'bg-white/60 backdrop-blur-xl border border-pink-100 shadow-xl' 
+          ? 'bg-white/60 backdrop-blur-xl border border-cottage-rosy shadow-xl' 
           : 'bg-[#121217]/60 backdrop-blur-xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.3)]'
       }`}>
         
         {/* Header */}
         <div className={`grid grid-cols-12 gap-2 md:gap-4 p-6 border-b text-[10px] font-black uppercase tracking-widest opacity-60 ${
-          isLight ? 'border-pink-50 text-gray-500' : 'border-white/5 text-cyan-100'
+          isLight ? 'border-cottage-beige text-gray-500' : 'border-white/5 text-cyan-100'
         }`}>
           <div className="col-span-1">Pos</div>
           <div className="col-span-6 md:col-span-5">{activeTab === 'drivers' ? 'Piloto' : 'Equipe'}</div>
@@ -525,12 +525,12 @@ const Standings = () => {
               <div 
                 key={index}
                 className={`grid grid-cols-12 gap-2 md:gap-4 p-4 md:p-5 items-center transition-all duration-200 group ${
-                  isLight ? 'hover:bg-pink-50/50' : 'hover:bg-white/5'
+                  isLight ? 'hover:bg-cottage-beige/50' : 'hover:bg-white/5'
                 }`}
               >
                 <div className="col-span-1">
                   <span className={`text-sm md:text-lg font-black opacity-50 group-hover:opacity-100 ${
-                    isLight ? 'text-gray-400 group-hover:text-pink-500' : 'text-gray-600 group-hover:text-cyan-400'
+                    isLight ? 'text-gray-400 group-hover:text-cottage-rosy' : 'text-gray-600 group-hover:text-cyan-400'
                   }`}>
                     {item.position}
                   </span>
@@ -575,7 +575,7 @@ const Standings = () => {
                 <div className="col-span-3 md:col-span-3 text-center">
                   <span className={`px-3 py-1 rounded-lg text-xs md:text-sm font-black ${
                     isLight 
-                      ? 'bg-gray-50 text-gray-900 group-hover:bg-pink-100 group-hover:text-pink-600' 
+                      ? 'bg-gray-50 text-gray-900 group-hover:bg-cottage-rosy group-hover:text-cottage-beige' 
                       : 'bg-white/5 text-white group-hover:bg-cyan-500/20 group-hover:text-cyan-400'
                   }`}>
                     {item.points}

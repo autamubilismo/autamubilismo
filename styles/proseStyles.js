@@ -14,7 +14,7 @@ export const proseClass = (isLight) => `
   /* 🔥 H2 = SECTION LABEL (igual News) */
   ${
     isLight
-      ? "prose-h2:text-[#D8C4F0]"
+      ? "prose-h2:text-[#D3968C]"
       : "prose-h2:text-[#00fff2]"
   }
   prose-h2:uppercase
@@ -51,7 +51,7 @@ export const proseClass = (isLight) => `
      ========================= */
   ${
     isLight
-      ? "prose-a:text-[#D8C4F0] hover:prose-a:text-[#F7B8C8]"
+      ? "prose-a:text-[#D3968C] hover:prose-a:text-[#D3968C]"
       : "prose-a:text-[#00fff2] hover:prose-a:text-[#caa5d8]"
   }
   prose-a:font-medium
@@ -90,7 +90,7 @@ prose-blockquote:shadow-none
 
 ${
   isLight
-    ? "prose-blockquote:bg-[#FFF5F8] prose-blockquote:border-l-4 prose-blockquote:border-[#F7B8C8] prose-blockquote:text-[#6B7280]"
+    ? "prose-blockquote:bg-[#F7F4D5] prose-blockquote:border-l-4 prose-blockquote:border-[#D3968C] prose-blockquote:text-[#6B7280]"
     : "prose-blockquote:bg-[#0b0f14] prose-blockquote:border-l-4 prose-blockquote:border-[#00fff2]/60 prose-blockquote:text-gray-200"
 }
 
@@ -99,7 +99,7 @@ ${
      ========================= */
   ${
     isLight
-      ? "prose-li:marker:text-[#F7B8C8]"
+      ? "prose-li:marker:text-[#D3968C]"
       : "prose-li:marker:text-[#caa5d8]"
   }
   prose-li:my-1

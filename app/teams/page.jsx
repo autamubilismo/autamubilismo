@@ -24,7 +24,7 @@ const BackButton = ({ to, theme }) => {
       href={to} 
       className={`inline-flex items-center gap-1.5 mb-8 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all hover:-translate-x-1 duration-200 ${
         isLight 
-          ? 'bg-white text-gray-400 hover:text-pink-500 hover:shadow-sm border border-transparent hover:border-pink-100' 
+          ? 'bg-white text-gray-400 hover:text-cottage-rosy hover:shadow-sm border border-transparent hover:border-cottage-rosy' 
           : 'bg-white/5 text-cyan-400/60 hover:text-cyan-300 hover:bg-white/10 border border-white/5 hover:border-cyan-500/30'
       }`}
     >
@@ -39,7 +39,7 @@ const PageContainer = ({ theme, children }) => {
   return (
     <div className={`min-h-screen w-full px-6 py-8 transition-colors duration-500 font-sans ${
       isLight 
-        ? 'bg-[#FFF0F5] bg-[radial-gradient(#E0F2FE_1px,transparent_1px)] [background-size:20px_20px]' 
+        ? 'bg-[#F7F4D5] bg-[radial-gradient(#D3968C_1px,transparent_1px)] [background-size:20px_20px]' 
         : 'bg-[#090011] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#2a004a] via-[#090011] to-[#05000a] text-cyan-50'
     }`}>
       {/* Grid Retro Decorativo para Dark Mode */}
@@ -66,7 +66,7 @@ const PageHeader = ({ theme, badge, title, subtitle }) => {
       {badge && (
         <span className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-3 ${
           isLight 
-            ? 'bg-white text-pink-400 shadow-sm' 
+            ? 'bg-white text-cottage-rosy shadow-sm' 
             : 'bg-fuchsia-900/30 text-fuchsia-300 border border-fuchsia-500/30 shadow-[0_0_10px_rgba(255,0,255,0.2)]'
         }`}>
           {badge}
@@ -110,7 +110,7 @@ const TeamsPage = () => {
       <div className="flex flex-col items-center mb-16">
         <div className={`p-4 rounded-2xl mb-6 transition-transform hover:scale-110 duration-300 ${
           isLight 
-            ? 'bg-gradient-to-br from-pink-100 to-white text-pink-400 shadow-inner' 
+            ? 'bg-gradient-to-br from-cottage-rosy to-white text-cottage-rosy shadow-inner' 
             : 'bg-white/5 text-cyan-400 border border-cyan-500/20 shadow-[0_0_20px_rgba(0,255,255,0.15)]'
         }`}>
           <Wrench size={24} />
@@ -194,12 +194,12 @@ const TeamsPage = () => {
                 {/* Footer Info (Drivers & Action) */}
                 <div className={`mt-auto pt-5 border-t flex items-center justify-between transition-colors duration-300 ${
                   isLight 
-                    ? 'border-gray-100 group-hover:border-pink-100' 
+                    ? 'border-gray-100 group-hover:border-cottage-rosy' 
                     : 'border-white/5 group-hover:border-white/10'
                 }`}>
                   <div className="flex flex-col gap-1.5">
                     <div className={`flex items-center gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity ${
-                      isLight ? 'text-pink-400' : 'text-cyan-400'
+                      isLight ? 'text-cottage-rosy' : 'text-cyan-400'
                     }`}>
                       <Users size={12} />
                       <span className={`text-[8px] font-black uppercase tracking-[0.2em] ${isLight ? 'text-gray-400' : 'text-cyan-100/50'}`}>
@@ -221,7 +221,7 @@ const TeamsPage = () => {
                   {/* Botão de Seta */}
                   <div className={`p-2.5 rounded-full transition-all duration-500 transform group-hover:translate-x-1 ${
                     isLight 
-                      ? 'bg-gray-50 text-gray-400 group-hover:bg-pink-500 group-hover:text-white group-hover:shadow-md' 
+                      ? 'bg-gray-50 text-gray-400 group-hover:bg-cottage-rosy group-hover:text-white group-hover:shadow-md' 
                       : 'bg-white/5 text-gray-500 group-hover:bg-cyan-500 group-hover:text-black group-hover:shadow-[0_0_15px_cyan]'
                   }`}>
                     <ArrowRight size={14} />

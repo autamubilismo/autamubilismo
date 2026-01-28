@@ -122,7 +122,7 @@ export const SeasonWidget = ({ theme }) => {
     };
   });
 
-  const boxClass = isLight ? 'bg-white border-pink-100 shadow-sm' : 'bg-[#0a0a10] border-white/5';
+  const boxClass = isLight ? 'bg-white border-cottage-rosy shadow-sm' : 'bg-[#0a0a10] border-white/5';
   const seasonStatus = seasonStats.racesCompleted === 0
     ? 'Pré-Temporada'
     : seasonStats.racesCompleted >= seasonStats.totalRaces
@@ -137,7 +137,7 @@ export const SeasonWidget = ({ theme }) => {
       />
       <div className="flex justify-between items-start mb-6 z-10 relative">
         <div className="flex items-center gap-3">
-          <div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-purple-50 text-purple-400' : 'bg-white/10 text-fuchsia-400 border border-fuchsia-500/20'}`}>
+          <div className={`p-3 rounded-2xl shadow-sm ${isLight ? 'bg-cottage-rosy text-cottage-beige' : 'bg-white/10 text-fuchsia-400 border border-fuchsia-500/20'}`}>
             <Trophy size={20} />
           </div>
           <div>
@@ -251,7 +251,7 @@ export const SeasonWidget = ({ theme }) => {
                     <span style={{ color: t.color }}>{t.name}</span>
                     <span className="font-mono opacity-60">{t.pts}</span>
                   </div>
-                  <div className={`w-full h-2 rounded-full overflow-hidden ${isLight ? 'bg-pink-50' : 'bg-white/10'}`}>
+                  <div className={`w-full h-2 rounded-full overflow-hidden ${isLight ? 'bg-cottage-beige' : 'bg-white/10'}`}>
                     <div 
                       className="h-full rounded-full transition-all duration-1000 ease-out origin-left hover:brightness-110 shadow-[0_0_5px_currentColor]" 
                       style={{ 
@@ -268,7 +268,7 @@ export const SeasonWidget = ({ theme }) => {
         </div>
       </div>
 
-      <div className={`mt-4 pt-4 border-t border-dashed flex justify-between items-center ${isLight ? 'border-pink-200' : 'border-white/10'}`}>
+      <div className={`mt-4 pt-4 border-t border-dashed flex justify-between items-center ${isLight ? 'border-cottage-rosy' : 'border-white/10'}`}>
         <Link 
           href="/standings" 
           className={`text-[10px] font-bold uppercase tracking-widest py-2 px-5 rounded-full transition-all flex items-center gap-2 hover:scale-105 ${

@@ -7,10 +7,10 @@ import { LogoHelmet } from '../ui/LogoHelmet';
 
 export const Header = ({ theme, toggleTheme, onMenuClick, onSearchClick }) => {
   const isLight = theme === 'light';
-  const headerBg = isLight ? 'bg-[#FFF0F5]/90 backdrop-blur-md' : 'bg-[#141416]/90 backdrop-blur-md';
+  const headerBg = isLight ? 'bg-[#F7F4D5]/90 backdrop-blur-md' : 'bg-[#141416]/90 backdrop-blur-md';
   
   return (
-    <div className={`w-full ${headerBg} sticky top-0 z-40 transition-all duration-300 border-b ${isLight ? 'border-pink-200/50' : 'border-white/5'}`}>
+    <div className={`w-full ${headerBg} sticky top-0 z-40 transition-all duration-300 border-b ${isLight ? 'border-cottage-rosy/50' : 'border-white/5'}`}>
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-3">
         <header className="flex justify-between items-center">
           <div className="flex-1 flex justify-start">

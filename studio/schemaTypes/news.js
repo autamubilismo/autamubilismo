@@ -101,11 +101,31 @@ const sharedFields = [
     hidden: true,
     of: [{ type: 'block' }],
   },
-  { name: 'sourceLabel', title: 'Nome da fonte', type: 'string' },
+  {
+    name: 'sources',
+    title: 'Fontes',
+    type: 'array',
+    of: [
+      {
+        type: 'object',
+        fields: [
+          { name: 'label', title: 'Nome da fonte', type: 'string' },
+          {
+            name: 'url',
+            title: 'Link da fonte',
+            type: 'url',
+            validation: (Rule) => Rule.uri({ allowRelative: false, scheme: ['http', 'https'] }),
+          },
+        ],
+      },
+    ],
+  },
+  { name: 'sourceLabel', title: 'Nome da fonte (legacy)', type: 'string', hidden: true },
   {
     name: 'sourceUrl',
-    title: 'Link da fonte',
+    title: 'Link da fonte (legacy)',
     type: 'url',
+    hidden: true,
     validation: (Rule) => Rule.uri({ allowRelative: false, scheme: ['http', 'https'] }),
   },
   { name: 'seo', title: 'SEO', type: 'seo' },
