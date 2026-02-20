@@ -12,23 +12,26 @@ import { SOCIAL_LINKS } from '../../data/ui-config';
 const STORAGE_KEY = 'autamobilismo-theme';
 
 export const AppShell = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  // TODO: Remover este comentário e descomentar o código abaixo quando o light mode estiver pronto
+  // const [theme, setTheme] = useState('light');
+  const [theme] = useState('dark'); // Forçando dark mode temporariamente
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark') {
-      setTheme(stored);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const stored = window.localStorage.getItem(STORAGE_KEY);
+  //   if (stored === 'light' || stored === 'dark') {
+  //     setTheme(stored);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   window.localStorage.setItem(STORAGE_KEY, theme);
+  // }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    // Desabilitado temporariamente - dark mode apenas
+    // setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
   const getSocialIcon = (social) => {
