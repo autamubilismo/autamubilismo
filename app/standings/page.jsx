@@ -22,9 +22,9 @@ const FALLBACK_DRIVERS = [
   { 
     position: 3, driverId: 'gabriel', driverName: 'Gabriel Bortoleto', driverNumber: 5, 
     image: 'img/pilotos/bortoleto/grid-bortoleto.avif', 
-    team: 'Sauber', teamColor: '#52E252', points: 0, wins: 0, podiums: 0 
+    team: 'Audi', teamColor: '#C0C0C0', points: 0, wins: 0, podiums: 0
   },
-  { 
+  {
     position: 4, driverId: 'max', driverName: 'Max Verstappen', driverNumber: 1, 
     image: 'img/pilotos/verstappen/grid-verstappen.avif', 
     team: 'Red Bull', teamColor: '#1E41FF', points: 0, wins: 0, podiums: 0 
@@ -72,9 +72,9 @@ const FALLBACK_DRIVERS = [
   { 
     position: 13, driverId: 'nico', driverName: 'Nico Hulkenberg', driverNumber: 27, 
     image: 'img/pilotos/hulkenberg/grid-hulkenberg.avif', 
-    team: 'Sauber', teamColor: '#52E252', points: 0, wins: 0, podiums: 0 
+    team: 'Audi', teamColor: '#C0C0C0', points: 0, wins: 0, podiums: 0
   },
-  { 
+  {
     position: 14, driverId: 'esteban', driverName: 'Esteban Ocon', driverNumber: 31, 
     image: 'img/pilotos/ocon/grid-ocon.avif',
     team: 'Haas', teamColor: '#B6BABD', points: 0, wins: 0, podiums: 0 
@@ -116,7 +116,7 @@ const FALLBACK_CONSTRUCTORS = [
   { position: 7, teamId: 'williams', teamName: 'Williams Racing', teamShortName: 'Williams', image: 'img/equipes/williams/logo-williams.png', teamColor: '#005AFF', points: 0, wins: 0 },
   { position: 8, teamId: 'vcarb', teamName: 'Visa Cash App RB F1 Team', teamShortName: 'VCARB', image: 'img/equipes/rb/logo-rb.png', teamColor: '#1633EF', points: 0, wins: 0 },
   { position: 9, teamId: 'haas', teamName: 'MoneyGram Haas F1 Team', teamShortName: 'Haas', image: 'img/equipes/haas/logo-haas.png', teamColor: '#B6BABD', points: 0, wins: 0 },
-  { position: 10, teamId: 'audi', teamName: 'Audi F1 Team', teamShortName: 'Audi', image: 'img/equipes/audi/logo-audi.png', teamColor: '#000000', points: 0, wins: 0 },
+  { position: 10, teamId: 'audi', teamName: 'Audi F1 Team', teamShortName: 'Audi', image: 'img/equipes/audi/logo-audi.png', teamColor: '#C0C0C0', points: 0, wins: 0 },
 ];
 
 // Mapeamento de cores por equipe (personalize conforme necessário)
@@ -132,6 +132,7 @@ const TEAM_COLORS = {
   'Kick Sauber': '#52E252',
   'Sauber': '#52E252',
   'Haas F1 Team': '#B6BABD',
+  'Audi': '#C0C0C0',
 };
 
 // Mapeamento de nomes de piloto para suas imagens locais
@@ -169,6 +170,7 @@ const TEAM_IMAGE_MAP = {
   'Kick Sauber': 'img/equipes/sauber/logo-sauber.png',
   'Sauber': 'img/equipes/sauber/logo-sauber.png',
   'Haas F1 Team': 'img/equipes/haas/logo-haas.png',
+  'Audi': 'img/equipes/audi/logo-audi.png',
 };
 
 // --- COMPONENTES UI ---

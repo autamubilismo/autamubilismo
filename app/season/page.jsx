@@ -48,6 +48,7 @@ const TEAM_COLORS_MAP = {
   'Williams': 'bg-blue-400',
   'RB': 'bg-indigo-600',
   'Kick Sauber': 'bg-green-500',
+  'Audi': 'bg-gray-400',
   'Haas F1 Team': 'bg-gray-500',
 };
 

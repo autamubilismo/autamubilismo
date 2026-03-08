@@ -24,6 +24,7 @@ export const SeasonWidget = ({ theme }) => {
     'Williams': '#64C4FF',
     'RB': '#6692FF',
     'Kick Sauber': '#52E252',
+    'Audi': '#C0C0C0',
     'Haas F1 Team': '#B6BABD',
   };
 

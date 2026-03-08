@@ -423,7 +423,7 @@ export const CONSTRUCTORS_STANDINGS = [
     teamName: 'Audi F1 Team',
     teamShortName: 'Audi',
     image: 'img/equipes/audi/logo-audi.png',
-    teamColor: '#000000',
+    teamColor: '#C0C0C0',
     points: 0,
     wins: 0,
     podiums: 0,
