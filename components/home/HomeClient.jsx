@@ -10,20 +10,16 @@ import { NextRaceWidget } from '../widgets/NextRaceWidget';
 import { NewsWidget } from '../widgets/NewsWidget';
 import { SeasonWidget } from '../widgets/SeasonWidget';
 import { ContactWidget } from '../widgets/SimpleWidgets';
-import { NewsletterWidget, KpopPhotocard } from '../widgets/NewsletterWidget';
+import { NewsletterWidget } from '../widgets/NewsletterWidget';
 import { FanzoneWidget } from '../widgets';
 import { CuriosityWidget } from '../widgets/CuriosityWidget';
 import { useTheme } from '../layout/ThemeContext';
 
 const DRIVER_OF_DAY = {
-  name: 'Lando Norris',
-  team: 'McLaren',
-  number: '4',
-  image: '/img/pilotos/norris/grid-norris.avif',
-  photocardImage: '/img/pilotos/norris/norris-photocard.jpg',
-  zodiac: 'Escorpiao',
-  secretFact: 'Tem medo de peixes mas ama sushi.',
-  signature: 'L4ndo',
+  name: 'George Russell',
+  team: 'Mercedes',
+  number: '63',
+  image: '/img/pilotos/russell/grid-russell.avif',
 };
 
 const toFeedItem = (item, type) => ({
@@ -164,8 +160,16 @@ export const HomeClient = ({ news = [], articles = [] }) => {
                     className={`${theme === 'light' ? 'text-red-400' : 'text-cottage-rosy'} animate-pulse`}
                   />
                 </div>
-                <div className="flex-1 flex items-start">
-                  <KpopPhotocard driver={DRIVER_OF_DAY} theme={theme} />
+                <div className="flex-1 relative overflow-hidden rounded-2xl">
+                  <img
+                    src={DRIVER_OF_DAY.image}
+                    alt={DRIVER_OF_DAY.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 bg-linear-to-t from-black/70 to-transparent">
+                    <p className={`text-white font-black text-lg leading-tight`}>{DRIVER_OF_DAY.name}</p>
+                    <p className={`text-white/70 text-xs font-semibold uppercase tracking-widest`}>{DRIVER_OF_DAY.team} · #{DRIVER_OF_DAY.number}</p>
+                  </div>
                 </div>
               </div>
             </BentoCard>
