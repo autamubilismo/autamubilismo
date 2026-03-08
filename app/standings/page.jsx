@@ -374,6 +374,11 @@ const Standings = () => {
 
       // Processar pilotos
       const apiDrivers = driversJson.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
+
+      if (apiDrivers.length === 0) {
+        throw new Error('Sem dados disponíveis');
+      }
+
       const formattedDrivers = apiDrivers.map(driver => {
         const fullName = `${driver.Driver.givenName} ${driver.Driver.familyName}`;
         const teamName = driver.Constructors[0]?.name || 'Unknown';
@@ -601,7 +606,7 @@ const Standings = () => {
       <div className={`text-center mt-8 text-[10px] font-bold uppercase tracking-widest opacity-40 ${
         isLight ? 'text-gray-500' : 'text-cyan-100'
       }`}>
-        Fórmula 1 Season {usingFallback ? '2026' : '2025'} {usingFallback ? '' : '• Dados via Ergast API'}
+        Fórmula 1 Season 2026 {!usingFallback ? '• Dados via Jolpica' : ''}
       </div>
       
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');`}</style>

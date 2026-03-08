@@ -48,8 +48,17 @@ export const SeasonWidget = ({ theme }) => {
 
       const driversJson = await driversRes.json();
       const constructorsJson = await constructorsRes.json();
-      const lastRaceJson = await lastRaceRes.json();
+
       const apiDrivers = driversJson.MRData.StandingsTable.StandingsLists[0]?.DriverStandings || [];
+      const apiConstructors = constructorsJson.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings || [];
+
+      // Se não há corridas ainda, mantém o fallback mas marca a API como ativa
+      if (apiDrivers.length === 0) {
+        setUsingAPI(true);
+        setLoading(false);
+        return;
+      }
+
       const formattedDrivers = apiDrivers.map(driver => {
         const teamName = driver.Constructors[0]?.name || 'Unknown';
         return {
@@ -61,7 +70,6 @@ export const SeasonWidget = ({ theme }) => {
           wins: parseInt(driver.wins),
         };
       });
-      const apiConstructors = constructorsJson.MRData.StandingsTable.StandingsLists[0]?.ConstructorStandings || [];
       const formattedConstructors = apiConstructors.map(team => ({
         position: parseInt(team.position),
         teamName: team.Constructor.name,
@@ -71,15 +79,21 @@ export const SeasonWidget = ({ theme }) => {
         wins: parseInt(team.wins),
       }));
 
-      const raceData = lastRaceJson.MRData.RaceTable;
-      const currentRound = raceData.Races?.[0]?.round || 0;
-      const season = raceData.season || '2025';
+      // Última corrida (opcional)
+      let currentRound = 0;
+      let season = '2026';
+      if (lastRaceRes.ok) {
+        const lastRaceJson = await lastRaceRes.json();
+        const raceData = lastRaceJson.MRData?.RaceTable;
+        currentRound = parseInt(raceData?.Races?.[0]?.round || 0);
+        season = raceData?.season || '2026';
+      }
 
       const updatedStats = {
-        currentRound: parseInt(currentRound),
+        currentRound,
         totalRaces: 24,
-        racesCompleted: parseInt(currentRound),
-        season: season,
+        racesCompleted: currentRound,
+        season,
       };
       setDriversData(formattedDrivers);
       setConstructorsData(formattedConstructors);
