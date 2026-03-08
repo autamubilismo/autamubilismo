@@ -14,7 +14,7 @@ export async function GET(request) {
     return NextResponse.json({ error: 'Invalid path' }, { status: 400 });
   }
 
-  const res = await fetch(`https://ergast.com/api/f1/${path}`, {
+  const res = await fetch(`https://api.jolpi.ca/ergast/f1/${path}`, {
     next: { revalidate: 300 },
   });
 

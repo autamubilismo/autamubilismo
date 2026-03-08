@@ -10,13 +10,11 @@ import {
   Scale, 
   Users, 
   Wrench, 
-  Globe, 
-  Sparkles, 
-  Zap, 
-  Timer, 
+  Globe,
+  Zap,
+  Timer,
   ArrowRight,
   ChevronLeft,
-  Medal,
   RefreshCw,
   AlertCircle
 } from 'lucide-react';
@@ -156,7 +154,7 @@ const PageHeader = ({ theme, badge, icon: Icon, title, subtitle, onRefresh, load
 
 // --- Widget de Classificação com API ---
 
-const StandingsWidget = ({ theme }) => {
+const StandingsWidget = ({ theme, onFallbackChange }) => {
   const [activeTab, setActiveTab] = useState('drivers');
   const [driversData, setDriversData] = useState(FALLBACK_DRIVERS_2026);
   const [constructorsData, setConstructorsData] = useState(FALLBACK_CONSTRUCTORS_2026);
@@ -215,12 +213,14 @@ const StandingsWidget = ({ theme }) => {
       setDriversData(formattedDrivers);
       setConstructorsData(formattedConstructors);
       setUsingFallback(false);
-      setSeason(driversJson.MRData.StandingsTable.season || '2025');
+      onFallbackChange?.(false);
+      setSeason(driversJson.MRData.StandingsTable.season || '2026');
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
       setDriversData(FALLBACK_DRIVERS_2026);
       setConstructorsData(FALLBACK_CONSTRUCTORS_2026);
       setUsingFallback(true);
+      onFallbackChange?.(true);
       setSeason('2026');
     } finally {
       setLoading(false);
@@ -470,7 +470,6 @@ const SeasonPage = () => {
   const { theme } = useTheme();
   const resolvedTheme = theme || 'light';
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(false);
   const [usingFallback, setUsingFallback] = useState(true);
 
   // Função para atualizar dados (passa para o header)
@@ -547,7 +546,7 @@ const SeasonPage = () => {
         title="Temporada 2026"
         subtitle="O início de uma nova geração na Fórmula 1"
         onRefresh={handleRefresh}
-        loading={loading}
+        loading={false}
         usingFallback={usingFallback}
       />
 
@@ -597,7 +596,7 @@ const SeasonPage = () => {
       </div>
 
       {/* WIDGET DE CLASSIFICAÇÃO COM API */}
-      <StandingsWidget theme={resolvedTheme} />
+      <StandingsWidget theme={resolvedTheme} onFallbackChange={setUsingFallback} />
 
       {/* Barra de Pesquisa */}
       <div className={`relative mb-10 group z-20`}>
